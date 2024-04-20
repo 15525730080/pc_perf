@@ -1,0 +1,2 @@
+# pc_perf
+pc 进程性能测试平台，支持 windows / mac / linux 平台进程cpu、memory、fps（仅支持windowsOpenGL  DirectX 引擎应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示
