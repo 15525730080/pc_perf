@@ -62,7 +62,7 @@ setup(
     # # 指定包的入口点，用于命令行工具
     entry_points={
         'console_scripts': [
-            'pc_perf=web:main',  # 这里的web-command是你为命令行工具定义的命令
+            'pc_perf=pc_perf:main',  # 这里的web-command是你为命令行工具定义的命令
         ],
     },
 
