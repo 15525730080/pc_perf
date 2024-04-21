@@ -1,0 +1,13 @@
+concurrent_log_handler==0.9.25
+fastapi==0.110.2
+numpy==1.23.5
+pandas==2.2.2
+Pillow==10.3.0
+psutil==5.9.8
+PyGetWindow==0.0.9
+pynvml==11.5.0
+SQLAlchemy==2.0.29
+SQLAlchemy_serializer==1.4.12
+starlette==0.37.2
+uvicorn==0.29.0
+aiosqlite==0.20.0

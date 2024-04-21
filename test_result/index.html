@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>性能测试报告</title>
+    <!-- 引入 Element UI CSS -->
+    <link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet">
+    <!-- 引入 Swiper CSS -->
+    <link href="https://unpkg.com/swiper@latest/swiper-bundle.min.css" rel="stylesheet">
+    <!-- 引入 Vue -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
+    <!-- 引入 Element UI -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- 引入 Axios -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <!-- 引入 ECharts -->
+    <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
+    <!-- 引入 Swiper -->
+    <script src="https://unpkg.com/swiper@latest/swiper-bundle.min.js"></script>
+    <style>
+        /* 自定义样式 */
+        .el-aside {
+            background-color: #f2f2f2;
+        }
+        .task-button {
+            margin-bottom: 10px;
+        }
+		.headernavbar{
+			background-color: #3b4d6e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+		}
+		.headernavbar h1 {
+            margin: 0;
+            font-size: 18px;
+            color: #fff;
+        }
+        html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%; /* 使 body 占满整个视口高度 */
+        }
+        .el-header{
+            margin:0;
+            padding:0;
+        }
+		.el-aside {
+            background-color: #fff;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, .1);
+            flex: 0 0 200px;
+        }
+
+        .box-card {
+          border: none;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        .box-card:hover {
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+          transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .el-card__header {
+          background-color: #409eff;
+          color: white;
+          padding: 10px 20px;
+          font-size: 18px;
+          font-weight: bold;
+          border-radius: 8px 8px 0 0;
+        }
+
+        .el-card__body {
+          padding: 20px;
+        }
+
+        p {
+          margin: 0;
+          color: #333;
+          line-height: 1.6;
+        }
+
+        p span {
+          color: #409eff;
+          font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+          .box-card {
+            width: calc(100% - 20px);
+          }
+        }
+        .taskform {
+          margin: 50px auto;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        }
+
+
+
+
+        /* 图表容器的基本样式 */
+.chart-container {
+  width: 50%; /* 占满容器宽度 */
+  max-width: 100%; /* 防止宽度超过容器 */
+  height: 400px; /* 默认高度 */
+  margin-bottom: 20px; /* 图表之间的间距 */
+  background-color: #ffffff; /* 背景颜色 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
+  border-radius: 4px; /* 轻微的圆角 */
+  overflow: hidden; /* 隐藏溢出的内容 */
+}
+
+/* 图表标题样式 */
+.chart-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0 0 10px; /* 上下边距为0，下边距为10px */
+  padding: 10px;
+  background-color: #f2f2f2; /* 标题背景颜色 */
+  border-radius: 4px 4px 0 0; /* 仅上边缘圆角 */
+}
+
+/* 图表容器内的 ECharts 图表样式 */
+.echarts-chart {
+  width: 100%; /* 占满容器宽度 */
+  height: calc(100% - 30px); /* 减去标题的高度 */
+}
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="app" style="margin:0;padding:0; height: 100%;">
+    <el-header style="height: 8%;">
+        <div class="headernavbar">
+            <svg class="icon" style="height: 3em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                 viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2539">
+                <path d="M467.104627 672.205804L110.431373 840.422902l348.300549 159.422745c24.636235 10.842353 43.670588 16.263529 57.123137 16.263529 13.452549 0 33.209725-5.421176 59.231372-16.263529L913.568627 840.44298l-356.673254-168.217098a105.251137 105.251137 0 0 0-89.790746 0z"
+                      fill="#797979" p-id="2540"></path>
+                <path d="M110.431373 791.752784v55.17553c202.912627 91.597804 319.006118 142.898196 348.300549 153.901176 43.951686 16.484392 58.287686 25.660235 129.244862-4.718431 47.304784-20.259137 155.828706-70.194196 325.591843-149.785098v-54.573177c-200.864627 93.043451-309.388549 142.817882-325.591843 149.303216-24.294902 9.758118-101.677176 18.713098-138.782117 0-24.736627-12.448627-137.657725-62.243137-338.763294-149.303216z"
+                      fill="#282F9A" p-id="2541"></path>
+                <path d="M467.104627 623.535686L110.431373 791.752784l348.300549 159.422745c24.636235 10.842353 43.670588 16.243451 57.123137 16.243451 13.452549 0 33.209725-5.421176 59.231372-16.243451L913.568627 791.752784l-356.673254-168.217098a105.251137 105.251137 0 0 0-89.790746 0z"
+                      fill="#727AFF" p-id="2542"></path>
+                <path d="M634.819765 43.369412l-195.604079 402.713098 160.326275 13.874196-110.933334 332.900392 269.050981-472.485647-132.116079-32.225882z"
+                      fill="#FFCB28" p-id="2543"></path>
+                <path d="M438.633412 458.189804l-101.355922 81.116863L595.425882 81.960157l39.393883-38.590745z"
+                      fill="#FF9D00" p-id="2544"></path>
+                <path d="M338.723137 538.001569h157.776314l112.097882-78.72753-163.84-12.609255z" fill="#CD7E00"
+                      p-id="2545"></path>
+                <path d="M496.499451 538.001569L455.981176 811.971765l32.727844-18.873726 117.559215-333.342117z"
+                      fill="#FF9D00" p-id="2546"></path>
+            </svg>
+            <h1>PC进程性能测试平台
+            </h1>
+        </div>
+    </el-header>
+    <el-container style="height: 90%;">
+        <!-- 侧边栏 -->
+        <el-aside style="width: 150px;">
+            <el-menu :default-active="1" class="el-menu-demo" style="border-right: solid 0px">
+                <el-menu-item index="1" class="task-button" @click="switchView('taskList');">
+                    <h3>任务列表</h3>
+                </el-menu-item>
+                <el-menu-item index="2" class="task-button" @click="switchView('createTask')">
+                    <h3>创建任务</h3>
+                </el-menu-item>
+            </el-menu>
+        </el-aside>
+        <!-- 内容区域 -->
+        <el-container>
+            <el-main>
+                <template v-if="currentView === 'taskList'">
+                    <el-table :data="tasks" style="width: 100%" height="100%">
+                        <el-table-column prop="name" label="任务名称" sortable></el-table-column>
+                        <el-table-column prop="serialno" label="被测设备" sortable></el-table-column>
+                        <el-table-column prop="target_pid" label="被测进程" sortable></el-table-column>
+                        <el-table-column prop="target_pid_name" label="进程名称" sortable></el-table-column>
+                        <el-table-column prop="status" label="任务状态" sortable>
+                            <template slot-scope="scope">
+                                <el-button type="info" size="mini" v-if="scope.row.status==0">待执行</el-button>
+                                <el-button type="primary" size="mini" v-if="scope.row.status==1">执行中</el-button>
+                                <el-button type="danger" size="mini" v-if="scope.row.status==-1">执行失败</el-button>
+                                <el-button type="success" size="mini" v-if="scope.row.status==2">执行完成</el-button>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="platform" label="设备平台" sortable></el-table-column>
+                        <el-table-column prop="start_time" label="开始时间" sortable></el-table-column>
+                        <el-table-column prop="end_time" label="结束时间" sortable></el-table-column>
+                        <el-table-column label="操作">
+                            <template slot-scope="scope">
+                                <el-button type="danger" size="mini" v-if="scope.row.status==1"
+                                           @click="stop_task(scope.row.id)">停止任务
+                                </el-button>
+                                <el-button type="danger" size="mini" v-if="scope.row.status!=1"
+                                           @click="delete_task(scope.row.id)">删除任务
+                                </el-button>
+                                <el-button type="primary" size="mini" v-if="scope.row.status!=0||scope.row.status!=-1"
+                                           @click="result(scope.row.id);curtaskid=scope.row.id;">查看结果
+                                </el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </template>
+                <template v-if="currentView === 'createTask'">
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <span>设备信息</span>
+                        </div>
+                        <div>
+                            <p>平台: <span>{{ currentSystemInfo.platform }}</span></p>
+                            <p>计算机名称: <span>{{ currentSystemInfo.computer_name }}</span></p>
+                            <p>CPU 核心数: <span>{{ currentSystemInfo.cpu_cores }}</span></p>
+                            <p>RAM: <span>{{ currentSystemInfo.ram }}</span></p>
+                            <p>ROM: <span>{{ currentSystemInfo.rom }}</span></p>
+                        </div>
+                    </el-card>
+                    <el-form ref="newTask" :model="newTask" label-width="5%" class="taskform">
+                        <el-form-item label="任务名称">
+                            <el-input v-model="newTask.name" placeholder="请输入任务名称" clearable></el-input>
+                        </el-form-item>
+                        <el-form-item label="选择 PID">
+                            <el-select v-model="newTask.pid" filterable placeholder="请选择 PID" @visible-change="get_pids"
+                                       @change="getPidCmd">
+                                <el-option
+                                        v-for="pid in pids"
+                                        :key="pid.pid"
+                                        :label="pid.name + '_' + pid.pid"
+                                        :value="pid.pid">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item v-if="cmd" label="pid cmd">
+                            {{cmd}}
+                        </el-form-item>
+                        <el-form-item v-if="cmd" label="pid 截图">
+                            <el-image
+                                    style="width: 100%; height: 100%"
+                                    :src=pid_img
+                            >
+                                <div slot="error" class="image-slot">
+                                </div>
+                            </el-image>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="createTask">创建任务</el-button>
+                        </el-form-item>
+                    </el-form>
+                </template>
+            </el-main>
+        </el-container>
+    </el-container>
+    <el-dialog
+            :visible.sync="dialogVisible"
+            width="80%"
+            @open="handleDialogVisibleChange"
+            @closed="clearInterval(intervalId);"
+            @destroy-on-close="true"
+    >
+        <div style="display: flex;flex-direction: row;flex-wrap: wrap;">
+
+            <div class="chart-container">
+                <div class="chart-title">{{num2time(clicktime)}}进程截图</div>
+                <div class="demo-image">
+                    <el-image
+                            style="width: 100%; height: 100%"
+                            :src='"/static/" + this.opentaskid + "/screenshot/" + this.clicktime + ".png"'
+                    >
+                        <div slot="error" class="image-slot">
+                        </div>
+                    </el-image>
+
+                </div>
+            </div>
+
+
+            <div class="chart-container">
+                <div class="chart-title">
+                    CPU 使用率
+                </div>
+                <div id="cpuChart" class="echarts-chart"></div>
+
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">内存使用量</div>
+                <div id="memoryChart" class="echarts-chart"></div>
+
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">FPS</div>
+                <div id="fpsChart" class="echarts-chart"></div>
+
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">GPU 使用率</div>
+                <div id="gpuChart" class="echarts-chart"></div>
+
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">线程数与句柄数</div>
+                <div id="processInfoChart" class="echarts-chart"></div>
+
+            </div>
+
+        </div>
+    </el-dialog>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                dialogVisible: false,
+                currentSystemInfo: null,
+                currentView: 'taskList', // 当前视图，默认为任务列表
+                newTask: { // 新任务对象
+                    name: this.getCurrentTimestamp(),
+                    pid: null
+                },
+                pids: [],
+                tasks: [ // 任务列表数据
+
+                ],
+                cmd: '',
+                pid_name: '',
+                pid_img: '',
+                resultOption: null,
+                cpuChart: null,
+                memoryChart: null,
+                fpsChart: null,
+                gpuChart: null,
+                processInfoChart: null,
+                clicktime: null,
+                opentaskid: null, 
+                curtaskid: null,
+                intervalId: null,
+            };
+        },
+        methods: {
+            switchView(view) {
+                this.currentView = view;
+                this.getAllTask().then()
+            },
+            getCurrentTimestamp() {
+              const date = new Date();
+              const year = date.getFullYear();
+              const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 月份从0开始，所以加1
+              const day = date.getDate().toString().padStart(2, '0');
+              const hours = date.getHours().toString().padStart(2, '0');
+              const minutes = date.getMinutes().toString().padStart(2, '0');
+              const seconds = date.getSeconds().toString().padStart(2, '0');
+
+              return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            },
+            getPidCmd(){
+                for (let i = 0; i < this.pids.length; i++) {
+                  if (this.newTask.pid === this.pids[i].pid) {
+                      this.cmd = this.pids[i].cmd.join(" ");
+                      this.pid_name = this.pids[i].name
+                  }
+                }
+                this.getPidImg()
+
+            },
+            syncDataZoom(chartInstance, otherCharts) {
+                chartInstance.getZr().on('click', (params) => {
+                        const pointInPixel = [params.offsetX, params.offsetY];
+                        if (chartInstance.containPixel("grid", pointInPixel)) {
+                            // 转换像素坐标到数据坐标
+                            // 将像素坐标转换为 x 轴的数据索引
+                            let xIndex = chartInstance.convertFromPixel({seriesIndex: 0}, pointInPixel)[0];
+                            let xAxisData = chartInstance.getOption().xAxis[0].data;
+                            let xAxisValue = xAxisData[xIndex];
+                            this.clicktime = xAxisValue
+                            console.log(this.clicktime)
+                            chartInstance.dispatchAction({
+                                type: "brush",
+                                areas: [
+                                {
+                                    brushType: "lineX",
+                                    coordRange: [
+                                        xIndex,
+                                        xIndex,
+                                    ],
+                                    xAxisIndex: 0,
+                                    transformable: false,
+                                },
+                                ],
+                            });
+                            for(let index in otherCharts){
+                                otherCharts[index].dispatchAction({
+                                    type: "brush",
+                                    areas: [
+                                    {
+                                        brushType: "lineX",
+                                        coordRange: [
+                                            xIndex,
+                                            xIndex,
+                                        ],
+                                        xAxisIndex: 0,
+                                        transformable: false,
+                                    },
+                                    ],
+                                }); 
+                            }
+                        }
+                    
+                    });
+            },
+            async get_pids() {
+                const res = await axios({method: 'get',//提交方法
+                            url: '/get_pids/'
+                 })
+				 console.log(res)
+				 this.pids = res.data.msg
+            },
+            async get_system_info() {
+                const res = await axios({method: 'get',//提交方法
+                            url: '/system_info/'
+                 })
+				 console.log(res)
+
+				 this.currentSystemInfo = res.data.msg
+            },
+            async createTask() {
+                const res = await axios({method: 'get',//提交方法
+                            url: '/run_task/?pid='+this.newTask.pid+'&task_name='+this.newTask.name+'&pid_name='+this.pid_name//提交地址
+                 })
+                 this.print_res(res)
+				 console.log(res)
+            },
+            async getAllTask(){
+                 const res = await axios({method: 'get',//提交方法
+							url: '/get_all_task/'//提交地址
+				 })
+				 console.log(res)
+				 this.tasks = res.data.msg
+            },
+            async getPidImg(){
+                 const res = await axios({method: 'get',//提交方法
+							url: '/pid_img/?pid=' + this.newTask.pid//提交地址
+				 })
+				 console.log(res)
+				 this.pid_img = "data:image/png;base64," + res.data
+            },
+            async delete_task(taskId){
+                    const res = await axios({method: 'get',//提交方法
+                                    url: '/delete_task/?task_id=' + taskId//提交地址
+                         })
+                         this.print_res(res)
+				 console.log(res.data)
+				 await this.getAllTask()
+            },
+            async result(taskId){
+                const res = await axios({method: 'get',//提交方法
+							url: '/result/?task_id=' + taskId//提交地址
+				 })
+                this.opentaskid = taskId
+				let tempOption={
+				      legend: {
+                        show: true
+                      },
+				      tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            crossStyle: {
+                                color: '#999'
+                            }
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: [/* 时间戳数据 */],
+                        axisPointer: {
+                            type: 'shadow'
+                        },
+                        axisLabel: {
+                            formatter: timestamp => {
+                                // 将Unix时间戳转换为JavaScript的Date对象
+                                const date = new Date(timestamp * 1000);
+                                // 使用toLocaleString方法格式化时间戳
+                                return date.toLocaleTimeString();
+                                }
+                        }
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+
+                    ],
+                    toolbox: {
+                     show: false,
+                    },
+                    brush: {
+                        xAxisIndex: "all",
+                        brushLink: "all",
+                        brushStyle: {
+                            borderWidth: 3,
+                            color: 'rgba(255,36,36,0.2)',
+                            borderColor: '#ff2424'
+                        }
+                    },
+                    markArea:{},
+					clickable: true,
+					symbol: 'circle',
+                    lineStyle: {
+							width: 0.5,
+					},
+                    showSymbol: false,//是否默认展示圆点
+                    dataZoom: 
+                        {
+                            type: 'slider', // 滑动条型 dataZoom 组件
+                            start: 0,      // 默认起始位置为 0（即最左端）
+                            end: 100,       // 默认结束位置为 100（即最右端）
+                            height: 15, // 设置高度为10像素
+                        }
+                    
+				}
+				let allRes = {}
+                this.dialogVisible = true
+                
+				res.data.msg.forEach(x=>{
+				    let tempOption_tmp = JSON.parse(JSON.stringify(tempOption));
+                    tempOption_tmp.xAxis.axisLabel.formatter = tempOption.xAxis.axisLabel.formatter
+				    let timeList = []
+				    let cpuList = []
+				    let fpsList = []
+				    let gpuList = []
+				    let memoryList = []
+				    let numThreadList = []
+				    let numHandlesList = []
+				    x.value.forEach(v=>{
+				        if (x.name == "cpu"){
+				            cpuList.push(v["cpu_usage(%)"]?v["cpu_usage(%)"]:"-")
+				            timeList.push(v["time"])
+                           
+                        }else if(x.name == "fps"){
+                            fpsList.push(v["fps(帧)"]?v["fps(帧)"]:"-")
+				            timeList.push(v["time"]?v["time"]:"-")
+                           
+				        }else if(x.name == "gpu"){
+                            gpuList.push(v["gpu(%)"]?v["gpu(%)"]:"-")
+				            timeList.push(v["time"]?v["time"]:"-")
+                           
+				        }else if(x.name == "memory"){
+                            memoryList.push(v["process_memory_usage(M)"]?v["process_memory_usage(M)"]:"-")
+				            timeList.push(v["time"]?v["time"]:"-")
+                           
+				        }else if(x.name == "process_info"){
+                            numHandlesList.push(v["num_handles(个)"]?v["num_handles(个)"]:"-")
+				            numThreadList.push(v["num_threads(个)"]?v["num_threads(个)"]:"-")
+				            timeList.push(v["time"]?v["time"]:"-")
+                           
+				        }
+                    
+				    })
+
+                    tempOption_tmp.xAxis.data = timeList
+				    allRes[x.name] = tempOption_tmp
+
+				  if (x.name == "cpu"){
+                    tempOption_tmp.series.push(
+                                {
+                                    name: 'cpu_usage(%)',
+                                    type: 'line',
+                                    data: cpuList,
+                                    connectNulls: true,
+                                    areaStyle: {},
+
+                                  }
+                                
+				            )
+
+				        }else if(x.name == "fps"){
+				            tempOption_tmp.series.push(
+                                {
+                                    name: 'fps(帧)',
+                                    type: 'line',
+                                    data: fpsList,
+                                    connectNulls: true
+                                }
+				            )
+
+				        }else if(x.name == "gpu"){
+                            tempOption_tmp.series.push(
+                                {
+                                    name: 'gpu(%)',
+                                    type: 'line',
+                                    data: gpuList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+				            )
+
+				        }else if(x.name == "memory"){
+                            tempOption_tmp.series.push(
+                                {
+                                    name: 'process_memory_usage(M)',
+                                    type: 'line',
+                                    data: memoryList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+				            )
+
+				        }else if(x.name == "process_info"){
+                            tempOption_tmp.series.push(
+                                {
+                                    name: 'num_handles(个)',
+                                    type: 'line',
+                                    data: numHandlesList,
+                                    connectNulls: true
+                                }
+				            )
+				            tempOption_tmp.series.push(
+                                {
+                                    name: 'num_threads(个)',
+                                    type: 'line',
+                                    data: numThreadList,
+                                    connectNulls: true
+                                }
+				            )
+
+				        }
+				})
+				this.resultOption = allRes
+            },
+            num2time(clicktime){
+                if (!clicktime){
+                    return ""
+                }
+                const date = new Date(clicktime * 1000);
+                                // 使用toLocaleString方法格式化时间戳
+                                return date.toLocaleTimeString();
+            },
+            handleDialogVisibleChange(){
+                console.log(this.resultOption)
+                this.$nextTick(() => {
+                    let allRes = this.resultOption
+                    this.cpuChart = echarts.init(document.getElementById('cpuChart'));
+                    this.memoryChart = echarts.init(document.getElementById('memoryChart'));
+                    this.fpsChart = echarts.init(document.getElementById('fpsChart'));
+                    this.gpuChart = echarts.init(document.getElementById('gpuChart'));
+                    this.processInfoChart = echarts.init(document.getElementById('processInfoChart'));
+                    this.cpuChart.setOption(allRes["cpu"]);
+                    this.memoryChart.setOption(allRes["memory"]);
+                    this.fpsChart.setOption(allRes["fps"]);
+                    this.gpuChart.setOption(allRes["gpu"]);  
+                    this.processInfoChart.setOption(allRes["process_info"]);  
+                    this.syncDataZoom(this.cpuChart, [this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart]);
+                    this.syncDataZoom(this.memoryChart, [this.cpuChart, this.fpsChart, this.gpuChart, this.processInfoChart]);
+                    this.syncDataZoom(this.fpsChart, [this.cpuChart, this.memoryChart, this.gpuChart, this.processInfoChart]);
+                    this.syncDataZoom(this.gpuChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.processInfoChart]);
+                    this.syncDataZoom(this.processInfoChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart]);
+                    
+                });
+                this.intervalId = setInterval(() => {
+                    // 调用加载数据的函数
+                    this.reloadchart();
+                }, 3000);
+                
+            },
+            async stop_task(taskId){
+                const res = await axios({method: 'get',//提交方法
+							url: '/stop_task/?task_id=' + taskId//提交地址
+				 })
+				 console.log(res.data)
+				 this.print_res(res)
+				await this.getAllTask()
+            },
+            print_res(res){
+                if (res.data.code == 200){
+                    this.$message({
+                      showClose: true,
+                      message: res.data.msg,
+                      type: 'success'
+                    });
+                }else{
+                    this.$message.error(res.data.msg);
+                }
+            },
+            async reloadchart(){
+                await this.result(this.curtaskid)
+                let allRes = this.resultOption
+                this.cpuChart.setOption(allRes["cpu"]);
+                this.memoryChart.setOption(allRes["memory"]);
+                this.fpsChart.setOption(allRes["fps"]);
+                this.gpuChart.setOption(allRes["gpu"]);  
+                this.processInfoChart.setOption(allRes["process_info"]);  
+                
+            }
+
+        },
+        async mounted(){
+            await this.getAllTask();
+            await this.get_system_info()
+        }
+    });
+
+
+
+
+</script>
+</body>
+</html>
