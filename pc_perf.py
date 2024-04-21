@@ -7,7 +7,6 @@ import threading
 import time
 import traceback
 import webbrowser
-import sys
 from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse
@@ -120,7 +119,7 @@ async def delete_task(request: Request, task_id: int):
 
 def open_url():
     time.sleep(2)
-    webbrowser.open("http://127.0.0.1:80")
+    webbrowser.open("http://127.0.0.1:20223")
 
 
 def main():
@@ -128,8 +127,8 @@ def main():
         import uvicorn
         multiprocessing.freeze_support()
         threading.Thread(target=open_url).start()
-        logger.info("服务启动请访问: http://localhost:80")
-        uvicorn.run("web:app", host="0.0.0.0", port=80, log_level="error", reload=False)
+        logger.info("服务启动请访问: http://localhost:20223")
+        uvicorn.run("web:app", host="0.0.0.0", port=20223, log_level="error", reload=False, workers=psutil.cpu_count())
 
 
 if __name__ == "__main__":
