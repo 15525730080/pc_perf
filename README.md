@@ -6,11 +6,15 @@ pc 进程性能测试平台，支持 windows / mac / linux 平台进程cpu、mem
     python pc_perf.py #需要使用管理员权限启动才可以获取到windows fps
 
 # 创建任务
-    ![image](https://github.com/15525730080/pc_perf/assets/153100629/6e46e2c9-7314-465c-9b81-b7e72991e1e4)
+![image](https://github.com/15525730080/pc_perf/assets/153100629/91995e83-6fc6-4350-84d1-24704f1bccce)
 
 # 任务列表
-    ![image](https://github.com/15525730080/pc_perf/assets/153100629/6b8d8bc5-5b92-4536-bb5e-8cf30684f0b1)
+![image](https://github.com/15525730080/pc_perf/assets/153100629/10112d4b-3724-4ada-9cb8-df633af302a0)
 
 # 性能报表
-    ![image](https://github.com/15525730080/pc_perf/assets/153100629/2b13d709-b49a-469e-98a4-7a5aba233425)
+![image](https://github.com/15525730080/pc_perf/assets/153100629/2e28527a-6e5d-487c-8753-8d3483c0f108)
 
+# 开源
+本项目归属：范博洲  
+使用关注开源协议
+禁止申请软著、专利 本人已申请
