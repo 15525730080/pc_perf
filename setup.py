@@ -6,7 +6,7 @@ setup(
     name='pc-perf',
 
     # 版本号，遵循语义化版本控制规则
-    version='1.1.0',
+    version='1.1.3',
 
     # 项目简短描述
     description='pc 进程性能测试平台，支持 windows / mac / linux 平台进程cpu、memory、fps（仅支持windows下OpenGL  DirectX 引擎应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示',
@@ -44,7 +44,7 @@ setup(
     ],
 
     # 从包中自动寻找所有的子包和子模块
-    py_modules=['dao', 'log', 'task_handle', 'util', 'web', 'core'],
+    py_modules=['dao', 'log', 'task_handle', 'util', 'pc_perf', 'core'],
     packages=['core'],
     
     # 包含数据文件，比如配置文件
@@ -53,7 +53,7 @@ setup(
     # 定义包中非.py文件的内容
     package_data={
         # 如果你的包中有数据文件，可以在这里指定
-        '': ['*.exe', 'test_result/*.html'],  # 举例：包含所有dat和md文件
+        '': ['../*.exe', '../test_result/*.html'],
     },
 
     # 指定Python版本要求
