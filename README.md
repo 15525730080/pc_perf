@@ -12,7 +12,7 @@ cpu、memory、fps（仅支持windowsOpenGL  DirectX 引擎应用）、gpu、thr
     方式二：
     #需要使用管理员权限启动才可以获取到windows fps ！！！
     pip install pc-perf
-    python -m pc-perf  
+    python -m pc_perf  
 
     
 
