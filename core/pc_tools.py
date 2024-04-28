@@ -12,11 +12,13 @@ from pathlib import Path
 from log import log
 from core.monitor import Monitor
 
+SUPPORT_GPU = True
 try:
     pynvml.nvmlInit()
 except:
     traceback.print_exc()
     log.info("本设备gpu获取不适配")
+    SUPPORT_GPU = False
 from PIL import ImageGrab
 
 
@@ -186,6 +188,8 @@ async def memory(pid):
 
 
 async def fps(pid):
+    if platform.system() != "Windows":
+        return {"type": "fps", "time": int(time.time())}
     frames = WinFps(pid).fps()
     if not frames:
         return frames
@@ -198,20 +202,23 @@ async def gpu(pid):
     def real_func(pid):
         pid = int(pid)
         start_time = int(time.time())
-        device_count = pynvml.nvmlDeviceGetCount()
-        res = None
-        for i in range(device_count):
-            handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-            processes = pynvml.nvmlDeviceGetComputeRunningProcesses(handle)
-            for process in processes:
-                print(process)
-                if process.pid == pid:
-                    gpu_Utilization = pynvml.nvmlDeviceGetUtilizationRates(handle)
-                    gpu_utilization_percentage = gpu_Utilization.gpu  # GPU的计算使用率
-                    res = {"gpu": gpu_utilization_percentage, "time": start_time}
-                    print_json(res)
-                    return res
-        return res
+        if SUPPORT_GPU:
+            device_count = pynvml.nvmlDeviceGetCount()
+            res = None
+            for i in range(device_count):
+                handle = pynvml.nvmlDeviceGetHandleByIndex(i)
+                processes = pynvml.nvmlDeviceGetComputeRunningProcesses(handle)
+                for process in processes:
+                    print(process)
+                    if process.pid == pid:
+                        gpu_Utilization = pynvml.nvmlDeviceGetUtilizationRates(handle)
+                        gpu_utilization_percentage = gpu_Utilization.gpu  # GPU的计算使用率
+                        res = {"gpu": gpu_utilization_percentage, "time": start_time}
+                        print_json(res)
+                        return res
+            return res
+        else:
+            return {"time": start_time}
 
     return await asyncio.wait_for(asyncio.to_thread(real_func, pid), timeout=10)
 
@@ -220,9 +227,19 @@ async def process_info(pid):
     def real_func(pid):
         start_time = int(time.time())
         process = psutil.Process(int(pid))
-        num_handles = process.num_handles()
-        num_threads = process.num_threads()
-        res = {"num_threads": num_threads, "num_handles": num_handles, "time": start_time}
+        num_handles = None
+        num_threads = None
+        try:
+            num_handles = process.num_handles()
+        except:
+            log.error(traceback.print_exc())
+        try:
+            num_threads = process.num_threads()
+        except:
+            log.error(traceback.print_exc())
+        res = {"time": start_time}
+        if num_handles: res["num_handles"] = num_handles
+        if num_threads: res["num_threads"] = num_threads
         print_json(res)
         return res
 
