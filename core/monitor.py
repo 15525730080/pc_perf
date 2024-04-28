@@ -3,6 +3,7 @@ import csv
 import inspect
 import json
 import time
+import traceback
 from pathlib import Path
 
 from log import log as logger
@@ -58,15 +59,18 @@ class Monitor(object):
             before_func = time.time()
             param_names = inspect.signature(self.func).parameters.keys()
             params = {name: self.kwargs.get(name) for name in param_names}
-            print(params)
-            res = await self.func(**params)
-            if self.is_out and res:
-                with open(self.csv_path, "a+", encoding="utf-8", newline="") as f:
-                    csv_writer = csv.writer(f)
-                    csv_writer.writerow([res.get(key, "") for key in self.key_value])
-            end_func = time.time()
-            if interval_time := (int(end_func) - int(before_func)) <= 1:
-                await asyncio.sleep(interval_time)
+            try:
+                res = await self.func(**params)
+                if self.is_out and res:
+                    with open(self.csv_path, "a+", encoding="utf-8", newline="") as f:
+                        csv_writer = csv.writer(f)
+                        csv_writer.writerow([res.get(key, "") for key in self.key_value])
+            except:
+                logger.error(traceback.print_exc())
+            finally:
+                end_func = time.time()
+                if interval_time := (int(end_func) - int(before_func)) <= 1:
+                    await asyncio.sleep(interval_time)
 
     def stop(self):
         self.stop_event.clear()
