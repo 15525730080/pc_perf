@@ -136,11 +136,6 @@
 }
 
 
-
-
-
-
-
     </style>
 </head>
 <body>
@@ -233,7 +228,8 @@
                             <el-input v-model="newTask.name" placeholder="请输入任务名称" clearable></el-input>
                         </el-form-item>
                         <el-form-item label="选择 PID">
-                            <el-select v-model="newTask.pid" filterable placeholder="请选择 PID" @visible-change="get_pids"
+                            <el-select v-model="newTask.pid" filterable placeholder="请选择 PID"
+                                       @visible-change="get_pids"
                                        @change="getPidCmd">
                                 <el-option
                                         v-for="pid in pids"
@@ -348,6 +344,7 @@
                 opentaskid: null, 
                 curtaskid: null,
                 intervalId: null,
+                isloadres: false,
             };
         },
         methods: {
@@ -548,24 +545,24 @@
 				    let numHandlesList = []
 				    x.value.forEach(v=>{
 				        if (x.name == "cpu"){
-				            cpuList.push(v["cpu_usage(%)"]?v["cpu_usage(%)"]:"-")
+				            cpuList.push((v["cpu_usage(%)"]||v["cpu_usage(%)"]===0)?v["cpu_usage(%)"]:"-")
 				            timeList.push(v["time"])
                            
                         }else if(x.name == "fps"){
-                            fpsList.push(v["fps(帧)"]?v["fps(帧)"]:"-")
+                            fpsList.push(v["fps(帧)"]||v["fps(帧)"]===0?v["fps(帧)"]:"-")
 				            timeList.push(v["time"]?v["time"]:"-")
                            
 				        }else if(x.name == "gpu"){
-                            gpuList.push(v["gpu(%)"]?v["gpu(%)"]:"-")
+                            gpuList.push(v["gpu(%)"]||v["gpu(%)"]===0?v["gpu(%)"]:"-")
 				            timeList.push(v["time"]?v["time"]:"-")
                            
 				        }else if(x.name == "memory"){
-                            memoryList.push(v["process_memory_usage(M)"]?v["process_memory_usage(M)"]:"-")
+                            memoryList.push(v["process_memory_usage(M)"]||v["process_memory_usage(M)"]===0?v["process_memory_usage(M)"]:"-")
 				            timeList.push(v["time"]?v["time"]:"-")
                            
 				        }else if(x.name == "process_info"){
-                            numHandlesList.push(v["num_handles(个)"]?v["num_handles(个)"]:"-")
-				            numThreadList.push(v["num_threads(个)"]?v["num_threads(个)"]:"-")
+                            numHandlesList.push(v["num_handles(个)"]||v["num_handles(个)"]===0?v["num_handles(个)"]:"-")
+				            numThreadList.push(v["num_threads(个)"]||["num_threads(个)"]===0?v["num_threads(个)"]:"-")
 				            timeList.push(v["time"]?v["time"]:"-")
                            
 				        }
@@ -673,7 +670,10 @@
                 });
                 this.intervalId = setInterval(() => {
                     // 调用加载数据的函数
-                    this.reloadchart();
+                    if (!this.isloadres){
+                        this.reloadchart();
+                    }
+
                 }, 3000);
                 
             },
@@ -697,6 +697,7 @@
                 }
             },
             async reloadchart(){
+                this.isloadres = true
                 await this.result(this.curtaskid)
                 let allRes = this.resultOption
                 this.cpuChart.setOption(allRes["cpu"]);
@@ -704,7 +705,7 @@
                 this.fpsChart.setOption(allRes["fps"]);
                 this.gpuChart.setOption(allRes["gpu"]);  
                 this.processInfoChart.setOption(allRes["process_info"]);  
-                
+                this.isloadres = false
             }
 
         },
@@ -713,8 +714,6 @@
             await this.get_system_info()
         }
     });
-
-
 
 
 </script>
