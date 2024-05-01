@@ -107,10 +107,10 @@ async def pids():
         process_list = []
         for proc in psutil.process_iter(attrs=['name', 'pid', 'cmdline', 'username']):
             try:
-                if ("SYSTEM" not in str(proc.username())) and ("root" not in str(proc.username())):
-                    process_list.append(
-                        {"name": proc.info['name'], "pid": proc.info['pid'], "cmd": proc.info['cmdline'],
-                         "username": proc.username()})
+                process_list.append(
+                    {"name": proc.info['name'], "pid": proc.info['pid'], "cmd": proc.info['cmdline'],
+                     "username": proc.username()})
+
             except Exception as e:
                 log.error(e)
         print_json(process_list)

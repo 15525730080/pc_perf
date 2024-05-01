@@ -8,7 +8,6 @@ import time
 import traceback
 import webbrowser
 
-import psutil
 from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse
@@ -129,8 +128,8 @@ def main():
         import uvicorn
         multiprocessing.freeze_support()
         threading.Thread(target=open_url).start()
-        logger.info("服务启动请访问: http://localhost:20223")
-        uvicorn.run("pc_perf:app", host="0.0.0.0", port=20223, log_level="error", reload=False, workers=psutil.cpu_count())
+        uvicorn.run(app, host="0.0.0.0", port=20223, log_level="error", reload=False)
+
 
 
 if __name__ == "__main__":
