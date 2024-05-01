@@ -463,7 +463,8 @@
 				 await this.getAllTask()
             },
             async result(taskId){
-                const res = await axios({method: 'get',//提交方法
+                this.dialogVisible = true;
+		const res = await axios({method: 'get',//提交方法
 							url: '/result/?task_id=' + taskId//提交地址
 				 })
                 this.opentaskid = taskId
@@ -531,7 +532,7 @@
                     
 				}
 				let allRes = {}
-                this.dialogVisible = true
+            
                 
 				res.data.msg.forEach(x=>{
 				    let tempOption_tmp = JSON.parse(JSON.stringify(tempOption));
