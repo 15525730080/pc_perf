@@ -462,8 +462,7 @@
 				 console.log(res.data)
 				 await this.getAllTask()
             },
-            async result(taskId){
-                this.dialogVisible = true;
+            async result(taskId, isnotopenvis){
 		const res = await axios({method: 'get',//提交方法
 							url: '/result/?task_id=' + taskId//提交地址
 				 })
@@ -532,7 +531,9 @@
                     
 				}
 				let allRes = {}
-            
+            			if(!isnotopenvis){
+					this.dialogVisible = true
+				}
                 
 				res.data.msg.forEach(x=>{
 				    let tempOption_tmp = JSON.parse(JSON.stringify(tempOption));
@@ -699,7 +700,7 @@
             },
             async reloadchart(){
                 this.isloadres = true
-                await this.result(this.curtaskid)
+                await this.result(this.curtaskid, true)
                 let allRes = this.resultOption
                 this.cpuChart.setOption(allRes["cpu"]);
                 this.memoryChart.setOption(allRes["memory"]);
