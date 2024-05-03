@@ -1,6 +1,7 @@
 # coding=utf-8
 import asyncio
 import os
+import traceback
 from builtins import *
 from multiprocessing.context import Process
 
@@ -35,17 +36,21 @@ class TaskHandle(Process):
 
     @staticmethod
     def stop_handle(monitor_pid):
-        logger.info("Stopping task handle and subprocesses...")
+        logger.info("Stopping task handle and subprocesses... {0}".format(monitor_pid))
         # Terminate the pc_perf subprocess
         current_process = psutil.Process(monitor_pid)
         try:
             for child in current_process.children(recursive=True):
                 child.terminate()
+                child.wait(0.2)
         except Exception as e:
             logger.error(e)
         finally:
-            current_process.terminate()
-
+            try:
+                current_process.terminate()
+                current_process.wait(1)
+            except:
+                logger.error(traceback.print_exc())
 
 if __name__ == '__main__':
     TaskHandle.stop_handle(15160)
