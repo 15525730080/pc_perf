@@ -107,13 +107,14 @@ async def pids():
         process_list = []
         for proc in psutil.process_iter(attrs=['name', 'pid', 'cmdline', 'username']):
             try:
-                process_list.append(
-                    {"name": proc.info['name'], "pid": proc.info['pid'], "cmd": proc.info['cmdline'],
-                     "username": proc.username()})
+                if proc.is_running():
+                    process_list.append(
+                        {"name": proc.info['name'], "pid": proc.info['pid'], "cmd": proc.info['cmdline'],
+                         "username": proc.username()})
             except Exception as e:
                 log.error(e)
         process_list.sort(key=lambda x: x['name'])
-        print_json(process_list)
+        # print_json(process_list)
         return process_list
 
     return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=10)
