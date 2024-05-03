@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from log import log as logger
+from concurrent.futures import ProcessPoolExecutor, wait
 
 
 class DataCollect(object):
@@ -30,7 +32,8 @@ class DataCollect(object):
     def format_all_data_value(all_data: list[dict]):
         start_time = min([data.get("value")[0].get("time") for data in all_data if data.get("value")])
         end_time = max([data.get("value")[-1].get("time") for data in all_data if data.get("value")])
-        # 补全开头结尾, 这里是计算密集型
+
+        # 补全开头结尾, 这里是大量内存操作瓶颈在IO部分
         for data in all_data:
             format_all_data_dict = {cur_time: {"time": cur_time} for cur_time in range(start_time, end_time + 1)}
             if data.get("value"):
@@ -39,6 +42,23 @@ class DataCollect(object):
                     format_all_data_dict[value.get("time")] = value
             data["value"] = list(format_all_data_dict.values())
         return all_data
+        # def process_data(data, start_time, end_time):
+        #     try:
+        #         format_all_data_dict = {cur_time: {"time": cur_time} for cur_time in range(start_time, end_time + 1)}
+        #         if data.get("value"):
+        #             old_value = data.get("value")
+        #             for value in old_value:
+        #                 format_all_data_dict[value.get("time")] = value
+        #         data["value"] = list(format_all_data_dict.values())
+        #         return data
+        #     except Exception as e:
+        #         logger.error(e)
+        #
+        # # 假设 all_data 是你的数据列表，start_time 和 end_time 是你的开始和结束时间
+        # with ProcessPoolExecutor() as executor:
+        #     futures = [executor.submit(process_data, data, start_time, end_time) for data in all_data]
+        #     done, not_done = wait(futures)
+        #     return done
 
     # numpy 增强版性能表现更好
     @staticmethod
