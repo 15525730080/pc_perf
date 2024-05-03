@@ -98,6 +98,14 @@ class TaskCollection(object):
                 return task.to_dict()
 
     @classmethod
+    async def get_all_stop_task_monitor_pid(cls):
+        async with async_connect() as session:
+            async with session.begin():
+                result = await session.execute(select(Task).filter(Task.status == 2))
+                tasks = result.scalars().fetchall()
+                return [task.monitor_pid for task in tasks]
+
+    @classmethod
     async def create_task(cls, pid, pid_name, file_dir, name):
         async with async_connect() as session:
             async with session.begin():
