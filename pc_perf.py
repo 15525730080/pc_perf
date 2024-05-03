@@ -1,3 +1,4 @@
+import asyncio
 import base64
 import multiprocessing
 import os
@@ -17,9 +18,10 @@ from dao import TaskCollection
 from log import log as logger
 from task_handle import TaskHandle
 from util import DataCollect
-
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = FastAPI()
+scheduler = BackgroundScheduler()
 logger.info("工作空间{0}".format(os.getcwd()))
 BASE_CSV_DIR = os.path.join(os.path.dirname(__file__), "test_result")
 if not os.path.exists(BASE_CSV_DIR):
@@ -94,6 +96,23 @@ async def stop_task(request: Request, task_id: int):
     return JSONResponse(content=ResultBean())
 
 
+def check_stop_task_monitor_pid_close():
+    async def func():
+        logger.info('定期任务执行时间：检查是否有漏杀死monitor进程')
+        monitor_pid = await TaskCollection.get_all_stop_task_monitor_pid()
+        all_pids = await pids()
+        for i in all_pids:
+            if int(i["pid"]) in monitor_pid:
+                try:
+                    logger.info("check kill {0}".format(i["pid"]))
+                    TaskHandle.stop_handle(i["pid"])
+                except:
+                    logger.error(traceback.print_exc())
+        logger.info('定期任务执行时间：检查是否有漏杀死monitor进程end')
+
+    asyncio.run(func())
+
+
 @app.get("/result/")
 async def task_result(request: Request, task_id: int):
     item_task = await TaskCollection.get_item_task(task_id)
@@ -118,6 +137,12 @@ async def delete_task(request: Request, task_id: int):
     return JSONResponse(content=ResultBean())
 
 
+@app.on_event("startup")
+async def app_start():
+    scheduler.add_job(check_stop_task_monitor_pid_close, 'interval', seconds=60)
+    scheduler.start()
+
+
 def open_url():
     time.sleep(2)
     webbrowser.open("http://127.0.0.1:20223")
@@ -129,7 +154,6 @@ def main():
         multiprocessing.freeze_support()
         threading.Thread(target=open_url).start()
         uvicorn.run(app, host="0.0.0.0", port=20223, log_level="error", reload=False)
-
 
 
 if __name__ == "__main__":
