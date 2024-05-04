@@ -16,7 +16,7 @@ SUPPORT_GPU = True
 try:
     pynvml.nvmlInit()
 except:
-    traceback.print_exc()
+    log.error(traceback.format_exc())
     log.info("本设备gpu获取不适配")
     SUPPORT_GPU = False
 from PIL import ImageGrab
