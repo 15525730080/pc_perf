@@ -122,7 +122,7 @@ async def task_result(request: Request, task_id: int):
 @app.get("/task_status/")
 async def task_task(request: Request, task_id: int):
     item_task = await TaskCollection.get_item_task(task_id)
-    return JSONResponse(content=ResultBean(msg=item_task.status))  # 0未开始, 1 执行中 , 2 执行完成 3.暂停
+    return JSONResponse(content=ResultBean(msg=item_task.get("status")))  # 0未开始, 1 执行中 , 2 执行完成 3.暂停
 
 
 @app.get("/delete_task/")
