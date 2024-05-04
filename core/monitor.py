@@ -66,7 +66,7 @@ class Monitor(object):
                         csv_writer = csv.writer(f)
                         csv_writer.writerow([res.get(key, "") for key in self.key_value])
             except:
-                logger.error(traceback.print_exc())
+                logger.error(traceback.format_exc())
             finally:
                 end_func = time.time()
                 if interval_time := (int(end_func) - int(before_func)) <= 1:
