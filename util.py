@@ -33,7 +33,7 @@ class DataCollect(object):
         start_time = min([data.get("value")[0].get("time") for data in all_data if data.get("value")])
         end_time = max([data.get("value")[-1].get("time") for data in all_data if data.get("value")])
 
-        # 补全开头结尾, 这里是大量内存操作瓶颈在IO部分
+        # 内存操作是cpu密集型但是瓶颈并不在这里使用多进程效果并不明显
         for data in all_data:
             format_all_data_dict = {cur_time: {"time": cur_time} for cur_time in range(start_time, end_time + 1)}
             if data.get("value"):
