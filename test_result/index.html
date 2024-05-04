@@ -671,10 +671,14 @@
                     
                 });
                 this.intervalId = setInterval(() => {
-                    // 调用加载数据的函数
-                    if (!this.isloadres){
-                        this.reloadchart();
-                    }
+                    this.task_status(this.curtaskid).then(x=>{
+                        if(x != 2 && x != -1){
+                            // 调用加载数据的函数
+                            if (!this.isloadres){
+                                this.reloadchart();
+                            }
+                        }
+                    })
 
                 }, 3000);
                 
@@ -686,6 +690,13 @@
 				 console.log(res.data)
 				 this.print_res(res)
 				await this.getAllTask()
+            },
+            async task_status(taskId){
+                const res = await axios({method: 'get',//提交方法
+							url: '/task_status/?task_id=' + taskId//提交地址
+				 })
+				 console.log(res.data)
+				 return parseInt(res.data.msg)
             },
             print_res(res){
                 if (res.data.code == 200){
