@@ -86,7 +86,7 @@ class WinFps(object):
                 WinFps.frame_que.append(start_fps_collect_time + round(float(line_list[7]), 7))
             except:
                 time.sleep(1)
-                traceback.print_exc()
+                log.error(traceback.format_exc())
 
 
 async def sys_info():
@@ -233,11 +233,11 @@ async def process_info(pid):
         try:
             num_handles = process.num_handles()
         except:
-            log.error(traceback.print_exc())
+            log.error(traceback.format_exc())
         try:
             num_threads = process.num_threads()
         except:
-            log.error(traceback.print_exc())
+            log.error(traceback.format_exc())
         res = {"time": start_time}
         if num_handles: res["num_handles"] = num_handles
         if num_threads: res["num_threads"] = num_threads
