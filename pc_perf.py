@@ -40,8 +40,7 @@ async def http_filter(request: Request, call_next):
     try:
         response = await call_next(request)
     except BaseException as e:
-        logger.error(str(e))
-        traceback.print_exc()
+        logger.error(traceback.format_exc())
         return JSONResponse(content=ResultBean(code=500, msg=str(e)))
     return response
 
@@ -92,7 +91,7 @@ async def stop_task(request: Request, task_id: int):
         TaskHandle.stop_handle(task.get("monitor_pid"))
     except BaseException as e:
         logger.error(e)
-        traceback.print_exc()
+        logger.error(traceback.format_exc())
     return JSONResponse(content=ResultBean())
 
 
@@ -107,7 +106,7 @@ def check_stop_task_monitor_pid_close():
                     logger.info("check kill {0}".format(i["pid"]))
                     TaskHandle.stop_handle(i["pid"])
                 except:
-                    logger.error(traceback.print_exc())
+                    logger.error(traceback.format_exc())
         logger.info('定期任务执行时间：检查是否有漏杀死monitor进程end')
 
     asyncio.run(func())
@@ -133,7 +132,7 @@ async def delete_task(request: Request, task_id: int):
         try:
             shutil.rmtree(item.get("file_dir"))
         except:
-            traceback.print_exc()
+            logger.error(traceback.format_exc())
     return JSONResponse(content=ResultBean())
 
 
