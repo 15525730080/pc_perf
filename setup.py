@@ -41,7 +41,8 @@ setup(
         "starlette==0.37.2",
         "uvicorn==0.29.0",
         "aiosqlite==0.20.0",
-        "APScheduler==3.10.4"
+        "APScheduler==3.10.4",
+        "greenlet==3.0.3"
     ],
 
     # 从包中自动寻找所有的子包和子模块
