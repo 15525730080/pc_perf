@@ -41,14 +41,12 @@ class TaskHandle(Process):
         current_process = psutil.Process(monitor_pid)
         try:
             for child in current_process.children(recursive=True):
-                child.kill()
-                child.wait(0.2)
+                os.kill(child.pid, 9)
         except Exception as e:
             logger.error(e)
         finally:
             try:
-                current_process.kill()
-                current_process.wait(1)
+                os.kill(current_process.pid, 9)
             except:
                 logger.error(traceback.format_exc())
 
