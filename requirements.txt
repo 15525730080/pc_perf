@@ -11,3 +11,4 @@ SQLAlchemy_serializer==1.4.12
 starlette==0.37.2
 uvicorn==0.29.0
 aiosqlite==0.20.0
+APScheduler==3.10.4
