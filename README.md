@@ -9,11 +9,9 @@ cpu、memory、fps（仅支持windowsOpenGL  DirectX 引擎应用 unity u3d应�
     方式1：
     git clone https://github.com/15525730080/pc_perf.git
     pip install -r requirements.txt
-    #需要使用管理员权限启动才可以获取到windows fps ！！！
     python pc_perf.py 
     
     方式2（推荐）：
-    #需要使用管理员权限启动才可以获取到windows fps ！！！
     pip install -U pc-perf
     python -m pc_perf  
 

@@ -8,14 +8,16 @@ from sqlalchemy.orm import sessionmaker
 from contextlib import asynccontextmanager
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import declarative_base
-from log import log as logger
+from app.log import log as logger
 
 logger.info("工作空间{0}".format(os.getcwd()))
 db_path = os.path.join(os.getcwd(), "task.sqlite")
 logger.info("db path {0}".format(db_path))
-async_engine = create_async_engine('sqlite+aiosqlite:///{0}'.format(db_path), echo=False)
+async_engine = create_async_engine('sqlite+aiosqlite:///{0}'.format(db_path), echo=False,
+                                   pool_pre_ping=True, connect_args={'check_same_thread': False}, pool_recycle=1800)
 logger.info("current path {0}".format(os.getcwd()))
-AsyncSessionLocal = sessionmaker(bind=async_engine, class_=AsyncSession, expire_on_commit=False)
+AsyncSessionLocal = sessionmaker(bind=async_engine, class_=AsyncSession, expire_on_commit=True,
+                                 autocommit=False, autoflush=False)
 Base = declarative_base()
 
 
@@ -27,8 +29,9 @@ async def async_connect():
         yield session
         await session.commit()
         logger.info("sql success")
-    except Exception as e:
+    except BaseException as e:
         await session.rollback()
+        logger.error(e)
         raise e
     finally:
         logger.info("sql end")

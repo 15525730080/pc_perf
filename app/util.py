@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
-from log import log as logger
+from app.log import log as logger
 from concurrent.futures import ProcessPoolExecutor, wait
 
 

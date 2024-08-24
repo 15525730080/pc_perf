@@ -6,7 +6,7 @@ import time
 import traceback
 from pathlib import Path
 
-from log import log as logger
+from app.log import log as logger
 
 
 def print_json(data, *args, **kwargs):

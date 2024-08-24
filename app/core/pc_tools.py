@@ -9,8 +9,8 @@ from io import BytesIO
 import psutil
 import pynvml
 from pathlib import Path
-from log import log
-from core.monitor import Monitor
+from app.log import log
+from app.core.monitor import Monitor
 
 SUPPORT_GPU = True
 try:
@@ -65,7 +65,7 @@ class WinFps(object):
 
     def start_fps_collect(self, pid):
         start_fps_collect_time = int(time.time())
-        PresentMon = Path(__file__).parent.parent.joinpath("PresentMon.exe")
+        PresentMon = Path(__file__).parent.parent.parent.joinpath("PresentMon.exe")
         res_terminate = subprocess.Popen(
             [PresentMon, "-process_id", str(pid), "-output_stdout", "-stop_existing_session"],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)

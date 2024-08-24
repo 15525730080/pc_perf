@@ -13,3 +13,7 @@ uvicorn==0.29.0
 aiosqlite==0.20.0
 APScheduler==3.10.4
 greenlet==3.0.3
+gunicorn==23.0.0
+Cython==3.0.10
+
+

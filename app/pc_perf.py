@@ -1,32 +1,31 @@
+import pyximport
+pyximport.install(language_level=3)
 import asyncio
 import base64
-import multiprocessing
 import os
 import platform
 import shutil
-import threading
 import time
 import traceback
-import webbrowser
-
+from pathlib import Path
 from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse
 from starlette.staticfiles import StaticFiles
-from core.pc_tools import sys_info, pids, screenshot
-from dao import TaskCollection
-from log import log as logger
-from task_handle import TaskHandle
-from util import DataCollect
+from app.core.pc_tools import sys_info, pids, screenshot
+from app.database import TaskCollection
+from app.log import log as logger
+from app.task_handle import TaskHandle
+from app.util import DataCollect
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = FastAPI()
 scheduler = BackgroundScheduler()
 logger.info("工作空间{0}".format(os.getcwd()))
-BASE_CSV_DIR = os.path.join(os.path.dirname(__file__), "test_result")
-if not os.path.exists(BASE_CSV_DIR):
-    os.mkdir(BASE_CSV_DIR)
-app.mount("/static", StaticFiles(directory=BASE_CSV_DIR), name="static")
+cur_file = Path(__file__)
+BASE_CSV_DIR = cur_file.parent.parent.joinpath("test_result")
+BASE_CSV_DIR.mkdir(exist_ok=True)
+app.mount("/static", StaticFiles(directory=BASE_CSV_DIR.resolve()), name="static")
 
 
 class ResultBean(dict):
@@ -76,7 +75,7 @@ async def get_all_task():
 async def run_task(request: Request, pid: int, pid_name: str, task_name: str):
     start_time = time.time()
     status = 0
-    return_task_id, file_dir = await TaskCollection.create_task(pid, pid_name, BASE_CSV_DIR, task_name)
+    return_task_id, file_dir = await TaskCollection.create_task(pid, pid_name, BASE_CSV_DIR.resolve(), task_name)
 
     task_process = TaskHandle(serialno=platform.node(), file_dir=file_dir,
                               task_id=return_task_id, platform=platform.system(), target_pid=pid)
@@ -140,20 +139,3 @@ async def delete_task(request: Request, task_id: int):
 async def app_start():
     scheduler.add_job(check_stop_task_monitor_pid_close, 'interval', seconds=60)
     scheduler.start()
-
-
-def open_url():
-    time.sleep(2)
-    webbrowser.open("http://127.0.0.1:20223")
-
-
-def main():
-    if __name__ == "__main__":
-        import uvicorn
-        multiprocessing.freeze_support()
-        threading.Thread(target=open_url).start()
-        uvicorn.run(app, host="0.0.0.0", port=20223, log_level="error", reload=False)
-
-
-if __name__ == "__main__":
-    main()

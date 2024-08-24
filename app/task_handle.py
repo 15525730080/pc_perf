@@ -7,9 +7,9 @@ from multiprocessing.context import Process
 
 import psutil
 
-from dao import TaskCollection
-from log import log as logger
-from core.pc_tools import perf as pc_perf
+from app.database import TaskCollection
+from app.log import log as logger
+from app.core.pc_tools import perf as pc_perf
 
 
 class TaskHandle(Process):
