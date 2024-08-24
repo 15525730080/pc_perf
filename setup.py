@@ -7,7 +7,7 @@ setup(
     name='pc-perf',
 
     # 版本号，遵循语义化版本控制规则
-    version='1.3.0',
+    version='1.3.2',
 
     # 项目简短描述
     description='pc 进程性能测试平台，支持 windows / mac / linux 平台进程cpu、memory、fps（仅支持windows下OpenGL  DirectX 引擎应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示',
@@ -50,7 +50,7 @@ setup(
 
     # 从包中自动寻找所有的子包和子模块
     py_modules=['pc_perf'],
-    packages=['app'],
+    packages=['app', 'app.core'],
     
     # 包含数据文件，比如配置文件
     include_package_data=True,
