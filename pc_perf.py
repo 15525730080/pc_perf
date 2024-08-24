@@ -30,7 +30,7 @@ def win_main():
         )
         sys.exit(0)  # 退出当前进程
     import uvicorn
-    from app.pc_perf import app
+    from app.view import app
     multiprocessing.freeze_support()
     threading.Thread(target=open_url).start()
     uvicorn.run(app, host="0.0.0.0", port=20223, log_level="error", reload=False)

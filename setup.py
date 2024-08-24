@@ -7,7 +7,7 @@ setup(
     name='pc-perf',
 
     # 版本号，遵循语义化版本控制规则
-    version='1.2.4',
+    version='1.3.0',
 
     # 项目简短描述
     description='pc 进程性能测试平台，支持 windows / mac / linux 平台进程cpu、memory、fps（仅支持windows下OpenGL  DirectX 引擎应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示',
@@ -43,12 +43,14 @@ setup(
         "uvicorn==0.29.0",
         "aiosqlite==0.20.0",
         "APScheduler==3.10.4",
-        "greenlet==3.0.3"
+        "greenlet==3.0.3",
+        "gunicorn==23.0.0",
+        "Cython==3.0.10"
     ],
 
     # 从包中自动寻找所有的子包和子模块
-    py_modules=['dao', 'log', 'task_handle', 'util', 'pc_perf', 'core'],
-    packages=['core'],
+    py_modules=['pc_perf'],
+    packages=['app'],
     
     # 包含数据文件，比如配置文件
     include_package_data=True,
@@ -62,12 +64,7 @@ setup(
     # 指定Python版本要求
     python_requires='>=3.9',
 
-    # # 指定包的入口点，用于命令行工具
-    entry_points={
-        'console_scripts': [
-            'pc_perf=pc_perf:main',  # 这里的web-command是你为命令行工具定义的命令
-        ],
-    },
+
 
     # 指定分发文件的类别，例如："Programming Language :: Python :: 3"
     classifiers=[
