@@ -38,7 +38,7 @@ def win_main():
 
 def unix_main():
     threading.Thread(target=open_url).start()
-    start_cmd = "{0} -m gunicorn -b 0.0.0.0:20223 --workers {1} --preload --worker-class=uvicorn.workers.UvicornWorker app.pc_perf:app".format(
+    start_cmd = "{0} -m gunicorn -b 0.0.0.0:20223 --workers {1} --preload --worker-class=uvicorn.workers.UvicornWorker app.view:app".format(
         sys.executable, os.cpu_count())
     subprocess.run(start_cmd.split())
 
