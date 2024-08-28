@@ -105,16 +105,15 @@ async def sys_info():
 async def pids():
     def real_func():
         process_list = []
-        for proc in psutil.process_iter(attrs=['name', 'pid', 'cmdline', 'username']):
+        for proc in psutil.process_iter(attrs=['name', 'pid', 'ppid', 'cmdline', 'username']):
             try:
                 if proc.is_running():
                     process_list.append(
-                        {"name": proc.info['name'], "pid": proc.info['pid'], "cmd": proc.info['cmdline'],
-                         "username": proc.username()})
+                        {"name": proc.info['name'], "pid": proc.info['pid'], "ppid": proc.info['ppid'],
+                         "cmd": proc.info['cmdline'], "username": proc.username()})
             except Exception as e:
-                log.error(e)
-        process_list.sort(key=lambda x: x['name'])
-        # print_json(process_list)
+                pass
+        process_list.sort(key=lambda x: (x['ppid'], x['pid'], x['name']))
         return process_list
 
     return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=10)
@@ -252,15 +251,15 @@ async def perf(pid, save_dir):
         "cpu": Monitor(cpu,
                        pid=pid,
                        key_value=["time", "cpu_usage(%)", "cpu_usage_all(%)", "cpu_core_num(个)"],
-                       save_dir=save_dir),
+                       save_dir=save_dir, support_pids=True),
         "memory": Monitor(memory,
                           pid=pid,
                           key_value=["time", "process_memory_usage(M)"],
-                          save_dir=save_dir),
+                          save_dir=save_dir, support_pids=True),
         "process_info": Monitor(process_info,
                                 pid=pid,
                                 key_value=["time", "num_threads(个)", "num_handles(个)"],
-                                save_dir=save_dir),
+                                save_dir=save_dir, support_pids=True),
         "fps": Monitor(fps,
                        pid=pid,
                        key_value=["time", "fps(帧)", "frames"],
@@ -268,10 +267,13 @@ async def perf(pid, save_dir):
         "gpu": Monitor(gpu,
                        pid=pid,
                        key_value=["time", "gpu(%)"],
-                       save_dir=save_dir),
+                       save_dir=save_dir, support_pids=True),
         "screenshot": Monitor(screenshot,
                               pid=pid,
                               save_dir=save_dir, is_out=False)
     }
     run_monitors = [monitor.run() for name, monitor in monitors.items()]
     await asyncio.gather(*run_monitors)
+
+if __name__ == '__main__':
+    asyncio.run(perf(set({34584, 34760}), "rs"))

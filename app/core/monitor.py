@@ -1,4 +1,5 @@
 import asyncio
+import copy
 import csv
 import inspect
 import json
@@ -60,7 +61,34 @@ class Monitor(object):
             param_names = inspect.signature(self.func).parameters.keys()
             params = {name: self.kwargs.get(name) for name in param_names}
             try:
-                res = await self.func(**params)
+                res = None
+                if self.kwargs.get("support_pids", False):
+                    if isinstance(params.get("pid"), set):
+                        tasks = []
+                        for i in params.get("pid", set()):
+                            tmp = copy.deepcopy(params)
+                            tmp["pid"] = i
+                            tasks.append(self.func(**tmp))
+                        all_res = await asyncio.gather(*tasks)
+                        all_res = [i for i in all_res if i]
+                        if all_res:
+                            print(all_res)
+                            res = {"time": all_res[0]["time"]}
+                            for k in all_res[0].keys():
+                                if k == "time":
+                                    continue
+                                if k != "cpu_core_num":
+                                    k_sum = sum([i[k] for i in all_res if i[k]])
+                                else:
+                                    k_sum = [i[k] for i in all_res if i[k]][0]
+                                res[k] = k_sum if k_sum is not None else None
+                else:
+                    if isinstance(params.get("pid"), set):
+                        tmp = copy.deepcopy(params)
+                        tmp["pid"] = next(iter(params["pid"]))
+                        res = await self.func(**tmp)
+                    else:
+                        res = await self.func(**params)
                 if self.is_out and res:
                     with open(self.csv_path, "a+", encoding="utf-8", newline="") as f:
                         csv_writer = csv.writer(f)

@@ -49,5 +49,3 @@ class TaskHandle(Process):
                 os.kill(current_process.pid, 9)
             except:
                 logger.error(traceback.format_exc())
-
-
