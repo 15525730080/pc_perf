@@ -1,5 +1,3 @@
-import pyximport
-pyximport.install(language_level=3)
 import asyncio
 import base64
 import os
@@ -133,6 +131,11 @@ async def delete_task(request: Request, task_id: int):
         except:
             logger.error(traceback.format_exc())
     return JSONResponse(content=ResultBean())
+
+@app.get("/change_task_name/")
+async def change_task_name(request: Request, task_id: int, new_name: str):
+    item_task = await TaskCollection.change_task_name(task_id, new_name)
+    return JSONResponse(content=ResultBean(msg="修改任务名称为：" + item_task.get("name"))) 
 
 
 @app.on_event("startup")

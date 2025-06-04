@@ -180,7 +180,21 @@
             <el-main>
                 <template v-if="currentView === 'taskList'">
                     <el-table :data="tasks" style="width: 100%" height="100%">
-                        <el-table-column prop="name" label="任务名称" sortable></el-table-column>
+                        <el-table-column prop="name" label="任务名称" sortable>
+                            <template slot-scope="scope">
+                                <el-input
+                                    @blur="saveEdit(scope.row)"
+                                    v-model="scope.row.name"
+                                    :disabled="!scope.row.input_disabled">
+                                      <i
+                                        class="el-icon-edit el-input__icon"
+                                        slot="suffix"
+                                        @click="$set(scope.row, 'input_disabled', true);"
+                                       >
+                                    </i>
+                                </el-input>
+                            </template>
+                        </el-table-column>
                         <el-table-column prop="serialno" label="被测设备" sortable></el-table-column>
                         <el-table-column prop="target_pid" label="被测进程" sortable></el-table-column>
                         <el-table-column prop="target_pid_name" label="进程名称" sortable></el-table-column>
@@ -348,6 +362,22 @@
             };
         },
         methods: {
+            async saveEdit(row) {
+                try {
+                    const res = await axios({
+                        method: 'get',
+                        url: '/change_task_name/?task_id=' + row.id + '&new_name=' + row.name
+                    });
+                    console.log(res.data);
+                    this.print_res(res);
+                    row.name = row.tempName;
+                    row.isEditing = false;
+                    await this.getAllTask();
+                } catch (error) {
+                    console.error('Error changing task name:', error);
+                    row.isEditing = false;
+                }
+            },
             switchView(view) {
                 this.currentView = view;
                 this.getAllTask().then()
