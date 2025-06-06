@@ -19,19 +19,21 @@ Real time monitoring and visualization display of metrics such as CPU, memory, f
     
 
 # 创建任务
-<img width="1438" alt="image" src="https://github.com/user-attachments/assets/6b4e12a5-b988-44f7-8dd5-56679ad6521b" />
+<img width="1439" alt="image" src="https://github.com/user-attachments/assets/2bdfe24b-d454-4902-a60a-62cc1b21f4eb" />
 
 ![image](https://github.com/15525730080/pc_perf/assets/153100629/91995e83-6fc6-4350-84d1-24704f1bccce)
 
-# 任务列表
-<img width="1437" alt="image" src="https://github.com/user-attachments/assets/4a97788f-47e4-4427-a321-201eb097d8ac" />
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/bec24ad1-ab2b-4472-ad0c-7f741acf7f2b" />
 
-![image](https://github.com/15525730080/pc_perf/assets/153100629/10112d4b-3724-4ada-9cb8-df633af302a0)
+# 任务列表
+<img width="1434" alt="image" src="https://github.com/user-attachments/assets/813b12df-560a-4040-9457-810a8ac553a9" />
+
 
 # 性能报表
 ![image](https://github.com/15525730080/pc_perf/assets/153100629/2e28527a-6e5d-487c-8753-8d3483c0f108)
 ![image](https://github.com/user-attachments/assets/6ad7b0c6-0ba5-49e3-ba7a-38df2b8033cb)
-<img width="606" alt="image" src="https://github.com/user-attachments/assets/ad2eb38e-179a-4d1d-9e5e-206e56151192" />
+<img width="574" alt="image" src="https://github.com/user-attachments/assets/4fc48e7e-47ef-4c82-ba42-e03461a9bdcc" />
+
 
 
 
