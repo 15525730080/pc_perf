@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse
 from starlette.staticfiles import StaticFiles
-from app.core.pc_tools import sys_info, pids, screenshot
+from app.core.pc_tools import sys_info, pids, screenshot, process_tree
 from app.database import TaskCollection
 from app.log import log as logger
 from app.task_handle import TaskHandle
@@ -60,8 +60,11 @@ async def pid_img(pid: int):
 
 
 @app.get("/get_pids/")
-async def get_pids():
-    return JSONResponse(content=ResultBean(msg=await pids()))
+async def get_pids(is_print_tree: bool=False):
+    if is_print_tree:
+        return JSONResponse(content=ResultBean(msg=await process_tree()))
+    else:
+        return JSONResponse(content=ResultBean(msg=await pids()))
 
 
 @app.get("/get_all_task/")

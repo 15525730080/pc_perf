@@ -16,7 +16,6 @@ SUPPORT_GPU = True
 try:
     pynvml.nvmlInit()
 except:
-    log.error(traceback.format_exc())
     log.info("本设备gpu获取不适配")
     SUPPORT_GPU = False
 from PIL import ImageGrab
@@ -119,6 +118,49 @@ async def pids():
 
     return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=10)
 
+
+async def process_tree():
+    def real_func():
+        process_list = []
+        for proc in psutil.process_iter(attrs=['name', 'pid', 'cmdline', 'username', 'ppid']):
+            try:
+                # 检查进程是否正在运行且父进程 ID 为 1
+                if proc.is_running() and proc.ppid() == 1:
+                    process_info = {
+                        "name": proc.info['name'],
+                        "ppid": proc.info['ppid'],
+                        "pid": proc.info['pid'],
+                        "cmd": proc.info['cmdline'],
+                        "username": proc.username(),
+                        "child_p": []
+                    }
+                    try:
+                        # 获取子进程信息
+                        children = proc.children(recursive=True)
+                        for child in children:
+                            try:
+                                child_info = {
+                                    "name": child.name(),
+                                    "ppid": child.ppid(),
+                                    "pid": child.pid,
+                                    "cmd": child.cmdline(),
+                                    "username": child.username()
+                                }
+                                process_info["child_p"].append(child_info)
+                            except Exception:
+                                # 处理子进程不存在的情况
+                                log.error(f"子进程 {child.pid} 已不存在")
+                    except psutil.NoSuchProcess:
+                        # 处理父进程不存在的情况
+                        log.error(f"父进程 {proc.pid} 已不存在")
+                    process_list.append(process_info)
+            except Exception as e:
+                log.error(e)
+        process_list.sort(key=lambda x: -len(x['child_p']))
+        # print_json(process_list)
+        return process_list
+
+    return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=10)
 
 async def screenshot(pid, save_dir):
     def real_func(pid, save_dir):

@@ -105,36 +105,33 @@
         }
 
 
-
-
         /* 图表容器的基本样式 */
-.chart-container {
-  width: 50%; /* 占满容器宽度 */
-  max-width: 100%; /* 防止宽度超过容器 */
-  height: 400px; /* 默认高度 */
-  margin-bottom: 20px; /* 图表之间的间距 */
-  background-color: #ffffff; /* 背景颜色 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
-  border-radius: 4px; /* 轻微的圆角 */
-  overflow: hidden; /* 隐藏溢出的内容 */
-}
+        .chart-container {
+            width: 50%; /* 占满容器宽度 */
+            max-width: 100%; /* 防止宽度超过容器 */
+            height: 400px; /* 默认高度 */
+            margin-bottom: 20px; /* 图表之间的间距 */
+            background-color: #ffffff; /* 背景颜色 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
+            border-radius: 4px; /* 轻微的圆角 */
+            overflow: hidden; /* 隐藏溢出的内容 */
+        }
 
-/* 图表标题样式 */
-.chart-title {
-  font-size: 1.1em;
-  font-weight: bold;
-  margin: 0 0 10px; /* 上下边距为0，下边距为10px */
-  padding: 10px;
-  background-color: #f2f2f2; /* 标题背景颜色 */
-  border-radius: 4px 4px 0 0; /* 仅上边缘圆角 */
-}
+        /* 图表标题样式 */
+        .chart-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 0 0 10px; /* 上下边距为0，下边距为10px */
+            padding: 10px;
+            background-color: #f2f2f2; /* 标题背景颜色 */
+            border-radius: 4px 4px 0 0; /* 仅上边缘圆角 */
+        }
 
-/* 图表容器内的 ECharts 图表样式 */
-.echarts-chart {
-  width: 100%; /* 占满容器宽度 */
-  height: calc(100% - 30px); /* 减去标题的高度 */
-}
-
+        /* 图表容器内的 ECharts 图表样式 */
+        .echarts-chart {
+            width: 100%; /* 占满容器宽度 */
+            height: calc(100% - 30px); /* 减去标题的高度 */
+        }
 
     </style>
 </head>
@@ -211,15 +208,16 @@
                         <el-table-column prop="end_time" label="结束时间" sortable></el-table-column>
                         <el-table-column label="操作">
                             <template slot-scope="scope">
+                                <el-button type="primary" size="mini" v-if="scope.row.status!=0||scope.row.status!=-1"
+                                           @click="result(scope.row.id);curtaskid=scope.row.id;" style="margin-left: 0;">查看
+                                </el-button>
                                 <el-button type="danger" size="mini" v-if="scope.row.status==1"
-                                           @click="stop_task(scope.row.id)">停止任务
+                                           @click="stop_task(scope.row.id)"  style="margin-left: 0;">停止
                                 </el-button>
                                 <el-button type="danger" size="mini" v-if="scope.row.status!=1"
-                                           @click="delete_task(scope.row.id)">删除任务
+                                           @click="delete_task(scope.row.id)"  style="margin-left: 0;">删除
                                 </el-button>
-                                <el-button type="primary" size="mini" v-if="scope.row.status!=0||scope.row.status!=-1"
-                                           @click="result(scope.row.id);curtaskid=scope.row.id;">查看结果
-                                </el-button>
+                                
                             </template>
                         </el-table-column>
                     </el-table>
@@ -237,11 +235,19 @@
                             <p>ROM: <span>{{ currentSystemInfo.rom }}</span></p>
                         </div>
                     </el-card>
-                    <el-form ref="newTask" :model="newTask" label-width="5%" class="taskform">
+                    <el-form ref="newTask" :model="newTask" label-width="10%" class="taskform">
+                        <el-form-item label="">
+                            <div>
+                                <el-radio-group v-model="chose_radio" @change="getProcessTree">
+                                <el-radio-button label="独立进程"></el-radio-button>
+                                <el-radio-button label="树形进程"  ></el-radio-button>
+                                </el-radio-group>
+                            </div>
+                        </el-form-item>      
                         <el-form-item label="任务名称">
                             <el-input v-model="newTask.name" placeholder="请输入任务名称" clearable></el-input>
                         </el-form-item>
-                        <el-form-item label="选择 PID">
+                        <el-form-item label="选择PID" :key="chose_radio" v-if="chose_radio=='独立进程'">
                             <el-select v-model="newTask.pid" filterable placeholder="请选择 PID"
                                        @visible-change="get_pids"
                                        @change="getPidCmd">
@@ -252,6 +258,19 @@
                                         :value="pid.pid">
                                 </el-option>
                             </el-select>
+                        </el-form-item>
+                        <el-form-item label="选择PID" :key="chose_radio" v-if="chose_radio=='树形进程'">
+                            <el-tree
+                                ref="processTreeRef"
+                                :data="processTree"
+                                node-key="pid"
+                                :default-expand-all="true"
+                                :props="treeProps"
+                                :highlight-current="true"
+                                @node-click="handleNodeClick"
+                                style="height: 50vh;overflow-y: auto;"
+                                >
+                            </el-tree>
                         </el-form-item>
                         <el-form-item v-if="cmd" label="pid cmd">
                             {{cmd}}
@@ -334,11 +353,12 @@
         el: '#app',
         data: function() {
             return {
+                chose_radio:"树形进程",
                 dialogVisible: false,
                 currentSystemInfo: null,
                 currentView: 'taskList', // 当前视图，默认为任务列表
                 newTask: { // 新任务对象
-                    name: this.getCurrentTimestamp(),
+                    name:"任务-" + this.getCurrentTimestamp(),
                     pid: null
                 },
                 pids: [],
@@ -359,9 +379,19 @@
                 curtaskid: null,
                 intervalId: null,
                 isloadres: false,
-            };
+                processTree: [], // 存储进程树数据
+                treeProps: {
+                    children: 'child_p',
+                    label: 'name'
+                },
+                };
         },
         methods: {
+            handleNodeClick(data, node) {
+                this.newTask.pid = data.pid;
+                console.log(this.newTask)
+                this.getPidCmd()
+            },
             async saveEdit(row) {
                 try {
                     const res = await axios({
@@ -391,7 +421,7 @@
               const minutes = date.getMinutes().toString().padStart(2, '0');
               const seconds = date.getSeconds().toString().padStart(2, '0');
 
-              return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+              return `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
             },
             getPidCmd(){
                 for (let i = 0; i < this.pids.length; i++) {
@@ -463,12 +493,23 @@
 
 				 this.currentSystemInfo = res.data.msg
             },
+            async getProcessTree() {
+                const res = await axios({method: 'get',
+                    url: '/get_pids/?is_print_tree=true'
+                });
+                console.log(res);
+                this.processTree = res.data.msg;
+            },
             async createTask() {
-                const res = await axios({method: 'get',//提交方法
+                if(this.newTask.pid){
+                    const res = await axios({method: 'get',//提交方法
                             url: '/run_task/?pid='+this.newTask.pid+'&task_name='+this.newTask.name+'&pid_name='+this.pid_name//提交地址
-                 })
-                 this.print_res(res)
-				 console.log(res)
+                    })
+                    this.print_res(res)
+                    console.log(res)
+                }else{
+                    this.$message.error("未选择PID");
+                }
             },
             async getAllTask(){
                  const res = await axios({method: 'get',//提交方法
@@ -484,13 +525,32 @@
 				 console.log(res)
 				 this.pid_img = "data:image/png;base64," + res.data
             },
-            async delete_task(taskId){
-                    const res = await axios({method: 'get',//提交方法
-                                    url: '/delete_task/?task_id=' + taskId//提交地址
-                         })
-                         this.print_res(res)
-				 console.log(res.data)
-				 await this.getAllTask()
+            async delete_task(taskId) {
+                try {
+                    // 显示确认对话框
+                    await this.$confirm('确定要删除此任务吗？此操作不可撤销。', '警告', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                    });
+                    
+                    // 用户点击确定后继续执行删除操作
+                    const res = await axios({
+                    method: 'get',
+                    url: '/delete_task/?task_id=' + taskId
+                    });
+                    
+                    this.print_res(res);
+                    console.log(res.data);
+                    await this.getAllTask(); // 刷新任务列表
+                } catch (error) {
+                    // 用户点击取消或对话框关闭时会进入 catch
+                    if (error === 'cancel' || error === 'close') {
+                    console.log('用户取消了删除操作');
+                    } else {
+                    console.error('删除任务时出错:', error);
+                    }
+                }
             },
             async result(taskId, isnotopenvis){
 		const res = await axios({method: 'get',//提交方法
@@ -594,7 +654,7 @@
                            
 				        }else if(x.name == "process_info"){
                             numHandlesList.push(v["num_handles(个)"]||v["num_handles(个)"]===0?v["num_handles(个)"]:"-")
-				            numThreadList.push(v["num_threads(个)"]||["num_threads(个)"]===0?v["num_threads(个)"]:"-")
+				            numThreadList.push(v["num_threads(个)"]||v["num_threads(个)"]===0?v["num_threads(个)"]:"-")
 				            timeList.push(v["time"]?v["time"]:"-")
                            
 				        }
@@ -755,6 +815,8 @@
         async mounted(){
             await this.getAllTask();
             await this.get_system_info()
+            await this.get_pids()
+            await this.getProcessTree()
         }
     });
 
