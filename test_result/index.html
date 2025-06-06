@@ -193,20 +193,20 @@
                                 </el-input>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="serialno" label="被测设备" sortable></el-table-column>
-                        <el-table-column prop="target_pid" label="被测进程" sortable></el-table-column>
-                        <el-table-column prop="target_pid_name" label="进程名称" sortable></el-table-column>
-                        <el-table-column prop="status" label="任务状态" sortable>
+                        <el-table-column prop="serialno" label="设备" sortable></el-table-column>
+                        <el-table-column prop="target_pid" label="进程" sortable></el-table-column>
+                        <el-table-column prop="target_pid_name" label="名称" sortable></el-table-column>
+                        <el-table-column prop="status" label="状态" sortable>
                             <template slot-scope="scope">
                                 <el-button type="info" size="mini" v-if="scope.row.status==0">待执行</el-button>
                                 <el-button type="primary" size="mini" v-if="scope.row.status==1">执行中</el-button>
-                                <el-button type="danger" size="mini" v-if="scope.row.status==-1">执行失败</el-button>
-                                <el-button type="success" size="mini" v-if="scope.row.status==2">执行完成</el-button>
+                                <el-button type="danger" size="mini" v-if="scope.row.status==-1">失败</el-button>
+                                <el-button type="success" size="mini" v-if="scope.row.status==2">完成</el-button>
                             </template>
                         </el-table-column>
                         <el-table-column prop="include_child" label="监控模式" sortable>
                             <template slot-scope="scope">
-                                <el-button type="info" size="mini" v-if="scope.row.include_child">当进程及其子进程</el-button>
+                                <el-button type="info" size="mini" v-if="scope.row.include_child">进程与子进程</el-button>
                                 <el-button type="warning" size="mini" v-if="!scope.row.include_child">仅当前进程</el-button>
                             </template>                            
                         </el-table-column>
