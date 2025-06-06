@@ -140,7 +140,6 @@ async def change_task_name(request: Request, task_id: int, new_name: str):
     item_task = await TaskCollection.change_task_name(task_id, new_name)
     return JSONResponse(content=ResultBean(msg="修改任务名称为：" + item_task.get("name"))) 
 
-
 @app.on_event("startup")
 async def app_start():
     scheduler.add_job(check_stop_task_monitor_pid_close, 'interval', seconds=60)

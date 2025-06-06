@@ -7,7 +7,7 @@ setup(
     name='pc-perf',
 
     # 版本号，遵循语义化版本控制规则
-    version='1.3.2',
+    version='1.3.5',
 
     # 项目简短描述
     description='pc 进程性能测试平台，支持 windows / mac / linux 平台进程cpu、memory、fps（仅支持windows下OpenGL  DirectX 引擎应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示',
@@ -44,8 +44,7 @@ setup(
         "aiosqlite==0.20.0",
         "APScheduler==3.10.4",
         "greenlet==3.0.3",
-        "gunicorn==23.0.0",
-        "Cython==3.0.10"
+        "gunicorn==23.0.0"
     ],
 
     # 从包中自动寻找所有的子包和子模块

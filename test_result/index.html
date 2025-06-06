@@ -133,6 +133,7 @@
             height: calc(100% - 30px); /* 减去标题的高度 */
         }
 
+
     </style>
 </head>
 <body>
@@ -270,6 +271,22 @@
                                 @node-click="handleNodeClick"
                                 style="height: 50vh;overflow-y: auto;"
                                 >
+                                <template #default="{ node, data }">
+                                    <span
+                                      :style="{
+                                        color: node.isCurrent ? '#409EFF' : '',
+                                      }"
+                                    >
+                                      {{ node.label }}
+                                      <span
+                                        v-if="node.isCurrent"
+                                        :style="{
+                                          backgroundColor: '#409EFF',
+                                          boxShadow: '0 0 10px rgba(64, 158, 255, 0.7)',
+                                        }"
+                                      ></span>
+                                    </span>
+                                  </template>
                             </el-tree>
                         </el-form-item>
                         <el-form-item v-if="cmd" label="pid cmd">
@@ -298,9 +315,8 @@
             @open="handleDialogVisibleChange"
             @closed="clearInterval(intervalId);"
             @destroy-on-close="true"
-    >
+    >   
         <div style="display: flex;flex-direction: row;flex-wrap: wrap;">
-
             <div class="chart-container">
                 <div class="chart-title">{{num2time(clicktime)}}进程截图</div>
                 <div class="demo-image">
@@ -369,6 +385,7 @@
                 pid_name: '',
                 pid_img: '',
                 resultOption: null,
+                base_data_path: '',
                 cpuChart: null,
                 memoryChart: null,
                 fpsChart: null,
@@ -553,7 +570,7 @@
                 }
             },
             async result(taskId, isnotopenvis){
-		const res = await axios({method: 'get',//提交方法
+		        const res = await axios({method: 'get',//提交方法
 							url: '/result/?task_id=' + taskId//提交地址
 				 })
                 this.opentaskid = taskId
