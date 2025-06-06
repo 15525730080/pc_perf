@@ -204,6 +204,12 @@
                                 <el-button type="success" size="mini" v-if="scope.row.status==2">执行完成</el-button>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="include_child" label="监控模式" sortable>
+                            <template slot-scope="scope">
+                                <el-button type="info" size="mini" v-if="scope.row.include_child">当进程及其子进程</el-button>
+                                <el-button type="warning" size="mini" v-if="!scope.row.include_child">仅当前进程</el-button>
+                            </template>                            
+                        </el-table-column>
                         <el-table-column prop="platform" label="设备平台" sortable></el-table-column>
                         <el-table-column prop="start_time" label="开始时间" sortable></el-table-column>
                         <el-table-column prop="end_time" label="结束时间" sortable></el-table-column>
