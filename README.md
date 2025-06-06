@@ -1,5 +1,5 @@
 # pc_perf
-PC进程性能测试平台，支持 windows / mac / linux 平台普通进程、window游戏GUI进程的
+PC进程性能测试平台，支持 windows / mac / linux 平台普通进程、window游戏GUI进程的、应用级别多进程的性能监控。
 cpu、memory、fps（仅支持windowsOpenGL  DirectX 引擎应用 unity u3d应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示
 
 PC process performance testing platform, supporting regular processes on Windows/Mac/Linux platforms and GUI processes for Windows games
