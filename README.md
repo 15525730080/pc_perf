@@ -1,20 +1,21 @@
 # pc_perf
-pc 进程性能测试平台，支持 windows / mac / linux 平台普通进程、window游戏GUI进程的
+PC进程性能测试平台，支持 windows / mac / linux 平台普通进程、window游戏GUI进程的
 cpu、memory、fps（仅支持windowsOpenGL  DirectX 引擎应用 unity u3d应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示
 
+PC process performance testing platform, supporting regular processes on Windows/Mac/Linux platforms and GUI processes for Windows games
+Real time monitoring and visualization display of metrics such as CPU, memory, fps (only supports Windows OpenGL DirectX engine application Unity u3d application), GPU, thread_num, handle_num, etc
+
 # 启动入口
-    方式0：
-    直接下载二进制运行：https://github.com/15525730080/pc_perf/releases, 二进制文件打包需要针对各个平台有一定成本所以更新不及时。推荐方式2。
+    方式1（推荐）：
+    pip install -U pc-perf
+    python -m pc_perf  
     
-    方式1：
+    方式2：
     git clone https://github.com/15525730080/pc_perf.git
     pip install -r requirements.txt
     python pc_perf.py 
     
-    方式2（推荐）：
-    pip install -U pc-perf
-    python -m pc_perf  
-
+    
     
 
 # 创建任务
