@@ -301,6 +301,14 @@
                                 </div>
                             </el-image>
                         </el-form-item>
+                        <el-form-item label="监控模式">
+                            <div>
+                                <el-radio-group v-model="include_child">
+                                <el-radio-button :label="false">仅当前进程</el-radio-button>
+                                <el-radio-button :label="true">当进程及其子进程</el-radio-button>
+                                </el-radio-group>
+                            </div>
+                        </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="createTask">创建任务</el-button>
                         </el-form-item>
@@ -370,6 +378,7 @@
         data: function() {
             return {
                 chose_radio:"树形进程",
+                include_child: false, //是否检测当前进程子进程的性能
                 dialogVisible: false,
                 currentSystemInfo: null,
                 currentView: 'taskList', // 当前视图，默认为任务列表
@@ -520,7 +529,7 @@
             async createTask() {
                 if(this.newTask.pid){
                     const res = await axios({method: 'get',//提交方法
-                            url: '/run_task/?pid='+this.newTask.pid+'&task_name='+this.newTask.name+'&pid_name='+this.pid_name//提交地址
+                            url: '/run_task/?pid='+this.newTask.pid+'&task_name='+this.newTask.name+'&pid_name='+this.pid_name+'&include_child='+this.include_child//提交地址
                     })
                     this.print_res(res)
                     console.log(res)

@@ -14,11 +14,12 @@ from app.core.pc_tools import perf as pc_perf
 
 class TaskHandle(Process):
 
-    def __init__(self, serialno: str, target_pid: int, file_dir: str, task_id: int, platform: str):
+    def __init__(self, serialno: str, target_pid: int, file_dir: str, task_id: int, platform: str, include_child:bool):
         super(TaskHandle, self).__init__()
         self.serialno = serialno
         self.target_pid = target_pid
         self.file_dir = file_dir
+        self.include_child = include_child
         if not os.path.exists(self.file_dir):
             os.makedirs(self.file_dir)
         self.daemon = True
@@ -32,7 +33,7 @@ class TaskHandle(Process):
     def run(self):
         logger.info("join task handle run")
         asyncio.run(TaskCollection.set_task_running(self.task_id, self.pid))
-        asyncio.run(pc_perf(self.target_pid, self.file_dir))
+        asyncio.run(pc_perf(self.target_pid, self.file_dir, include_child=self.include_child))
 
     @staticmethod
     def stop_handle(monitor_pid):

@@ -162,7 +162,7 @@ async def process_tree():
 
     return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=10)
 
-async def screenshot(pid, save_dir):
+async def screenshot(pid, save_dir, include_child=False):
     def real_func(pid, save_dir):
         start_time = int(time.time())
         if pid:
@@ -174,14 +174,21 @@ async def screenshot(pid, save_dir):
                     pid = ctypes.wintypes.DWORD()
                     ctypes.windll.user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
                     return pid.value
-
-                def get_window_by_pid(pid):
+                
+                def get_window_by_pid(pids):
                     for window in gw.getAllWindows():
-                        if get_pid(window._hWnd) == pid:
+                        if get_pid(window._hWnd) in pids:
                             return window
                     return None
-
-                window = get_window_by_pid(int(pid))
+                
+                pids = [pid]
+                if include_child:
+                    process = psutil.Process(int(pid))
+                    p_chs = process.children(recursive=True)
+                    if p_chs:
+                        sub_pid = [sub_p.pid for sub_p in p_chs]
+                        pids.extend(sub_pid)
+                window = get_window_by_pid(pids)
             if window:
                 screenshot = ImageGrab.grab(
                     bbox=(window.left, window.top, window.left + window.width, window.top + window.height),
@@ -203,34 +210,44 @@ async def screenshot(pid, save_dir):
     return await asyncio.wait_for(asyncio.to_thread(real_func, pid, save_dir), timeout=10)
 
 
-async def cpu(pid):
-    def real_func(pid):
-        start_time = int(time.time())
-        proc = psutil.Process(pid=int(pid))
-        cpu_usage = proc.cpu_percent(interval=1)
-        cpu_count = psutil.cpu_count()
-        res = {"cpu_usage": cpu_usage / cpu_count, "cpu_usage_all": cpu_usage,
-               "cpu_core_num": cpu_count, "time": start_time}
-        print_json(res)
-        return res
+async def cpu(pid, include_child=False):
+    process = psutil.Process(int(pid))
+    get_main_cpu = asyncio.to_thread(process.cpu_percent, interval=1)
+    tasks = [get_main_cpu]
+    if include_child:
+        children = process.children(recursive=True)
+        if children:
+            tasks.extend([asyncio.to_thread(child.cpu_percent, interval=1) 
+                         for child in children])   
+    all_cpu_values = await asyncio.gather(*tasks, return_exceptions=True)
+    total_cpu_usage = sum(v for v in all_cpu_values if not isinstance(v, Exception))
+    cpu_count = psutil.cpu_count()
+    res = {
+        "cpu_usage": total_cpu_usage / cpu_count,
+        "cpu_usage_all": total_cpu_usage,
+        "cpu_core_num": cpu_count,
+        "time": int(time.time())
+    }
+    print_json(res)
+    return res
 
-    return await asyncio.wait_for(asyncio.to_thread(real_func, pid), timeout=10)
+async def memory(pid, include_child=False):
+    process = psutil.Process(int(pid))
+    get_main_mem = asyncio.to_thread(lambda: process.memory_info().rss / (1024 ** 2))
+    tasks = [get_main_mem]
+    if include_child:
+        p_chs = process.children(recursive=True)
+        if p_chs:
+            tasks.extend([asyncio.to_thread(lambda p=sub_p: p.memory_info().rss / (1024 ** 2)) 
+                         for sub_p in p_chs])
+    all_mem_values = await asyncio.gather(*tasks, return_exceptions=True)
+    total_memory = sum(v for v in all_mem_values if not isinstance(v, Exception))
+    res = {"process_memory_usage": total_memory, "time": int(time.time())}
+    print_json(res)
+    return res
 
-
-async def memory(pid):
-    def real_func(pid):
-        start_time = int(time.time())
-        process = psutil.Process(int(pid))
-        process_memory_info = process.memory_info()
-        process_memory_usage = process_memory_info.rss / (1024 ** 2)  # In MB
-        memory_info = {"process_memory_usage": process_memory_usage, "time": start_time}
-        print_json(memory_info)
-        return memory_info
-
-    return await asyncio.wait_for(asyncio.to_thread(real_func, pid), timeout=10)
-
-
-async def fps(pid):
+async def fps(pid, include_child=False):
+    pid = int(pid)
     if platform.system() != "Windows":
         return {"type": "fps", "time": int(time.time())}
     frames = WinFps(pid).fps()
@@ -241,10 +258,18 @@ async def fps(pid):
     return res
 
 
-async def gpu(pid):
+async def gpu(pid, include_child=False):
+    pid = int(pid)
     def real_func(pid):
-        pid = int(pid)
+        pids = [pid]
+        if include_child:
+            process = psutil.Process(int(pid))
+            p_chs = process.children(recursive=True)
+            if p_chs:
+                sub_pid = [sub_p.pid for sub_p in p_chs]
+                pids.extend(sub_pid)
         start_time = int(time.time())
+        sum_gpu = 0
         if SUPPORT_GPU:
             device_count = pynvml.nvmlDeviceGetCount()
             res = None
@@ -252,13 +277,11 @@ async def gpu(pid):
                 handle = pynvml.nvmlDeviceGetHandleByIndex(i)
                 processes = pynvml.nvmlDeviceGetComputeRunningProcesses(handle)
                 for process in processes:
-                    print(process)
-                    if process.pid == pid:
+                    if process.pid in pids:
                         gpu_Utilization = pynvml.nvmlDeviceGetUtilizationRates(handle)
                         gpu_utilization_percentage = gpu_Utilization.gpu  # GPU的计算使用率
-                        res = {"gpu": gpu_utilization_percentage, "time": start_time}
-                        print_json(res)
-                        return res
+                        sum_gpu += gpu_utilization_percentage
+            res = {"gpu": gpu_utilization_percentage, "time": start_time}
             return res
         else:
             return {"time": start_time}
@@ -266,54 +289,59 @@ async def gpu(pid):
     return await asyncio.wait_for(asyncio.to_thread(real_func, pid), timeout=10)
 
 
-async def process_info(pid):
-    def real_func(pid):
-        start_time = int(time.time())
-        process = psutil.Process(int(pid))
-        num_handles = None
-        num_threads = None
-        try:
-            num_handles = process.num_handles()
-        except:
-            log.error(traceback.format_exc())
-        try:
-            num_threads = process.num_threads()
-        except:
-            log.error(traceback.format_exc())
-        res = {"time": start_time}
-        if num_handles: res["num_handles"] = num_handles
-        if num_threads: res["num_threads"] = num_threads
-        print_json(res)
-        return res
+async def process_info(pid, include_child=False):
+    start_time = int(time.time())
+    process = psutil.Process(int(pid))
+    num_handles = None
+    if hasattr(process, "num_handles"):
+        get_main_num_handles = asyncio.to_thread(process.num_handles)
+    get_main_num_threads = asyncio.to_thread(process.num_threads)
+    if hasattr(process, "num_handles"):
+        handles_task = [get_main_num_handles]
+    threads_task = [get_main_num_threads]
+    if include_child:
+        children = process.children(recursive=True)
+        if children:
+            if hasattr(process, "num_handles"):
+                handles_task.extend([asyncio.to_thread(child.num_handles) for child in children])  
+            threads_task.extend([asyncio.to_thread(child.num_threads) for child in children])  
+    if hasattr(process, "num_handles"):
+        all_num_handles_values = await asyncio.gather(*handles_task, return_exceptions=True)
+    all_num_threads_values = await asyncio.gather(*threads_task, return_exceptions=True)
+    if hasattr(process, "num_handles"):
+        num_handles = sum(v for v in all_num_handles_values if not isinstance(v, Exception))
+    num_threads= sum(v for v in all_num_threads_values if not isinstance(v, Exception))
+    res = {"time": start_time}
+    if num_handles: res["num_handles"] = num_handles
+    if num_threads: res["num_threads"] = num_threads
+    return res
 
-    return await asyncio.wait_for(asyncio.to_thread(real_func, pid), timeout=10)
 
-
-async def perf(pid, save_dir):
+async def perf(pid, save_dir, include_child):
     monitors = {
         "cpu": Monitor(cpu,
                        pid=pid,
                        key_value=["time", "cpu_usage(%)", "cpu_usage_all(%)", "cpu_core_num(个)"],
-                       save_dir=save_dir),
+                       save_dir=save_dir, include_child=include_child),
         "memory": Monitor(memory,
                           pid=pid,
                           key_value=["time", "process_memory_usage(M)"],
-                          save_dir=save_dir),
+                          save_dir=save_dir, include_child=include_child),
         "process_info": Monitor(process_info,
                                 pid=pid,
                                 key_value=["time", "num_threads(个)", "num_handles(个)"],
-                                save_dir=save_dir),
+                                save_dir=save_dir, include_child=include_child),
         "fps": Monitor(fps,
                        pid=pid,
                        key_value=["time", "fps(帧)", "frames"],
-                       save_dir=save_dir),
+                       save_dir=save_dir, include_child=include_child),
         "gpu": Monitor(gpu,
                        pid=pid,
                        key_value=["time", "gpu(%)"],
-                       save_dir=save_dir),
+                       save_dir=save_dir, include_child=include_child),
         "screenshot": Monitor(screenshot,
                               pid=pid,
-                              save_dir=save_dir, is_out=False)
+                              save_dir=save_dir, is_out=False, include_child=include_child)
     }
     run_monitors = [monitor.run() for name, monitor in monitors.items()]
     await asyncio.gather(*run_monitors)

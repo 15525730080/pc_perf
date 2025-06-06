@@ -73,13 +73,11 @@ async def get_all_task():
 
 
 @app.get("/run_task/")
-async def run_task(request: Request, pid: int, pid_name: str, task_name: str):
-    start_time = time.time()
-    status = 0
-    return_task_id, file_dir = await TaskCollection.create_task(pid, pid_name, BASE_CSV_DIR.resolve(), task_name)
+async def run_task(request: Request, pid: int, pid_name: str, task_name: str, include_child:bool=False):
+    return_task_id, file_dir = await TaskCollection.create_task(pid, pid_name, BASE_CSV_DIR.resolve(), task_name, include_child)
 
     task_process = TaskHandle(serialno=platform.node(), file_dir=file_dir,
-                              task_id=return_task_id, platform=platform.system(), target_pid=pid)
+                              task_id=return_task_id, platform=platform.system(), target_pid=pid, include_child=include_child)
     task_process.start()
     return JSONResponse(content=ResultBean())
 
