@@ -30,7 +30,8 @@ cpu、memory、fps（仅支持windowsOpenGL  DirectX 引擎应用 unity u3d应�
 # 性能报表
 ![image](https://github.com/15525730080/pc_perf/assets/153100629/2e28527a-6e5d-487c-8753-8d3483c0f108)
 ![image](https://github.com/user-attachments/assets/6ad7b0c6-0ba5-49e3-ba7a-38df2b8033cb)
-<img width="591" alt="image" src="https://github.com/user-attachments/assets/815be7d9-10d4-4891-b7b2-786219b7152d" />
+<img width="606" alt="image" src="https://github.com/user-attachments/assets/ad2eb38e-179a-4d1d-9e5e-206e56151192" />
+
 
 
 # 开源
