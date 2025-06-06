@@ -630,6 +630,7 @@
                     tempOption_tmp.xAxis.axisLabel.formatter = tempOption.xAxis.axisLabel.formatter
 				    let timeList = []
 				    let cpuList = []
+                    let cpuListAll = []
 				    let fpsList = []
 				    let gpuList = []
 				    let memoryList = []
@@ -638,7 +639,8 @@
 				    x.value.forEach(v=>{
 				        if (x.name == "cpu"){
 				            cpuList.push((v["cpu_usage(%)"]||v["cpu_usage(%)"]===0)?v["cpu_usage(%)"]:"-")
-				            timeList.push(v["time"])
+				            cpuListAll.push((v["cpu_usage_all(%)"]||v["cpu_usage_all(%)"]===0)?v["cpu_usage_all(%)"]:"-")
+                            timeList.push(v["time"])
                            
                         }else if(x.name == "fps"){
                             fpsList.push(v["fps(帧)"]||v["fps(帧)"]===0?v["fps(帧)"]:"-")
@@ -667,13 +669,20 @@
 				  if (x.name == "cpu"){
                     tempOption_tmp.series.push(
                                 {
-                                    name: 'cpu_usage(%)',
+                                    name: 'cpu_usage(%)｜(总cpu用量/核数,不超过100%)',
                                     type: 'line',
                                     data: cpuList,
                                     connectNulls: true,
                                     areaStyle: {},
 
-                                  }
+                                  },
+                                  {
+                                        name: 'cpu_usage_all(%)｜(总cpu用量,会超过100%)',
+                                        type: 'line',
+                                        data: cpuListAll,
+                                        connectNulls: true,
+                                        areaStyle: {}
+                                    }
                                 
 				            )
 
