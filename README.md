@@ -18,9 +18,13 @@ cpu、memory、fps（仅支持windowsOpenGL  DirectX 引擎应用 unity u3d应�
     
 
 # 创建任务
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/6b4e12a5-b988-44f7-8dd5-56679ad6521b" />
+
 ![image](https://github.com/15525730080/pc_perf/assets/153100629/91995e83-6fc6-4350-84d1-24704f1bccce)
 
 # 任务列表
+<img width="1437" alt="image" src="https://github.com/user-attachments/assets/4a97788f-47e4-4427-a321-201eb097d8ac" />
+
 ![image](https://github.com/15525730080/pc_perf/assets/153100629/10112d4b-3724-4ada-9cb8-df633af302a0)
 
 # 性能报表
