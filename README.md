@@ -23,19 +23,29 @@ engine application Unity u3d application), GPU, thread_num, handle_num, etc
 
 <img width="1439" alt="image" src="https://github.com/user-attachments/assets/2bdfe24b-d454-4902-a60a-62cc1b21f4eb" />
 
-![image](https://github.com/15525730080/pc_perf/assets/153100629/91995e83-6fc6-4350-84d1-24704f1bccce)
+![image](https://github.com/user-attachments/assets/ccd399bb-f30d-4670-9443-d54b177c3d02)
 
-<img width="1438" alt="image" src="https://github.com/user-attachments/assets/bec24ad1-ab2b-4472-ad0c-7f741acf7f2b" />
+![image](https://github.com/user-attachments/assets/efee2396-5c4d-49bc-a4b8-367d8e553584)
+
+![image](https://github.com/user-attachments/assets/b7b16cf9-66e7-4eb8-9629-308dcdb6ecad)
+
+![image](https://github.com/user-attachments/assets/ef95c1fe-d8e2-418b-89f4-f0309203b40e)
+
 
 # 任务列表
+
+![image](https://github.com/user-attachments/assets/25a49256-93c7-446d-801c-5defb551f8ef)
+
 
 <img width="1434" alt="image" src="https://github.com/user-attachments/assets/813b12df-560a-4040-9457-810a8ac553a9" />
 
 # 性能报表
+![image](https://github.com/user-attachments/assets/08fa8119-6ec5-4dab-8227-93aa56a40a68)
+
+![image](https://github.com/user-attachments/assets/2438fc44-740d-4f8f-877b-7c04e83c9f04)
 
 ![image](https://github.com/15525730080/pc_perf/assets/153100629/2e28527a-6e5d-487c-8753-8d3483c0f108)
 ![image](https://github.com/user-attachments/assets/6ad7b0c6-0ba5-49e3-ba7a-38df2b8033cb)
-<img width="574" alt="image" src="https://github.com/user-attachments/assets/4fc48e7e-47ef-4c82-ba42-e03461a9bdcc" />
 
 # 开源
 
