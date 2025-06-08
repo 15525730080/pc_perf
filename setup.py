@@ -6,7 +6,7 @@ setup(
     name='pc-perf',
 
     # 版本号，遵循语义化版本控制规则
-    version='2.0.1',
+    version='2.0.2',
 
     # 项目简短描述
     description='pc 进程性能测试平台，支持 windows / mac / linux 平台进程cpu、memory、fps（仅支持windows下OpenGL  DirectX 引擎应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示',

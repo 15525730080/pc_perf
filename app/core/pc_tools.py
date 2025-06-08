@@ -313,6 +313,7 @@ async def gpu(pid, include_child=False):
         if SUPPORT_GPU:
             device_count = pynvml.nvmlDeviceGetCount()
             res = None
+            gpu_utilization_percentage = None
             for i in range(device_count):
                 handle = pynvml.nvmlDeviceGetHandleByIndex(i)
                 processes = pynvml.nvmlDeviceGetComputeRunningProcesses(handle)
