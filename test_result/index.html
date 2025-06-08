@@ -422,9 +422,10 @@
         },
         methods: {
             handleNodeClick(data, node) {
+                this.get_pids().then()
                 this.newTask.pid = data.pid;
-                console.log(this.newTask)
                 this.getPidCmd()
+                console.log(this.newTask)
             },
             async saveEdit(row) {
                 try {
@@ -458,6 +459,7 @@
               return `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
             },
             getPidCmd(){
+                console.log(this.pids)
                 for (let i = 0; i < this.pids.length; i++) {
                   if (this.newTask.pid === this.pids[i].pid) {
                       this.cmd = this.pids[i].cmd.join(" ");
