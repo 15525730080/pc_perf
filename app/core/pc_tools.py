@@ -9,20 +9,20 @@ from io import BytesIO
 import psutil
 import pynvml
 from pathlib import Path
-from app.log import log
+from app.log import log as logger
 from app.core.monitor import Monitor
 
 SUPPORT_GPU = True
 try:
     pynvml.nvmlInit()
 except:
-    log.info("本设备gpu获取不适配")
+    logger.info("本设备gpu获取不适配")
     SUPPORT_GPU = False
 from PIL import ImageGrab
 
 
 def print_json(msg):
-    log.info(json.dumps(msg))
+    logger.info(json.dumps(msg))
 
 
 class WinFps(object):
@@ -75,17 +75,16 @@ class WinFps(object):
             if not line:
                 try:
                     res_terminate.kill()
-                except:
-                    traceback.print_exc()
+                except Exception as e:
+                    logger.error(e)
                 break
             try:
                 line = line.decode(encoding="utf-8")
                 line_list = line.split(",")
-                print("line ", line_list)
                 WinFps.frame_que.append(start_fps_collect_time + round(float(line_list[7]), 7))
             except:
                 time.sleep(1)
-                log.error(traceback.format_exc())
+                logger.error(traceback.format_exc())
 
 
 async def sys_info():
@@ -111,7 +110,7 @@ async def pids():
                         {"name": proc.info['name'], "pid": proc.info['pid'], "cmd": proc.info['cmdline'],
                          "username": proc.username()})
             except Exception as e:
-                log.error(e)
+                logger.error(e)
         process_list.sort(key=lambda x: x['name'])
         # print_json(process_list)
         return process_list
@@ -187,13 +186,13 @@ async def process_tree():
                                 process_info["child_p"].append(child_info)
                             except Exception:
                                 # 处理子进程不存在的情况
-                                log.error(f"子进程 {child.pid} 已不存在")
+                                logger.error(f"子进程 {child.pid} 已不存在")
                     except psutil.NoSuchProcess:
                         # 处理父进程不存在的情况
-                        log.error(f"父进程 {proc.pid} 已不存在")
+                        logger.error(f"父进程 {proc.pid} 已不存在")
                     process_list.append(process_info)
             except Exception as e:
-                log.error(e)
+                logger.error(e)
         process_list.sort(key=lambda x: -len(x['child_p']))
         # print_json(process_list)
         return process_list
@@ -294,7 +293,7 @@ async def fps(pid, include_child=False):
     if not frames:
         return frames
     res = {"type": "fps", "fps": len(frames), "frames": frames, "time": int(frames[0]) if frames else int(time.time())}
-    print_json(res)
+    # print_json(res)
     return res
 
 

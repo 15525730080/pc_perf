@@ -209,10 +209,10 @@ async def upgrade_tasks_table():
 
                 # 执行语句
                 await conn.execute(text(alter_stmt))
-                print(f"已为表 {table_name} 添加列: {column_name}")
+                logger.info(f"已为表 {table_name} 添加列: {column_name}")
 
         except Exception as e:
-            print(f"升级表 {table_name} 时出错: {e}")
+            logger.error(f"升级表 {table_name} 时出错: {e}")
 
 
 async def create_table():
