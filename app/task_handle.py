@@ -14,7 +14,7 @@ from app.core.pc_tools import perf as pc_perf
 
 class TaskHandle(Process):
 
-    def __init__(self, serialno: str, target_pid: int, file_dir: str, task_id: int, platform: str, include_child:bool):
+    def __init__(self, serialno: str, target_pid: int, file_dir: str, task_id: int, platform: str, include_child: bool):
         super(TaskHandle, self).__init__()
         self.serialno = serialno
         self.target_pid = target_pid
@@ -50,5 +50,3 @@ class TaskHandle(Process):
                 os.kill(current_process.pid, 9)
             except:
                 logger.error(traceback.format_exc())
-
-

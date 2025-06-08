@@ -119,13 +119,51 @@ async def pids():
     return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=10)
 
 
+def get_visible_top_level_windows():
+    import ctypes
+    from ctypes import wintypes
+
+    user32 = ctypes.windll.user32
+    EnumWindows = user32.EnumWindows
+    IsWindowVisible = user32.IsWindowVisible
+    GetWindowTextLengthW = user32.GetWindowTextLengthW
+    GetWindowTextW = user32.GetWindowTextW
+    GetWindowThreadProcessId = user32.GetWindowThreadProcessId
+
+    EnumWindowsProc = ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+
+    results = []
+
+    @EnumWindowsProc
+    def enum_proc(hwnd, lParam):
+        if IsWindowVisible(hwnd):
+            length = GetWindowTextLengthW(hwnd)
+            if length > 0:
+                buf = ctypes.create_unicode_buffer(length + 1)
+                GetWindowTextW(hwnd, buf, length + 1)
+                title = buf.value.strip()
+                if title:
+                    pid = wintypes.DWORD()
+                    GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+                    results.append(pid.value)
+        return True
+
+    EnumWindows(enum_proc, 0)
+    return results
+
+
 async def process_tree():
     def real_func():
         process_list = []
+        if platform.system() == "Windows":
+            appliction_pids = get_visible_top_level_windows()
+        else:
+            appliction_pids = [0, 1]
         for proc in psutil.process_iter(attrs=['name', 'pid', 'cmdline', 'username', 'ppid']):
             try:
                 # 检查进程是否正在运行且父进程 ID 为 1
-                if proc.is_running() and proc.ppid() == 1:
+                if proc.is_running() and (
+                        proc.pid if platform.system() == "Windows" else proc.ppid()) in appliction_pids:
                     process_info = {
                         "name": proc.info['name'],
                         "ppid": proc.info['ppid'],
@@ -162,9 +200,9 @@ async def process_tree():
 
     return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=10)
 
+
 async def screenshot(pid, save_dir, include_child=False):
     def real_func(pid, save_dir):
-        start_time = int(time.time())
         if pid:
             window = None
             if platform.system() == "Windows":
@@ -174,13 +212,13 @@ async def screenshot(pid, save_dir, include_child=False):
                     pid = ctypes.wintypes.DWORD()
                     ctypes.windll.user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
                     return pid.value
-                
+
                 def get_window_by_pid(pids):
                     for window in gw.getAllWindows():
                         if get_pid(window._hWnd) in pids:
                             return window
                     return None
-                
+
                 pids = [pid]
                 if include_child:
                     process = psutil.Process(int(pid))
@@ -199,7 +237,7 @@ async def screenshot(pid, save_dir, include_child=False):
                 dir_instance = Path(save_dir)
                 screenshot_dir = dir_instance.joinpath("screenshot")
                 screenshot_dir.mkdir(exist_ok=True)
-                screenshot.save(screenshot_dir.joinpath(str(start_time) + ".png"), format="PNG")
+                screenshot.save(screenshot_dir.joinpath(str(int(time.time() + 0.5)) + ".png"), format="PNG")
             else:
                 output_buffer = BytesIO()
                 screenshot.save(output_buffer, format='PNG')
@@ -217,8 +255,8 @@ async def cpu(pid, include_child=False):
     if include_child:
         children = process.children(recursive=True)
         if children:
-            tasks.extend([asyncio.to_thread(child.cpu_percent, interval=1) 
-                         for child in children])   
+            tasks.extend([asyncio.to_thread(child.cpu_percent, interval=1)
+                          for child in children])
     all_cpu_values = await asyncio.gather(*tasks, return_exceptions=True)
     total_cpu_usage = sum(v for v in all_cpu_values if not isinstance(v, Exception))
     cpu_count = psutil.cpu_count()
@@ -231,6 +269,7 @@ async def cpu(pid, include_child=False):
     print_json(res)
     return res
 
+
 async def memory(pid, include_child=False):
     process = psutil.Process(int(pid))
     get_main_mem = asyncio.to_thread(lambda: process.memory_info().rss / (1024 ** 2))
@@ -238,13 +277,14 @@ async def memory(pid, include_child=False):
     if include_child:
         p_chs = process.children(recursive=True)
         if p_chs:
-            tasks.extend([asyncio.to_thread(lambda p=sub_p: p.memory_info().rss / (1024 ** 2)) 
-                         for sub_p in p_chs])
+            tasks.extend([asyncio.to_thread(lambda p=sub_p: p.memory_info().rss / (1024 ** 2))
+                          for sub_p in p_chs])
     all_mem_values = await asyncio.gather(*tasks, return_exceptions=True)
     total_memory = sum(v for v in all_mem_values if not isinstance(v, Exception))
     res = {"process_memory_usage": total_memory, "time": int(time.time())}
     print_json(res)
     return res
+
 
 async def fps(pid, include_child=False):
     pid = int(pid)
@@ -260,6 +300,7 @@ async def fps(pid, include_child=False):
 
 async def gpu(pid, include_child=False):
     pid = int(pid)
+
     def real_func(pid):
         pids = [pid]
         if include_child:
@@ -303,14 +344,14 @@ async def process_info(pid, include_child=False):
         children = process.children(recursive=True)
         if children:
             if hasattr(process, "num_handles"):
-                handles_task.extend([asyncio.to_thread(child.num_handles) for child in children])  
-            threads_task.extend([asyncio.to_thread(child.num_threads) for child in children])  
+                handles_task.extend([asyncio.to_thread(child.num_handles) for child in children])
+            threads_task.extend([asyncio.to_thread(child.num_threads) for child in children])
     if hasattr(process, "num_handles"):
         all_num_handles_values = await asyncio.gather(*handles_task, return_exceptions=True)
     all_num_threads_values = await asyncio.gather(*threads_task, return_exceptions=True)
     if hasattr(process, "num_handles"):
         num_handles = sum(v for v in all_num_handles_values if not isinstance(v, Exception))
-    num_threads= sum(v for v in all_num_threads_values if not isinstance(v, Exception))
+    num_threads = sum(v for v in all_num_threads_values if not isinstance(v, Exception))
     res = {"time": start_time}
     if num_handles: res["num_handles"] = num_handles
     if num_threads: res["num_threads"] = num_threads

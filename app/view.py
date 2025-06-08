@@ -60,7 +60,7 @@ async def pid_img(pid: int):
 
 
 @app.get("/get_pids/")
-async def get_pids(is_print_tree: bool=False):
+async def get_pids(is_print_tree: bool = False):
     if is_print_tree:
         return JSONResponse(content=ResultBean(msg=await process_tree()))
     else:
@@ -73,11 +73,13 @@ async def get_all_task():
 
 
 @app.get("/run_task/")
-async def run_task(request: Request, pid: int, pid_name: str, task_name: str, include_child:bool=False):
-    return_task_id, file_dir = await TaskCollection.create_task(pid, pid_name, BASE_CSV_DIR.resolve(), task_name, include_child)
+async def run_task(request: Request, pid: int, pid_name: str, task_name: str, include_child: bool = False):
+    return_task_id, file_dir = await TaskCollection.create_task(pid, pid_name, BASE_CSV_DIR.resolve(), task_name,
+                                                                include_child)
 
     task_process = TaskHandle(serialno=platform.node(), file_dir=file_dir,
-                              task_id=return_task_id, platform=platform.system(), target_pid=pid, include_child=include_child)
+                              task_id=return_task_id, platform=platform.system(), target_pid=pid,
+                              include_child=include_child)
     task_process.start()
     return JSONResponse(content=ResultBean())
 
@@ -133,10 +135,12 @@ async def delete_task(request: Request, task_id: int):
             logger.error(traceback.format_exc())
     return JSONResponse(content=ResultBean())
 
+
 @app.get("/change_task_name/")
 async def change_task_name(request: Request, task_id: int, new_name: str):
     item_task = await TaskCollection.change_task_name(task_id, new_name)
-    return JSONResponse(content=ResultBean(msg="修改任务名称为：" + item_task.get("name"))) 
+    return JSONResponse(content=ResultBean(msg="修改任务名称为：" + item_task.get("name")))
+
 
 @app.on_event("startup")
 async def app_start():

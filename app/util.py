@@ -28,8 +28,8 @@ class DataCollect(object):
         if is_format:
             return self.format_all_data_value(all_data)
 
-    # @staticmethod
-    # def format_all_data_value(all_data: list[dict]):
+        # @staticmethod
+        # def format_all_data_value(all_data: list[dict]):
         start_time = min([data.get("value")[0].get("time") for data in all_data if data.get("value")])
         end_time = max([data.get("value")[-1].get("time") for data in all_data if data.get("value")])
 

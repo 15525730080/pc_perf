@@ -181,14 +181,14 @@
                         <el-table-column prop="name" label="任务名称" sortable>
                             <template slot-scope="scope">
                                 <el-input
-                                    @blur="saveEdit(scope.row)"
-                                    v-model="scope.row.name"
-                                    :disabled="!scope.row.input_disabled">
-                                      <i
-                                        class="el-icon-edit el-input__icon"
-                                        slot="suffix"
-                                        @click="$set(scope.row, 'input_disabled', true);"
-                                       >
+                                        @blur="saveEdit(scope.row)"
+                                        v-model="scope.row.name"
+                                        :disabled="!scope.row.input_disabled">
+                                    <i
+                                            class="el-icon-edit el-input__icon"
+                                            slot="suffix"
+                                            @click="$set(scope.row, 'input_disabled', true);"
+                                    >
                                     </i>
                                 </el-input>
                             </template>
@@ -206,9 +206,10 @@
                         </el-table-column>
                         <el-table-column prop="include_child" label="监控目标" sortable>
                             <template slot-scope="scope">
-                                <el-button type="warning" size="mini" v-if="scope.row.include_child">进程(含子进程)</el-button>
+                                <el-button type="warning" size="mini" v-if="scope.row.include_child">进程(含子进程)
+                                </el-button>
                                 <el-button type="info" size="mini" v-if="!scope.row.include_child">进程</el-button>
-                            </template>                            
+                            </template>
                         </el-table-column>
                         <el-table-column prop="platform" label="设备平台" sortable></el-table-column>
                         <el-table-column prop="start_time" label="开始时间" sortable></el-table-column>
@@ -216,15 +217,16 @@
                         <el-table-column label="操作">
                             <template slot-scope="scope">
                                 <el-button type="primary" size="mini" v-if="scope.row.status!=0||scope.row.status!=-1"
-                                           @click="result(scope.row.id);curtaskid=scope.row.id;" style="margin-left: 0;">查看
+                                           @click="result(scope.row.id);curtaskid=scope.row.id;"
+                                           style="margin-left: 0;">查看
                                 </el-button>
                                 <el-button type="danger" size="mini" v-if="scope.row.status==1"
-                                           @click="stop_task(scope.row.id)"  style="margin-left: 0;">停止
+                                           @click="stop_task(scope.row.id)" style="margin-left: 0;">停止
                                 </el-button>
                                 <el-button type="danger" size="mini" v-if="scope.row.status!=1"
-                                           @click="delete_task(scope.row.id)"  style="margin-left: 0;">删除
+                                           @click="delete_task(scope.row.id)" style="margin-left: 0;">删除
                                 </el-button>
-                                
+
                             </template>
                         </el-table-column>
                     </el-table>
@@ -246,11 +248,11 @@
                         <el-form-item label="">
                             <div>
                                 <el-radio-group v-model="chose_radio" @change="getProcessTree">
-                                <el-radio-button label="独立进程"></el-radio-button>
-                                <el-radio-button label="树形进程"  ></el-radio-button>
+                                    <el-radio-button label="独立进程"></el-radio-button>
+                                    <el-radio-button label="树形进程"></el-radio-button>
                                 </el-radio-group>
                             </div>
-                        </el-form-item>      
+                        </el-form-item>
                         <el-form-item label="任务名称">
                             <el-input v-model="newTask.name" placeholder="请输入任务名称" clearable></el-input>
                         </el-form-item>
@@ -268,31 +270,31 @@
                         </el-form-item>
                         <el-form-item label="选择PID" :key="chose_radio" v-if="chose_radio=='树形进程'">
                             <el-tree
-                                ref="processTreeRef"
-                                :data="processTree"
-                                node-key="pid"
-                                :default-expand-all="true"
-                                :props="treeProps"
-                                :highlight-current="true"
-                                @node-click="handleNodeClick"
-                                style="height: 50vh;overflow-y: auto;"
-                                >
+                                    ref="processTreeRef"
+                                    :data="processTree"
+                                    node-key="pid"
+                                    :default-expand-all="true"
+                                    :props="treeProps"
+                                    :highlight-current="true"
+                                    @node-click="handleNodeClick"
+                                    style="height: 50vh;overflow-y: auto;"
+                            >
                                 <template #default="{ node, data }">
                                     <span
-                                      :style="{
+                                            :style="{
                                         color: node.isCurrent ? '#409EFF' : '',
                                       }"
                                     >
                                       {{ node.label }}
                                       <span
-                                        v-if="node.isCurrent"
-                                        :style="{
+                                              v-if="node.isCurrent"
+                                              :style="{
                                           backgroundColor: '#409EFF',
                                           boxShadow: '0 0 10px rgba(64, 158, 255, 0.7)',
                                         }"
                                       ></span>
                                     </span>
-                                  </template>
+                                </template>
                             </el-tree>
                         </el-form-item>
                         <el-form-item v-if="cmd" label="pid cmd">
@@ -310,8 +312,8 @@
                         <el-form-item label="监控对象">
                             <div>
                                 <el-radio-group v-model="include_child">
-                                <el-radio-button :label="false">当前进程</el-radio-button>
-                                <el-radio-button :label="true">当前进程及其子进程</el-radio-button>
+                                    <el-radio-button :label="false">当前进程</el-radio-button>
+                                    <el-radio-button :label="true">当前进程及其子进程</el-radio-button>
                                 </el-radio-group>
                             </div>
                         </el-form-item>
@@ -329,7 +331,7 @@
             @open="handleDialogVisibleChange"
             @closed="clearInterval(intervalId);"
             @destroy-on-close="true"
-    >   
+    >
         <div style="display: flex;flex-direction: row;flex-wrap: wrap;">
             <div class="chart-container">
                 <div class="chart-title">{{num2time(clicktime)}}进程截图</div>
