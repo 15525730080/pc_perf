@@ -1,0 +1,1273 @@
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749535545.9606142, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+子进程 39504 已不存在
+join task handle
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+join task handle run
+{"process_memory_usage": 639.76171875, "time": 1749535585}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749535586}
+{"process_memory_usage": 640.2421875, "time": 1749535586}
+{"process_memory_usage": 640.32421875, "time": 1749535587}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535588}
+{"process_memory_usage": 640.3125, "time": 1749535589}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535590}
+{"process_memory_usage": 640.3125, "time": 1749535591}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749535592}
+{"process_memory_usage": 640.34375, "time": 1749535593}
+{"cpu_usage": 1.925, "cpu_usage_all": 15.4, "cpu_core_num": 8, "time": 1749535594}
+{"process_memory_usage": 640.34375, "time": 1749535595}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749535596}
+{"process_memory_usage": 640.35546875, "time": 1749535597}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749535598}
+{"process_memory_usage": 640.3203125, "time": 1749535599}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749535600}
+{"process_memory_usage": 640.33203125, "time": 1749535601}
+{"cpu_usage": 0.9875, "cpu_usage_all": 7.9, "cpu_core_num": 8, "time": 1749535602}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 642.921875, "time": 1749535603}
+{"cpu_usage": 2.3000000000000003, "cpu_usage_all": 18.400000000000002, "cpu_core_num": 8, "time": 1749535604}
+{"process_memory_usage": 643.07421875, "time": 1749535605}
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749535606}
+{"process_memory_usage": 643.07421875, "time": 1749535607}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749535608}
+{"process_memory_usage": 643.07421875, "time": 1749535609}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535610}
+{"process_memory_usage": 643.078125, "time": 1749535611}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749535612}
+{"process_memory_usage": 643.0625, "time": 1749535613}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749535614}
+{"process_memory_usage": 643.03515625, "time": 1749535615}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749535616}
+{"process_memory_usage": 643.30859375, "time": 1749535617}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535618}
+{"process_memory_usage": 643.31640625, "time": 1749535619}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749535620}
+{"process_memory_usage": 643.30859375, "time": 1749535621}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749535622}
+{"process_memory_usage": 643.30859375, "time": 1749535624}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749535625}
+{"process_memory_usage": 643.30859375, "time": 1749535626}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749535627}
+{"process_memory_usage": 643.30859375, "time": 1749535628}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749535629}
+{"process_memory_usage": 643.3515625, "time": 1749535630}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535631}
+{"process_memory_usage": 642.18359375, "time": 1749535632}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749535633}
+{"process_memory_usage": 642.31640625, "time": 1749535634}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749535635}
+{"process_memory_usage": 642.40234375, "time": 1749535636}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535637}
+{"process_memory_usage": 645.61328125, "time": 1749535638}
+{"cpu_usage": 1.6, "cpu_usage_all": 12.8, "cpu_core_num": 8, "time": 1749535639}
+{"process_memory_usage": 646.71875, "time": 1749535640}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535641}
+{"process_memory_usage": 646.71875, "time": 1749535641}
+{"process_memory_usage": 646.73046875, "time": 1749535642}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749535643}
+{"process_memory_usage": 646.73828125, "time": 1749535644}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749535645}
+{"process_memory_usage": 646.73046875, "time": 1749535646}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749535647}
+{"process_memory_usage": 646.87109375, "time": 1749535648}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535649}
+{"process_memory_usage": 646.35546875, "time": 1749535650}
+{"cpu_usage": 1.7375, "cpu_usage_all": 13.9, "cpu_core_num": 8, "time": 1749535651}
+{"process_memory_usage": 646.4296875, "time": 1749535652}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749535653}
+{"process_memory_usage": 646.515625, "time": 1749535654}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535655}
+{"process_memory_usage": 646.54296875, "time": 1749535656}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535657}
+{"process_memory_usage": 646.53125, "time": 1749535658}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749535659}
+{"process_memory_usage": 646.5546875, "time": 1749535660}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535661}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"process_memory_usage": 646.56640625, "time": 1749535662}
+{"process_memory_usage": 646.56640625, "time": 1749535663}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749535663}
+{"process_memory_usage": 646.5390625, "time": 1749535665}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749535665}
+{"process_memory_usage": 646.6171875, "time": 1749535667}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535668}
+{"process_memory_usage": 646.6796875, "time": 1749535669}
+{"cpu_usage": 1.1375, "cpu_usage_all": 9.1, "cpu_core_num": 8, "time": 1749535670}
+{"process_memory_usage": 646.65234375, "time": 1749535671}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535672}
+{"process_memory_usage": 646.71484375, "time": 1749535673}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749535674}
+{"process_memory_usage": 646.66796875, "time": 1749535675}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749535676}
+{"process_memory_usage": 646.66796875, "time": 1749535677}
+{"cpu_usage": 1.5625, "cpu_usage_all": 12.5, "cpu_core_num": 8, "time": 1749535678}
+{"process_memory_usage": 646.6875, "time": 1749535679}
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749535680}
+{"process_memory_usage": 646.7109375, "time": 1749535681}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749535682}
+{"process_memory_usage": 646.73046875, "time": 1749535683}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535684}
+{"process_memory_usage": 646.73046875, "time": 1749535685}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535686}
+{"process_memory_usage": 646.73046875, "time": 1749535687}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535688}
+{"process_memory_usage": 646.73828125, "time": 1749535689}
+{"cpu_usage": 1.7375, "cpu_usage_all": 13.9, "cpu_core_num": 8, "time": 1749535690}
+{"process_memory_usage": 646.73046875, "time": 1749535691}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535692}
+{"process_memory_usage": 646.73046875, "time": 1749535693}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749535694}
+{"process_memory_usage": 646.73046875, "time": 1749535695}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749535696}
+{"process_memory_usage": 646.7890625, "time": 1749535697}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535698}
+{"process_memory_usage": 646.7890625, "time": 1749535699}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749535700}
+{"process_memory_usage": 646.75390625, "time": 1749535701}
+{"process_memory_usage": 646.75390625, "time": 1749535702}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749535702}
+{"process_memory_usage": 646.76171875, "time": 1749535703}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749535704}
+{"process_memory_usage": 646.76171875, "time": 1749535705}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749535706}
+{"process_memory_usage": 646.8203125, "time": 1749535707}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749535708}
+{"process_memory_usage": 646.8203125, "time": 1749535710}
+{"process_memory_usage": 646.8203125, "time": 1749535710}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535710}
+{"process_memory_usage": 646.890625, "time": 1749535712}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535713}
+{"process_memory_usage": 646.890625, "time": 1749535714}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749535715}
+{"process_memory_usage": 646.9609375, "time": 1749535716}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749535717}
+{"process_memory_usage": 646.92578125, "time": 1749535718}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535719}
+{"process_memory_usage": 647.0, "time": 1749535720}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749535721}
+{"process_memory_usage": 647.8125, "time": 1749535722}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 2.6875000000000004, "cpu_usage_all": 21.500000000000004, "cpu_core_num": 8, "time": 1749535723}
+{"process_memory_usage": 683.46875, "time": 1749535724}
+{"cpu_usage": 12.8875, "cpu_usage_all": 103.1, "cpu_core_num": 8, "time": 1749535725}
+{"process_memory_usage": 673.6875, "time": 1749535726}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535727}
+{"process_memory_usage": 673.734375, "time": 1749535728}
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749535729}
+{"process_memory_usage": 673.76171875, "time": 1749535730}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749535731}
+{"process_memory_usage": 673.76953125, "time": 1749535732}
+{"cpu_usage": 1.125, "cpu_usage_all": 9.0, "cpu_core_num": 8, "time": 1749535733}
+{"process_memory_usage": 673.76953125, "time": 1749535734}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749535735}
+{"process_memory_usage": 673.77734375, "time": 1749535736}
+{"cpu_usage": 1.55, "cpu_usage_all": 12.4, "cpu_core_num": 8, "time": 1749535737}
+{"process_memory_usage": 673.8984375, "time": 1749535738}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749535739}
+{"process_memory_usage": 673.95703125, "time": 1749535740}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535741}
+{"process_memory_usage": 673.98046875, "time": 1749535742}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749535743}
+{"process_memory_usage": 673.98828125, "time": 1749535744}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749535745}
+{"process_memory_usage": 673.98828125, "time": 1749535746}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535747}
+{"process_memory_usage": 673.9765625, "time": 1749535748}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535749}
+{"process_memory_usage": 673.984375, "time": 1749535750}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749535751}
+{"process_memory_usage": 673.95703125, "time": 1749535752}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535753}
+{"process_memory_usage": 673.94140625, "time": 1749535754}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535755}
+{"process_memory_usage": 673.9375, "time": 1749535756}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749535757}
+{"process_memory_usage": 673.96875, "time": 1749535758}
+{"cpu_usage": 1.5625, "cpu_usage_all": 12.5, "cpu_core_num": 8, "time": 1749535759}
+{"process_memory_usage": 673.984375, "time": 1749535759}
+{"process_memory_usage": 673.97265625, "time": 1749535761}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749535761}
+{"process_memory_usage": 674.578125, "time": 1749535763}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535764}
+{"process_memory_usage": 674.578125, "time": 1749535765}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749535766}
+{"process_memory_usage": 674.5703125, "time": 1749535767}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749535768}
+{"process_memory_usage": 674.5625, "time": 1749535769}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535770}
+{"process_memory_usage": 674.5625, "time": 1749535771}
+{"cpu_usage": 0.6000000000000001, "cpu_usage_all": 4.800000000000001, "cpu_core_num": 8, "time": 1749535772}
+{"process_memory_usage": 674.56640625, "time": 1749535773}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535774}
+{"process_memory_usage": 674.5859375, "time": 1749535775}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749535776}
+{"process_memory_usage": 674.60546875, "time": 1749535777}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749535778}
+{"process_memory_usage": 674.69140625, "time": 1749535779}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749535780}
+{"process_memory_usage": 674.72265625, "time": 1749535781}
+{"cpu_usage": 0.925, "cpu_usage_all": 7.4, "cpu_core_num": 8, "time": 1749535782}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"process_memory_usage": 674.7265625, "time": 1749535783}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 674.73046875, "time": 1749535785}
+{"cpu_usage": 1.875, "cpu_usage_all": 15.0, "cpu_core_num": 8, "time": 1749535785}
+{"process_memory_usage": 674.75390625, "time": 1749535787}
+{"cpu_usage": 2.125, "cpu_usage_all": 17.0, "cpu_core_num": 8, "time": 1749535789}
+{"process_memory_usage": 674.734375, "time": 1749535789}
+{"cpu_usage": 1.3499999999999999, "cpu_usage_all": 10.799999999999999, "cpu_core_num": 8, "time": 1749535792}
+{"process_memory_usage": 674.74609375, "time": 1749535792}
+{"process_memory_usage": 674.7109375, "time": 1749535794}
+{"cpu_usage": 1.7374999999999998, "cpu_usage_all": 13.899999999999999, "cpu_core_num": 8, "time": 1749535794}
+{"process_memory_usage": 674.7578125, "time": 1749535795}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749535796}
+{"process_memory_usage": 674.7890625, "time": 1749535797}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749535798}
+{"process_memory_usage": 674.7734375, "time": 1749535799}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749535800}
+{"process_memory_usage": 674.79296875, "time": 1749535802}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535803}
+{"process_memory_usage": 674.8046875, "time": 1749535804}
+{"cpu_usage": 1.3499999999999999, "cpu_usage_all": 10.799999999999999, "cpu_core_num": 8, "time": 1749535805}
+{"process_memory_usage": 674.8125, "time": 1749535805}
+{"process_memory_usage": 674.81640625, "time": 1749535806}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535807}
+{"process_memory_usage": 674.828125, "time": 1749535808}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749535809}
+{"process_memory_usage": 674.8125, "time": 1749535810}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749535811}
+{"process_memory_usage": 674.81640625, "time": 1749535812}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535813}
+{"process_memory_usage": 674.8515625, "time": 1749535814}
+{"cpu_usage": 1.55, "cpu_usage_all": 12.4, "cpu_core_num": 8, "time": 1749535815}
+{"process_memory_usage": 674.890625, "time": 1749535816}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749535817}
+{"process_memory_usage": 674.890625, "time": 1749535818}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535819}
+{"process_memory_usage": 674.58984375, "time": 1749535820}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535821}
+{"process_memory_usage": 675.984375, "time": 1749535822}
+{"cpu_usage": 2.6875, "cpu_usage_all": 21.5, "cpu_core_num": 8, "time": 1749535823}
+{"process_memory_usage": 676.07421875, "time": 1749535824}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749535825}
+{"process_memory_usage": 676.05078125, "time": 1749535826}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535827}
+{"process_memory_usage": 676.04296875, "time": 1749535828}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749535829}
+{"process_memory_usage": 676.04296875, "time": 1749535830}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749535831}
+{"process_memory_usage": 676.12109375, "time": 1749535832}
+{"cpu_usage": 1.7125, "cpu_usage_all": 13.7, "cpu_core_num": 8, "time": 1749535833}
+{"process_memory_usage": 676.15234375, "time": 1749535834}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749535835}
+{"process_memory_usage": 676.15234375, "time": 1749535836}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535837}
+{"process_memory_usage": 676.13671875, "time": 1749535838}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749535839}
+{"process_memory_usage": 676.23828125, "time": 1749535840}
+{"cpu_usage": 2.5, "cpu_usage_all": 20.0, "cpu_core_num": 8, "time": 1749535841}
+{"process_memory_usage": 676.30078125, "time": 1749535842}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749535843}
+{"process_memory_usage": 676.24609375, "time": 1749535844}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535845}
+{"process_memory_usage": 676.28125, "time": 1749535846}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535847}
+{"process_memory_usage": 676.2890625, "time": 1749535848}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535849}
+{"process_memory_usage": 676.28515625, "time": 1749535851}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749535852}
+{"process_memory_usage": 676.2578125, "time": 1749535853}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749535854}
+{"process_memory_usage": 676.43359375, "time": 1749535855}
+{"cpu_usage": 1.5750000000000002, "cpu_usage_all": 12.600000000000001, "cpu_core_num": 8, "time": 1749535856}
+{"process_memory_usage": 676.4453125, "time": 1749535857}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535858}
+{"process_memory_usage": 676.4453125, "time": 1749535859}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749535860}
+{"process_memory_usage": 676.40234375, "time": 1749535861}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749535862}
+{"process_memory_usage": 676.41796875, "time": 1749535863}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749535864}
+{"process_memory_usage": 676.421875, "time": 1749535865}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749535866}
+{"process_memory_usage": 676.41015625, "time": 1749535867}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535868}
+{"process_memory_usage": 676.4140625, "time": 1749535869}
+{"cpu_usage": 2.8875, "cpu_usage_all": 23.1, "cpu_core_num": 8, "time": 1749535870}
+{"process_memory_usage": 676.4296875, "time": 1749535871}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749535872}
+{"process_memory_usage": 676.46484375, "time": 1749535873}
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749535874}
+{"process_memory_usage": 676.47265625, "time": 1749535875}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749535876}
+{"process_memory_usage": 676.4296875, "time": 1749535877}
+{"cpu_usage": 1.5374999999999999, "cpu_usage_all": 12.299999999999999, "cpu_core_num": 8, "time": 1749535878}
+{"process_memory_usage": 676.484375, "time": 1749535879}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749535880}
+{"process_memory_usage": 676.48828125, "time": 1749535881}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749535882}
+{"process_memory_usage": 676.484375, "time": 1749535883}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535884}
+{"process_memory_usage": 676.49609375, "time": 1749535885}
+{"cpu_usage": 0.9875, "cpu_usage_all": 7.9, "cpu_core_num": 8, "time": 1749535886}
+{"process_memory_usage": 676.53515625, "time": 1749535887}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749535888}
+{"process_memory_usage": 676.55078125, "time": 1749535889}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749535890}
+{"process_memory_usage": 676.5546875, "time": 1749535891}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749535892}
+{"process_memory_usage": 676.55078125, "time": 1749535893}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749535894}
+{"process_memory_usage": 676.62890625, "time": 1749535895}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535896}
+{"process_memory_usage": 676.62890625, "time": 1749535897}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749535898}
+{"process_memory_usage": 676.609375, "time": 1749535899}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749535900}
+{"process_memory_usage": 676.67578125, "time": 1749535901}
+{"process_memory_usage": 676.67578125, "time": 1749535902}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749535902}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 676.61328125, "time": 1749535904}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535905}
+{"process_memory_usage": 676.6171875, "time": 1749535906}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749535907}
+{"process_memory_usage": 676.6171875, "time": 1749535908}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535909}
+{"process_memory_usage": 676.64453125, "time": 1749535910}
+{"cpu_usage": 1.55, "cpu_usage_all": 12.4, "cpu_core_num": 8, "time": 1749535911}
+{"process_memory_usage": 676.64453125, "time": 1749535912}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749535913}
+{"process_memory_usage": 676.75390625, "time": 1749535914}
+{"cpu_usage": 1.55, "cpu_usage_all": 12.4, "cpu_core_num": 8, "time": 1749535915}
+{"process_memory_usage": 676.73828125, "time": 1749535916}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535917}
+{"process_memory_usage": 676.73828125, "time": 1749535918}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535919}
+{"process_memory_usage": 676.71875, "time": 1749535920}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749535921}
+{"process_memory_usage": 676.71875, "time": 1749535922}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535923}
+{"process_memory_usage": 676.73828125, "time": 1749535924}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535925}
+{"process_memory_usage": 676.73828125, "time": 1749535926}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749535927}
+{"process_memory_usage": 676.75, "time": 1749535928}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535929}
+{"process_memory_usage": 676.73828125, "time": 1749535930}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749535931}
+{"process_memory_usage": 676.90234375, "time": 1749535932}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749535933}
+{"process_memory_usage": 663.74609375, "time": 1749535934}
+{"cpu_usage": 1.1375, "cpu_usage_all": 9.1, "cpu_core_num": 8, "time": 1749535935}
+{"process_memory_usage": 663.73828125, "time": 1749535936}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749535937}
+{"process_memory_usage": 663.73828125, "time": 1749535938}
+{"cpu_usage": 0.7749999999999999, "cpu_usage_all": 6.199999999999999, "cpu_core_num": 8, "time": 1749535939}
+{"process_memory_usage": 663.73828125, "time": 1749535940}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535941}
+{"process_memory_usage": 663.76171875, "time": 1749535942}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749535943}
+{"process_memory_usage": 663.76171875, "time": 1749535944}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749535945}
+{"process_memory_usage": 663.76171875, "time": 1749535945}
+{"process_memory_usage": 663.76171875, "time": 1749535946}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535947}
+{"process_memory_usage": 663.75390625, "time": 1749535948}
+{"process_memory_usage": 663.75390625, "time": 1749535949}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749535949}
+{"process_memory_usage": 663.78515625, "time": 1749535950}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749535951}
+{"process_memory_usage": 663.78515625, "time": 1749535953}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535953}
+{"process_memory_usage": 663.78515625, "time": 1749535955}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535956}
+{"process_memory_usage": 663.78515625, "time": 1749535957}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535958}
+{"process_memory_usage": 663.78515625, "time": 1749535959}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749535960}
+{"process_memory_usage": 663.78515625, "time": 1749535961}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749535962}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 663.78515625, "time": 1749535963}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749535964}
+{"process_memory_usage": 663.78515625, "time": 1749535965}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749535966}
+{"process_memory_usage": 663.78515625, "time": 1749535967}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749535968}
+{"process_memory_usage": 663.78515625, "time": 1749535969}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749535970}
+{"process_memory_usage": 663.79296875, "time": 1749535971}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749535972}
+{"process_memory_usage": 663.78515625, "time": 1749535973}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749535974}
+{"process_memory_usage": 663.7890625, "time": 1749535975}
+{"cpu_usage": 0.5375, "cpu_usage_all": 4.3, "cpu_core_num": 8, "time": 1749535976}
+{"process_memory_usage": 663.9140625, "time": 1749535977}
+{"process_memory_usage": 663.9140625, "time": 1749535978}
+{"cpu_usage": 1.1375, "cpu_usage_all": 9.1, "cpu_core_num": 8, "time": 1749535978}
+{"process_memory_usage": 663.91796875, "time": 1749535980}
+{"cpu_usage": 0.9375, "cpu_usage_all": 7.5, "cpu_core_num": 8, "time": 1749535981}
+{"process_memory_usage": 687.875, "time": 1749535982}
+{"cpu_usage": 6.4375, "cpu_usage_all": 51.5, "cpu_core_num": 8, "time": 1749535983}
+{"process_memory_usage": 665.87109375, "time": 1749535984}
+{"cpu_usage": 2.925, "cpu_usage_all": 23.4, "cpu_core_num": 8, "time": 1749535985}
+{"process_memory_usage": 665.70703125, "time": 1749535986}
+{"cpu_usage": 7.8875, "cpu_usage_all": 63.1, "cpu_core_num": 8, "time": 1749535987}
+{"process_memory_usage": 665.7109375, "time": 1749535988}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749535989}
+{"process_memory_usage": 665.68359375, "time": 1749535990}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535991}
+{"process_memory_usage": 665.703125, "time": 1749535992}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749535993}
+{"process_memory_usage": 665.703125, "time": 1749535994}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749535995}
+{"process_memory_usage": 665.70703125, "time": 1749535995}
+{"process_memory_usage": 665.7109375, "time": 1749535996}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749535997}
+{"process_memory_usage": 665.6953125, "time": 1749535998}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749535999}
+{"process_memory_usage": 665.6953125, "time": 1749536000}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536001}
+{"process_memory_usage": 665.6953125, "time": 1749536002}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536003}
+{"process_memory_usage": 665.6953125, "time": 1749536004}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749536005}
+{"process_memory_usage": 665.69140625, "time": 1749536006}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536007}
+{"process_memory_usage": 665.69140625, "time": 1749536008}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536009}
+{"process_memory_usage": 665.734375, "time": 1749536010}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749536011}
+{"process_memory_usage": 665.734375, "time": 1749536012}
+{"process_memory_usage": 665.734375, "time": 1749536013}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749536013}
+{"process_memory_usage": 665.72265625, "time": 1749536014}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536015}
+{"process_memory_usage": 665.7265625, "time": 1749536017}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536017}
+{"process_memory_usage": 665.7890625, "time": 1749536019}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536020}
+{"process_memory_usage": 665.79296875, "time": 1749536021}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536022}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"process_memory_usage": 665.79296875, "time": 1749536023}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749536024}
+{"process_memory_usage": 665.7890625, "time": 1749536025}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749536026}
+{"process_memory_usage": 665.79296875, "time": 1749536027}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536028}
+{"process_memory_usage": 665.79296875, "time": 1749536029}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536030}
+{"process_memory_usage": 665.79296875, "time": 1749536031}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749536032}
+{"process_memory_usage": 665.79296875, "time": 1749536033}
+{"cpu_usage": 0.9375, "cpu_usage_all": 7.5, "cpu_core_num": 8, "time": 1749536034}
+{"process_memory_usage": 665.76171875, "time": 1749536035}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536036}
+{"process_memory_usage": 665.765625, "time": 1749536037}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536038}
+{"process_memory_usage": 665.765625, "time": 1749536039}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536040}
+{"process_memory_usage": 665.76171875, "time": 1749536041}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536042}
+{"process_memory_usage": 665.7734375, "time": 1749536043}
+{"cpu_usage": 2.15, "cpu_usage_all": 17.2, "cpu_core_num": 8, "time": 1749536044}
+{"process_memory_usage": 665.7734375, "time": 1749536045}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536046}
+{"process_memory_usage": 665.7734375, "time": 1749536047}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536048}
+{"process_memory_usage": 665.7734375, "time": 1749536049}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749536050}
+{"process_memory_usage": 665.7734375, "time": 1749536051}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536052}
+{"process_memory_usage": 665.7734375, "time": 1749536053}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749536054}
+{"process_memory_usage": 665.7734375, "time": 1749536055}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536056}
+{"process_memory_usage": 665.7734375, "time": 1749536057}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749536058}
+{"process_memory_usage": 665.7734375, "time": 1749536059}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536060}
+{"process_memory_usage": 665.76953125, "time": 1749536061}
+{"process_memory_usage": 665.76953125, "time": 1749536062}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536062}
+{"process_memory_usage": 665.76953125, "time": 1749536064}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536064}
+{"process_memory_usage": 665.76953125, "time": 1749536066}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536067}
+{"process_memory_usage": 665.73828125, "time": 1749536068}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536069}
+{"process_memory_usage": 665.75, "time": 1749536070}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536071}
+{"process_memory_usage": 665.78515625, "time": 1749536072}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749536073}
+{"process_memory_usage": 665.78515625, "time": 1749536074}
+{"cpu_usage": 1.7249999999999999, "cpu_usage_all": 13.799999999999999, "cpu_core_num": 8, "time": 1749536075}
+{"process_memory_usage": 665.78515625, "time": 1749536076}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536077}
+{"process_memory_usage": 665.78515625, "time": 1749536078}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536079}
+{"process_memory_usage": 665.78515625, "time": 1749536080}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536081}
+{"process_memory_usage": 665.78515625, "time": 1749536082}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536083}
+{"process_memory_usage": 665.78515625, "time": 1749536084}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536085}
+{"process_memory_usage": 665.7890625, "time": 1749536086}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536087}
+{"process_memory_usage": 665.78515625, "time": 1749536088}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536089}
+{"process_memory_usage": 665.78515625, "time": 1749536090}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749536091}
+{"process_memory_usage": 665.7890625, "time": 1749536092}
+{"cpu_usage": 0.6000000000000001, "cpu_usage_all": 4.800000000000001, "cpu_core_num": 8, "time": 1749536093}
+{"process_memory_usage": 665.7890625, "time": 1749536094}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749536095}
+{"process_memory_usage": 665.7890625, "time": 1749536096}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536097}
+{"process_memory_usage": 665.79296875, "time": 1749536098}
+{"cpu_usage": 2.15, "cpu_usage_all": 17.2, "cpu_core_num": 8, "time": 1749536099}
+{"process_memory_usage": 665.796875, "time": 1749536100}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536101}
+{"process_memory_usage": 665.796875, "time": 1749536102}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536103}
+{"process_memory_usage": 665.796875, "time": 1749536104}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536105}
+{"process_memory_usage": 665.796875, "time": 1749536106}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536107}
+{"process_memory_usage": 665.79296875, "time": 1749536108}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536109}
+{"process_memory_usage": 665.79296875, "time": 1749536110}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536111}
+{"process_memory_usage": 670.6171875, "time": 1749536112}
+{"process_memory_usage": 670.6171875, "time": 1749536113}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536113}
+{"process_memory_usage": 670.6171875, "time": 1749536114}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749536115}
+{"process_memory_usage": 666.73828125, "time": 1749536117}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536118}
+{"process_memory_usage": 666.73828125, "time": 1749536119}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536120}
+{"process_memory_usage": 666.16015625, "time": 1749536121}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536122}
+{"process_memory_usage": 666.3046875, "time": 1749536123}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536124}
+{"process_memory_usage": 666.2890625, "time": 1749536125}
+{"cpu_usage": 0.75, "cpu_usage_all": 6.0, "cpu_core_num": 8, "time": 1749536126}
+{"process_memory_usage": 666.2734375, "time": 1749536127}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536128}
+{"process_memory_usage": 666.26953125, "time": 1749536129}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536130}
+{"process_memory_usage": 666.2734375, "time": 1749536131}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536132}
+{"process_memory_usage": 666.375, "time": 1749536133}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536134}
+{"process_memory_usage": 666.375, "time": 1749536135}
+{"cpu_usage": 0.6000000000000001, "cpu_usage_all": 4.800000000000001, "cpu_core_num": 8, "time": 1749536136}
+{"process_memory_usage": 666.65625, "time": 1749536137}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536138}
+{"process_memory_usage": 666.65625, "time": 1749536139}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536140}
+{"process_memory_usage": 666.65625, "time": 1749536141}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536142}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 666.6484375, "time": 1749536143}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536144}
+{"process_memory_usage": 666.6484375, "time": 1749536145}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536146}
+{"process_memory_usage": 666.6484375, "time": 1749536147}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536148}
+{"process_memory_usage": 666.6484375, "time": 1749536149}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536150}
+{"process_memory_usage": 666.6875, "time": 1749536151}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749536152}
+{"process_memory_usage": 666.67578125, "time": 1749536153}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749536154}
+{"process_memory_usage": 666.67578125, "time": 1749536155}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536156}
+{"process_memory_usage": 666.67578125, "time": 1749536157}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536158}
+{"process_memory_usage": 666.6796875, "time": 1749536159}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536160}
+{"process_memory_usage": 666.6796875, "time": 1749536161}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536162}
+{"process_memory_usage": 666.68359375, "time": 1749536163}
+{"cpu_usage": 2.15, "cpu_usage_all": 17.2, "cpu_core_num": 8, "time": 1749536164}
+{"process_memory_usage": 666.68359375, "time": 1749536165}
+{"process_memory_usage": 666.68359375, "time": 1749536166}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536166}
+{"process_memory_usage": 666.68359375, "time": 1749536168}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536168}
+{"process_memory_usage": 666.68359375, "time": 1749536170}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749536171}
+{"process_memory_usage": 666.68359375, "time": 1749536172}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536173}
+{"process_memory_usage": 666.67578125, "time": 1749536174}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536175}
+{"process_memory_usage": 666.6796875, "time": 1749536176}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536177}
+{"process_memory_usage": 666.6796875, "time": 1749536178}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536179}
+{"process_memory_usage": 666.6796875, "time": 1749536180}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536181}
+{"process_memory_usage": 666.6796875, "time": 1749536182}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536183}
+{"process_memory_usage": 666.6875, "time": 1749536184}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536185}
+{"process_memory_usage": 666.6875, "time": 1749536185}
+{"process_memory_usage": 666.6875, "time": 1749536186}
+{"cpu_usage": 0.7749999999999999, "cpu_usage_all": 6.199999999999999, "cpu_core_num": 8, "time": 1749536187}
+{"process_memory_usage": 666.6953125, "time": 1749536188}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536189}
+{"process_memory_usage": 666.6953125, "time": 1749536190}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536191}
+{"process_memory_usage": 666.6953125, "time": 1749536192}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536193}
+{"process_memory_usage": 666.6953125, "time": 1749536194}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536195}
+{"process_memory_usage": 666.6953125, "time": 1749536196}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536197}
+{"process_memory_usage": 666.69921875, "time": 1749536198}
+{"cpu_usage": 0.975, "cpu_usage_all": 7.8, "cpu_core_num": 8, "time": 1749536199}
+{"process_memory_usage": 666.6796875, "time": 1749536200}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749536201}
+{"process_memory_usage": 666.6796875, "time": 1749536202}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536203}
+{"process_memory_usage": 666.671875, "time": 1749536204}
+{"cpu_usage": 0.9875, "cpu_usage_all": 7.9, "cpu_core_num": 8, "time": 1749536205}
+{"process_memory_usage": 666.671875, "time": 1749536206}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536207}
+{"process_memory_usage": 666.671875, "time": 1749536208}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536209}
+{"process_memory_usage": 666.671875, "time": 1749536210}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536211}
+{"process_memory_usage": 666.671875, "time": 1749536212}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749536213}
+{"process_memory_usage": 666.66796875, "time": 1749536214}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536215}
+{"process_memory_usage": 666.66796875, "time": 1749536217}
+{"process_memory_usage": 666.66796875, "time": 1749536217}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749536218}
+{"process_memory_usage": 666.66796875, "time": 1749536219}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536220}
+{"process_memory_usage": 666.68359375, "time": 1749536221}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536222}
+{"process_memory_usage": 666.6875, "time": 1749536223}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536224}
+{"process_memory_usage": 666.6875, "time": 1749536225}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536226}
+{"process_memory_usage": 666.6875, "time": 1749536227}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536228}
+{"process_memory_usage": 666.6875, "time": 1749536229}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536230}
+{"process_memory_usage": 666.6875, "time": 1749536231}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536232}
+{"process_memory_usage": 630.17578125, "time": 1749536233}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749536234}
+{"process_memory_usage": 630.17578125, "time": 1749536234}
+{"process_memory_usage": 630.17578125, "time": 1749536235}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749536236}
+{"process_memory_usage": 630.1796875, "time": 1749536237}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536238}
+{"process_memory_usage": 630.1796875, "time": 1749536239}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536240}
+{"process_memory_usage": 630.1796875, "time": 1749536241}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536242}
+{"process_memory_usage": 630.2109375, "time": 1749536243}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749536244}
+{"process_memory_usage": 630.19140625, "time": 1749536245}
+{"cpu_usage": 0.9375, "cpu_usage_all": 7.5, "cpu_core_num": 8, "time": 1749536246}
+{"process_memory_usage": 630.35546875, "time": 1749536247}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536248}
+{"process_memory_usage": 630.359375, "time": 1749536249}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536250}
+{"process_memory_usage": 630.36328125, "time": 1749536251}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749536252}
+{"process_memory_usage": 630.3984375, "time": 1749536253}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536254}
+{"process_memory_usage": 630.3984375, "time": 1749536255}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749536256}
+{"process_memory_usage": 630.3828125, "time": 1749536257}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749536258}
+{"process_memory_usage": 630.3828125, "time": 1749536259}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536260}
+{"process_memory_usage": 630.3828125, "time": 1749536261}
+{"process_memory_usage": 630.3828125, "time": 1749536262}
+{"cpu_usage": 0.8, "cpu_usage_all": 6.4, "cpu_core_num": 8, "time": 1749536262}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 630.4296875, "time": 1749536264}
+{"cpu_usage": 1.55, "cpu_usage_all": 12.4, "cpu_core_num": 8, "time": 1749536264}
+{"process_memory_usage": 630.4296875, "time": 1749536266}
+{"cpu_usage": 1.7249999999999999, "cpu_usage_all": 13.799999999999999, "cpu_core_num": 8, "time": 1749536267}
+{"process_memory_usage": 630.41796875, "time": 1749536268}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536269}
+{"process_memory_usage": 630.4140625, "time": 1749536270}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536271}
+{"process_memory_usage": 630.4140625, "time": 1749536272}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536273}
+{"process_memory_usage": 630.4140625, "time": 1749536274}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536275}
+{"process_memory_usage": 630.4375, "time": 1749536276}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749536277}
+{"process_memory_usage": 630.44140625, "time": 1749536277}
+{"process_memory_usage": 630.44140625, "time": 1749536278}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536279}
+{"process_memory_usage": 630.44140625, "time": 1749536280}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749536281}
+{"process_memory_usage": 630.48046875, "time": 1749536282}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749536283}
+{"process_memory_usage": 630.5, "time": 1749536284}
+{"cpu_usage": 1.3499999999999999, "cpu_usage_all": 10.799999999999999, "cpu_core_num": 8, "time": 1749536285}
+{"process_memory_usage": 630.4765625, "time": 1749536286}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749536287}
+{"process_memory_usage": 630.8359375, "time": 1749536288}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536289}
+{"process_memory_usage": 630.87109375, "time": 1749536290}
+{"cpu_usage": 1.9375, "cpu_usage_all": 15.5, "cpu_core_num": 8, "time": 1749536291}
+{"process_memory_usage": 630.87109375, "time": 1749536292}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536293}
+{"process_memory_usage": 630.87109375, "time": 1749536294}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536295}
+{"process_memory_usage": 630.87109375, "time": 1749536296}
+{"cpu_usage": 2.4875, "cpu_usage_all": 19.9, "cpu_core_num": 8, "time": 1749536297}
+{"process_memory_usage": 630.859375, "time": 1749536298}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536299}
+{"process_memory_usage": 630.83203125, "time": 1749536300}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536301}
+{"process_memory_usage": 630.83203125, "time": 1749536302}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536303}
+{"process_memory_usage": 630.83203125, "time": 1749536304}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536305}
+{"process_memory_usage": 630.83203125, "time": 1749536306}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536307}
+{"process_memory_usage": 630.83203125, "time": 1749536308}
+{"cpu_usage": 0.75, "cpu_usage_all": 6.0, "cpu_core_num": 8, "time": 1749536309}
+{"process_memory_usage": 630.83203125, "time": 1749536310}
+{"process_memory_usage": 630.83203125, "time": 1749536311}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749536311}
+{"process_memory_usage": 630.83203125, "time": 1749536313}
+{"cpu_usage": 1.925, "cpu_usage_all": 15.4, "cpu_core_num": 8, "time": 1749536313}
+{"process_memory_usage": 630.84375, "time": 1749536315}
+{"cpu_usage": 2.1375, "cpu_usage_all": 17.1, "cpu_core_num": 8, "time": 1749536316}
+{"process_memory_usage": 630.84765625, "time": 1749536317}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536318}
+{"process_memory_usage": 630.8515625, "time": 1749536319}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536320}
+{"process_memory_usage": 630.8515625, "time": 1749536321}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536322}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 630.8515625, "time": 1749536323}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536324}
+{"process_memory_usage": 630.80078125, "time": 1749536325}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536326}
+{"process_memory_usage": 630.796875, "time": 1749536326}
+{"process_memory_usage": 630.796875, "time": 1749536327}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536328}
+{"process_memory_usage": 630.84375, "time": 1749536329}
+{"cpu_usage": 1.5374999999999999, "cpu_usage_all": 12.299999999999999, "cpu_core_num": 8, "time": 1749536330}
+{"process_memory_usage": 631.07421875, "time": 1749536331}
+{"cpu_usage": 2.5, "cpu_usage_all": 20.0, "cpu_core_num": 8, "time": 1749536332}
+{"process_memory_usage": 631.109375, "time": 1749536333}
+{"cpu_usage": 0.9875, "cpu_usage_all": 7.9, "cpu_core_num": 8, "time": 1749536334}
+{"process_memory_usage": 631.44921875, "time": 1749536335}
+{"cpu_usage": 1.7375, "cpu_usage_all": 13.9, "cpu_core_num": 8, "time": 1749536336}
+{"process_memory_usage": 631.48046875, "time": 1749536337}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749536338}
+{"process_memory_usage": 631.48046875, "time": 1749536339}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749536340}
+{"process_memory_usage": 631.46875, "time": 1749536341}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536342}
+{"process_memory_usage": 631.45703125, "time": 1749536343}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536344}
+{"process_memory_usage": 631.45703125, "time": 1749536345}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536346}
+{"process_memory_usage": 631.45703125, "time": 1749536347}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749536348}
+{"process_memory_usage": 631.45703125, "time": 1749536349}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536350}
+{"process_memory_usage": 631.4453125, "time": 1749536351}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536352}
+{"process_memory_usage": 631.4453125, "time": 1749536353}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536354}
+{"process_memory_usage": 631.4453125, "time": 1749536355}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536356}
+{"process_memory_usage": 631.44921875, "time": 1749536357}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536358}
+{"process_memory_usage": 631.44921875, "time": 1749536359}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536360}
+{"process_memory_usage": 631.44921875, "time": 1749536361}
+{"process_memory_usage": 631.44921875, "time": 1749536362}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536362}
+{"process_memory_usage": 631.44921875, "time": 1749536364}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536364}
+{"process_memory_usage": 631.44921875, "time": 1749536366}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536367}
+{"process_memory_usage": 631.44921875, "time": 1749536367}
+{"process_memory_usage": 631.44921875, "time": 1749536368}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749536369}
+{"process_memory_usage": 631.44921875, "time": 1749536370}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749536371}
+{"process_memory_usage": 631.453125, "time": 1749536372}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536373}
+{"process_memory_usage": 631.453125, "time": 1749536374}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749536375}
+{"process_memory_usage": 631.453125, "time": 1749536376}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536377}
+{"process_memory_usage": 631.453125, "time": 1749536377}
+{"process_memory_usage": 631.453125, "time": 1749536378}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536379}
+{"process_memory_usage": 631.453125, "time": 1749536380}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536381}
+{"process_memory_usage": 631.453125, "time": 1749536382}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536383}
+{"process_memory_usage": 631.45703125, "time": 1749536384}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536385}
+{"process_memory_usage": 631.45703125, "time": 1749536385}
+{"process_memory_usage": 631.45703125, "time": 1749536386}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536387}
+{"process_memory_usage": 631.45703125, "time": 1749536388}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536389}
+{"process_memory_usage": 631.45703125, "time": 1749536390}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749536391}
+{"process_memory_usage": 655.2265625, "time": 1749536392}
+{"cpu_usage": 7.2375, "cpu_usage_all": 57.9, "cpu_core_num": 8, "time": 1749536393}
+{"process_memory_usage": 631.48828125, "time": 1749536394}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536395}
+{"process_memory_usage": 631.48828125, "time": 1749536395}
+{"process_memory_usage": 631.4921875, "time": 1749536396}
+{"cpu_usage": 1.9124999999999999, "cpu_usage_all": 15.299999999999999, "cpu_core_num": 8, "time": 1749536397}
+{"process_memory_usage": 631.4921875, "time": 1749536398}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536399}
+{"process_memory_usage": 631.4921875, "time": 1749536400}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536401}
+{"process_memory_usage": 631.46484375, "time": 1749536402}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536403}
+{"process_memory_usage": 631.48046875, "time": 1749536404}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749536405}
+{"process_memory_usage": 631.48046875, "time": 1749536406}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536407}
+{"process_memory_usage": 631.48046875, "time": 1749536408}
+{"process_memory_usage": 631.48046875, "time": 1749536409}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536409}
+{"process_memory_usage": 631.48046875, "time": 1749536410}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536411}
+{"process_memory_usage": 631.48046875, "time": 1749536413}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536414}
+{"process_memory_usage": 631.48046875, "time": 1749536415}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536416}
+{"process_memory_usage": 631.48046875, "time": 1749536416}
+{"process_memory_usage": 631.48046875, "time": 1749536417}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536418}
+{"process_memory_usage": 631.484375, "time": 1749536419}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536420}
+{"process_memory_usage": 631.484375, "time": 1749536421}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536422}
+{"process_memory_usage": 631.47265625, "time": 1749536423}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536424}
+{"process_memory_usage": 631.47265625, "time": 1749536425}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536426}
+{"process_memory_usage": 631.47265625, "time": 1749536427}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536428}
+{"process_memory_usage": 631.47265625, "time": 1749536429}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536430}
+{"process_memory_usage": 631.47265625, "time": 1749536431}
+{"cpu_usage": 1.525, "cpu_usage_all": 12.2, "cpu_core_num": 8, "time": 1749536432}
+{"process_memory_usage": 631.44140625, "time": 1749536433}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536434}
+{"process_memory_usage": 655.13671875, "time": 1749536435}
+{"cpu_usage": 4.625, "cpu_usage_all": 37.0, "cpu_core_num": 8, "time": 1749536436}
+{"process_memory_usage": 631.1875, "time": 1749536437}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749536438}
+{"process_memory_usage": 631.1796875, "time": 1749536439}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536440}
+{"process_memory_usage": 631.1796875, "time": 1749536441}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536442}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 631.1796875, "time": 1749536443}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536444}
+{"process_memory_usage": 631.1796875, "time": 1749536445}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536446}
+{"process_memory_usage": 631.1640625, "time": 1749536447}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536448}
+{"process_memory_usage": 631.16796875, "time": 1749536449}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536450}
+{"process_memory_usage": 631.16796875, "time": 1749536451}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749536452}
+{"process_memory_usage": 631.171875, "time": 1749536453}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536454}
+{"process_memory_usage": 631.171875, "time": 1749536455}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536456}
+{"process_memory_usage": 631.1640625, "time": 1749536457}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749536458}
+{"process_memory_usage": 631.1640625, "time": 1749536459}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536460}
+{"process_memory_usage": 631.1640625, "time": 1749536461}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536462}
+{"process_memory_usage": 631.1640625, "time": 1749536463}
+{"process_memory_usage": 631.1640625, "time": 1749536464}
+{"cpu_usage": 1.925, "cpu_usage_all": 15.4, "cpu_core_num": 8, "time": 1749536464}
+{"process_memory_usage": 631.1484375, "time": 1749536466}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536466}
+{"process_memory_usage": 631.14453125, "time": 1749536468}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536469}
+{"process_memory_usage": 631.12890625, "time": 1749536470}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536471}
+{"process_memory_usage": 631.12890625, "time": 1749536472}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749536473}
+{"process_memory_usage": 631.12890625, "time": 1749536474}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536475}
+{"process_memory_usage": 631.12890625, "time": 1749536475}
+{"process_memory_usage": 631.12890625, "time": 1749536476}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536477}
+{"process_memory_usage": 631.140625, "time": 1749536478}
+{"cpu_usage": 1.9249999999999998, "cpu_usage_all": 15.399999999999999, "cpu_core_num": 8, "time": 1749536479}
+{"process_memory_usage": 631.25390625, "time": 1749536480}
+{"cpu_usage": 1.3499999999999999, "cpu_usage_all": 10.799999999999999, "cpu_core_num": 8, "time": 1749536481}
+{"process_memory_usage": 631.25390625, "time": 1749536482}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536483}
+{"process_memory_usage": 631.2578125, "time": 1749536484}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536485}
+{"process_memory_usage": 631.2578125, "time": 1749536486}
+{"process_memory_usage": 631.2578125, "time": 1749536487}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749536487}
+{"process_memory_usage": 631.28515625, "time": 1749536489}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749536490}
+{"process_memory_usage": 631.31640625, "time": 1749536491}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536492}
+{"process_memory_usage": 631.31640625, "time": 1749536493}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536494}
+{"process_memory_usage": 631.31640625, "time": 1749536495}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749536496}
+{"process_memory_usage": 631.31640625, "time": 1749536497}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536498}
+{"process_memory_usage": 631.30078125, "time": 1749536499}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536500}
+{"process_memory_usage": 631.30078125, "time": 1749536500}
+{"process_memory_usage": 631.30078125, "time": 1749536501}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536502}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 631.30078125, "time": 1749536503}
+{"cpu_usage": 0.9375, "cpu_usage_all": 7.5, "cpu_core_num": 8, "time": 1749536504}
+{"process_memory_usage": 631.30078125, "time": 1749536505}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536506}
+{"process_memory_usage": 631.30078125, "time": 1749536507}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536508}
+{"process_memory_usage": 631.30078125, "time": 1749536509}
+{"cpu_usage": 1.7375, "cpu_usage_all": 13.9, "cpu_core_num": 8, "time": 1749536510}
+{"process_memory_usage": 631.30078125, "time": 1749536511}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749536512}
+{"process_memory_usage": 631.30078125, "time": 1749536513}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536514}
+{"process_memory_usage": 631.30078125, "time": 1749536515}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536516}
+{"process_memory_usage": 631.296875, "time": 1749536517}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536518}
+{"process_memory_usage": 631.296875, "time": 1749536519}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536520}
+{"process_memory_usage": 631.296875, "time": 1749536521}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536522}
+{"process_memory_usage": 631.30078125, "time": 1749536523}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536524}
+{"process_memory_usage": 631.3515625, "time": 1749536525}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536526}
+{"process_memory_usage": 631.3515625, "time": 1749536527}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536528}
+{"process_memory_usage": 631.3515625, "time": 1749536529}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749536530}
+{"process_memory_usage": 631.3515625, "time": 1749536531}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749536532}
+{"process_memory_usage": 631.359375, "time": 1749536533}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749536534}
+{"process_memory_usage": 615.8203125, "time": 1749536535}
+{"process_memory_usage": 615.8203125, "time": 1749536536}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536536}
+{"process_memory_usage": 615.8203125, "time": 1749536537}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536538}
+{"process_memory_usage": 615.77734375, "time": 1749536540}
+{"process_memory_usage": 615.77734375, "time": 1749536540}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749536541}
+{"process_memory_usage": 615.7890625, "time": 1749536542}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536543}
+{"process_memory_usage": 615.80078125, "time": 1749536544}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536545}
+{"process_memory_usage": 620.5859375, "time": 1749536546}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749536547}
+{"process_memory_usage": 620.58203125, "time": 1749536548}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536549}
+{"process_memory_usage": 616.71875, "time": 1749536550}
+{"cpu_usage": 0.9375, "cpu_usage_all": 7.5, "cpu_core_num": 8, "time": 1749536551}
+{"process_memory_usage": 616.73046875, "time": 1749536552}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749536553}
+{"process_memory_usage": 616.1484375, "time": 1749536554}
+{"cpu_usage": 1.9249999999999998, "cpu_usage_all": 15.399999999999999, "cpu_core_num": 8, "time": 1749536555}
+{"process_memory_usage": 616.1484375, "time": 1749536556}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749536557}
+{"process_memory_usage": 616.1484375, "time": 1749536558}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536559}
+{"process_memory_usage": 616.1484375, "time": 1749536560}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536561}
+{"process_memory_usage": 616.1484375, "time": 1749536562}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536563}
+{"process_memory_usage": 616.125, "time": 1749536564}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536565}
+{"process_memory_usage": 616.12890625, "time": 1749536566}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536567}
+{"process_memory_usage": 616.1328125, "time": 1749536568}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536569}
+{"process_memory_usage": 616.13671875, "time": 1749536570}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749536571}
+{"process_memory_usage": 616.3125, "time": 1749536572}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749536573}
+{"process_memory_usage": 616.3125, "time": 1749536573}
+{"process_memory_usage": 616.2890625, "time": 1749536574}
+{"cpu_usage": 1.1375, "cpu_usage_all": 9.1, "cpu_core_num": 8, "time": 1749536575}
+{"process_memory_usage": 616.2890625, "time": 1749536576}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536577}
+{"process_memory_usage": 616.3046875, "time": 1749536578}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536579}
+{"process_memory_usage": 616.2734375, "time": 1749536580}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749536581}
+{"process_memory_usage": 616.30078125, "time": 1749536583}
+{"process_memory_usage": 616.30078125, "time": 1749536583}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536584}
+{"process_memory_usage": 616.30078125, "time": 1749536585}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749536586}
+{"process_memory_usage": 616.3046875, "time": 1749536587}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536588}
+{"process_memory_usage": 616.2890625, "time": 1749536589}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536590}
+{"process_memory_usage": 616.2890625, "time": 1749536591}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536592}
+{"process_memory_usage": 616.2890625, "time": 1749536593}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536594}
+{"process_memory_usage": 616.2890625, "time": 1749536595}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536596}
+{"process_memory_usage": 616.28515625, "time": 1749536597}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536598}
+{"process_memory_usage": 616.28515625, "time": 1749536599}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536600}
+{"process_memory_usage": 616.28515625, "time": 1749536601}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536602}
+{"process_memory_usage": 616.359375, "time": 1749536603}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749536604}
+{"process_memory_usage": 616.37109375, "time": 1749536605}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536606}
+{"process_memory_usage": 616.3671875, "time": 1749536607}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536608}
+{"process_memory_usage": 616.3671875, "time": 1749536609}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536610}
+{"process_memory_usage": 616.37890625, "time": 1749536611}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536612}
+{"process_memory_usage": 616.3984375, "time": 1749536613}
+{"cpu_usage": 0.9375, "cpu_usage_all": 7.5, "cpu_core_num": 8, "time": 1749536614}
+{"process_memory_usage": 616.40234375, "time": 1749536615}
+{"cpu_usage": 1.325, "cpu_usage_all": 10.6, "cpu_core_num": 8, "time": 1749536616}
+{"process_memory_usage": 616.390625, "time": 1749536617}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749536618}
+{"process_memory_usage": 616.390625, "time": 1749536619}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536620}
+{"process_memory_usage": 616.390625, "time": 1749536621}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536622}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 616.390625, "time": 1749536623}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749536624}
+{"process_memory_usage": 616.390625, "time": 1749536625}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749536626}
+{"process_memory_usage": 616.38671875, "time": 1749536627}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536628}
+{"process_memory_usage": 616.38671875, "time": 1749536629}
+{"process_memory_usage": 616.38671875, "time": 1749536630}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749536630}
+{"process_memory_usage": 616.38671875, "time": 1749536632}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749536632}
+{"process_memory_usage": 616.38671875, "time": 1749536634}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536635}
+{"process_memory_usage": 616.38671875, "time": 1749536636}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536637}
+{"process_memory_usage": 616.3828125, "time": 1749536638}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536639}
+{"process_memory_usage": 616.3828125, "time": 1749536640}
+{"cpu_usage": 0.95, "cpu_usage_all": 7.6, "cpu_core_num": 8, "time": 1749536641}
+{"process_memory_usage": 616.3828125, "time": 1749536642}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749536643}
+{"process_memory_usage": 616.37109375, "time": 1749536644}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749536645}
+{"process_memory_usage": 616.37890625, "time": 1749536646}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749536647}
+{"process_memory_usage": 616.37109375, "time": 1749536648}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749536649}
+{"process_memory_usage": 616.37109375, "time": 1749536650}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749536651}
+{"process_memory_usage": 616.37109375, "time": 1749536652}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749536653}
+Traceback (most recent call last):
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 629, in run_until_complete
+    self.run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1854, in _run_once
+    event_list = self._selector.select(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 434, in select
+    self._poll(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 783, in _poll
+    status = _overlapped.GetQueuedCompletionStatus(self._iocp, ms)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\app\core\monitor.py", line 63, in run
+    res = await self.func(**params)
+  File "E:\WorkArea\pc_perf\app\core\pc_tools.py", line 330, in gpu
+    return await asyncio.wait_for(asyncio.to_thread(real_func, pid), timeout=10)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 471, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+Traceback (most recent call last):
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 629, in run_until_complete
+    self.run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1854, in _run_once
+    event_list = self._selector.select(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 434, in select
+    self._poll(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 783, in _poll
+    status = _overlapped.GetQueuedCompletionStatus(self._iocp, ms)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\app\core\monitor.py", line 63, in run
+    res = await self.func(**params)
+  File "E:\WorkArea\pc_perf\app\core\pc_tools.py", line 247, in screenshot
+    return await asyncio.wait_for(asyncio.to_thread(real_func, pid, save_dir), timeout=10)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\tasks.py", line 468, in wait_for
+    await waiter
+asyncio.exceptions.CancelledError
+
+Traceback (most recent call last):
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 629, in run_until_complete
+    self.run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1854, in _run_once
+    event_list = self._selector.select(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 434, in select
+    self._poll(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 783, in _poll
+    status = _overlapped.GetQueuedCompletionStatus(self._iocp, ms)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\app\core\monitor.py", line 63, in run
+    res = await self.func(**params)
+  File "E:\WorkArea\pc_perf\app\core\pc_tools.py", line 281, in memory
+    all_mem_values = await asyncio.gather(*tasks, return_exceptions=True)
+asyncio.exceptions.CancelledError
+
+Traceback (most recent call last):
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 629, in run_until_complete
+    self.run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1854, in _run_once
+    event_list = self._selector.select(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 434, in select
+    self._poll(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 783, in _poll
+    status = _overlapped.GetQueuedCompletionStatus(self._iocp, ms)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\app\core\monitor.py", line 63, in run
+    res = await self.func(**params)
+  File "E:\WorkArea\pc_perf\app\core\pc_tools.py", line 350, in process_info
+    all_num_handles_values = await asyncio.gather(*handles_task, return_exceptions=True)
+asyncio.exceptions.CancelledError
+
+Traceback (most recent call last):
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 629, in run_until_complete
+    self.run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\base_events.py", line 1854, in _run_once
+    event_list = self._selector.select(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 434, in select
+    self._poll(timeout)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\asyncio\windows_events.py", line 783, in _poll
+    status = _overlapped.GetQueuedCompletionStatus(self._iocp, ms)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\app\core\monitor.py", line 63, in run
+    res = await self.func(**params)
+  File "E:\WorkArea\pc_perf\app\core\pc_tools.py", line 259, in cpu
+    all_cpu_values = await asyncio.gather(*tasks, return_exceptions=True)
+asyncio.exceptions.CancelledError
+
