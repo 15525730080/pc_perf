@@ -43,7 +43,8 @@ setup(
         "aiosqlite==0.20.0",
         "APScheduler==3.10.4",
         "greenlet==3.0.3",
-        "gunicorn==23.0.0"
+        "gunicorn==23.0.0",
+        "openpyxl==3.1.2"
     ],
 
     # 从包中自动寻找所有的子包和子模块

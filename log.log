@@ -1271,3 +1271,1946 @@ Traceback (most recent call last):
     all_cpu_values = await asyncio.gather(*tasks, return_exceptions=True)
 asyncio.exceptions.CancelledError
 
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749537129.9625335, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+Stopping task handle and subprocesses... 44212
+process PID not found (pid=44212)
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\pcperfenv39\lib\site-packages\psutil\_pswindows.py", line 730, in wrapper
+    return fun(self, *args, **kwargs)
+  File "E:\WorkArea\pc_perf\pcperfenv39\lib\site-packages\psutil\_pswindows.py", line 991, in create_time
+    user, system, created = cext.proc_times(self.pid)
+ProcessLookupError: [Errno 3] assume no such process (originated from OpenProcess -> ERROR_INVALID_PARAMETER)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\pcperfenv39\lib\site-packages\psutil\__init__.py", line 359, in _init
+    self.create_time()
+  File "E:\WorkArea\pc_perf\pcperfenv39\lib\site-packages\psutil\__init__.py", line 752, in create_time
+    self._create_time = self._proc.create_time()
+  File "E:\WorkArea\pc_perf\pcperfenv39\lib\site-packages\psutil\_pswindows.py", line 732, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name)
+psutil.NoSuchProcess: process no longer exists (pid=44212)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\app\view.py", line 91, in stop_task
+    TaskHandle.stop_handle(task.get("monitor_pid"))
+  File "E:\WorkArea\pc_perf\app\task_handle.py", line 42, in stop_handle
+    current_process = psutil.Process(monitor_pid)
+  File "E:\WorkArea\pc_perf\pcperfenv39\lib\site-packages\psutil\__init__.py", line 323, in __init__
+    self._init(pid)
+  File "E:\WorkArea\pc_perf\pcperfenv39\lib\site-packages\psutil\__init__.py", line 372, in _init
+    raise NoSuchProcess(pid, msg=msg)
+psutil.NoSuchProcess: process PID not found (pid=44212)
+
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749538249.3900576, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749539400.501525, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+开始导出Excel报表: 任务ID=1
+获取任务信息成功: wechat-2025-06-10-14-05-45, 路径: E:\WorkArea\pc_perf\test_result\1
+导出Excel报表失败: min() arg is an empty sequence
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\app\view.py", line 158, in export_excel
+    result = await DataCollect(item_task.get("file_dir")).get_all_data()
+  File "E:\WorkArea\pc_perf\app\util.py", line 29, in get_all_data
+    return self.format_all_data_value(all_data)
+  File "E:\WorkArea\pc_perf\app\util.py", line 49, in format_all_data_value
+    start_time = min([data.get("value")[0].get("time") for data in all_data if data.get("value")])
+ValueError: min() arg is an empty sequence
+
+Traceback (most recent call last):
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 43, in call_next
+    message = await recv_stream.receive()
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream from None
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\WorkArea\pc_perf\app\view.py", line 39, in http_filter
+    response = await call_next(request)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 46, in call_next
+    raise app_exc
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\middleware\base.py", line 36, in coro
+    await self.app(scope, request.receive, send_stream.send)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\exceptions.py", line 93, in __call__
+    raise exc
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\exceptions.py", line 82, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 21, in __call__
+    raise e
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 670, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 266, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\starlette\routing.py", line 65, in app
+    response = await func(request)
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\routing.py", line 231, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\TT\AppData\Local\Programs\Python\Python39\lib\site-packages\fastapi\routing.py", line 160, in run_endpoint_function
+    return await dependant.call(**values)
+  File "E:\WorkArea\pc_perf\app\view.py", line 119, in task_result
+    result = await DataCollect(item_task.get("file_dir")).get_all_data()
+  File "E:\WorkArea\pc_perf\app\util.py", line 29, in get_all_data
+    return self.format_all_data_value(all_data)
+  File "E:\WorkArea\pc_perf\app\util.py", line 49, in format_all_data_value
+    start_time = min([data.get("value")[0].get("time") for data in all_data if data.get("value")])
+ValueError: min() arg is an empty sequence
+
+join task handle
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+join task handle run
+{"process_memory_usage": 1614.890625, "time": 1749539436}
+{"cpu_usage": 2.6375, "cpu_usage_all": 21.1, "cpu_core_num": 8, "time": 1749539437}
+{"process_memory_usage": 1616.6796875, "time": 1749539437}
+{"process_memory_usage": 1617.92578125, "time": 1749539438}
+{"cpu_usage": 6.1375, "cpu_usage_all": 49.1, "cpu_core_num": 8, "time": 1749539439}
+{"process_memory_usage": 1617.0390625, "time": 1749539439}
+{"process_memory_usage": 1617.703125, "time": 1749539440}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539442}
+{"process_memory_usage": 1617.28515625, "time": 1749539442}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749539443}
+{"process_memory_usage": 1616.80078125, "time": 1749539443}
+{"process_memory_usage": 1615.73046875, "time": 1749539444}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539445}
+{"process_memory_usage": 1616.10546875, "time": 1749539445}
+{"process_memory_usage": 1615.58984375, "time": 1749539446}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749539447}
+{"process_memory_usage": 1616.4453125, "time": 1749539447}
+{"process_memory_usage": 1616.41796875, "time": 1749539448}
+{"cpu_usage": 0.9875, "cpu_usage_all": 7.9, "cpu_core_num": 8, "time": 1749539449}
+{"process_memory_usage": 1616.34765625, "time": 1749539449}
+{"process_memory_usage": 1617.0703125, "time": 1749539450}
+{"cpu_usage": 11.325000000000001, "cpu_usage_all": 90.60000000000001, "cpu_core_num": 8, "time": 1749539451}
+{"process_memory_usage": 1617.15234375, "time": 1749539451}
+{"process_memory_usage": 1617.8828125, "time": 1749539452}
+{"cpu_usage": 9.774999999999999, "cpu_usage_all": 78.19999999999999, "cpu_core_num": 8, "time": 1749539453}
+{"process_memory_usage": 1616.9375, "time": 1749539453}
+{"process_memory_usage": 1617.3984375, "time": 1749539454}
+{"cpu_usage": 10.75, "cpu_usage_all": 86.0, "cpu_core_num": 8, "time": 1749539455}
+{"process_memory_usage": 1616.8828125, "time": 1749539455}
+{"process_memory_usage": 1616.7421875, "time": 1749539457}
+{"cpu_usage": 10.9625, "cpu_usage_all": 87.7, "cpu_core_num": 8, "time": 1749539457}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 1617.640625, "time": 1749539458}
+{"cpu_usage": 10.9875, "cpu_usage_all": 87.9, "cpu_core_num": 8, "time": 1749539459}
+{"process_memory_usage": 1616.63671875, "time": 1749539459}
+{"process_memory_usage": 1617.27734375, "time": 1749539460}
+{"cpu_usage": 10.95, "cpu_usage_all": 87.6, "cpu_core_num": 8, "time": 1749539461}
+{"process_memory_usage": 1616.78125, "time": 1749539461}
+{"process_memory_usage": 1617.7578125, "time": 1749539462}
+{"cpu_usage": 11.3375, "cpu_usage_all": 90.7, "cpu_core_num": 8, "time": 1749539463}
+{"process_memory_usage": 1616.80859375, "time": 1749539463}
+{"process_memory_usage": 1617.484375, "time": 1749539464}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749539465}
+{"process_memory_usage": 1617.86328125, "time": 1749539465}
+{"process_memory_usage": 1617.51171875, "time": 1749539466}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749539467}
+{"process_memory_usage": 1612.38671875, "time": 1749539467}
+{"process_memory_usage": 1612.96484375, "time": 1749539469}
+{"cpu_usage": 1.5374999999999999, "cpu_usage_all": 12.299999999999999, "cpu_core_num": 8, "time": 1749539469}
+{"process_memory_usage": 1613.640625, "time": 1749539470}
+{"process_memory_usage": 1613.19140625, "time": 1749539471}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749539471}
+{"process_memory_usage": 1613.33984375, "time": 1749539473}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539474}
+{"process_memory_usage": 1612.578125, "time": 1749539474}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539475}
+{"process_memory_usage": 1612.9609375, "time": 1749539475}
+{"process_memory_usage": 1612.34375, "time": 1749539476}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539477}
+{"process_memory_usage": 1613.28515625, "time": 1749539477}
+{"process_memory_usage": 1612.546875, "time": 1749539478}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539479}
+{"process_memory_usage": 1612.875, "time": 1749539479}
+{"process_memory_usage": 1611.91796875, "time": 1749539480}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749539481}
+{"process_memory_usage": 1612.1953125, "time": 1749539481}
+{"process_memory_usage": 1612.3359375, "time": 1749539482}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749539483}
+{"process_memory_usage": 1642.44140625, "time": 1749539483}
+{"process_memory_usage": 1645.91796875, "time": 1749539485}
+{"cpu_usage": 2.3125, "cpu_usage_all": 18.5, "cpu_core_num": 8, "time": 1749539485}
+{"process_memory_usage": 1647.17578125, "time": 1749539486}
+{"process_memory_usage": 1646.953125, "time": 1749539487}
+{"cpu_usage": 1.2875, "cpu_usage_all": 10.3, "cpu_core_num": 8, "time": 1749539487}
+{"process_memory_usage": 1644.19921875, "time": 1749539488}
+{"process_memory_usage": 1640.859375, "time": 1749539489}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749539489}
+{"process_memory_usage": 1641.34375, "time": 1749539490}
+{"process_memory_usage": 1645.03125, "time": 1749539491}
+{"cpu_usage": 4.8500000000000005, "cpu_usage_all": 38.800000000000004, "cpu_core_num": 8, "time": 1749539491}
+{"process_memory_usage": 1645.86328125, "time": 1749539492}
+{"process_memory_usage": 1645.76171875, "time": 1749539493}
+{"cpu_usage": 2.35, "cpu_usage_all": 18.8, "cpu_core_num": 8, "time": 1749539493}
+{"process_memory_usage": 1640.6953125, "time": 1749539494}
+{"process_memory_usage": 1636.421875, "time": 1749539495}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749539496}
+{"process_memory_usage": 1633.26953125, "time": 1749539496}
+{"cpu_usage": 0.35, "cpu_usage_all": 2.8, "cpu_core_num": 8, "time": 1749539497}
+{"process_memory_usage": 1633.56640625, "time": 1749539497}
+{"process_memory_usage": 1633.78125, "time": 1749539498}
+{"cpu_usage": 0.75, "cpu_usage_all": 6.0, "cpu_core_num": 8, "time": 1749539499}
+{"process_memory_usage": 1624.40625, "time": 1749539499}
+{"process_memory_usage": 1623.9140625, "time": 1749539501}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749539501}
+{"process_memory_usage": 1618.37109375, "time": 1749539502}
+{"process_memory_usage": 1618.8125, "time": 1749539503}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749539503}
+{"process_memory_usage": 1617.67578125, "time": 1749539504}
+{"process_memory_usage": 1618.10546875, "time": 1749539505}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539505}
+{"process_memory_usage": 1617.68359375, "time": 1749539506}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749539507}
+{"process_memory_usage": 1618.6015625, "time": 1749539507}
+{"process_memory_usage": 1617.96484375, "time": 1749539508}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749539509}
+{"process_memory_usage": 1618.28515625, "time": 1749539510}
+{"process_memory_usage": 1617.87890625, "time": 1749539511}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749539511}
+{"process_memory_usage": 1618.8359375, "time": 1749539512}
+{"process_memory_usage": 1617.8828125, "time": 1749539513}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539513}
+{"process_memory_usage": 1617.578125, "time": 1749539514}
+{"process_memory_usage": 1618.25, "time": 1749539515}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749539515}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"process_memory_usage": 1619.0625, "time": 1749539517}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 0.925, "cpu_usage_all": 7.4, "cpu_core_num": 8, "time": 1749539518}
+{"process_memory_usage": 1618.90234375, "time": 1749539519}
+{"process_memory_usage": 1619.72265625, "time": 1749539520}
+{"cpu_usage": 1.7625, "cpu_usage_all": 14.1, "cpu_core_num": 8, "time": 1749539520}
+{"process_memory_usage": 1613.875, "time": 1749539521}
+{"process_memory_usage": 1614.35546875, "time": 1749539522}
+{"cpu_usage": 0.9624999999999999, "cpu_usage_all": 7.699999999999999, "cpu_core_num": 8, "time": 1749539523}
+{"process_memory_usage": 1613.10546875, "time": 1749539523}
+{"process_memory_usage": 1613.01953125, "time": 1749539524}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749539525}
+{"process_memory_usage": 1612.66796875, "time": 1749539526}
+Stopping task handle and subprocesses... 43908
+开始导出Excel报表: 任务ID=1
+获取任务信息成功: 任务-2025-06-10-15-10-00, 路径: E:\WorkArea\pc_perf\test_result\1
+获取任务数据成功: 5 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-15-10-00
+处理数据类型: cpu, 数据点数量: 91
+处理数据类型: fps, 数据点数量: 91
+处理数据类型: gpu, 数据点数量: 91
+处理数据类型: memory, 数据点数量: 91
+处理数据类型: process_info, 数据点数量: 91
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数']
+数据行写入完成，共 91 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\1\excel_reports\任务-2025-06-10-15-10-00_15时12分07秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\1\excel_reports\任务-2025-06-10-15-10-00_15时12分07秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\1\excel_reports\任务-2025-06-10-15-10-00_15时12分07秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-15-10-00_15时12分07秒_性能数据报告.xlsx
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+join task handle
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+join task handle run
+{"process_memory_usage": 96.78515625, "time": 1749539807}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539808}
+{"process_memory_usage": 96.94921875, "time": 1749539808}
+{"process_memory_usage": 98.82421875, "time": 1749539809}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749539810}
+{"process_memory_usage": 99.1796875, "time": 1749539810}
+{"process_memory_usage": 99.4765625, "time": 1749539811}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539812}
+{"process_memory_usage": 99.87109375, "time": 1749539813}
+{"process_memory_usage": 99.90625, "time": 1749539814}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539814}
+{"process_memory_usage": 99.9296875, "time": 1749539815}
+{"process_memory_usage": 99.94921875, "time": 1749539816}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539817}
+{"process_memory_usage": 99.9765625, "time": 1749539817}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749539818}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 100.640625, "time": 1749539818}
+{"process_memory_usage": 302.1015625, "time": 1749539819}
+{"cpu_usage": 28.8375, "cpu_usage_all": 230.7, "cpu_core_num": 8, "time": 1749539820}
+{"process_memory_usage": 401.16796875, "time": 1749539820}
+{"process_memory_usage": 388.68359375, "time": 1749539821}
+{"cpu_usage": 16.1, "cpu_usage_all": 128.8, "cpu_core_num": 8, "time": 1749539822}
+{"process_memory_usage": 390.5390625, "time": 1749539822}
+{"process_memory_usage": 395.31640625, "time": 1749539823}
+{"cpu_usage": 9.7, "cpu_usage_all": 77.6, "cpu_core_num": 8, "time": 1749539824}
+{"process_memory_usage": 396.48046875, "time": 1749539825}
+{"process_memory_usage": 399.16796875, "time": 1749539826}
+{"cpu_usage": 5.575, "cpu_usage_all": 44.6, "cpu_core_num": 8, "time": 1749539826}
+{"process_memory_usage": 390.0078125, "time": 1749539827}
+{"process_memory_usage": 390.43359375, "time": 1749539828}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539828}
+{"process_memory_usage": 390.8984375, "time": 1749539829}
+{"process_memory_usage": 391.1796875, "time": 1749539830}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539830}
+{"process_memory_usage": 391.16796875, "time": 1749539831}
+{"cpu_usage": 4.6125, "cpu_usage_all": 36.9, "cpu_core_num": 8, "time": 1749539832}
+{"process_memory_usage": 393.546875, "time": 1749539832}
+{"process_memory_usage": 393.640625, "time": 1749539833}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539834}
+{"process_memory_usage": 393.65234375, "time": 1749539834}
+{"process_memory_usage": 394.18359375, "time": 1749539836}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539836}
+{"process_memory_usage": 394.23046875, "time": 1749539837}
+{"process_memory_usage": 394.52734375, "time": 1749539838}
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749539838}
+{"process_memory_usage": 395.21484375, "time": 1749539839}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539840}
+{"process_memory_usage": 395.47265625, "time": 1749539840}
+{"process_memory_usage": 396.34375, "time": 1749539841}
+{"cpu_usage": 2.35, "cpu_usage_all": 18.8, "cpu_core_num": 8, "time": 1749539842}
+{"process_memory_usage": 396.74609375, "time": 1749539842}
+{"process_memory_usage": 397.09765625, "time": 1749539843}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749539844}
+{"process_memory_usage": 397.5859375, "time": 1749539844}
+{"process_memory_usage": 397.921875, "time": 1749539845}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539846}
+{"process_memory_usage": 397.9609375, "time": 1749539846}
+{"process_memory_usage": 384.11328125, "time": 1749539847}
+{"cpu_usage": 2.5, "cpu_usage_all": 20.0, "cpu_core_num": 8, "time": 1749539848}
+{"process_memory_usage": 384.3828125, "time": 1749539848}
+{"process_memory_usage": 384.39453125, "time": 1749539849}
+{"cpu_usage": 2.5, "cpu_usage_all": 20.0, "cpu_core_num": 8, "time": 1749539850}
+{"process_memory_usage": 385.10546875, "time": 1749539850}
+{"process_memory_usage": 385.1484375, "time": 1749539851}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539852}
+{"process_memory_usage": 385.43359375, "time": 1749539852}
+{"process_memory_usage": 385.953125, "time": 1749539853}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539854}
+{"process_memory_usage": 385.98828125, "time": 1749539855}
+{"process_memory_usage": 386.08203125, "time": 1749539856}
+{"cpu_usage": 3.85, "cpu_usage_all": 30.8, "cpu_core_num": 8, "time": 1749539856}
+{"process_memory_usage": 386.55078125, "time": 1749539857}
+{"process_memory_usage": 386.8984375, "time": 1749539858}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539858}
+{"process_memory_usage": 387.15234375, "time": 1749539859}
+{"process_memory_usage": 387.6328125, "time": 1749539860}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539860}
+{"process_memory_usage": 387.71875, "time": 1749539861}
+{"process_memory_usage": 388.00390625, "time": 1749539862}
+{"cpu_usage": 3.125, "cpu_usage_all": 25.0, "cpu_core_num": 8, "time": 1749539862}
+{"process_memory_usage": 388.48828125, "time": 1749539863}
+{"process_memory_usage": 402.33984375, "time": 1749539864}
+{"cpu_usage": 16.6, "cpu_usage_all": 132.8, "cpu_core_num": 8, "time": 1749539864}
+{"process_memory_usage": 428.08203125, "time": 1749539865}
+{"process_memory_usage": 419.1328125, "time": 1749539866}
+{"cpu_usage": 12.1125, "cpu_usage_all": 96.9, "cpu_core_num": 8, "time": 1749539866}
+{"process_memory_usage": 419.36328125, "time": 1749539867}
+{"cpu_usage": 8.95, "cpu_usage_all": 71.6, "cpu_core_num": 8, "time": 1749539868}
+{"process_memory_usage": 421.70703125, "time": 1749539869}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749539870}
+{"process_memory_usage": 425.01953125, "time": 1749539870}
+{"process_memory_usage": 419.31640625, "time": 1749539871}
+{"cpu_usage": 1.675, "cpu_usage_all": 13.4, "cpu_core_num": 8, "time": 1749539872}
+{"process_memory_usage": 45.9921875, "time": 1749539872}
+{"process_memory_usage": 69.03515625, "time": 1749539873}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749539874}
+{"process_memory_usage": 75.984375, "time": 1749539874}
+{"process_memory_usage": 80.65625, "time": 1749539875}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539876}
+{"process_memory_usage": 80.71875, "time": 1749539876}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"process_memory_usage": 82.5078125, "time": 1749539877}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539878}
+{"process_memory_usage": 82.5859375, "time": 1749539878}
+{"process_memory_usage": 83.6875, "time": 1749539879}
+{"cpu_usage": 2.5, "cpu_usage_all": 20.0, "cpu_core_num": 8, "time": 1749539880}
+{"process_memory_usage": 87.16015625, "time": 1749539880}
+{"process_memory_usage": 89.49609375, "time": 1749539881}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749539882}
+{"process_memory_usage": 90.26953125, "time": 1749539882}
+{"process_memory_usage": 91.0703125, "time": 1749539883}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539884}
+{"process_memory_usage": 91.4609375, "time": 1749539885}
+{"process_memory_usage": 91.4921875, "time": 1749539886}
+{"cpu_usage": 0.975, "cpu_usage_all": 7.8, "cpu_core_num": 8, "time": 1749539887}
+{"process_memory_usage": 92.03125, "time": 1749539887}
+{"process_memory_usage": 92.46484375, "time": 1749539888}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539889}
+{"process_memory_usage": 92.6953125, "time": 1749539889}
+{"process_memory_usage": 93.5625, "time": 1749539890}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539891}
+{"process_memory_usage": 93.9140625, "time": 1749539891}
+{"process_memory_usage": 94.13671875, "time": 1749539892}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749539893}
+{"process_memory_usage": 95.125, "time": 1749539893}
+{"process_memory_usage": 95.1640625, "time": 1749539894}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539895}
+{"process_memory_usage": 95.65234375, "time": 1749539895}
+{"process_memory_usage": 95.83984375, "time": 1749539896}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539897}
+{"process_memory_usage": 96.87890625, "time": 1749539897}
+{"process_memory_usage": 97.67578125, "time": 1749539898}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749539899}
+{"process_memory_usage": 98.90625, "time": 1749539899}
+{"process_memory_usage": 101.8046875, "time": 1749539900}
+{"cpu_usage": 2.05, "cpu_usage_all": 16.4, "cpu_core_num": 8, "time": 1749539901}
+{"process_memory_usage": 102.35546875, "time": 1749539901}
+{"process_memory_usage": 102.67578125, "time": 1749539902}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539903}
+{"process_memory_usage": 102.75390625, "time": 1749539903}
+{"process_memory_usage": 96.73046875, "time": 1749539904}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749539905}
+{"process_memory_usage": 96.78515625, "time": 1749539905}
+{"process_memory_usage": 96.8203125, "time": 1749539906}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749539907}
+{"process_memory_usage": 97.6015625, "time": 1749539907}
+{"process_memory_usage": 97.63671875, "time": 1749539909}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539909}
+{"process_memory_usage": 97.671875, "time": 1749539910}
+{"process_memory_usage": 98.48828125, "time": 1749539911}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749539911}
+{"process_memory_usage": 98.87109375, "time": 1749539912}
+{"process_memory_usage": 99.2421875, "time": 1749539913}
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749539913}
+{"process_memory_usage": 99.7265625, "time": 1749539914}
+{"process_memory_usage": 99.7890625, "time": 1749539915}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539915}
+{"process_memory_usage": 99.94140625, "time": 1749539916}
+{"process_memory_usage": 100.26171875, "time": 1749539917}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749539917}
+{"process_memory_usage": 100.6171875, "time": 1749539918}
+{"process_memory_usage": 100.9609375, "time": 1749539919}
+{"cpu_usage": 3.5125, "cpu_usage_all": 28.1, "cpu_core_num": 8, "time": 1749539919}
+{"process_memory_usage": 101.23828125, "time": 1749539920}
+{"process_memory_usage": 101.375, "time": 1749539921}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539921}
+{"process_memory_usage": 102.1484375, "time": 1749539922}
+{"process_memory_usage": 102.19140625, "time": 1749539923}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749539924}
+{"process_memory_usage": 102.22265625, "time": 1749539924}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539925}
+{"process_memory_usage": 102.70703125, "time": 1749539925}
+{"process_memory_usage": 102.75, "time": 1749539926}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749539927}
+{"process_memory_usage": 103.0546875, "time": 1749539928}
+{"process_memory_usage": 103.7421875, "time": 1749539929}
+{"cpu_usage": 1.95, "cpu_usage_all": 15.6, "cpu_core_num": 8, "time": 1749539929}
+{"process_memory_usage": 105.7890625, "time": 1749539930}
+{"process_memory_usage": 106.3203125, "time": 1749539931}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749539931}
+{"process_memory_usage": 107.078125, "time": 1749539932}
+{"process_memory_usage": 107.4296875, "time": 1749539933}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749539933}
+{"process_memory_usage": 108.19921875, "time": 1749539934}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749539935}
+{"process_memory_usage": 110.6796875, "time": 1749539935}
+{"process_memory_usage": 117.7734375, "time": 1749539936}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"cpu_usage": 7.1125, "cpu_usage_all": 56.9, "cpu_core_num": 8, "time": 1749539937}
+{"process_memory_usage": 174.3671875, "time": 1749539938}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 5.775, "cpu_usage_all": 46.2, "cpu_core_num": 8, "time": 1749539939}
+{"process_memory_usage": 186.0390625, "time": 1749539939}
+{"process_memory_usage": 190.2421875, "time": 1749539940}
+{"cpu_usage": 5.8625, "cpu_usage_all": 46.9, "cpu_core_num": 8, "time": 1749539941}
+{"process_memory_usage": 211.765625, "time": 1749539941}
+{"process_memory_usage": 206.39453125, "time": 1749539942}
+{"cpu_usage": 8.075, "cpu_usage_all": 64.6, "cpu_core_num": 8, "time": 1749539943}
+{"process_memory_usage": 223.62890625, "time": 1749539943}
+{"process_memory_usage": 235.140625, "time": 1749539944}
+{"cpu_usage": 10.55, "cpu_usage_all": 84.4, "cpu_core_num": 8, "time": 1749539945}
+{"process_memory_usage": 241.15625, "time": 1749539945}
+{"process_memory_usage": 275.56640625, "time": 1749539946}
+{"cpu_usage": 7.025, "cpu_usage_all": 56.2, "cpu_core_num": 8, "time": 1749539947}
+{"process_memory_usage": 277.90234375, "time": 1749539947}
+{"process_memory_usage": 278.5546875, "time": 1749539948}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749539949}
+{"process_memory_usage": 272.515625, "time": 1749539949}
+{"process_memory_usage": 273.5859375, "time": 1749539950}
+{"cpu_usage": 1.7625, "cpu_usage_all": 14.1, "cpu_core_num": 8, "time": 1749539951}
+{"process_memory_usage": 273.15625, "time": 1749539951}
+{"process_memory_usage": 273.375, "time": 1749539952}
+{"cpu_usage": 3.5125, "cpu_usage_all": 28.1, "cpu_core_num": 8, "time": 1749539953}
+{"process_memory_usage": 274.08203125, "time": 1749539953}
+{"process_memory_usage": 274.33203125, "time": 1749539954}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749539955}
+{"process_memory_usage": 274.625, "time": 1749539955}
+{"process_memory_usage": 274.31640625, "time": 1749539957}
+{"cpu_usage": 4.1625, "cpu_usage_all": 33.3, "cpu_core_num": 8, "time": 1749539957}
+{"process_memory_usage": 279.08203125, "time": 1749539958}
+{"process_memory_usage": 275.35546875, "time": 1749539959}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749539959}
+{"process_memory_usage": 275.65234375, "time": 1749539960}
+{"process_memory_usage": 276.24609375, "time": 1749539961}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749539961}
+{"process_memory_usage": 265.12890625, "time": 1749539962}
+{"process_memory_usage": 267.2421875, "time": 1749539963}
+{"cpu_usage": 1.7375, "cpu_usage_all": 13.9, "cpu_core_num": 8, "time": 1749539963}
+{"process_memory_usage": 263.234375, "time": 1749539964}
+{"process_memory_usage": 264.01171875, "time": 1749539965}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749539965}
+{"process_memory_usage": 264.125, "time": 1749539966}
+{"process_memory_usage": 264.75390625, "time": 1749539967}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749539967}
+{"process_memory_usage": 265.5625, "time": 1749539968}
+{"process_memory_usage": 265.69140625, "time": 1749539969}
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749539969}
+{"process_memory_usage": 265.81640625, "time": 1749539970}
+{"process_memory_usage": 266.45703125, "time": 1749539971}
+{"cpu_usage": 1.925, "cpu_usage_all": 15.4, "cpu_core_num": 8, "time": 1749539971}
+{"process_memory_usage": 266.609375, "time": 1749539972}
+{"process_memory_usage": 266.9765625, "time": 1749539973}
+{"cpu_usage": 4.3, "cpu_usage_all": 34.4, "cpu_core_num": 8, "time": 1749539973}
+{"process_memory_usage": 271.41015625, "time": 1749539974}
+{"process_memory_usage": 271.57421875, "time": 1749539975}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749539976}
+{"process_memory_usage": 271.71484375, "time": 1749539976}
+{"cpu_usage": 2.3125, "cpu_usage_all": 18.5, "cpu_core_num": 8, "time": 1749539977}
+{"process_memory_usage": 272.87109375, "time": 1749539977}
+{"process_memory_usage": 272.9765625, "time": 1749539978}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749539979}
+{"process_memory_usage": 273.1328125, "time": 1749539979}
+{"process_memory_usage": 271.35546875, "time": 1749539980}
+{"cpu_usage": 1.7625, "cpu_usage_all": 14.1, "cpu_core_num": 8, "time": 1749539981}
+{"process_memory_usage": 258.90625, "time": 1749539981}
+{"process_memory_usage": 259.5234375, "time": 1749539983}
+{"cpu_usage": 1.95, "cpu_usage_all": 15.6, "cpu_core_num": 8, "time": 1749539983}
+{"process_memory_usage": 259.92578125, "time": 1749539984}
+{"process_memory_usage": 260.0078125, "time": 1749539985}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749539985}
+{"process_memory_usage": 260.640625, "time": 1749539986}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749539987}
+{"process_memory_usage": 261.15234375, "time": 1749539987}
+{"process_memory_usage": 261.4609375, "time": 1749539988}
+{"cpu_usage": 3.65, "cpu_usage_all": 29.2, "cpu_core_num": 8, "time": 1749539989}
+{"process_memory_usage": 263.65625, "time": 1749539989}
+{"process_memory_usage": 263.89453125, "time": 1749539990}
+{"cpu_usage": 1.725, "cpu_usage_all": 13.8, "cpu_core_num": 8, "time": 1749539991}
+{"process_memory_usage": 264.83984375, "time": 1749539991}
+{"process_memory_usage": 72.57421875, "time": 1749539992}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749539993}
+{"process_memory_usage": 85.48828125, "time": 1749539993}
+{"process_memory_usage": 89.74609375, "time": 1749539994}
+{"cpu_usage": 3.075, "cpu_usage_all": 24.6, "cpu_core_num": 8, "time": 1749539995}
+{"process_memory_usage": 91.828125, "time": 1749539995}
+{"process_memory_usage": 92.421875, "time": 1749539996}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749539997}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"process_memory_usage": 95.7734375, "time": 1749539997}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 98.25, "time": 1749539998}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749539999}
+{"process_memory_usage": 98.4453125, "time": 1749539999}
+{"process_memory_usage": 99.8671875, "time": 1749540000}
+{"cpu_usage": 1.3, "cpu_usage_all": 10.4, "cpu_core_num": 8, "time": 1749540001}
+{"process_memory_usage": 101.0859375, "time": 1749540001}
+{"process_memory_usage": 101.35546875, "time": 1749540002}
+{"cpu_usage": 1.7625, "cpu_usage_all": 14.1, "cpu_core_num": 8, "time": 1749540003}
+{"process_memory_usage": 101.7578125, "time": 1749540003}
+{"process_memory_usage": 105.265625, "time": 1749540004}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749540005}
+{"process_memory_usage": 107.2734375, "time": 1749540006}
+{"process_memory_usage": 102.87890625, "time": 1749540007}
+{"cpu_usage": 2.6125, "cpu_usage_all": 20.9, "cpu_core_num": 8, "time": 1749540007}
+{"process_memory_usage": 104.16015625, "time": 1749540008}
+{"process_memory_usage": 104.453125, "time": 1749540009}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749540009}
+{"process_memory_usage": 105.55859375, "time": 1749540010}
+{"process_memory_usage": 106.0078125, "time": 1749540011}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749540011}
+{"process_memory_usage": 106.15625, "time": 1749540012}
+{"process_memory_usage": 107.13671875, "time": 1749540013}
+{"cpu_usage": 1.7375, "cpu_usage_all": 13.9, "cpu_core_num": 8, "time": 1749540014}
+{"process_memory_usage": 109.29296875, "time": 1749540014}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749540015}
+{"process_memory_usage": 109.6953125, "time": 1749540015}
+{"process_memory_usage": 110.3671875, "time": 1749540016}
+{"cpu_usage": 1.3625, "cpu_usage_all": 10.9, "cpu_core_num": 8, "time": 1749540017}
+{"process_memory_usage": 111.046875, "time": 1749540017}
+{"process_memory_usage": 112.34765625, "time": 1749540018}
+{"cpu_usage": 2.8875, "cpu_usage_all": 23.1, "cpu_core_num": 8, "time": 1749540019}
+{"process_memory_usage": 115.0625, "time": 1749540019}
+{"process_memory_usage": 121.8828125, "time": 1749540020}
+{"cpu_usage": 1.7625, "cpu_usage_all": 14.1, "cpu_core_num": 8, "time": 1749540021}
+{"process_memory_usage": 122.68359375, "time": 1749540021}
+{"process_memory_usage": 126.61328125, "time": 1749540022}
+{"cpu_usage": 1.8625, "cpu_usage_all": 14.9, "cpu_core_num": 8, "time": 1749540023}
+{"process_memory_usage": 127.296875, "time": 1749540023}
+{"process_memory_usage": 115.7265625, "time": 1749540024}
+{"cpu_usage": 3.075, "cpu_usage_all": 24.6, "cpu_core_num": 8, "time": 1749540025}
+{"process_memory_usage": 116.578125, "time": 1749540025}
+{"process_memory_usage": 116.75, "time": 1749540026}
+{"cpu_usage": 0.975, "cpu_usage_all": 7.8, "cpu_core_num": 8, "time": 1749540027}
+{"process_memory_usage": 117.7421875, "time": 1749540027}
+{"process_memory_usage": 118.34765625, "time": 1749540028}
+{"cpu_usage": 1.7375, "cpu_usage_all": 13.9, "cpu_core_num": 8, "time": 1749540029}
+{"process_memory_usage": 118.84375, "time": 1749540029}
+{"process_memory_usage": 119.1328125, "time": 1749540031}
+{"cpu_usage": 2.7, "cpu_usage_all": 21.6, "cpu_core_num": 8, "time": 1749540031}
+{"process_memory_usage": 119.60546875, "time": 1749540032}
+Stopping task handle and subprocesses... 24032
+开始导出Excel报表: 任务ID=2
+获取任务信息成功: 任务-2025-06-10-15-10-00, 路径: E:\WorkArea\pc_perf\test_result\2
+获取任务数据成功: 5 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-15-10-00
+处理数据类型: cpu, 数据点数量: 226
+处理数据类型: fps, 数据点数量: 226
+处理数据类型: gpu, 数据点数量: 226
+处理数据类型: memory, 数据点数量: 226
+处理数据类型: process_info, 数据点数量: 226
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数']
+数据行写入完成，共 226 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\2\excel_reports\任务-2025-06-10-15-10-00_15时20分34秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\2\excel_reports\任务-2025-06-10-15-10-00_15时20分34秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\2\excel_reports\任务-2025-06-10-15-10-00_15时20分34秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-15-10-00_15时20分34秒_性能数据报告.xlsx
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+开始导出Excel报表: 任务ID=2
+获取任务信息成功: 任务-2025-06-10-15-10-00, 路径: E:\WorkArea\pc_perf\test_result\2
+获取任务数据成功: 5 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-15-10-00
+处理数据类型: cpu, 数据点数量: 226
+处理数据类型: fps, 数据点数量: 226
+处理数据类型: gpu, 数据点数量: 226
+处理数据类型: memory, 数据点数量: 226
+处理数据类型: process_info, 数据点数量: 226
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数']
+数据行写入完成，共 226 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\2\excel_reports\任务-2025-06-10-15-10-00_15时34分44秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\2\excel_reports\任务-2025-06-10-15-10-00_15时34分44秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\2\excel_reports\任务-2025-06-10-15-10-00_15时34分44秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-15-10-00_15时34分44秒_性能数据报告.xlsx
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749542595.3181257, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+join task handle
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+join task handle run
+{"process_memory_usage": 223.72265625, "time": 1749542631}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.03, "net_sent": 1564916821, "net_recv": 6666947011, "time": 1749542631}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749542632}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8005633461, "disk_write": 818668669, "time": 1749542632}
+{"process_memory_usage": 223.73046875, "time": 1749542632}
+{"process_memory_usage": 222.62890625, "time": 1749542633}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1564935070, "net_recv": 6667038145, "time": 1749542633}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749542634}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8005643705, "disk_write": 818727789, "time": 1749542634}
+{"process_memory_usage": 223.7421875, "time": 1749542634}
+{"process_memory_usage": 222.6328125, "time": 1749542635}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.03, "net_sent": 1564946288, "net_recv": 6667113751, "time": 1749542635}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749542636}
+{"disk_read_rate": 0.03, "disk_write_rate": 0.0, "disk_read": 8005672533, "disk_write": 818729741, "time": 1749542636}
+{"process_memory_usage": 222.65625, "time": 1749542636}
+定期任务执行时间：检查是否有漏杀死monitor进程
+{"process_memory_usage": 223.765625, "time": 1749542637}
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1564958016, "net_recv": 6667192577, "time": 1749542637}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749542638}
+{"disk_read_rate": 0.02, "disk_write_rate": 0.0, "disk_read": 8005711377, "disk_write": 818732321, "time": 1749542638}
+{"process_memory_usage": 222.671875, "time": 1749542638}
+{"process_memory_usage": 222.671875, "time": 1749542639}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1564971623, "net_recv": 6667270565, "time": 1749542639}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749542640}
+{"disk_read_rate": 0.02, "disk_write_rate": 0, "disk_read": 8005739661, "disk_write": 818734097, "time": 1749542640}
+{"process_memory_usage": 223.78515625, "time": 1749542640}
+{"process_memory_usage": 223.859375, "time": 1749542641}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1564982447, "net_recv": 6667349162, "time": 1749542641}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749542642}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8005754813, "disk_write": 818793669, "time": 1749542642}
+{"process_memory_usage": 223.86328125, "time": 1749542642}
+{"process_memory_usage": 223.86328125, "time": 1749542643}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1564995473, "net_recv": 6667423669, "time": 1749542643}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749542644}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.03, "disk_read": 8005783977, "disk_write": 818829840, "time": 1749542644}
+{"process_memory_usage": 223.86328125, "time": 1749542644}
+{"process_memory_usage": 223.86328125, "time": 1749542645}
+{"net_sent_rate": 0.03, "net_recv_rate": 0.04, "net_sent": 1565041328, "net_recv": 6667513528, "time": 1749542645}
+{"disk_read_rate": 0.01, "disk_write_rate": 0, "disk_read": 8005794941, "disk_write": 818831616, "time": 1749542646}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542646}
+{"process_memory_usage": 223.86328125, "time": 1749542646}
+{"process_memory_usage": 223.86328125, "time": 1749542647}
+{"net_sent_rate": 0.03, "net_recv_rate": 0.04, "net_sent": 1565081495, "net_recv": 6667587800, "time": 1749542647}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749542648}
+{"disk_read_rate": 0.03, "disk_write_rate": 0.07, "disk_read": 8005824533, "disk_write": 818902122, "time": 1749542648}
+{"process_memory_usage": 223.87890625, "time": 1749542648}
+{"process_memory_usage": 223.87109375, "time": 1749542649}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.03, "net_sent": 1565094076, "net_recv": 6667663768, "time": 1749542649}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8005845373, "disk_write": 818972512, "time": 1749542650}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749542650}
+{"process_memory_usage": 223.87109375, "time": 1749542650}
+{"process_memory_usage": 223.875, "time": 1749542651}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1565104749, "net_recv": 6667739970, "time": 1749542651}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8005847225, "disk_write": 818974228, "time": 1749542652}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542652}
+{"process_memory_usage": 223.875, "time": 1749542652}
+{"process_memory_usage": 218.14453125, "time": 1749542653}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.03, "net_sent": 1565115558, "net_recv": 6667810332, "time": 1749542653}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8005865417, "disk_write": 818975036, "time": 1749542654}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542654}
+{"process_memory_usage": 218.15625, "time": 1749542654}
+{"process_memory_usage": 218.15625, "time": 1749542656}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.03, "net_sent": 1565132230, "net_recv": 6667881819, "time": 1749542655}
+{"disk_read_rate": 0.02, "disk_write_rate": 0.01, "disk_read": 8005882829, "disk_write": 818987825, "time": 1749542657}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749542657}
+{"process_memory_usage": 214.66015625, "time": 1749542657}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1565138710, "net_recv": 6667920292, "time": 1749542657}
+{"process_memory_usage": 214.73046875, "time": 1749542658}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749542659}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8005891489, "disk_write": 818990609, "time": 1749542659}
+{"process_memory_usage": 215.0390625, "time": 1749542659}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1565168371, "net_recv": 6668006533, "time": 1749542659}
+{"process_memory_usage": 214.9453125, "time": 1749542660}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749542661}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.09, "disk_read": 8005920145, "disk_write": 819091449, "time": 1749542661}
+{"process_memory_usage": 215.27734375, "time": 1749542661}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1565181464, "net_recv": 6668091331, "time": 1749542661}
+{"process_memory_usage": 216.8125, "time": 1749542662}
+{"disk_read_rate": 0.48, "disk_write_rate": 0.08, "disk_read": 8006588049, "disk_write": 819223373, "time": 1749542663}
+{"cpu_usage": 2.1125, "cpu_usage_all": 16.9, "cpu_core_num": 8, "time": 1749542663}
+{"process_memory_usage": 218.33984375, "time": 1749542663}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1565200936, "net_recv": 6668196713, "time": 1749542663}
+{"process_memory_usage": 218.7890625, "time": 1749542664}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8006588049, "disk_write": 819223477, "time": 1749542665}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749542665}
+{"process_memory_usage": 219.328125, "time": 1749542665}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.03, "net_sent": 1565217383, "net_recv": 6668270831, "time": 1749542665}
+{"process_memory_usage": 219.27734375, "time": 1749542666}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542667}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8006588141, "disk_write": 819223593, "time": 1749542667}
+{"process_memory_usage": 219.27734375, "time": 1749542667}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.04, "net_sent": 1565230891, "net_recv": 6668349160, "time": 1749542667}
+{"process_memory_usage": 219.27734375, "time": 1749542668}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749542669}
+{"disk_read_rate": 0, "disk_write_rate": 0.05, "disk_read": 8006588141, "disk_write": 819273033, "time": 1749542669}
+{"process_memory_usage": 219.27734375, "time": 1749542669}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.03, "net_sent": 1565239992, "net_recv": 6668421130, "time": 1749542669}
+{"process_memory_usage": 219.27734375, "time": 1749542670}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542671}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8006588141, "disk_write": 819273033, "time": 1749542671}
+{"process_memory_usage": 219.27734375, "time": 1749542671}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.03, "net_sent": 1565249880, "net_recv": 6668477945, "time": 1749542671}
+{"process_memory_usage": 219.28515625, "time": 1749542672}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749542673}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8006588233, "disk_write": 819273149, "time": 1749542673}
+{"process_memory_usage": 219.28515625, "time": 1749542673}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.03, "net_sent": 1565258627, "net_recv": 6668530677, "time": 1749542673}
+{"process_memory_usage": 219.28515625, "time": 1749542674}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542675}
+{"disk_read_rate": 0.0, "disk_write_rate": 0.13, "disk_read": 8006592329, "disk_write": 819409109, "time": 1749542675}
+{"process_memory_usage": 219.27734375, "time": 1749542675}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.03, "net_sent": 1565268069, "net_recv": 6668595912, "time": 1749542675}
+{"process_memory_usage": 219.2578125, "time": 1749542676}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749542677}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8006592421, "disk_write": 819466905, "time": 1749542677}
+{"process_memory_usage": 219.2578125, "time": 1749542677}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.03, "net_sent": 1565275716, "net_recv": 6668655694, "time": 1749542677}
+{"process_memory_usage": 219.2578125, "time": 1749542678}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542679}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 8006592421, "disk_write": 819466905, "time": 1749542679}
+{"process_memory_usage": 219.2578125, "time": 1749542679}
+Stopping task handle and subprocesses... 43888
+开始导出Excel报表: 任务ID=3
+获取任务信息成功: 任务-2025-06-10-16-03-15, 路径: E:\WorkArea\pc_perf\test_result\3
+获取任务数据成功: 7 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-16-03-15
+处理数据类型: cpu, 数据点数量: 49
+处理数据类型: disk_io, 数据点数量: 49
+处理数据类型: fps, 数据点数量: 49
+处理数据类型: gpu, 数据点数量: 49
+处理数据类型: memory, 数据点数量: 49
+处理数据类型: network_io, 数据点数量: 49
+处理数据类型: process_info, 数据点数量: 49
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数']
+数据行写入完成，共 49 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\3\excel_reports\任务-2025-06-10-16-03-15_16时04分40秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\3\excel_reports\任务-2025-06-10-16-03-15_16时04分40秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\3\excel_reports\任务-2025-06-10-16-03-15_16时04分40秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-16-03-15_16时04分40秒_性能数据报告.xlsx
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749542882.208441, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+开始导出Excel报表: 任务ID=3
+子进程 22760 已不存在
+子进程 12716 已不存在
+获取任务信息成功: 任务-2025-06-10-16-03-15, 路径: E:\WorkArea\pc_perf\test_result\3
+获取任务数据成功: 7 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-16-03-15
+处理数据类型: cpu, 数据点数量: 49
+处理数据类型: disk_io, 数据点数量: 49
+处理数据类型: fps, 数据点数量: 49
+处理数据类型: gpu, 数据点数量: 49
+处理数据类型: memory, 数据点数量: 49
+处理数据类型: network_io, 数据点数量: 49
+处理数据类型: process_info, 数据点数量: 49
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数', '磁盘读取速率(MB/s)', '磁盘写入速率(MB/s)', '网络发送速率(MB/s)', '网络接收速率(MB/s)']
+数据行写入完成，共 49 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\3\excel_reports\任务-2025-06-10-16-03-15_16时08分07秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\3\excel_reports\任务-2025-06-10-16-03-15_16时08分07秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\3\excel_reports\任务-2025-06-10-16-03-15_16时08分07秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-16-03-15_16时08分07秒_性能数据报告.xlsx
+join task handle
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+join task handle run
+{"process_memory_usage": 9.9296875, "time": 1749542894}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1566880821, "net_recv": 6673188534, "time": 1749542894}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542895}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542895}
+{"process_memory_usage": 9.97265625, "time": 1749542895}
+{"process_memory_usage": 9.97265625, "time": 1749542896}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1566892107, "net_recv": 6673203612, "time": 1749542896}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542897}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542898}
+{"process_memory_usage": 9.97265625, "time": 1749542898}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542899}
+{"process_memory_usage": 9.97265625, "time": 1749542899}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.04, "net_sent": 1566910174, "net_recv": 6673264557, "time": 1749542898}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542899}
+{"process_memory_usage": 9.97265625, "time": 1749542900}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542901}
+{"process_memory_usage": 9.97265625, "time": 1749542901}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1566915224, "net_recv": 6673277101, "time": 1749542900}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542902}
+{"process_memory_usage": 9.97265625, "time": 1749542902}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1566917482, "net_recv": 6673283020, "time": 1749542902}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542903}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542903}
+{"process_memory_usage": 9.97265625, "time": 1749542903}
+{"process_memory_usage": 9.97265625, "time": 1749542904}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1566943183, "net_recv": 6673310827, "time": 1749542904}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542905}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542905}
+{"process_memory_usage": 9.97265625, "time": 1749542905}
+{"process_memory_usage": 9.97265625, "time": 1749542906}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1566948120, "net_recv": 6673321591, "time": 1749542906}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542907}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542907}
+{"process_memory_usage": 9.97265625, "time": 1749542907}
+{"process_memory_usage": 9.97265625, "time": 1749542908}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1566952907, "net_recv": 6673331588, "time": 1749542908}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542909}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542909}
+{"process_memory_usage": 9.97265625, "time": 1749542909}
+{"process_memory_usage": 9.97265625, "time": 1749542910}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1566970150, "net_recv": 6673346716, "time": 1749542910}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542911}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542911}
+{"process_memory_usage": 9.97265625, "time": 1749542911}
+{"process_memory_usage": 9.97265625, "time": 1749542912}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1566978949, "net_recv": 6673366300, "time": 1749542912}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542913}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542913}
+{"process_memory_usage": 9.97265625, "time": 1749542913}
+{"process_memory_usage": 9.97265625, "time": 1749542914}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1566983822, "net_recv": 6673377647, "time": 1749542914}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542915}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542915}
+{"process_memory_usage": 9.97265625, "time": 1749542916}
+{"process_memory_usage": 9.97265625, "time": 1749542917}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1566990768, "net_recv": 6673393503, "time": 1749542916}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542917}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542917}
+{"process_memory_usage": 9.97265625, "time": 1749542918}
+{"process_memory_usage": 9.97265625, "time": 1749542919}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1567004538, "net_recv": 6673414624, "time": 1749542918}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542919}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542919}
+{"process_memory_usage": 9.97265625, "time": 1749542920}
+{"process_memory_usage": 9.97265625, "time": 1749542921}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1567017848, "net_recv": 6673437330, "time": 1749542920}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542921}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542921}
+{"process_memory_usage": 9.97265625, "time": 1749542922}
+{"process_memory_usage": 9.97265625, "time": 1749542923}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1567028798, "net_recv": 6673452078, "time": 1749542922}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542923}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542923}
+{"process_memory_usage": 9.97265625, "time": 1749542924}
+{"process_memory_usage": 9.97265625, "time": 1749542925}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1567038901, "net_recv": 6673475716, "time": 1749542924}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542925}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542925}
+{"process_memory_usage": 9.97265625, "time": 1749542926}
+{"process_memory_usage": 9.97265625, "time": 1749542927}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.04, "net_sent": 1567044149, "net_recv": 6673523875, "time": 1749542926}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542927}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542927}
+{"process_memory_usage": 9.97265625, "time": 1749542928}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1567051064, "net_recv": 6673546719, "time": 1749542928}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542929}
+{"process_memory_usage": 9.97265625, "time": 1749542929}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542929}
+{"process_memory_usage": 9.97265625, "time": 1749542930}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.02, "net_sent": 1567059182, "net_recv": 6673574413, "time": 1749542930}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542931}
+{"process_memory_usage": 9.97265625, "time": 1749542931}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542931}
+{"process_memory_usage": 9.97265625, "time": 1749542932}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1567068337, "net_recv": 6673624044, "time": 1749542932}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542933}
+{"process_memory_usage": 9.97265625, "time": 1749542933}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542933}
+{"process_memory_usage": 9.97265625, "time": 1749542934}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1567075331, "net_recv": 6673640455, "time": 1749542934}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542935}
+{"process_memory_usage": 9.97265625, "time": 1749542935}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542935}
+{"process_memory_usage": 9.97265625, "time": 1749542936}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1567083699, "net_recv": 6673695758, "time": 1749542936}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 396633, "disk_write": 36048, "time": 1749542937}
+{"process_memory_usage": 9.97265625, "time": 1749542937}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749542937}
+Stopping task handle and subprocesses... 24344
+开始导出Excel报表: 任务ID=4
+获取任务信息成功: 任务-2025-06-10-16-08-02, 路径: E:\WorkArea\pc_perf\test_result\4
+获取任务数据成功: 7 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-16-08-02
+处理数据类型: cpu, 数据点数量: 44
+处理数据类型: disk_io, 数据点数量: 44
+处理数据类型: fps, 数据点数量: 44
+处理数据类型: gpu, 数据点数量: 44
+处理数据类型: memory, 数据点数量: 44
+处理数据类型: network_io, 数据点数量: 44
+处理数据类型: process_info, 数据点数量: 44
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数', '磁盘读取速率(MB/s)', '磁盘写入速率(MB/s)', '网络发送速率(MB/s)', '网络接收速率(MB/s)']
+数据行写入完成，共 44 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\4\excel_reports\任务-2025-06-10-16-08-02_16时08分58秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\4\excel_reports\任务-2025-06-10-16-08-02_16时08分58秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\4\excel_reports\任务-2025-06-10-16-08-02_16时08分58秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-16-08-02_16时08分58秒_性能数据报告.xlsx
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749543204.8049722, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749543225.634898, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+join task handle
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+join task handle run
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1570079892, "net_recv": 6682481234, "time": 1749543238}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1570086880, "net_recv": 6682499115, "time": 1749543240}
+{"process_memory_usage": 5456.83984375, "time": 1749543242}
+{"disk_read_rate": 0.03, "disk_write_rate": 0, "disk_read": 346451621, "disk_write": 6512069, "time": 1749543242}
+{"process_memory_usage": 5457.78515625, "time": 1749543242}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1570089929, "net_recv": 6682507869, "time": 1749543242}
+{"cpu_usage": 22.9, "cpu_usage_all": 183.2, "cpu_core_num": 8, "time": 1749543243}
+{"process_memory_usage": 5456.51171875, "time": 1749543243}
+{"net_sent_rate": 0.03, "net_recv_rate": 0.01, "net_sent": 1570123542, "net_recv": 6682531390, "time": 1749543244}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1570133855, "net_recv": 6682555510, "time": 1749543246}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 346457521, "disk_write": 6512185, "time": 1749543247}
+{"process_memory_usage": 5461.62890625, "time": 1749543247}
+{"process_memory_usage": 5461.80078125, "time": 1749543248}
+{"cpu_usage": 8.475, "cpu_usage_all": 67.8, "cpu_core_num": 8, "time": 1749543248}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 346457521, "disk_write": 6512185, "time": 1749543248}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1570138889, "net_recv": 6682576103, "time": 1749543248}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1570147442, "net_recv": 6682599128, "time": 1749543250}
+{"process_memory_usage": 5486.43359375, "time": 1749543253}
+{"process_memory_usage": 5486.50390625, "time": 1749543253}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1570156583, "net_recv": 6682619678, "time": 1749543252}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 346457613, "disk_write": 6512301, "time": 1749543254}
+{"cpu_usage": 18.612499999999997, "cpu_usage_all": 148.89999999999998, "cpu_core_num": 8, "time": 1749543254}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1570163209, "net_recv": 6682630540, "time": 1749543254}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1570174435, "net_recv": 6682651788, "time": 1749543256}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 346457705, "disk_write": 6512417, "time": 1749543258}
+{"process_memory_usage": 5269.95703125, "time": 1749543258}
+{"cpu_usage": 29.724999999999998, "cpu_usage_all": 237.79999999999998, "cpu_core_num": 8, "time": 1749543259}
+{"process_memory_usage": 5290.25390625, "time": 1749543259}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1570183467, "net_recv": 6682663347, "time": 1749543258}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1570189958, "net_recv": 6682675882, "time": 1749543261}
+Stopping task handle and subprocesses... 29524
+开始导出Excel报表: 任务ID=5
+获取任务信息成功: 任务-2025-06-10-16-13-45, 路径: E:\WorkArea\pc_perf\test_result\5
+获取任务数据成功: 7 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-16-13-45
+处理数据类型: cpu, 数据点数量: 24
+处理数据类型: disk_io, 数据点数量: 24
+处理数据类型: fps, 数据点数量: 24
+处理数据类型: gpu, 数据点数量: 26
+处理数据类型: memory, 数据点数量: 26
+处理数据类型: network_io, 数据点数量: 24
+处理数据类型: process_info, 数据点数量: 24
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数', '磁盘读取速率(MB/s)', '磁盘写入速率(MB/s)', '网络发送速率(MB/s)', '网络接收速率(MB/s)']
+数据行写入完成，共 24 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\5\excel_reports\任务-2025-06-10-16-13-45_16时14分23秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\5\excel_reports\任务-2025-06-10-16-13-45_16时14分23秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\5\excel_reports\任务-2025-06-10-16-13-45_16时14分23秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-16-13-45_16时14分23秒_性能数据报告.xlsx
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749543637.9617145, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+join task handle
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+join task handle run
+{"process_memory_usage": 1264.078125, "time": 1749543659}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.02, "net_sent": 1574396231, "net_recv": 6686550921, "time": 1749543659}
+{"cpu_usage": 9.174999999999999, "cpu_usage_all": 73.39999999999999, "cpu_core_num": 8, "time": 1749543660}
+{"disk_read_rate": 0.7, "disk_write_rate": 0.54, "disk_read": 2602636293, "disk_write": 1346101442, "time": 1749543660}
+{"process_memory_usage": 1293.23046875, "time": 1749543660}
+{"process_memory_usage": 1291.03515625, "time": 1749543661}
+{"net_sent_rate": 0.02, "net_recv_rate": 0.02, "net_sent": 1574424932, "net_recv": 6686592724, "time": 1749543661}
+{"disk_read_rate": 0.73, "disk_write_rate": 0.32, "disk_read": 2604573766, "disk_write": 1347048866, "time": 1749543662}
+{"cpu_usage": 12.5, "cpu_usage_all": 100.0, "cpu_core_num": 8, "time": 1749543662}
+{"process_memory_usage": 1338.296875, "time": 1749543662}
+{"process_memory_usage": 1379.296875, "time": 1749543663}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1574441051, "net_recv": 6687072232, "time": 1749543663}
+{"disk_read_rate": 0.8, "disk_write_rate": 0.81, "disk_read": 2609022051, "disk_write": 1351347627, "time": 1749543664}
+{"cpu_usage": 3.95, "cpu_usage_all": 31.6, "cpu_core_num": 8, "time": 1749543664}
+{"process_memory_usage": 1346.79296875, "time": 1749543664}
+{"process_memory_usage": 1321.015625, "time": 1749543665}
+{"net_sent_rate": 0.03, "net_recv_rate": 0.01, "net_sent": 1574477815, "net_recv": 6687087628, "time": 1749543665}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.0, "disk_read": 2609077567, "disk_write": 1351352520, "time": 1749543666}
+{"cpu_usage": 1.175, "cpu_usage_all": 9.4, "cpu_core_num": 8, "time": 1749543666}
+{"process_memory_usage": 1322.22265625, "time": 1749543667}
+{"cpu_usage": 0.9375, "cpu_usage_all": 7.5, "cpu_core_num": 8, "time": 1749543668}
+{"process_memory_usage": 1319.60546875, "time": 1749543668}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.02, "net_sent": 1574490717, "net_recv": 6687113382, "time": 1749543667}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2609088695, "disk_write": 1351358136, "time": 1749543668}
+{"process_memory_usage": 1311.1953125, "time": 1749543669}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749543670}
+{"process_memory_usage": 1309.2890625, "time": 1749543670}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1574495816, "net_recv": 6687124338, "time": 1749543669}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2609089735, "disk_write": 1351358419, "time": 1749543670}
+{"process_memory_usage": 1308.27734375, "time": 1749543671}
+{"disk_read_rate": 0.0, "disk_write_rate": 0, "disk_read": 2609090971, "disk_write": 1351359263, "time": 1749543672}
+{"cpu_usage": 0.375, "cpu_usage_all": 3.0, "cpu_core_num": 8, "time": 1749543672}
+{"process_memory_usage": 1308.8203125, "time": 1749543672}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1574501332, "net_recv": 6687137886, "time": 1749543672}
+{"process_memory_usage": 1308.34765625, "time": 1749543673}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.01, "disk_read": 2609098091, "disk_write": 1351367095, "time": 1749543674}
+{"cpu_usage": 2.5, "cpu_usage_all": 20.0, "cpu_core_num": 8, "time": 1749543674}
+{"process_memory_usage": 1402.421875, "time": 1749543674}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1574508855, "net_recv": 6687153012, "time": 1749543674}
+{"process_memory_usage": 1400.70703125, "time": 1749543675}
+{"disk_read_rate": 0.0, "disk_write_rate": 0, "disk_read": 2609219144, "disk_write": 1351447454, "time": 1749543676}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749543676}
+{"process_memory_usage": 1400.0859375, "time": 1749543676}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1574512810, "net_recv": 6687160435, "time": 1749543676}
+{"process_memory_usage": 1399.5859375, "time": 1749543677}
+{"disk_read_rate": 0.16, "disk_write_rate": 0.07, "disk_read": 2609383192, "disk_write": 1351516867, "time": 1749543678}
+{"cpu_usage": 3.075, "cpu_usage_all": 24.6, "cpu_core_num": 8, "time": 1749543678}
+{"process_memory_usage": 1403.58203125, "time": 1749543678}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.02, "net_sent": 1574539740, "net_recv": 6687185751, "time": 1749543678}
+{"process_memory_usage": 1416.9375, "time": 1749543679}
+{"disk_read_rate": 0.06, "disk_write_rate": 0, "disk_read": 2609499608, "disk_write": 1351592117, "time": 1749543680}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749543680}
+{"process_memory_usage": 1413.63671875, "time": 1749543680}
+{"net_sent_rate": 0.09, "net_recv_rate": 2.49, "net_sent": 1574726289, "net_recv": 6693182707, "time": 1749543680}
+{"process_memory_usage": 1409.73828125, "time": 1749543681}
+{"disk_read_rate": 0.0, "disk_write_rate": 0.0, "disk_read": 2609501260, "disk_write": 1351593377, "time": 1749543682}
+{"cpu_usage": 0.9750000000000001, "cpu_usage_all": 7.800000000000001, "cpu_core_num": 8, "time": 1749543682}
+{"process_memory_usage": 1408.63671875, "time": 1749543682}
+{"net_sent_rate": 0.07, "net_recv_rate": 0.61, "net_sent": 1574870533, "net_recv": 6694953384, "time": 1749543682}
+{"process_memory_usage": 1686.46484375, "time": 1749543683}
+{"disk_read_rate": 0, "disk_write_rate": 0.01, "disk_read": 2609502196, "disk_write": 1351605620, "time": 1749543684}
+{"cpu_usage": 2.9375, "cpu_usage_all": 23.5, "cpu_core_num": 8, "time": 1749543684}
+{"process_memory_usage": 1995.62109375, "time": 1749543684}
+{"net_sent_rate": 0.55, "net_recv_rate": 1.61, "net_sent": 1575546556, "net_recv": 6697308388, "time": 1749543684}
+{"process_memory_usage": 1990.8203125, "time": 1749543685}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.0, "disk_read": 2609509468, "disk_write": 1351606972, "time": 1749543686}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749543686}
+{"process_memory_usage": 1991.4140625, "time": 1749543687}
+{"net_sent_rate": 0.35, "net_recv_rate": 3.64, "net_sent": 1576144993, "net_recv": 6701638359, "time": 1749543686}
+{"process_memory_usage": 1980.57421875, "time": 1749543688}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.03, "disk_read": 2609560544, "disk_write": 1351643365, "time": 1749543688}
+{"cpu_usage": 0.7875000000000001, "cpu_usage_all": 6.300000000000001, "cpu_core_num": 8, "time": 1749543688}
+{"process_memory_usage": 1980.0234375, "time": 1749543689}
+{"net_sent_rate": 0.07, "net_recv_rate": 0.51, "net_sent": 1576517980, "net_recv": 6708367103, "time": 1749543688}
+{"process_memory_usage": 1979.05078125, "time": 1749543690}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2609561480, "disk_write": 1351657934, "time": 1749543690}
+{"cpu_usage": 0.5875, "cpu_usage_all": 4.7, "cpu_core_num": 8, "time": 1749543690}
+{"process_memory_usage": 1979.2109375, "time": 1749543691}
+{"net_sent_rate": 0.16, "net_recv_rate": 0.49, "net_sent": 1576890922, "net_recv": 6710275757, "time": 1749543690}
+{"process_memory_usage": 1979.4765625, "time": 1749543692}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2609563132, "disk_write": 1351658882, "time": 1749543692}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749543692}
+{"process_memory_usage": 1978.4140625, "time": 1749543693}
+{"net_sent_rate": 0.25, "net_recv_rate": 0.16, "net_sent": 1577433812, "net_recv": 6710470374, "time": 1749543692}
+{"process_memory_usage": 1978.26171875, "time": 1749543694}
+{"disk_read_rate": 0, "disk_write_rate": 0.02, "disk_read": 2609564172, "disk_write": 1351675883, "time": 1749543694}
+{"cpu_usage": 0.9625, "cpu_usage_all": 7.7, "cpu_core_num": 8, "time": 1749543694}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"process_memory_usage": 1977.734375, "time": 1749543695}
+{"net_sent_rate": 0.09, "net_recv_rate": 0.01, "net_sent": 1577547313, "net_recv": 6711878860, "time": 1749543694}
+{"process_memory_usage": 1978.61328125, "time": 1749543696}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2609565200, "disk_write": 1351676207, "time": 1749543696}
+{"cpu_usage": 1.15, "cpu_usage_all": 9.2, "cpu_core_num": 8, "time": 1749543697}
+{"process_memory_usage": 1978.40234375, "time": 1749543697}
+{"net_sent_rate": 0.09, "net_recv_rate": 0.02, "net_sent": 1577649468, "net_recv": 6711912677, "time": 1749543696}
+{"process_memory_usage": 2003.6875, "time": 1749543698}
+{"disk_read_rate": 0.16, "disk_write_rate": 0.07, "disk_read": 2609737768, "disk_write": 1351751405, "time": 1749543698}
+{"cpu_usage": 3.4625000000000004, "cpu_usage_all": 27.700000000000003, "cpu_core_num": 8, "time": 1749543699}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577669905, "net_recv": 6711933811, "time": 1749543698}
+{"process_memory_usage": 2003.82421875, "time": 1749543699}
+{"process_memory_usage": 2006.5859375, "time": 1749543700}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.03, "disk_read": 2609827688, "disk_write": 1351813294, "time": 1749543700}
+{"cpu_usage": 2.7249999999999996, "cpu_usage_all": 21.799999999999997, "cpu_core_num": 8, "time": 1749543701}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1577697632, "net_recv": 6711970618, "time": 1749543700}
+{"process_memory_usage": 2008.10546875, "time": 1749543701}
+{"process_memory_usage": 1994.74609375, "time": 1749543702}
+{"disk_read_rate": 0.04, "disk_write_rate": 0.01, "disk_read": 2609896948, "disk_write": 1351832458, "time": 1749543702}
+{"cpu_usage": 2.2625, "cpu_usage_all": 18.1, "cpu_core_num": 8, "time": 1749543703}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577705072, "net_recv": 6711985916, "time": 1749543702}
+{"process_memory_usage": 1996.03125, "time": 1749543703}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.02, "disk_read": 2609927604, "disk_write": 1351864994, "time": 1749543704}
+{"process_memory_usage": 1995.71875, "time": 1749543704}
+{"cpu_usage": 3.65, "cpu_usage_all": 29.2, "cpu_core_num": 8, "time": 1749543705}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577713938, "net_recv": 6712008756, "time": 1749543704}
+{"process_memory_usage": 1992.40234375, "time": 1749543705}
+{"disk_read_rate": 0.03, "disk_write_rate": 0.01, "disk_read": 2610007792, "disk_write": 1351883742, "time": 1749543706}
+{"process_memory_usage": 1992.80078125, "time": 1749543706}
+{"cpu_usage": 2.7375, "cpu_usage_all": 21.9, "cpu_core_num": 8, "time": 1749543707}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1577729889, "net_recv": 6712027429, "time": 1749543706}
+{"process_memory_usage": 1993.01171875, "time": 1749543707}
+{"disk_read_rate": 0.06, "disk_write_rate": 0.01, "disk_read": 2610110888, "disk_write": 1351898147, "time": 1749543708}
+{"process_memory_usage": 1994.83203125, "time": 1749543708}
+{"cpu_usage": 2.7375000000000003, "cpu_usage_all": 21.900000000000002, "cpu_core_num": 8, "time": 1749543709}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1577751653, "net_recv": 6712050215, "time": 1749543708}
+{"process_memory_usage": 1995.1953125, "time": 1749543710}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2610135848, "disk_write": 1351928652, "time": 1749543710}
+{"process_memory_usage": 1995.390625, "time": 1749543711}
+{"cpu_usage": 1.75, "cpu_usage_all": 14.0, "cpu_core_num": 8, "time": 1749543711}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577759154, "net_recv": 6712070937, "time": 1749543710}
+{"process_memory_usage": 1997.3671875, "time": 1749543712}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.01, "disk_read": 2610256668, "disk_write": 1351944745, "time": 1749543712}
+{"process_memory_usage": 1994.828125, "time": 1749543713}
+{"cpu_usage": 1.5625, "cpu_usage_all": 12.5, "cpu_core_num": 8, "time": 1749543713}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1577769761, "net_recv": 6712094591, "time": 1749543712}
+{"process_memory_usage": 1995.3515625, "time": 1749543714}
+{"disk_read_rate": 0.13, "disk_write_rate": 0.04, "disk_read": 2610480180, "disk_write": 1352013226, "time": 1749543715}
+{"process_memory_usage": 2001.28515625, "time": 1749543715}
+{"cpu_usage": 3.6625, "cpu_usage_all": 29.3, "cpu_core_num": 8, "time": 1749543715}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577782587, "net_recv": 6712112037, "time": 1749543714}
+{"disk_read_rate": 0.16, "disk_write_rate": 0.03, "disk_read": 2610649252, "disk_write": 1352049556, "time": 1749543716}
+{"process_memory_usage": 2005.796875, "time": 1749543716}
+{"process_memory_usage": 2004.9609375, "time": 1749543717}
+{"cpu_usage": 5.375, "cpu_usage_all": 43.0, "cpu_core_num": 8, "time": 1749543717}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577791315, "net_recv": 6712131141, "time": 1749543716}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.02, "disk_read": 2610743448, "disk_write": 1352091644, "time": 1749543718}
+{"process_memory_usage": 1997.09765625, "time": 1749543718}
+{"process_memory_usage": 1996.6875, "time": 1749543719}
+{"cpu_usage": 3.65, "cpu_usage_all": 29.2, "cpu_core_num": 8, "time": 1749543719}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577800749, "net_recv": 6712141570, "time": 1749543718}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.05, "disk_read": 2610863480, "disk_write": 1352170205, "time": 1749543720}
+{"process_memory_usage": 1996.04296875, "time": 1749543720}
+{"process_memory_usage": 1994.87109375, "time": 1749543721}
+{"cpu_usage": 1.9124999999999999, "cpu_usage_all": 15.299999999999999, "cpu_core_num": 8, "time": 1749543721}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577808576, "net_recv": 6712153239, "time": 1749543720}
+{"disk_read_rate": 0.02, "disk_write_rate": 0.0, "disk_read": 2610912188, "disk_write": 1352185289, "time": 1749543722}
+{"process_memory_usage": 1993.60546875, "time": 1749543722}
+{"process_memory_usage": 1994.796875, "time": 1749543723}
+{"cpu_usage": 2.1500000000000004, "cpu_usage_all": 17.200000000000003, "cpu_core_num": 8, "time": 1749543723}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1577816849, "net_recv": 6712168243, "time": 1749543722}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.01, "disk_read": 2611018892, "disk_write": 1352208017, "time": 1749543724}
+{"process_memory_usage": 1994.66015625, "time": 1749543724}
+{"process_memory_usage": 1993.328125, "time": 1749543725}
+{"cpu_usage": 3.2624999999999997, "cpu_usage_all": 26.099999999999998, "cpu_core_num": 8, "time": 1749543725}
+{"net_sent_rate": 0.03, "net_recv_rate": 0.01, "net_sent": 1577853129, "net_recv": 6712190486, "time": 1749543724}
+{"disk_read_rate": 0.12, "disk_write_rate": 0.03, "disk_read": 2611191884, "disk_write": 1352244717, "time": 1749543726}
+{"process_memory_usage": 1995.203125, "time": 1749543726}
+{"process_memory_usage": 1995.57421875, "time": 1749543727}
+{"cpu_usage": 1.925, "cpu_usage_all": 15.4, "cpu_core_num": 8, "time": 1749543727}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577863421, "net_recv": 6712211863, "time": 1749543726}
+{"disk_read_rate": 0.09, "disk_write_rate": 0.01, "disk_read": 2611457064, "disk_write": 1352301096, "time": 1749543728}
+{"process_memory_usage": 1994.9453125, "time": 1749543728}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577867052, "net_recv": 6712219460, "time": 1749543728}
+{"process_memory_usage": 1994.375, "time": 1749543729}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749543729}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2611460136, "disk_write": 1352308836, "time": 1749543730}
+{"process_memory_usage": 1993.7109375, "time": 1749543730}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577872928, "net_recv": 6712233697, "time": 1749543730}
+{"process_memory_usage": 1994.92578125, "time": 1749543731}
+{"cpu_usage": 2.325, "cpu_usage_all": 18.6, "cpu_core_num": 8, "time": 1749543731}
+{"disk_read_rate": 0.04, "disk_write_rate": 0.01, "disk_read": 2611504092, "disk_write": 1352319566, "time": 1749543732}
+{"process_memory_usage": 1994.34765625, "time": 1749543732}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577880249, "net_recv": 6712251610, "time": 1749543732}
+{"process_memory_usage": 1993.453125, "time": 1749543734}
+{"cpu_usage": 2.2875, "cpu_usage_all": 18.3, "cpu_core_num": 8, "time": 1749543734}
+{"disk_read_rate": 0.06, "disk_write_rate": 0.02, "disk_read": 2611612252, "disk_write": 1352345387, "time": 1749543734}
+{"process_memory_usage": 1992.87109375, "time": 1749543735}
+{"cpu_usage": 4.075, "cpu_usage_all": 32.6, "cpu_core_num": 8, "time": 1749543735}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577887257, "net_recv": 6712278979, "time": 1749543734}
+{"process_memory_usage": 1992.41796875, "time": 1749543736}
+{"disk_read_rate": 0.03, "disk_write_rate": 0.01, "disk_read": 2611680804, "disk_write": 1352363005, "time": 1749543736}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577894742, "net_recv": 6712299333, "time": 1749543736}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749543737}
+{"process_memory_usage": 1992.29296875, "time": 1749543737}
+{"process_memory_usage": 1992.1015625, "time": 1749543738}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2611688576, "disk_write": 1352368804, "time": 1749543738}
+{"net_sent_rate": 0.03, "net_recv_rate": 0.01, "net_sent": 1577936313, "net_recv": 6712316851, "time": 1749543738}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749543739}
+{"process_memory_usage": 1992.05078125, "time": 1749543739}
+{"process_memory_usage": 1992.4609375, "time": 1749543740}
+{"disk_read_rate": 0.06, "disk_write_rate": 0.01, "disk_read": 2611753384, "disk_write": 1352384821, "time": 1749543740}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577942986, "net_recv": 6712331963, "time": 1749543740}
+{"cpu_usage": 1.5625, "cpu_usage_all": 12.5, "cpu_core_num": 8, "time": 1749543741}
+{"process_memory_usage": 1992.94140625, "time": 1749543741}
+{"process_memory_usage": 1994.07421875, "time": 1749543742}
+{"disk_read_rate": 0.11, "disk_write_rate": 0.01, "disk_read": 2611922396, "disk_write": 1352407562, "time": 1749543742}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577947741, "net_recv": 6712344223, "time": 1749543742}
+{"cpu_usage": 2.5375, "cpu_usage_all": 20.3, "cpu_core_num": 8, "time": 1749543743}
+{"process_memory_usage": 1994.8125, "time": 1749543743}
+{"process_memory_usage": 1995.375, "time": 1749543744}
+{"disk_read_rate": 0.13, "disk_write_rate": 0.03, "disk_read": 2612155428, "disk_write": 1352459431, "time": 1749543744}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577955983, "net_recv": 6712361208, "time": 1749543744}
+{"cpu_usage": 3.275, "cpu_usage_all": 26.2, "cpu_core_num": 8, "time": 1749543745}
+{"process_memory_usage": 1995.015625, "time": 1749543745}
+{"process_memory_usage": 1994.9765625, "time": 1749543746}
+{"disk_read_rate": 0.09, "disk_write_rate": 0.02, "disk_read": 2612296932, "disk_write": 1352479837, "time": 1749543746}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577961566, "net_recv": 6712374314, "time": 1749543746}
+{"cpu_usage": 0.1875, "cpu_usage_all": 1.5, "cpu_core_num": 8, "time": 1749543747}
+{"process_memory_usage": 1994.90625, "time": 1749543747}
+{"disk_read_rate": 0.1, "disk_write_rate": 0.01, "disk_read": 2612399352, "disk_write": 1352490065, "time": 1749543748}
+{"process_memory_usage": 1996.28125, "time": 1749543748}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577967322, "net_recv": 6712396218, "time": 1749543748}
+{"cpu_usage": 1.375, "cpu_usage_all": 11.0, "cpu_core_num": 8, "time": 1749543749}
+{"process_memory_usage": 1997.1171875, "time": 1749543749}
+{"disk_read_rate": 0.17, "disk_write_rate": 0.03, "disk_read": 2612610952, "disk_write": 1352545786, "time": 1749543750}
+{"process_memory_usage": 1999.38671875, "time": 1749543750}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577975150, "net_recv": 6712413501, "time": 1749543750}
+{"cpu_usage": 4.0375, "cpu_usage_all": 32.3, "cpu_core_num": 8, "time": 1749543751}
+{"process_memory_usage": 1999.86328125, "time": 1749543751}
+{"disk_read_rate": 0.04, "disk_write_rate": 0.01, "disk_read": 2612722300, "disk_write": 1352560727, "time": 1749543752}
+{"process_memory_usage": 2001.078125, "time": 1749543752}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577980191, "net_recv": 6712426336, "time": 1749543752}
+{"cpu_usage": 1.1625, "cpu_usage_all": 9.3, "cpu_core_num": 8, "time": 1749543753}
+{"process_memory_usage": 2000.84765625, "time": 1749543753}
+{"disk_read_rate": 0.02, "disk_write_rate": 0.02, "disk_read": 2612770580, "disk_write": 1352600892, "time": 1749543754}
+{"process_memory_usage": 2001.0625, "time": 1749543754}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1577985701, "net_recv": 6712438822, "time": 1749543754}
+{"cpu_usage": 1.5125, "cpu_usage_all": 12.1, "cpu_core_num": 8, "time": 1749543755}
+{"process_memory_usage": 2001.80078125, "time": 1749543755}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.04, "disk_read": 2612823036, "disk_write": 1352642810, "time": 1749543756}
+{"process_memory_usage": 2008.703125, "time": 1749543756}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.02, "net_sent": 1578001638, "net_recv": 6712464528, "time": 1749543756}
+{"cpu_usage": 11.9375, "cpu_usage_all": 95.5, "cpu_core_num": 8, "time": 1749543757}
+{"process_memory_usage": 2025.30078125, "time": 1749543758}
+{"disk_read_rate": 0.4, "disk_write_rate": 0.35, "disk_read": 2613592844, "disk_write": 1353110290, "time": 1749543759}
+{"process_memory_usage": 2029.578125, "time": 1749543759}
+{"net_sent_rate": 0.02, "net_recv_rate": 0.15, "net_sent": 1578031163, "net_recv": 6712638968, "time": 1749543758}
+{"cpu_usage": 2.1125, "cpu_usage_all": 16.9, "cpu_core_num": 8, "time": 1749543759}
+{"process_memory_usage": 2030.1953125, "time": 1749543760}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.0, "disk_read": 2613653892, "disk_write": 1353165341, "time": 1749543761}
+{"process_memory_usage": 2029.5, "time": 1749543761}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1578053683, "net_recv": 6712668214, "time": 1749543760}
+{"cpu_usage": 1.9500000000000002, "cpu_usage_all": 15.600000000000001, "cpu_core_num": 8, "time": 1749543761}
+{"process_memory_usage": 2023.203125, "time": 1749543762}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.04, "disk_read": 2613734464, "disk_write": 1353217596, "time": 1749543763}
+{"process_memory_usage": 2023.66015625, "time": 1749543763}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1578062058, "net_recv": 6712685128, "time": 1749543762}
+{"cpu_usage": 2.925, "cpu_usage_all": 23.4, "cpu_core_num": 8, "time": 1749543763}
+{"process_memory_usage": 1307.4375, "time": 1749543764}
+{"disk_read_rate": 0.18, "disk_write_rate": 0.05, "disk_read": 2614086064, "disk_write": 1353320029, "time": 1749543765}
+{"process_memory_usage": 1311.9453125, "time": 1749543765}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578070005, "net_recv": 6712703030, "time": 1749543764}
+{"cpu_usage": 3.425, "cpu_usage_all": 27.4, "cpu_core_num": 8, "time": 1749543765}
+{"process_memory_usage": 1362.91015625, "time": 1749543766}
+{"disk_read_rate": 0.19, "disk_write_rate": 0.06, "disk_read": 2614465636, "disk_write": 1353417166, "time": 1749543767}
+{"process_memory_usage": 1431.859375, "time": 1749543767}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578077759, "net_recv": 6712718253, "time": 1749543766}
+{"cpu_usage": 6.5249999999999995, "cpu_usage_all": 52.199999999999996, "cpu_core_num": 8, "time": 1749543767}
+{"process_memory_usage": 1427.62890625, "time": 1749543768}
+{"disk_read_rate": 0.07, "disk_write_rate": 0.05, "disk_read": 2614772692, "disk_write": 1353524503, "time": 1749543769}
+{"process_memory_usage": 1428.58984375, "time": 1749543769}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578095969, "net_recv": 6712739697, "time": 1749543768}
+{"cpu_usage": 4.225, "cpu_usage_all": 33.8, "cpu_core_num": 8, "time": 1749543770}
+{"process_memory_usage": 1427.06640625, "time": 1749543770}
+{"cpu_usage": 2.3, "cpu_usage_all": 18.4, "cpu_core_num": 8, "time": 1749543771}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.01, "disk_read": 2615024484, "disk_write": 1353586525, "time": 1749543771}
+{"process_memory_usage": 1427.08984375, "time": 1749543771}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1578128827, "net_recv": 6712752673, "time": 1749543770}
+{"process_memory_usage": 1427.22265625, "time": 1749543772}
+{"cpu_usage": 1.35, "cpu_usage_all": 10.8, "cpu_core_num": 8, "time": 1749543773}
+{"disk_read_rate": 0.03, "disk_write_rate": 0.01, "disk_read": 2615065152, "disk_write": 1353605864, "time": 1749543773}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1578136437, "net_recv": 6712767948, "time": 1749543772}
+{"process_memory_usage": 1420.328125, "time": 1749543773}
+{"process_memory_usage": 1418.1015625, "time": 1749543774}
+{"cpu_usage": 3.125, "cpu_usage_all": 25.0, "cpu_core_num": 8, "time": 1749543775}
+{"disk_read_rate": 0.04, "disk_write_rate": 0.02, "disk_read": 2615110040, "disk_write": 1353649322, "time": 1749543775}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1578150873, "net_recv": 6712786619, "time": 1749543774}
+{"process_memory_usage": 1416.9140625, "time": 1749543775}
+{"process_memory_usage": 2012.17578125, "time": 1749543776}
+{"cpu_usage": 2.2625, "cpu_usage_all": 18.1, "cpu_core_num": 8, "time": 1749543777}
+{"disk_read_rate": 0.11, "disk_write_rate": 0.04, "disk_read": 2615276076, "disk_write": 1353705018, "time": 1749543777}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1578160775, "net_recv": 6712807960, "time": 1749543776}
+{"process_memory_usage": 2020.890625, "time": 1749543777}
+{"process_memory_usage": 2020.13671875, "time": 1749543778}
+{"cpu_usage": 1.9125, "cpu_usage_all": 15.3, "cpu_core_num": 8, "time": 1749543779}
+{"disk_read_rate": 0.0, "disk_write_rate": 0.03, "disk_read": 2615284036, "disk_write": 1353739787, "time": 1749543779}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1578173477, "net_recv": 6712821967, "time": 1749543778}
+{"process_memory_usage": 2020.98828125, "time": 1749543779}
+{"process_memory_usage": 2018.5859375, "time": 1749543780}
+{"cpu_usage": 9.212499999999999, "cpu_usage_all": 73.69999999999999, "cpu_core_num": 8, "time": 1749543781}
+{"disk_read_rate": 0.34, "disk_write_rate": 0.27, "disk_read": 2615855924, "disk_write": 1354085028, "time": 1749543781}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578183813, "net_recv": 6712846111, "time": 1749543780}
+{"process_memory_usage": 2021.57421875, "time": 1749543782}
+{"process_memory_usage": 2019.2578125, "time": 1749543783}
+{"cpu_usage": 11.725, "cpu_usage_all": 93.8, "cpu_core_num": 8, "time": 1749543783}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.0, "disk_read": 2616039384, "disk_write": 1354105970, "time": 1749543783}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578189955, "net_recv": 6712861240, "time": 1749543782}
+{"process_memory_usage": 2017.3125, "time": 1749543784}
+{"process_memory_usage": 2017.125, "time": 1749543785}
+{"cpu_usage": 9.7875, "cpu_usage_all": 78.3, "cpu_core_num": 8, "time": 1749543785}
+{"disk_read_rate": 0.02, "disk_write_rate": 0, "disk_read": 2616092432, "disk_write": 1354106771, "time": 1749543785}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1578199780, "net_recv": 6712873999, "time": 1749543784}
+{"process_memory_usage": 2013.87890625, "time": 1749543786}
+{"cpu_usage": 1.5374999999999999, "cpu_usage_all": 12.299999999999999, "cpu_core_num": 8, "time": 1749543787}
+{"process_memory_usage": 2014.31640625, "time": 1749543787}
+{"disk_read_rate": 0.04, "disk_write_rate": 0.02, "disk_read": 2616148188, "disk_write": 1354134114, "time": 1749543787}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578217870, "net_recv": 6712890388, "time": 1749543786}
+{"process_memory_usage": 2008.9609375, "time": 1749543788}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578221958, "net_recv": 6712896041, "time": 1749543788}
+{"cpu_usage": 0.4, "cpu_usage_all": 3.2, "cpu_core_num": 8, "time": 1749543789}
+{"process_memory_usage": 2001.90234375, "time": 1749543789}
+{"disk_read_rate": 0, "disk_write_rate": 0.0, "disk_read": 2616149228, "disk_write": 1354139420, "time": 1749543789}
+{"process_memory_usage": 1999.625, "time": 1749543790}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578227921, "net_recv": 6712907697, "time": 1749543790}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749543791}
+{"process_memory_usage": 1999.63671875, "time": 1749543791}
+{"disk_read_rate": 0.0, "disk_write_rate": 0, "disk_read": 2616150892, "disk_write": 1354140252, "time": 1749543791}
+{"process_memory_usage": 2014.14453125, "time": 1749543792}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578233528, "net_recv": 6712920837, "time": 1749543792}
+{"disk_read_rate": 0.02, "disk_write_rate": 0.08, "disk_read": 2616310284, "disk_write": 1354368512, "time": 1749543793}
+{"cpu_usage": 1.5375, "cpu_usage_all": 12.3, "cpu_core_num": 8, "time": 1749543793}
+{"process_memory_usage": 2016.49609375, "time": 1749543794}
+{"process_memory_usage": 2017.15625, "time": 1749543795}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578243556, "net_recv": 6712939800, "time": 1749543794}
+{"disk_read_rate": 0.0, "disk_write_rate": 0.03, "disk_read": 2616320796, "disk_write": 1354497428, "time": 1749543795}
+{"cpu_usage": 1.9249999999999998, "cpu_usage_all": 15.399999999999999, "cpu_core_num": 8, "time": 1749543796}
+{"process_memory_usage": 2015.0546875, "time": 1749543796}
+{"cpu_usage": 0.5625, "cpu_usage_all": 4.5, "cpu_core_num": 8, "time": 1749543797}
+{"process_memory_usage": 2012.76171875, "time": 1749543797}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578257576, "net_recv": 6712956741, "time": 1749543796}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616324888, "disk_write": 1354575856, "time": 1749543798}
+{"process_memory_usage": 2009.7890625, "time": 1749543798}
+{"cpu_usage": 0.3875, "cpu_usage_all": 3.1, "cpu_core_num": 8, "time": 1749543799}
+{"process_memory_usage": 2009.28515625, "time": 1749543799}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1578274986, "net_recv": 6712970835, "time": 1749543798}
+{"disk_read_rate": 0, "disk_write_rate": 0.01, "disk_read": 2616325928, "disk_write": 1354586333, "time": 1749543800}
+{"process_memory_usage": 1995.2734375, "time": 1749543800}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749543801}
+{"process_memory_usage": 1995.2109375, "time": 1749543801}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578281112, "net_recv": 6712987574, "time": 1749543800}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616327488, "disk_write": 1354587165, "time": 1749543802}
+{"process_memory_usage": 1992.25, "time": 1749543802}
+{"cpu_usage": 0.7625, "cpu_usage_all": 6.1, "cpu_core_num": 8, "time": 1749543803}
+{"process_memory_usage": 1981.66796875, "time": 1749543803}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1578285553, "net_recv": 6712995094, "time": 1749543802}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616338188, "disk_write": 1354594341, "time": 1749543804}
+{"process_memory_usage": 1981.50390625, "time": 1749543804}
+{"cpu_usage": 2.325, "cpu_usage_all": 18.6, "cpu_core_num": 8, "time": 1749543805}
+{"process_memory_usage": 1980.4140625, "time": 1749543805}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578294527, "net_recv": 6713012113, "time": 1749543804}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.0, "disk_read": 2616348964, "disk_write": 1354608193, "time": 1749543806}
+{"process_memory_usage": 1980.19921875, "time": 1749543806}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749543807}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578300712, "net_recv": 6713029731, "time": 1749543806}
+{"process_memory_usage": 1980.16015625, "time": 1749543807}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616350096, "disk_write": 1354608517, "time": 1749543808}
+{"process_memory_usage": 1980.1640625, "time": 1749543808}
+{"cpu_usage": 1.5625, "cpu_usage_all": 12.5, "cpu_core_num": 8, "time": 1749543809}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578305655, "net_recv": 6713050059, "time": 1749543808}
+{"process_memory_usage": 1980.7578125, "time": 1749543809}
+{"disk_read_rate": 0, "disk_write_rate": 0.01, "disk_read": 2616351032, "disk_write": 1354623549, "time": 1749543810}
+{"process_memory_usage": 1980.01171875, "time": 1749543810}
+{"cpu_usage": 1.375, "cpu_usage_all": 11.0, "cpu_core_num": 8, "time": 1749543811}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.03, "net_sent": 1578322809, "net_recv": 6713095995, "time": 1749543810}
+{"process_memory_usage": 1980.03515625, "time": 1749543811}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616370584, "disk_write": 1354625399, "time": 1749543812}
+{"process_memory_usage": 1980.84765625, "time": 1749543812}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749543813}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578343526, "net_recv": 6713129694, "time": 1749543812}
+{"process_memory_usage": 1980.73828125, "time": 1749543813}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616371612, "disk_write": 1354625723, "time": 1749543814}
+{"process_memory_usage": 1981.36328125, "time": 1749543815}
+定期任务执行时间：检查是否有漏杀死monitor进程
+check kill 43888
+Stopping task handle and subprocesses... 43888
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749543815}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578348927, "net_recv": 6713147530, "time": 1749543814}
+{"process_memory_usage": 1655.89453125, "time": 1749543816}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616378860, "disk_write": 1354644027, "time": 1749543816}
+{"process_memory_usage": 1652.640625, "time": 1749543817}
+{"cpu_usage": 0.0, "cpu_usage_all": 0.0, "cpu_core_num": 8, "time": 1749543817}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578354680, "net_recv": 6713165502, "time": 1749543816}
+{"process_memory_usage": 1652.52734375, "time": 1749543818}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616379992, "disk_write": 1354644351, "time": 1749543818}
+{"process_memory_usage": 1652.85546875, "time": 1749543819}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749543819}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578360498, "net_recv": 6713181617, "time": 1749543818}
+{"disk_read_rate": 0.1, "disk_write_rate": 0.1, "disk_read": 2616489364, "disk_write": 1354766584, "time": 1749543820}
+{"process_memory_usage": 1672.53515625, "time": 1749543820}
+{"process_memory_usage": 1672.48046875, "time": 1749543821}
+{"cpu_usage": 1.925, "cpu_usage_all": 15.4, "cpu_core_num": 8, "time": 1749543821}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578390007, "net_recv": 6713220284, "time": 1749543820}
+{"disk_read_rate": 0.0, "disk_write_rate": 0.07, "disk_read": 2616500276, "disk_write": 1354923256, "time": 1749543822}
+{"process_memory_usage": 1673.3671875, "time": 1749543822}
+{"process_memory_usage": 1674.58984375, "time": 1749543823}
+{"cpu_usage": 1.3125, "cpu_usage_all": 10.5, "cpu_core_num": 8, "time": 1749543823}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1578395462, "net_recv": 6713230034, "time": 1749543822}
+{"disk_read_rate": 0.0, "disk_write_rate": 0.1, "disk_read": 2616508656, "disk_write": 1355106901, "time": 1749543824}
+{"process_memory_usage": 1674.32421875, "time": 1749543824}
+{"process_memory_usage": 1994.50390625, "time": 1749543825}
+{"cpu_usage": 1.1875, "cpu_usage_all": 9.5, "cpu_core_num": 8, "time": 1749543825}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578402259, "net_recv": 6713242997, "time": 1749543824}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616509592, "disk_write": 1355107317, "time": 1749543826}
+{"process_memory_usage": 1993.67578125, "time": 1749543826}
+{"process_memory_usage": 2008.82421875, "time": 1749543827}
+{"cpu_usage": 4.0375, "cpu_usage_all": 32.3, "cpu_core_num": 8, "time": 1749543827}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578408150, "net_recv": 6713256086, "time": 1749543826}
+{"disk_read_rate": 0.0, "disk_write_rate": 0.07, "disk_read": 2616817841, "disk_write": 1355349795, "time": 1749543828}
+{"process_memory_usage": 2004.453125, "time": 1749543828}
+{"process_memory_usage": 2005.5390625, "time": 1749543829}
+{"cpu_usage": 1.5125, "cpu_usage_all": 12.1, "cpu_core_num": 8, "time": 1749543829}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578428356, "net_recv": 6713273142, "time": 1749543829}
+{"disk_read_rate": 0.05, "disk_write_rate": 0.12, "disk_read": 2616872321, "disk_write": 1355582273, "time": 1749543830}
+{"process_memory_usage": 2005.90234375, "time": 1749543830}
+{"process_memory_usage": 2003.859375, "time": 1749543831}
+{"cpu_usage": 0.775, "cpu_usage_all": 6.2, "cpu_core_num": 8, "time": 1749543831}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578435979, "net_recv": 6713288076, "time": 1749543831}
+{"disk_read_rate": 0.0, "disk_write_rate": 0, "disk_read": 2616876613, "disk_write": 1355618981, "time": 1749543832}
+{"process_memory_usage": 1999.41796875, "time": 1749543832}
+{"process_memory_usage": 1998.54296875, "time": 1749543833}
+{"cpu_usage": 0.2, "cpu_usage_all": 1.6, "cpu_core_num": 8, "time": 1749543834}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1578442817, "net_recv": 6713306568, "time": 1749543833}
+{"disk_read_rate": 0, "disk_write_rate": 0.03, "disk_read": 2616877549, "disk_write": 1355646484, "time": 1749543834}
+{"process_memory_usage": 1998.18359375, "time": 1749543834}
+{"process_memory_usage": 1993.48828125, "time": 1749543836}
+{"cpu_usage": 0.9375, "cpu_usage_all": 7.5, "cpu_core_num": 8, "time": 1749543836}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578449423, "net_recv": 6713323752, "time": 1749543835}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.0, "disk_read": 2616884101, "disk_write": 1355650332, "time": 1749543837}
+{"process_memory_usage": 1982.99609375, "time": 1749543837}
+{"cpu_usage": 1.3375, "cpu_usage_all": 10.7, "cpu_core_num": 8, "time": 1749543838}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578455832, "net_recv": 6713346226, "time": 1749543837}
+{"process_memory_usage": 1979.37890625, "time": 1749543838}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 2616888977, "disk_write": 1355653584, "time": 1749543839}
+{"process_memory_usage": 1979.72265625, "time": 1749543839}
+{"cpu_usage": 0.575, "cpu_usage_all": 4.6, "cpu_core_num": 8, "time": 1749543840}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1578460984, "net_recv": 6713363653, "time": 1749543839}
+{"process_memory_usage": 1979.390625, "time": 1749543840}
+{"disk_read_rate": 0.01, "disk_write_rate": 0.0, "disk_read": 2616900105, "disk_write": 1355686854, "time": 1749543841}
+{"process_memory_usage": 1979.9921875, "time": 1749543841}
+{"cpu_usage": 9.8125, "cpu_usage_all": 78.5, "cpu_core_num": 8, "time": 1749543842}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1578464852, "net_recv": 6713372575, "time": 1749543841}
+{"process_memory_usage": 1979.765625, "time": 1749543842}
+{"disk_read_rate": 0.0, "disk_write_rate": 0.0, "disk_read": 2616904565, "disk_write": 1355688426, "time": 1749543843}
+{"process_memory_usage": 1979.9453125, "time": 1749543843}
+Stopping task handle and subprocesses... 9492
+开始导出Excel报表: 任务ID=6
+获取任务信息成功: 任务-2025-06-10-16-20-37, 路径: E:\WorkArea\pc_perf\test_result\6
+获取任务数据成功: 7 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-16-20-37
+处理数据类型: cpu, 数据点数量: 185
+处理数据类型: disk_io, 数据点数量: 185
+处理数据类型: fps, 数据点数量: 185
+处理数据类型: gpu, 数据点数量: 185
+处理数据类型: memory, 数据点数量: 185
+处理数据类型: network_io, 数据点数量: 185
+处理数据类型: process_info, 数据点数量: 185
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数', '磁盘读取速率(MB/s)', '磁盘写入速率(MB/s)', '网络发送速率(MB/s)', '网络接收速率(MB/s)']
+数据行写入完成，共 185 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\6\excel_reports\任务-2025-06-10-16-20-37_16时24分06秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\6\excel_reports\任务-2025-06-10-16-20-37_16时24分06秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\6\excel_reports\任务-2025-06-10-16-20-37_16时24分06秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-16-20-37_16时24分06秒_性能数据报告.xlsx
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+本设备gpu获取不适配
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+工作空间E:\WorkArea\pc_perf
+{"platform": "Windows", "computer_name": "DESKTOP-TVN62NL", "time": 1749544820.50807, "cpu_cores": 8, "ram": "15G", "rom": "316G"}
+join task handle
+工作空间E:\WorkArea\pc_perf
+db path E:\WorkArea\pc_perf\task.sqlite
+current path E:\WorkArea\pc_perf
+本设备gpu获取不适配
+join task handle run
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590562988, "net_recv": 6724144293, "time": 1749544827}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.02, "net_sent": 1590577702, "net_recv": 6724169916, "time": 1749544829}
+{"process_memory_usage": 4718.46484375, "time": 1749544831}
+{"disk_read_rate": 0.02, "disk_write_rate": 0, "disk_read": 358044299, "disk_write": 6548725, "time": 1749544831}
+{"process_memory_usage": 4718.46484375, "time": 1749544832}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590583482, "net_recv": 6724186757, "time": 1749544831}
+{"cpu_usage": 7.9625, "cpu_usage_all": 63.7, "cpu_core_num": 8, "time": 1749544832}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590592185, "net_recv": 6724209188, "time": 1749544833}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590594542, "net_recv": 6724218036, "time": 1749544835}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 358044391, "disk_write": 6548841, "time": 1749544837}
+{"process_memory_usage": 4703.33203125, "time": 1749544837}
+{"process_memory_usage": 4703.33203125, "time": 1749544837}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.02, "net_sent": 1590604728, "net_recv": 6724251381, "time": 1749544837}
+{"cpu_usage": 4.9875, "cpu_usage_all": 39.9, "cpu_core_num": 8, "time": 1749544838}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590615128, "net_recv": 6724270762, "time": 1749544839}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1590630328, "net_recv": 6724297517, "time": 1749544841}
+{"disk_read_rate": 0.02, "disk_write_rate": 0, "disk_read": 358061457, "disk_write": 6548957, "time": 1749544842}
+{"process_memory_usage": 4688.890625, "time": 1749544842}
+{"process_memory_usage": 4688.890625, "time": 1749544842}
+{"cpu_usage": 6.5125, "cpu_usage_all": 52.1, "cpu_core_num": 8, "time": 1749544843}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590638456, "net_recv": 6724314001, "time": 1749544843}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590646897, "net_recv": 6724338131, "time": 1749544845}
+{"disk_read_rate": 0.0, "disk_write_rate": 0, "disk_read": 358064548, "disk_write": 6549073, "time": 1749544847}
+{"process_memory_usage": 4680.1171875, "time": 1749544847}
+{"process_memory_usage": 4680.1171875, "time": 1749544847}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590655329, "net_recv": 6724362937, "time": 1749544847}
+{"cpu_usage": 5.775, "cpu_usage_all": 46.2, "cpu_core_num": 8, "time": 1749544848}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.02, "net_sent": 1590664929, "net_recv": 6724390051, "time": 1749544849}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590673121, "net_recv": 6724406942, "time": 1749544851}
+{"disk_read_rate": 0.17, "disk_write_rate": 0, "disk_read": 358244236, "disk_write": 6549189, "time": 1749544852}
+{"process_memory_usage": 4419.00390625, "time": 1749544852}
+{"process_memory_usage": 4461.00390625, "time": 1749544852}
+{"cpu_usage": 4.65, "cpu_usage_all": 37.2, "cpu_core_num": 8, "time": 1749544853}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590679872, "net_recv": 6724423855, "time": 1749544853}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.05, "net_sent": 1590693789, "net_recv": 6724492642, "time": 1749544855}
+{"disk_read_rate": 1.24, "disk_write_rate": 0.0, "disk_read": 359548978, "disk_write": 6553545, "time": 1749544857}
+{"process_memory_usage": 4598.5703125, "time": 1749544857}
+{"process_memory_usage": 4600.09765625, "time": 1749544857}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590706570, "net_recv": 6724520785, "time": 1749544857}
+{"cpu_usage": 23.75, "cpu_usage_all": 190.0, "cpu_core_num": 8, "time": 1749544858}
+{"net_sent_rate": 0.02, "net_recv_rate": 0.02, "net_sent": 1590737570, "net_recv": 6724606550, "time": 1749544859}
+{"net_sent_rate": 0.02, "net_recv_rate": 0.18, "net_sent": 1590762599, "net_recv": 6724800555, "time": 1749544861}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 359549070, "disk_write": 6553661, "time": 1749544862}
+{"process_memory_usage": 4733.1796875, "time": 1749544862}
+{"process_memory_usage": 4842.65625, "time": 1749544862}
+{"cpu_usage": 14.162500000000001, "cpu_usage_all": 113.30000000000001, "cpu_core_num": 8, "time": 1749544863}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590768209, "net_recv": 6724814349, "time": 1749544863}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1590790896, "net_recv": 6724838254, "time": 1749544865}
+{"disk_read_rate": 0.0, "disk_write_rate": 0, "disk_read": 359553112, "disk_write": 6553777, "time": 1749544867}
+{"process_memory_usage": 4866.32421875, "time": 1749544867}
+{"process_memory_usage": 4866.32421875, "time": 1749544867}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590794816, "net_recv": 6724858919, "time": 1749544867}
+{"cpu_usage": 10.975, "cpu_usage_all": 87.8, "cpu_core_num": 8, "time": 1749544868}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590802171, "net_recv": 6724881463, "time": 1749544869}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590833500, "net_recv": 6724896181, "time": 1749544871}
+{"disk_read_rate": 0.02, "disk_write_rate": 0, "disk_read": 359577930, "disk_write": 6553893, "time": 1749544872}
+{"process_memory_usage": 4865.58203125, "time": 1749544872}
+{"process_memory_usage": 4872.45703125, "time": 1749544872}
+{"cpu_usage": 4.2625, "cpu_usage_all": 34.1, "cpu_core_num": 8, "time": 1749544873}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1590840327, "net_recv": 6724909792, "time": 1749544873}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590846646, "net_recv": 6724921820, "time": 1749544875}
+{"disk_read_rate": 0.03, "disk_write_rate": 0, "disk_read": 359612258, "disk_write": 6554009, "time": 1749544877}
+{"process_memory_usage": 4867.78125, "time": 1749544877}
+{"process_memory_usage": 4867.78125, "time": 1749544877}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590852748, "net_recv": 6724934004, "time": 1749544877}
+{"cpu_usage": 11.687499999999998, "cpu_usage_all": 93.49999999999999, "cpu_core_num": 8, "time": 1749544878}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590863887, "net_recv": 6724949927, "time": 1749544879}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590869432, "net_recv": 6724967665, "time": 1749544881}
+{"disk_read_rate": 0.05, "disk_write_rate": 0, "disk_read": 359663704, "disk_write": 6554125, "time": 1749544882}
+{"process_memory_usage": 4870.97265625, "time": 1749544882}
+{"process_memory_usage": 4871.30859375, "time": 1749544883}
+{"cpu_usage": 13.424999999999999, "cpu_usage_all": 107.39999999999999, "cpu_core_num": 8, "time": 1749544883}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590876169, "net_recv": 6724982878, "time": 1749544883}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1590885652, "net_recv": 6724998871, "time": 1749544885}
+{"disk_read_rate": 0.08, "disk_write_rate": 0, "disk_read": 359745591, "disk_write": 6554241, "time": 1749544887}
+{"process_memory_usage": 4625.30859375, "time": 1749544887}
+{"process_memory_usage": 4625.31640625, "time": 1749544888}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590891887, "net_recv": 6725011516, "time": 1749544887}
+{"cpu_usage": 6.5625, "cpu_usage_all": 52.5, "cpu_core_num": 8, "time": 1749544888}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590898522, "net_recv": 6725025119, "time": 1749544889}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590904666, "net_recv": 6725044258, "time": 1749544891}
+{"disk_read_rate": 0.01, "disk_write_rate": 0, "disk_read": 359760899, "disk_write": 6554357, "time": 1749544893}
+{"process_memory_usage": 4612.15234375, "time": 1749544893}
+{"process_memory_usage": 4612.15625, "time": 1749544893}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590908978, "net_recv": 6725053364, "time": 1749544893}
+{"cpu_usage": 12.149999999999999, "cpu_usage_all": 97.19999999999999, "cpu_core_num": 8, "time": 1749544894}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590914806, "net_recv": 6725067290, "time": 1749544895}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590921964, "net_recv": 6725082916, "time": 1749544897}
+{"disk_read_rate": 0.05, "disk_write_rate": 0, "disk_read": 359808541, "disk_write": 6554473, "time": 1749544898}
+{"process_memory_usage": 4613.21875, "time": 1749544898}
+{"process_memory_usage": 4613.21875, "time": 1749544898}
+{"cpu_usage": 13.9625, "cpu_usage_all": 111.7, "cpu_core_num": 8, "time": 1749544899}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590934670, "net_recv": 6725110559, "time": 1749544899}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.02, "net_sent": 1590954343, "net_recv": 6725150526, "time": 1749544901}
+{"disk_read_rate": 0.04, "disk_write_rate": 0, "disk_read": 359852379, "disk_write": 6554589, "time": 1749544903}
+{"process_memory_usage": 4627.31640625, "time": 1749544903}
+{"process_memory_usage": 4627.31640625, "time": 1749544903}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590961747, "net_recv": 6725172636, "time": 1749544903}
+{"cpu_usage": 6.0, "cpu_usage_all": 48.0, "cpu_core_num": 8, "time": 1749544904}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590970251, "net_recv": 6725194312, "time": 1749544905}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590976690, "net_recv": 6725208800, "time": 1749544907}
+{"disk_read_rate": 0.02, "disk_write_rate": 0, "disk_read": 359872646, "disk_write": 6554705, "time": 1749544908}
+{"process_memory_usage": 4641.28515625, "time": 1749544908}
+{"process_memory_usage": 4641.7109375, "time": 1749544908}
+{"cpu_usage": 9.6875, "cpu_usage_all": 77.5, "cpu_core_num": 8, "time": 1749544909}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1590987817, "net_recv": 6725228933, "time": 1749544909}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590993535, "net_recv": 6725240274, "time": 1749544911}
+{"disk_read_rate": 0.03, "disk_write_rate": 0, "disk_read": 359908876, "disk_write": 6554821, "time": 1749544913}
+{"process_memory_usage": 4635.5859375, "time": 1749544913}
+{"process_memory_usage": 4635.5859375, "time": 1749544913}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1590999919, "net_recv": 6725254269, "time": 1749544913}
+{"cpu_usage": 15.5625, "cpu_usage_all": 124.5, "cpu_core_num": 8, "time": 1749544914}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1591005855, "net_recv": 6725268172, "time": 1749544915}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591011723, "net_recv": 6725278842, "time": 1749544917}
+{"disk_read_rate": 0.06, "disk_write_rate": 0, "disk_read": 359974316, "disk_write": 6554937, "time": 1749544918}
+{"process_memory_usage": 4643.734375, "time": 1749544918}
+{"process_memory_usage": 4643.234375, "time": 1749544918}
+{"cpu_usage": 5.250000000000001, "cpu_usage_all": 42.00000000000001, "cpu_core_num": 8, "time": 1749544919}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1591022182, "net_recv": 6725298416, "time": 1749544919}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591045981, "net_recv": 6725327913, "time": 1749544921}
+{"disk_read_rate": 0.03, "disk_write_rate": 0, "disk_read": 360007122, "disk_write": 6555053, "time": 1749544923}
+{"process_memory_usage": 4723.5, "time": 1749544923}
+{"process_memory_usage": 4723.5703125, "time": 1749544923}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591055030, "net_recv": 6725350038, "time": 1749544923}
+{"cpu_usage": 10.762500000000001, "cpu_usage_all": 86.10000000000001, "cpu_core_num": 8, "time": 1749544924}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1591089427, "net_recv": 6725383049, "time": 1749544925}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.13, "net_sent": 1591105243, "net_recv": 6725530552, "time": 1749544927}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 360007214, "disk_write": 6555169, "time": 1749544928}
+{"process_memory_usage": 4663.87890625, "time": 1749544928}
+{"process_memory_usage": 4663.87890625, "time": 1749544928}
+{"cpu_usage": 12.799999999999999, "cpu_usage_all": 102.39999999999999, "cpu_core_num": 8, "time": 1749544929}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 360007214, "disk_write": 6555169, "time": 1749544929}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591111099, "net_recv": 6725546290, "time": 1749544929}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591115960, "net_recv": 6725560705, "time": 1749544931}
+{"process_memory_usage": 4684.8125, "time": 1749544933}
+{"process_memory_usage": 4684.828125, "time": 1749544933}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591121096, "net_recv": 6725576880, "time": 1749544933}
+{"cpu_usage": 9.325, "cpu_usage_all": 74.6, "cpu_core_num": 8, "time": 1749544934}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591127922, "net_recv": 6725594338, "time": 1749544935}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591133200, "net_recv": 6725611913, "time": 1749544937}
+{"disk_read_rate": 0.02, "disk_write_rate": 0, "disk_read": 360181746, "disk_write": 6555401, "time": 1749544938}
+{"process_memory_usage": 4685.83984375, "time": 1749544938}
+{"process_memory_usage": 4687.72265625, "time": 1749544938}
+{"cpu_usage": 7.375000000000001, "cpu_usage_all": 59.00000000000001, "cpu_core_num": 8, "time": 1749544939}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1591143300, "net_recv": 6725623625, "time": 1749544939}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591148268, "net_recv": 6725635647, "time": 1749544941}
+{"disk_read_rate": 0.02, "disk_write_rate": 0, "disk_read": 360198005, "disk_write": 6555517, "time": 1749544943}
+{"process_memory_usage": 4680.9296875, "time": 1749544943}
+{"process_memory_usage": 4680.9296875, "time": 1749544943}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591154584, "net_recv": 6725648781, "time": 1749544943}
+{"cpu_usage": 7.75, "cpu_usage_all": 62.0, "cpu_core_num": 8, "time": 1749544944}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.0, "net_sent": 1591159245, "net_recv": 6725658510, "time": 1749544945}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1591168206, "net_recv": 6725670661, "time": 1749544947}
+{"disk_read_rate": 0.2, "disk_write_rate": 0, "disk_read": 360404642, "disk_write": 6555633, "time": 1749544948}
+{"process_memory_usage": 4688.91796875, "time": 1749544948}
+{"process_memory_usage": 4688.91796875, "time": 1749544948}
+{"cpu_usage": 16.3375, "cpu_usage_all": 130.7, "cpu_core_num": 8, "time": 1749544949}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591173339, "net_recv": 6725680371, "time": 1749544949}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591181344, "net_recv": 6725694006, "time": 1749544951}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 360404734, "disk_write": 6555749, "time": 1749544953}
+{"process_memory_usage": 4703.4609375, "time": 1749544953}
+{"process_memory_usage": 4703.57421875, "time": 1749544954}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591186819, "net_recv": 6725705076, "time": 1749544953}
+{"disk_read_rate": 0, "disk_write_rate": 0, "disk_read": 360404734, "disk_write": 6555749, "time": 1749544954}
+{"cpu_usage": 25.025000000000002, "cpu_usage_all": 200.20000000000002, "cpu_core_num": 8, "time": 1749544954}
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591194032, "net_recv": 6725722144, "time": 1749544955}
+{"net_sent_rate": 0.0, "net_recv_rate": 0.01, "net_sent": 1591201320, "net_recv": 6725740080, "time": 1749544957}
+{"process_memory_usage": 4675.63671875, "time": 1749544959}
+{"process_memory_usage": 4675.63671875, "time": 1749544959}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1591209337, "net_recv": 6725752366, "time": 1749544959}
+{"cpu_usage": 17.2125, "cpu_usage_all": 137.7, "cpu_core_num": 8, "time": 1749544960}
+{"net_sent_rate": 0.01, "net_recv_rate": 0.01, "net_sent": 1591224209, "net_recv": 6725776867, "time": 1749544961}
+Stopping task handle and subprocesses... 14632
+开始导出Excel报表: 任务ID=7
+获取任务信息成功: 任务-2025-06-10-16-40-20, 路径: E:\WorkArea\pc_perf\test_result\7
+获取任务数据成功: 7 个数据系列
+开始创建Excel报表，任务名称: 任务-2025-06-10-16-40-20
+处理数据类型: cpu, 数据点数量: 135
+处理数据类型: disk_io, 数据点数量: 135
+处理数据类型: fps, 数据点数量: 135
+处理数据类型: gpu, 数据点数量: 158
+处理数据类型: memory, 数据点数量: 157
+处理数据类型: network_io, 数据点数量: 135
+处理数据类型: process_info, 数据点数量: 135
+表头: ['时间', 'CPU使用率(%)', 'CPU总使用率(%)', '内存使用量(MB)', 'FPS(帧)', 'GPU使用率(%)', '线程数', '句柄数', '磁盘读取速率(MB/s)', '磁盘写入速率(MB/s)', '网络发送速率(MB/s)', '网络接收速率(MB/s)']
+数据行写入完成，共 135 行
+基本数据保存成功: E:\WorkArea\pc_perf\test_result\7\excel_reports\任务-2025-06-10-16-40-20_16时42分45秒_性能数据报告.xlsx
+统计信息添加完成
+所有图表添加成功
+Excel报表创建完成: E:\WorkArea\pc_perf\test_result\7\excel_reports\任务-2025-06-10-16-40-20_16时42分45秒_性能数据报告.xlsx
+Excel报表生成成功: E:\WorkArea\pc_perf\test_result\7\excel_reports\任务-2025-06-10-16-40-20_16时42分45秒_性能数据报告.xlsx
+返回文件下载响应: 任务-2025-06-10-16-40-20_16时42分45秒_性能数据报告.xlsx
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end
+定期任务执行时间：检查是否有漏杀死monitor进程
+定期任务执行时间：检查是否有漏杀死monitor进程end

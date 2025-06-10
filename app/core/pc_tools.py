@@ -12,6 +12,9 @@ from pathlib import Path
 from app.log import log as logger
 from app.core.monitor import Monitor
 
+# 定义常量
+MB_CONVERSION = 1024 * 1024
+
 SUPPORT_GPU = True
 try:
     pynvml.nvmlInit()
@@ -358,6 +361,93 @@ async def process_info(pid, include_child=False):
     return res
 
 
+async def disk_io(pid, include_child=False):
+    """监控进程的磁盘I/O指标"""
+    process = psutil.Process(int(pid))
+    # 获取初始IO计数
+    try:
+        # 获取主进程的IO计数器
+        get_main_io = asyncio.to_thread(process.io_counters)
+        prev_io = await get_main_io
+        prev_disk_read = prev_io.read_bytes
+        prev_disk_write = prev_io.write_bytes
+        
+        # 休眠一小段时间以计算速率
+        await asyncio.sleep(1)
+        
+        # 获取更新后的IO计数器
+        current_io = await asyncio.to_thread(process.io_counters)
+        disk_read = current_io.read_bytes
+        disk_write = current_io.write_bytes
+        
+        # 计算磁盘I/O速率，增加最小检测阈值
+        disk_read_rate = max(0, (disk_read - prev_disk_read) / MB_CONVERSION) 
+        disk_write_rate = max(0, (disk_write - prev_disk_write) / MB_CONVERSION)
+        
+        # 忽略小于1KB的读写操作
+        if disk_read_rate < 0.001:  # 约1KB/s
+            disk_read_rate = 0
+        if disk_write_rate < 0.001:
+            disk_write_rate = 0
+            
+        res = {
+            "disk_read_rate": round(disk_read_rate, 2),  # MB/s
+            "disk_write_rate": round(disk_write_rate, 2),  # MB/s
+            "disk_read": disk_read,  # 总读取字节数
+            "disk_write": disk_write,  # 总写入字节数
+            "time": int(time.time())
+        }
+        
+        logger.info(json.dumps(res))
+        return res
+    except (psutil.AccessDenied, AttributeError) as e:
+        logger.error(f"获取磁盘I/O数据失败: {str(e)}")
+        return {"disk_read_rate": 0, "disk_write_rate": 0, "time": int(time.time())}
+
+
+async def network_io(pid, include_child=False):
+    """监控进程的网络I/O指标"""
+    start_time = int(time.time())
+    
+    try:
+        # 获取初始网络计数
+        net_io = psutil.net_io_counters()
+        prev_net_sent = net_io.bytes_sent
+        prev_net_recv = net_io.bytes_recv
+        
+        # 休眠一小段时间以计算速率
+        await asyncio.sleep(1)
+        
+        # 获取更新后的网络计数
+        current_net_io = psutil.net_io_counters()
+        net_sent = current_net_io.bytes_sent
+        net_recv = current_net_io.bytes_recv
+        
+        # 计算网络IO速率
+        net_sent_rate = max(0, (net_sent - prev_net_sent) / MB_CONVERSION)
+        net_recv_rate = max(0, (net_recv - prev_net_recv) / MB_CONVERSION)
+        
+        # 忽略小于1KB的网络传输
+        if net_sent_rate < 0.001:
+            net_sent_rate = 0
+        if net_recv_rate < 0.001:
+            net_recv_rate = 0
+            
+        res = {
+            "net_sent_rate": round(net_sent_rate, 2),  # MB/s
+            "net_recv_rate": round(net_recv_rate, 2),  # MB/s
+            "net_sent": net_sent,  # 总发送字节数
+            "net_recv": net_recv,  # 总接收字节数
+            "time": start_time
+        }
+        
+        logger.info(json.dumps(res))
+        return res
+    except Exception as e:
+        logger.error(f"获取网络I/O数据失败: {str(e)}")
+        return {"net_sent_rate": 0, "net_recv_rate": 0, "time": start_time}
+
+
 async def perf(pid, save_dir, include_child):
     monitors = {
         "cpu": Monitor(cpu,
@@ -380,6 +470,14 @@ async def perf(pid, save_dir, include_child):
                        pid=pid,
                        key_value=["time", "gpu(%)"],
                        save_dir=save_dir, include_child=include_child),
+        "disk_io": Monitor(disk_io,
+                          pid=pid,
+                          key_value=["time", "disk_read_rate(MB/s)", "disk_write_rate(MB/s)", "disk_read(字节)", "disk_write(字节)"],
+                          save_dir=save_dir, include_child=include_child),
+        "network_io": Monitor(network_io,
+                             pid=pid,
+                             key_value=["time", "net_sent_rate(MB/s)", "net_recv_rate(MB/s)", "net_sent(字节)", "net_recv(字节)"],
+                             save_dir=save_dir, include_child=include_child),
         "screenshot": Monitor(screenshot,
                               pid=pid,
                               save_dir=save_dir, is_out=False, include_child=include_child)

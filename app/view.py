@@ -8,13 +8,14 @@ import traceback
 from pathlib import Path
 from fastapi import FastAPI
 from starlette.requests import Request
-from starlette.responses import JSONResponse, RedirectResponse
+from starlette.responses import JSONResponse, RedirectResponse, FileResponse
 from starlette.staticfiles import StaticFiles
 from app.core.pc_tools import sys_info, pids, screenshot, process_tree
 from app.database import TaskCollection
 from app.log import log as logger
 from app.task_handle import TaskHandle
 from app.util import DataCollect
+from app.excel_report import create_excel_report
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = FastAPI()
@@ -140,6 +141,47 @@ async def delete_task(request: Request, task_id: int):
 async def change_task_name(request: Request, task_id: int, new_name: str):
     item_task = await TaskCollection.change_task_name(task_id, new_name)
     return JSONResponse(content=ResultBean(msg="修改任务名称为：" + item_task.get("name")))
+
+
+@app.get("/export_excel/")
+async def export_excel(request: Request, task_id: int):
+    """导出Excel格式的性能报表"""
+    try:
+        # 记录开始导出
+        logger.info(f"开始导出Excel报表: 任务ID={task_id}")
+        
+        # 获取任务信息
+        item_task = await TaskCollection.get_item_task(task_id)
+        logger.info(f"获取任务信息成功: {item_task.get('name')}, 路径: {item_task.get('file_dir')}")
+        
+        # 获取任务数据
+        result = await DataCollect(item_task.get("file_dir")).get_all_data()
+        logger.info(f"获取任务数据成功: {len(result)} 个数据系列")
+        
+        # 生成Excel报表
+        file_path = create_excel_report(
+            item_task.get("name") or f"任务{task_id}", 
+            result, 
+            item_task.get("file_dir")
+        )
+        logger.info(f"Excel报表生成成功: {file_path}")
+        
+        # 检查文件是否存在
+        if not os.path.exists(file_path):
+            logger.error(f"生成的Excel报表文件不存在: {file_path}")
+            return JSONResponse(content=ResultBean(code=500, msg=f"生成的Excel报表文件不存在"))
+            
+        # 返回文件下载响应
+        logger.info(f"返回文件下载响应: {os.path.basename(file_path)}")
+        return FileResponse(
+            path=file_path,
+            filename=os.path.basename(file_path),
+            media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+    except Exception as e:
+        logger.error(f"导出Excel报表失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"导出Excel报表失败: {str(e)}"))
 
 
 @app.on_event("startup")

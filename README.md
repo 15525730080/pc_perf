@@ -1,5 +1,6 @@
 # pc_perf
 
+tips： python版本建议安装3.7以上
 PC进程性能测试平台，支持 windows / mac / linux 平台普通进程、window游戏GUI进程的、应用级别多进程的性能监控。
 cpu、memory、fps（仅支持windowsOpenGL DirectX 引擎应用 unity u3d应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示
 
@@ -52,3 +53,24 @@ engine application Unity u3d application), GPU, thread_num, handle_num, etc
 本项目归属：范博洲
 联系我：f15525730080（微信号）
 使用需要关注开源协议
+
+# PC性能监控平台
+
+PC性能监控平台是一个跨平台的性能监控工具，支持Windows、Linux和macOS系统，可以监控应用程序的CPU、内存、GPU、FPS等性能指标。
+
+## 功能特点
+
+- **多平台支持**：支持Windows、Linux、macOS
+- **GPU监控**：支持NVIDIA GPU监控
+- **性能监控指标**：
+  - CPU使用率
+  - 内存使用情况
+  - GPU使用率
+  - FPS (仅限Windows)
+  - 线程数
+  - 句柄数
+  - 磁盘I/O速率（读取/写入）
+  - 网络I/O速率（发送/接收）
+- **数据导出**：支持CSV和Excel格式导出
+- **趋势分析**：提供图表可视化
+- **远程监控**：通过Web界面支持远程监控

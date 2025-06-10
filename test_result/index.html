@@ -220,6 +220,9 @@
                                            @click="result(scope.row.id);curtaskid=scope.row.id;"
                                            style="margin-left: 0;">查看
                                 </el-button>
+                                <el-button type="success" size="mini" v-if="scope.row.status==2"
+                                           @click="exportExcel(scope.row.id)" style="margin-left: 0;">导出Excel
+                                </el-button>
                                 <el-button type="danger" size="mini" v-if="scope.row.status==1"
                                            @click="stop_task(scope.row.id)" style="margin-left: 0;">停止
                                 </el-button>
@@ -377,6 +380,18 @@
                 <div id="processInfoChart" class="echarts-chart"></div>
 
             </div>
+            
+            <!-- 添加磁盘I/O图表容器 -->
+            <div class="chart-container">
+                <div class="chart-title">磁盘I/O监控</div>
+                <div id="diskIOChart" class="echarts-chart"></div>
+            </div>
+            
+            <!-- 添加网络I/O图表容器 -->
+            <div class="chart-container">
+                <div class="chart-title">网络I/O监控</div>
+                <div id="networkIOChart" class="echarts-chart"></div>
+            </div>
 
         </div>
     </el-dialog>
@@ -420,6 +435,8 @@
                     children: 'child_p',
                     label: 'name'
                 },
+                diskIOChart: null,
+                networkIOChart: null,
                 };
         },
         methods: {
@@ -674,6 +691,10 @@
 				    let memoryList = []
 				    let numThreadList = []
 				    let numHandlesList = []
+                    let diskReadRateList = []
+                    let diskWriteRateList = []
+                    let netSentRateList = []
+                    let netRecvRateList = []
 				    x.value.forEach(v=>{
 				        if (x.name == "cpu"){
 				            cpuList.push((v["cpu_usage(%)"]||v["cpu_usage(%)"]===0)?v["cpu_usage(%)"]:"-")
@@ -697,7 +718,16 @@
 				            numThreadList.push(v["num_threads(个)"]||v["num_threads(个)"]===0?v["num_threads(个)"]:"-")
 				            timeList.push(v["time"]?v["time"]:"-")
                            
-				        }
+				        }else if(x.name == "disk_io"){
+                            diskReadRateList.push(v["disk_read_rate(MB/s)"]||v["disk_read_rate(MB/s)"]===0?v["disk_read_rate(MB/s)"]:"-")
+                            diskWriteRateList.push(v["disk_write_rate(MB/s)"]||v["disk_write_rate(MB/s)"]===0?v["disk_write_rate(MB/s)"]:"-")
+                            timeList.push(v["time"]?v["time"]:"-")
+                           
+                        }else if(x.name == "network_io"){
+                            netSentRateList.push(v["net_sent_rate(MB/s)"]||v["net_sent_rate(MB/s)"]===0?v["net_sent_rate(MB/s)"]:"-")
+                            netRecvRateList.push(v["net_recv_rate(MB/s)"]||v["net_recv_rate(MB/s)"]===0?v["net_recv_rate(MB/s)"]:"-")
+                            timeList.push(v["time"]?v["time"]:"-")
+                        }
                     
 				    })
 
@@ -774,7 +804,45 @@
                                 }
 				            )
 
-				        }
+				        }else if(x.name == "disk_io"){
+                            tempOption_tmp.series.push(
+                                {
+                                    name: '磁盘读取速率(MB/s)',
+                                    type: 'line',
+                                    data: diskReadRateList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+                            )
+                            tempOption_tmp.series.push(
+                                {
+                                    name: '磁盘写入速率(MB/s)',
+                                    type: 'line',
+                                    data: diskWriteRateList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+                            )
+                        }else if(x.name == "network_io"){
+                            tempOption_tmp.series.push(
+                                {
+                                    name: '网络发送速率(MB/s)',
+                                    type: 'line',
+                                    data: netSentRateList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+                            )
+                            tempOption_tmp.series.push(
+                                {
+                                    name: '网络接收速率(MB/s)',
+                                    type: 'line',
+                                    data: netRecvRateList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+                            )
+                        }
 				})
 				this.resultOption = allRes
             },
@@ -795,16 +863,22 @@
                     this.fpsChart = echarts.init(document.getElementById('fpsChart'));
                     this.gpuChart = echarts.init(document.getElementById('gpuChart'));
                     this.processInfoChart = echarts.init(document.getElementById('processInfoChart'));
+                    this.diskIOChart = echarts.init(document.getElementById('diskIOChart'));
+                    this.networkIOChart = echarts.init(document.getElementById('networkIOChart'));
                     this.cpuChart.setOption(allRes["cpu"]);
                     this.memoryChart.setOption(allRes["memory"]);
                     this.fpsChart.setOption(allRes["fps"]);
                     this.gpuChart.setOption(allRes["gpu"]);  
-                    this.processInfoChart.setOption(allRes["process_info"]);  
-                    this.syncDataZoom(this.cpuChart, [this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart]);
-                    this.syncDataZoom(this.memoryChart, [this.cpuChart, this.fpsChart, this.gpuChart, this.processInfoChart]);
-                    this.syncDataZoom(this.fpsChart, [this.cpuChart, this.memoryChart, this.gpuChart, this.processInfoChart]);
-                    this.syncDataZoom(this.gpuChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.processInfoChart]);
-                    this.syncDataZoom(this.processInfoChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart]);
+                    this.processInfoChart.setOption(allRes["process_info"]);
+                    this.diskIOChart.setOption(allRes["disk_io"]);
+                    this.networkIOChart.setOption(allRes["network_io"]);
+                    this.syncDataZoom(this.cpuChart, [this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.memoryChart, [this.cpuChart, this.fpsChart, this.gpuChart, this.processInfoChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.fpsChart, [this.cpuChart, this.memoryChart, this.gpuChart, this.processInfoChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.gpuChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.processInfoChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.processInfoChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.diskIOChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart, this.networkIOChart]);
+                    this.syncDataZoom(this.networkIOChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart, this.diskIOChart]);
                     
                 });
                 this.intervalId = setInterval(() => {
@@ -854,10 +928,29 @@
                 this.memoryChart.setOption(allRes["memory"]);
                 this.fpsChart.setOption(allRes["fps"]);
                 this.gpuChart.setOption(allRes["gpu"]);  
-                this.processInfoChart.setOption(allRes["process_info"]);  
+                this.processInfoChart.setOption(allRes["process_info"]);
+                this.diskIOChart.setOption(allRes["disk_io"]);
+                this.networkIOChart.setOption(allRes["network_io"]);
                 this.isloadres = false
+            },
+            async exportExcel(taskId) {
+                // 实现导出Excel的功能
+                console.log("导出Excel", taskId);
+                try {
+                    // 直接使用window.open打开下载链接
+                    window.open(`/export_excel/?task_id=${taskId}`, '_blank');
+                    this.$message({
+                        message: '正在导出Excel报表...',
+                        type: 'success'
+                    });
+                } catch (error) {
+                    console.error('导出Excel报表失败:', error);
+                    this.$message({
+                        message: '导出Excel报表失败',
+                        type: 'error'
+                    });
+                }
             }
-
         },
         async mounted(){
             await this.getAllTask();
