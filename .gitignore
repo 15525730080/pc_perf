@@ -1,5 +1,6 @@
 /test_result/
 /pcperfenv39/
 
-log.log
 task.sqlite
+app/__pycache__/excel_report.cpython-39.pyc
+log.log
