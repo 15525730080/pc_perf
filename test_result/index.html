@@ -109,7 +109,7 @@
         .chart-container {
             width: 50%; /* 占满容器宽度 */
             max-width: 100%; /* 防止宽度超过容器 */
-            height: 400px; /* 默认高度 */
+            height: 500px; /* 默认高度 */
             margin-bottom: 20px; /* 图表之间的间距 */
             background-color: #ffffff; /* 背景颜色 */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
@@ -328,7 +328,7 @@
     </el-container>
     <el-dialog
             :visible.sync="dialogVisible"
-            width="80%"
+            width="95%"
             @open="handleDialogVisibleChange"
             @closed="clearInterval(intervalId);"
             @destroy-on-close="true"
@@ -352,13 +352,13 @@
 
             <div class="chart-container">
                 <div class="chart-title">
-                    CPU 使用率
+                    CPU
                 </div>
                 <div id="cpuChart" class="echarts-chart"></div>
 
             </div>
             <div class="chart-container">
-                <div class="chart-title">内存使用量</div>
+                <div class="chart-title">Memory</div>
                 <div id="memoryChart" class="echarts-chart"></div>
 
             </div>
@@ -368,12 +368,12 @@
 
             </div>
             <div class="chart-container">
-                <div class="chart-title">GPU 使用率</div>
+                <div class="chart-title">GPU</div>
                 <div id="gpuChart" class="echarts-chart"></div>
 
             </div>
             <div class="chart-container">
-                <div class="chart-title">线程数与句柄数</div>
+                <div class="chart-title">Threads Num&Handles Num</div>
                 <div id="processInfoChart" class="echarts-chart"></div>
 
             </div>
