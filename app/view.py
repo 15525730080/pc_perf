@@ -184,6 +184,270 @@ async def export_excel(request: Request, task_id: int):
         return JSONResponse(content=ResultBean(code=500, msg=f"导出Excel报表失败: {str(e)}"))
 
 
+@app.get("/set_task_version/")
+async def set_task_version(request: Request, task_id: int, version: str):
+    """设置任务的版本信息"""
+    try:
+        task = await TaskCollection.set_task_version(task_id, version)
+        return JSONResponse(content=ResultBean(msg=f"已设置任务 {task_id} 的版本为 {version}"))
+    except Exception as e:
+        logger.error(f"设置任务版本失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"设置任务版本失败: {str(e)}"))
+
+
+@app.get("/set_task_baseline/")
+async def set_task_baseline(request: Request, task_id: int, is_baseline: bool = True):
+    """设置任务为基线版本"""
+    try:
+        task = await TaskCollection.set_task_baseline(task_id, is_baseline)
+        status = "基线" if is_baseline else "非基线"
+        return JSONResponse(content=ResultBean(msg=f"已设置任务 {task_id} 为{status}版本"))
+    except Exception as e:
+        logger.error(f"设置任务基线状态失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"设置任务基线状态失败: {str(e)}"))
+
+
+@app.get("/get_baseline_task/")
+async def get_baseline_task(request: Request):
+    """获取基线任务信息"""
+    try:
+        task = await TaskCollection.get_baseline_task()
+        if task:
+            return JSONResponse(content=ResultBean(msg=task))
+        else:
+            return JSONResponse(content=ResultBean(msg=None, code=404))
+    except Exception as e:
+        logger.error(f"获取基线任务信息失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"获取基线任务信息失败: {str(e)}"))
+
+
+@app.get("/compare_tasks/")
+async def compare_tasks(request: Request, task_ids: str, base_task_id: int = None):
+    """比较多个任务的性能数据"""
+    try:
+        from app.comparison import TaskComparison
+        
+        task_id_list = [int(task_id.strip()) for task_id in task_ids.split(",")]
+        
+        if not task_id_list:
+            return JSONResponse(content=ResultBean(code=400, msg="未提供有效的任务ID"))
+            
+        comparison_data = await TaskComparison.create_comparison(task_id_list, base_task_id)
+        return JSONResponse(content=ResultBean(msg=comparison_data))
+    except Exception as e:
+        logger.error(f"对比任务失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"对比任务失败: {str(e)}"))
+
+
+@app.get("/export_comparison_excel/")
+async def export_comparison_excel(request: Request, task_ids: str, base_task_id: int = None, report_name: str = None):
+    """导出对比Excel报表"""
+    try:
+        from app.comparison import TaskComparison
+        from app.comparison_report import create_comparison_excel
+        from app.database import ComparisonReportCollection
+        
+        # 解析任务ID列表
+        task_id_list = [int(task_id.strip()) for task_id in task_ids.split(",")]
+        
+        if not task_id_list:
+            return JSONResponse(content=ResultBean(code=400, msg="未提供有效的任务ID"))
+        
+        # 获取对比数据
+        comparison_data = await TaskComparison.create_comparison(task_id_list, base_task_id)
+        
+        # 生成Excel报表
+        if not report_name:
+            report_name = f"性能对比报告_{time.strftime('%Y%m%d_%H%M%S')}"
+            
+        file_path = await create_comparison_excel(comparison_data, report_name)
+        
+        # 保存对比报告记录
+        report = await ComparisonReportCollection.create_report(
+            name=report_name,
+            task_ids=task_id_list,
+            base_task_id=base_task_id or task_id_list[0],
+            description=f"对比任务: {', '.join(str(tid) for tid in task_id_list)}"
+        )
+        
+        # 更新报告路径
+        await ComparisonReportCollection.update_report(report["id"], report_path=file_path)
+        
+        # 返回文件下载响应
+        return FileResponse(
+            path=file_path,
+            filename=os.path.basename(file_path),
+            media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+    except Exception as e:
+        logger.error(f"导出对比报表失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"导出对比报表失败: {str(e)}"))
+
+
+@app.get("/get_comparison_reports/")
+async def get_comparison_reports(request: Request):
+    """获取所有对比报告"""
+    try:
+        from app.database import ComparisonReportCollection
+        reports = await ComparisonReportCollection.get_all_reports()
+        return JSONResponse(content=ResultBean(msg=reports))
+    except Exception as e:
+        logger.error(f"获取对比报告列表失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"获取对比报告列表失败: {str(e)}"))
+
+
+@app.get("/delete_comparison_report/")
+async def delete_comparison_report(request: Request, report_id: int):
+    """删除对比报告"""
+    try:
+        from app.database import ComparisonReportCollection
+        report = await ComparisonReportCollection.delete_report(report_id)
+        
+        # 如果存在报告文件，删除文件
+        if report and "report_path" in report and report["report_path"]:
+            try:
+                if os.path.exists(report["report_path"]):
+                    os.remove(report["report_path"])
+            except Exception as e:
+                logger.error(f"删除对比报告文件失败: {str(e)}")
+        
+        return JSONResponse(content=ResultBean(msg="对比报告已删除"))
+    except Exception as e:
+        logger.error(f"删除对比报告失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"删除对比报告失败: {str(e)}"))
+
+
+@app.get("/advanced_compare_tasks/")
+async def advanced_compare_tasks(request: Request, task_ids: str, base_task_id: int = None):
+    """使用高级分析对比多个任务的性能数据"""
+    try:
+        from app.comparison import TaskComparison
+        from app.advanced_analysis import AdvancedAnalyzer
+        
+        task_id_list = [int(task_id.strip()) for task_id in task_ids.split(",")]
+        
+        if not task_id_list:
+            return JSONResponse(content=ResultBean(code=400, msg="未提供有效的任务ID"))
+            
+        if base_task_id is None and len(task_id_list) > 0:
+            base_task_id = task_id_list[0]
+        
+        # 创建基本对比
+        comparison_data = await TaskComparison.create_comparison(task_id_list, base_task_id)
+        
+        # 只能对两个任务进行高级分析
+        if len(task_id_list) != 2 and base_task_id not in task_id_list:
+            return JSONResponse(content=ResultBean(code=400, msg="高级分析需要两个任务：一个基准任务和一个对比任务"))
+        
+        # 如果是多任务对比，选择第一个非基准任务作为对比任务
+        comp_task_id = next((tid for tid in task_id_list if tid != base_task_id), None)
+        if not comp_task_id:
+            return JSONResponse(content=ResultBean(code=400, msg="需要至少一个非基准任务进行对比"))
+        
+        # 获取任务数据
+        base_task = await TaskCollection.get_item_task(base_task_id)
+        comp_task = await TaskCollection.get_item_task(comp_task_id)
+        
+        base_data = await DataCollect(base_task.get("file_dir")).get_all_data()
+        comp_data = await DataCollect(comp_task.get("file_dir")).get_all_data()
+        
+        # 进行高级分析
+        advanced_results = await AdvancedAnalyzer.analyze_tasks(
+            {"task_id": base_task_id, "name": base_task.get("name"), "data": base_data}, 
+            {"task_id": comp_task_id, "name": comp_task.get("name"), "data": comp_data}
+        )
+        
+        # 合并结果
+        comparison_data["advanced_analysis"] = advanced_results
+        
+        return JSONResponse(content=ResultBean(msg=comparison_data))
+    except Exception as e:
+        logger.error(f"高级对比分析失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"高级对比分析失败: {str(e)}"))
+
+
+@app.get("/export_advanced_comparison_excel/")
+async def export_advanced_comparison_excel(request: Request, task_ids: str, base_task_id: int = None, report_name: str = None):
+    """导出高级对比Excel报表"""
+    try:
+        from app.comparison import TaskComparison
+        from app.comparison_report import create_comparison_excel
+        from app.advanced_analysis import AdvancedAnalyzer
+        from app.database import ComparisonReportCollection
+        
+        # 解析任务ID列表
+        task_id_list = [int(task_id.strip()) for task_id in task_ids.split(",")]
+        
+        if not task_id_list:
+            return JSONResponse(content=ResultBean(code=400, msg="未提供有效的任务ID"))
+        
+        if len(task_id_list) != 2 and base_task_id not in task_id_list:
+            return JSONResponse(content=ResultBean(code=400, msg="高级分析需要两个任务：一个基准任务和一个对比任务"))
+        
+        if base_task_id is None:
+            base_task_id = task_id_list[0]
+        
+        # 如果是多任务对比，选择第一个非基准任务作为对比任务
+        comp_task_id = next((tid for tid in task_id_list if tid != base_task_id), None)
+        if not comp_task_id:
+            return JSONResponse(content=ResultBean(code=400, msg="需要至少一个非基准任务进行对比"))
+        
+        # 获取任务数据
+        base_task = await TaskCollection.get_item_task(base_task_id)
+        comp_task = await TaskCollection.get_item_task(comp_task_id)
+        
+        base_data = await DataCollect(base_task.get("file_dir")).get_all_data()
+        comp_data = await DataCollect(comp_task.get("file_dir")).get_all_data()
+        
+        # 创建基本对比
+        comparison_data = await TaskComparison.create_comparison([base_task_id, comp_task_id], base_task_id)
+        
+        # 进行高级分析
+        advanced_results = await AdvancedAnalyzer.analyze_tasks(
+            {"task_id": base_task_id, "name": base_task.get("name"), "data": base_data}, 
+            {"task_id": comp_task_id, "name": comp_task.get("name"), "data": comp_data}
+        )
+        
+        # 合并结果
+        comparison_data["advanced_analysis"] = advanced_results
+        
+        # 生成Excel报表
+        if not report_name:
+            report_name = f"高级性能对比报告_{time.strftime('%Y%m%d_%H%M%S')}"
+            
+        file_path = await create_comparison_excel(comparison_data, report_name)
+        
+        # 保存对比报告记录
+        report = await ComparisonReportCollection.create_report(
+            name=report_name,
+            task_ids=[base_task_id, comp_task_id],
+            base_task_id=base_task_id,
+            description=f"高级对比报告: 基准任务 {base_task_id} vs 对比任务 {comp_task_id}"
+        )
+        
+        # 更新报告路径
+        await ComparisonReportCollection.update_report(report["id"], report_path=file_path)
+        
+        # 返回文件下载响应
+        return FileResponse(
+            path=file_path,
+            filename=os.path.basename(file_path),
+            media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+    except Exception as e:
+        logger.error(f"导出高级对比报表失败: {str(e)}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(content=ResultBean(code=500, msg=f"导出高级对比报表失败: {str(e)}"))
+
+
 @app.on_event("startup")
 async def app_start():
     scheduler.add_job(check_stop_task_monitor_pid_close, 'interval', seconds=60)
