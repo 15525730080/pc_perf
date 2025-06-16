@@ -178,9 +178,6 @@
                 <el-menu-item index="3" class="task-button" @click="switchView('compareTask')">
                     <h3>对比任务</h3>
                 </el-menu-item>
-                <el-menu-item index="4" class="task-button" @click="switchView('advancedAnalysis')">
-                    <h3>高级分析</h3>
-                </el-menu-item>
                 <el-menu-item index="5" class="task-button" @click="switchView('reportManagement')">
                     <h3>报告管理</h3>
                 </el-menu-item>
@@ -302,53 +299,6 @@
                                 
                                 <div style="margin-top: 20px;">
                                     <el-button type="primary" @click="compareTasks" :disabled="selectedTasksForCompare.length < 2">开始对比</el-button>
-                                    <el-button @click="selectedTasksForCompare = []">清除选择</el-button>
-                                </div>
-                            </div>
-                        </el-card>
-                    </div>
-                            </template>
-                
-                <!-- 高级分析视图 -->
-                <template v-else-if="currentView === 'advancedAnalysis'">
-                    <div class="advanced-analysis-container">
-                        <h2>高级性能分析</h2>
-                        
-                        <el-card class="box-card">
-                            <div slot="header" class="clearfix">
-                                <span>选择要分析的任务（选择两个任务进行对比分析）</span>
-                            </div>
-                            <el-table
-                                :data="tasks"
-                                style="width: 100%"
-                                @selection-change="selectedTasksForCompare = $event">
-                                <el-table-column
-                                    type="selection"
-                                    width="55">
-                        </el-table-column>
-                                <el-table-column prop="name" label="任务名称"></el-table-column>
-                                <el-table-column prop="version" label="版本"></el-table-column>
-                                <el-table-column prop="target_pid_name" label="进程名称"></el-table-column>
-                    </el-table>
-                            
-                            <div style="margin-top: 20px;">
-                                <el-divider></el-divider>
-                                <p>已选择 {{ selectedTasksForCompare.length }} 个任务</p>
-                                
-                                <div v-if="selectedTasksForCompare.length === 2">
-                                    <p>选择基准任务:</p>
-                                    <el-select v-model="baseTaskId" placeholder="请选择基准任务">
-                                        <el-option
-                                            v-for="task in selectedTasksForCompare"
-                                            :key="task.id"
-                                            :label="`${task.name} ${task.version ? '('+task.version+')' : ''}`"
-                                            :value="task.id">
-                                        </el-option>
-                                    </el-select>
-                                </div>
-                                
-                                <div style="margin-top: 20px;">
-                                    <el-button type="primary" @click="performAdvancedAnalysis" :disabled="selectedTasksForCompare.length !== 2">开始高级分析</el-button>
                                     <el-button @click="selectedTasksForCompare = []">清除选择</el-button>
                                 </div>
                             </div>
@@ -1784,8 +1734,8 @@
             },
             
             async exportComparisonExcel() {
-                if (!this.comparisonResult) {
-                    this.$message.error('请先进行任务对比');
+                if (this.selectedTasksForCompare.length < 2) {
+                    this.$message.error('请至少选择两个任务进行对比');
                     return;
                 }
                 
