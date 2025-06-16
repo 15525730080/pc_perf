@@ -83,9 +83,9 @@ class AdvancedAnalyzer:
             analysis_results["performance_stability"][metric["key"]] = {
                 "base": base_stability,
                 "compare": comp_stability,
-                "improved": comp_stability["coefficient_of_variation"] < base_stability["coefficient_of_variation"]
+                "improved": bool(comp_stability["coefficient_of_variation"] < base_stability["coefficient_of_variation"]
                     if metric["key"] not in ["fps"] else  # 对于FPS，值越大越好
-                    comp_stability["coefficient_of_variation"] > base_stability["coefficient_of_variation"]
+                    comp_stability["coefficient_of_variation"] > base_stability["coefficient_of_variation"])
             }
         
         # 5. 性能瓶颈分析
@@ -167,8 +167,8 @@ class AdvancedAnalyzer:
         base_mean = sum(base_values) / len(base_values) if base_values else 0
         comp_mean = sum(comp_values) / len(comp_values) if comp_values else 0
         
-        base_std = np.std(base_values) if len(base_values) > 1 else 0
-        comp_std = np.std(comp_values) if len(comp_values) > 1 else 0
+        base_std = float(np.std(base_values)) if len(base_values) > 1 else 0
+        comp_std = float(np.std(comp_values)) if len(comp_values) > 1 else 0
         
         # 计算差异的置信度
         # 如果样本量足够大，可以使用t检验
@@ -181,10 +181,13 @@ class AdvancedAnalyzer:
             try:
                 from scipy import stats
                 t_stat, p_value = stats.ttest_ind(base_values, comp_values, equal_var=False)
+                # 确保转换为Python原生类型
+                t_stat = float(t_stat)
+                p_value = float(p_value)
                 confidence = (1 - p_value) * 100
                 
                 # 判断差异显著性
-                is_significant = p_value < 0.05
+                is_significant = bool(p_value < 0.05)
             except ImportError:
                 # 如果没有scipy，使用简化的方法估算置信度
                 n1, n2 = len(base_values), len(comp_values)
@@ -211,7 +214,7 @@ class AdvancedAnalyzer:
                         p_value = 0.20
                         confidence = 80.0
                     
-                    is_significant = p_value < 0.05
+                    is_significant = bool(p_value < 0.05)
         
         return {
             "base_mean": round(base_mean, 3),
@@ -223,7 +226,7 @@ class AdvancedAnalyzer:
             "t_statistic": round(t_stat, 3),
             "p_value": round(p_value, 4),
             "confidence": round(confidence, 2),
-            "is_significant": is_significant
+            "is_significant": bool(is_significant)  # 确保转换为Python原生布尔类型
         }
     
     @staticmethod
@@ -247,8 +250,8 @@ class AdvancedAnalyzer:
             }
         
         # 计算四分位数
-        q1 = np.percentile(data_values, 25)
-        q3 = np.percentile(data_values, 75)
+        q1 = float(np.percentile(data_values, 25))
+        q3 = float(np.percentile(data_values, 75))
         iqr = q3 - q1
         
         # 定义异常值范围（使用1.5 * IQR规则）
@@ -264,14 +267,18 @@ class AdvancedAnalyzer:
             anomalies_indices = [i for i, value in enumerate(data_values) if value > upper_bound]
             anomalies_values = [data_values[i] for i in anomalies_indices]
         
+        # 确保所有数据都是Python原生类型
+        anomalies_indices = [int(i) for i in anomalies_indices]
+        anomalies_values = [float(v) for v in anomalies_values]
+        
         return {
             "anomalies_count": len(anomalies_indices),
             "anomalies_percent": round(len(anomalies_indices) / len(data_values) * 100, 2) if data_values else 0,
             "anomalies_indices": anomalies_indices,
             "anomalies_values": anomalies_values,
             "bounds": {
-                "lower": round(lower_bound, 3),
-                "upper": round(upper_bound, 3)
+                "lower": round(float(lower_bound), 3),
+                "upper": round(float(upper_bound), 3)
             }
         }
     
@@ -295,7 +302,7 @@ class AdvancedAnalyzer:
             }
         
         mean = sum(data_values) / len(data_values)
-        std = np.std(data_values)
+        std = float(np.std(data_values))
         
         # 计算变异系数（标准差/平均值）
         cv = (std / mean) if mean else float('inf')
@@ -368,17 +375,17 @@ class AdvancedAnalyzer:
                     "metric": metric,
                     "reasons": bottleneck_reasons,
                     "significance": {
-                        "p_value": stat_data["p_value"],
-                        "confidence": stat_data["confidence"]
+                        "p_value": float(stat_data["p_value"]),
+                        "confidence": float(stat_data["confidence"])
                     },
-                    "percent_change": stat_data["percent_change"]
+                    "percent_change": float(stat_data["percent_change"])
                 })
         
         # 按照变化百分比排序瓶颈，变化越大越靠前
         potential_bottlenecks.sort(key=lambda x: abs(x["percent_change"]), reverse=True)
         
         return {
-            "has_bottlenecks": len(potential_bottlenecks) > 0,
+            "has_bottlenecks": bool(len(potential_bottlenecks) > 0),
             "bottlenecks_count": len(potential_bottlenecks),
             "potential_bottlenecks": potential_bottlenecks,
         } 
