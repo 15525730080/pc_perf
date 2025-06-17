@@ -316,21 +316,19 @@
                         <el-table :data="comparisonReports" style="width: 100%">
                             <el-table-column prop="id" label="ID" width="60"></el-table-column>
                             <el-table-column prop="name" label="报告名称"></el-table-column>
-                            <el-table-column prop="created_at" label="创建时间">
+                            <el-table-column prop="create_time" label="创建时间">
                                 <template slot-scope="scope">
-                                    {{ new Date(scope.row.created_at * 1000).toLocaleString() }}
+                                    {{ scope.row.create_time }}
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="report_type" label="报告类型">
+                            <el-table-column label="报告类型">
                                 <template slot-scope="scope">
-                                    <el-tag v-if="scope.row.report_type === 'basic'">基础对比</el-tag>
-                                    <el-tag v-else-if="scope.row.report_type === 'advanced'" type="success">高级分析</el-tag>
-                                    <el-tag v-else type="info">普通报告</el-tag>
+                                    <el-tag type="info">普通报告</el-tag>
                                 </template>
                             </el-table-column>
                             <el-table-column label="操作">
                                 <template slot-scope="scope">
-                                    <el-button size="mini" type="primary" @click="openReportFile(scope.row.file_path)">查看报告</el-button>
+                                    <el-button size="mini" type="primary" @click="openReportFile(scope.row.report_path)">查看报告</el-button>
                                     <el-button size="mini" type="danger" @click="deleteReport(scope.row.id)">删除</el-button>
                                 </template>
                             </el-table-column>
@@ -447,17 +445,17 @@
         <div style="display: flex;flex-direction: row;flex-wrap: wrap;">
             <div class="chart-container">
                 <div class="chart-title">{{num2time(clicktime)}}进程截图</div>
-                <div class="demo-image" style="height: calc(100% - 45px); display: flex; justify-content: center; align-items: center;">
+                <div class="demo-image" style="height: calc(100% - 45px); position: relative; overflow: auto;">
                     <el-image
-                            style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                            style="width: auto; height: auto; max-width: 100%; max-height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
                             :src='"/static/" + this.opentaskid + "/screenshot/" + this.clicktime + ".png"'
-                            fit="contain"
+                            :preview-src-list="['/static/' + this.opentaskid + '/screenshot/' + this.clicktime + '.png']"
+                            fit="scale-down"
                     >
                         <div slot="error" class="image-slot">
                             <i class="el-icon-picture-outline"></i> 图片加载失败
                         </div>
                     </el-image>
-
                 </div>
             </div>
 
@@ -2154,11 +2152,25 @@
                     return;
                 }
                 
-                // 提取文件名
-                const fileName = reportPath.split('/').pop();
+                console.log('报告文件路径:', reportPath);
                 
-                // 直接打开文件
-                window.open(`/static/${fileName}`, '_blank');
+                // 提取文件名
+                const fileName = reportPath.split(/[\/\\]/).pop();
+                
+                if (!fileName) {
+                    this.$message.error('无法解析报告文件名');
+                    return;
+                }
+                
+                console.log('提取的文件名:', fileName);
+                
+                // 直接使用文件名访问
+                const url = `/static/comparison_reports/${fileName}`;
+                console.log('访问URL:', url);
+                window.open(url, '_blank');
+                
+                // 显示成功消息
+                this.$message.success('正在打开报告文件');
             },
         async mounted(){
                 // 立即获取任务列表，不管当前视图是什么
