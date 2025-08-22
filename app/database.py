@@ -363,4 +363,5 @@ async def create_table():
     await upgrade_tasks_table()
 
 
-asyncio.run(create_table())
+# 移除这里的asyncio.run调用，避免事件循环冲突
+# 数据库表将在应用启动时创建

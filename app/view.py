@@ -96,21 +96,18 @@ async def stop_task(request: Request, task_id: int):
     return JSONResponse(content=ResultBean())
 
 
-def check_stop_task_monitor_pid_close():
-    async def func():
-        logger.info('定期任务执行时间：检查是否有漏杀死monitor进程')
-        monitor_pid = await TaskCollection.get_all_stop_task_monitor_pid()
-        all_pids = await pids()
-        for i in all_pids:
-            if int(i["pid"]) in monitor_pid:
-                try:
-                    logger.info("check kill {0}".format(i["pid"]))
-                    TaskHandle.stop_handle(i["pid"])
-                except:
-                    logger.error(traceback.format_exc())
-        logger.info('定期任务执行时间：检查是否有漏杀死monitor进程end')
-
-    asyncio.run(func())
+async def check_stop_task_monitor_pid_close():
+    logger.info('定期任务执行时间：检查是否有漏杀死monitor进程')
+    monitor_pid = await TaskCollection.get_all_stop_task_monitor_pid()
+    all_pids = await pids()
+    for i in all_pids:
+        if int(i["pid"]) in monitor_pid:
+            try:
+                logger.info("check kill {0}".format(i["pid"]))
+                TaskHandle.stop_handle(i["pid"])
+            except:
+                logger.error(traceback.format_exc())
+    logger.info('定期任务执行时间：检查是否有漏杀死monitor进程end')
 
 
 @app.get("/result/")
@@ -326,5 +323,9 @@ async def delete_comparison_report(request: Request, report_id: int):
 
 @app.on_event("startup")
 async def app_start():
+    # 创建数据库表
+    from app.database import create_table
+    await create_table()
+
     scheduler.add_job(check_stop_task_monitor_pid_close, 'interval', seconds=60)
     scheduler.start()

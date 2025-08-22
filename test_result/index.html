@@ -378,33 +378,49 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="选择PID" :key="chose_radio" v-if="chose_radio=='树形进程'">
-                            <el-tree
-                                    ref="processTreeRef"
-                                    :data="processTree"
-                                    node-key="pid"
-                                    :default-expand-all="true"
-                                    :props="treeProps"
-                                    :highlight-current="true"
-                                    @node-click="handleNodeClick"
-                                    style="height: 50vh;overflow-y: auto;"
-                            >
-                                <template #default="{ node, data }">
-                                    <span
-                                            :style="{
-                                        color: node.isCurrent ? '#409EFF' : '',
-                                      }"
-                                    >
-                                      {{ node.label }}
-                                      <span
-                                              v-if="node.isCurrent"
-                                              :style="{
-                                          backgroundColor: '#409EFF',
-                                          boxShadow: '0 0 10px rgba(64, 158, 255, 0.7)',
-                                        }"
-                                      ></span>
-                                    </span>
-                                </template>
-                            </el-tree>
+                            <div style="display: flex; align-items: flex-start; gap: 10px;">
+                                <el-tree
+                                        ref="processTreeRef"
+                                        :data="processTree"
+                                        node-key="pid"
+                                        :default-expand-all="true"
+                                        :props="treeProps"
+                                        :highlight-current="true"
+                                        @node-click="handleNodeClick"
+                                        style="height: 50vh;overflow-y: auto; flex: 1;"
+                                >
+                                    <template #default="{ node, data }">
+                                        <span
+                                                :style="{
+                                            color: node.isCurrent ? '#409EFF' : '',
+                                          }"
+                                        >
+                                          {{ node.label }}
+                                          <span
+                                                  v-if="node.isCurrent"
+                                                  :style="{
+                                              backgroundColor: '#409EFF',
+                                              boxShadow: '0 0 10px rgba(64, 158, 255, 0.7)',
+                                            }"
+                                          ></span>
+                                        </span>
+                                    </template>
+                                </el-tree>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <el-button 
+                                        type="primary" 
+                                        icon="el-icon-refresh" 
+                                        size="small"
+                                        @click="refreshProcessTree"
+                                        :loading="isRefreshingProcessTree"
+                                        title="刷新进程树">
+                                        刷新
+                                    </el-button>
+                                    <el-tooltip content="刷新当前进程树，获取最新的进程信息" placement="right">
+                                        <i class="el-icon-info" style="color: #909399; cursor: help;"></i>
+                                    </el-tooltip>
+                                </div>
+                            </div>
                         </el-form-item>
                         <el-form-item v-if="cmd" label="pid cmd">
                             {{cmd}}
@@ -790,6 +806,7 @@
                 intervalId: null,
                 isloadres: false,
                 processTree: [], // 存储进程树数据
+                isRefreshingProcessTree: false, // 进程树刷新状态
                 treeProps: {
                     children: 'child_p',
                     label: 'name'
@@ -1048,6 +1065,26 @@
                 });
                 console.log(res);
                 this.processTree = res.data.msg;
+            },
+            async refreshProcessTree() {
+                try {
+                    this.isRefreshingProcessTree = true;
+                    console.log('手动刷新进程树...');
+                    
+                    // 同时刷新进程列表和进程树
+                    await Promise.all([
+                        this.get_pids(),
+                        this.getProcessTree()
+                    ]);
+                    
+                    this.$message.success('进程树刷新成功');
+                    console.log('进程树刷新完成');
+                } catch (error) {
+                    console.error('刷新进程树失败:', error);
+                    this.$message.error('刷新进程树失败，请稍后重试');
+                } finally {
+                    this.isRefreshingProcessTree = false;
+                }
             },
             async createTask() {
                 if(this.newTask.pid){
