@@ -1,9 +1,24 @@
 /test_result/
 /pcperfenv39/
-venv
-/include
-/Lib
+/venv/
+/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
 task.sqlite
 app/__pycache__/excel_report.cpython-39.pyc
 log.log
 evolution.md
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
