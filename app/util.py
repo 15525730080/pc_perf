@@ -4,7 +4,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from app.log import log as logger
-from concurrent.futures import ProcessPoolExecutor, wait
 
 
 class DataCollect(object):
@@ -55,12 +54,27 @@ class DataCollect(object):
             if 'value' in data:
                 # 将原始数据的时间转换为数组
                 original_times = np.array([item['time'] for item in data['value']])
-                # 找出缺失的时间点
                 missing_times = np.setdiff1d(all_times, original_times)
-                # 为缺失的时间点创建新的对象
                 missing_data = [{'time': int(time)} for time in missing_times]
-                # 将新创建的对象添加到原始数据中
                 data['value'].extend(missing_data)
-                # 确保数据按照时间排序
                 data['value'].sort(key=lambda x: x['time'])
+
+                # 构造 DataFrame（补全后的）
+                df = pd.DataFrame(data['value']).fillna(0)
+
+                # 只统计原始值中存在的字段
+                original_df = pd.DataFrame([item for item in data['value'] if len(item.keys()) > 1])
+                if original_df.empty:
+                    data['max_value'] = {}
+                    data['avg_value'] = {}
+                    continue
+
+                numeric_columns = [
+                    col for col in original_df.columns
+                    if col != 'time' and np.issubdtype(original_df[col].dtype, np.number)
+                ]
+
+                data['max_value'] = df[numeric_columns].max().to_dict()
+                data['avg_value'] = original_df[numeric_columns].mean().round(4).to_dict()
+
         return all_data

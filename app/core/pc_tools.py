@@ -203,11 +203,18 @@ async def process_tree():
     return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=10)
 
 
+# 新增全局变量，用于缓存窗口句柄和时间戳 (window, timestamp)
+window_cache = {}
+# 设置缓存过期时间（秒）
+WINDOW_CACHE_EXPIRE_TIME = 15
+
+
 async def screenshot(pid, save_dir, include_child=False):
     def real_func(pid, save_dir):
+        global window_cache
         if pid:
-            window = None
-            if platform.system() == "Windows":
+            window = (window_cache.get(pid)[0] if window_cache.get(pid)[-1] + WINDOW_CACHE_EXPIRE_TIME > time.time() else None) if window_cache.get(pid) else None
+            if platform.system() == "Windows" and window is None:
                 import ctypes
                 import pygetwindow as gw
                 def get_pid(hwnd):
@@ -229,6 +236,8 @@ async def screenshot(pid, save_dir, include_child=False):
                         sub_pid = [sub_p.pid for sub_p in p_chs]
                         pids.extend(sub_pid)
                 window = get_window_by_pid(pids)
+                window_cache[pid] = (window, time.time())
+
             if window:
                 screenshot = ImageGrab.grab(
                     bbox=(window.left, window.top, window.left + window.width, window.top + window.height),

@@ -453,7 +453,7 @@
     </el-container>
     <el-dialog
             :visible.sync="dialogVisible"
-            width="80%"
+            width="95%"
             @open="handleDialogVisibleChange"
             @closed="clearInterval(intervalId);"
             @destroy-on-close="true"
@@ -500,7 +500,8 @@
             </div>
             <div class="chart-container">
                 <div class="chart-title">线程数 (个) 与句柄数 (个)</div>
-                <div id="processInfoChart" class="echarts-chart"></div>
+
+              <div id="processInfoChart" class="echarts-chart"></div>
 
             </div>
             
