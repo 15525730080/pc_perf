@@ -2,7 +2,8 @@ import asyncio
 import datetime
 import os
 import platform
-from sqlalchemy import Column, String, Integer, DateTime, inspect, select, or_, Boolean, text
+import json
+from sqlalchemy import Column, String, Integer, DateTime, inspect, select, or_, Boolean, text, Text
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from contextlib import asynccontextmanager
@@ -49,6 +50,20 @@ class Task(Base, SerializerMixin):
     platform = Column(String(50), default="win")  # win | mac | linux 任务
     name = Column(String(255), default=None)  # 任务名称
     include_child = Column(Boolean, default=False)  # 当前性能测试任务是否包含子进程性能
+    version = Column(String(50), default=None)  # 应用版本信息
+    is_baseline = Column(Boolean, default=False)  # 是否为基线版本
+
+
+class ComparisonReport(Base, SerializerMixin):
+    """对比报告表"""
+    __tablename__ = 'comparison_reports'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(255), default=None)  # 报告名称
+    create_time = Column(DateTime, default=datetime.datetime.now)  # 创建时间
+    task_ids = Column(Text, default=None)  # 存储JSON格式的任务ID列表
+    base_task_id = Column(Integer, default=None)  # 基准任务ID
+    report_path = Column(String(255), default=None)  # 报告文件路径
+    description = Column(Text, default=None)  # 报告描述
 
 
 class TaskLabel(Base, SerializerMixin):
@@ -155,6 +170,123 @@ class TaskCollection(object):
                 task.name = new_name
                 return task.to_dict()
 
+    @classmethod
+    async def set_task_version(cls, task_id, version):
+        """设置任务的版本信息"""
+        async with async_connect() as session:
+            async with session.begin():
+                result = await session.execute(select(Task).filter(Task.id == task_id))
+                task = result.scalars().first()
+                assert task, "未找到任务"
+                task.version = version
+                return task.to_dict()
+    
+    @classmethod
+    async def set_task_baseline(cls, task_id, is_baseline=True):
+        """设置任务为基线版本"""
+        async with async_connect() as session:
+            async with session.begin():
+                # 如果需要设置为基线，先将所有其他任务的基线标记清除
+                if is_baseline:
+                    result = await session.execute(select(Task).filter(Task.is_baseline == True))
+                    baseline_tasks = result.scalars().fetchall()
+                    for baseline_task in baseline_tasks:
+                        baseline_task.is_baseline = False
+                
+                # 设置当前任务的基线标记
+                result = await session.execute(select(Task).filter(Task.id == task_id))
+                task = result.scalars().first()
+                assert task, "未找到任务"
+                task.is_baseline = is_baseline
+                return task.to_dict()
+    
+    @classmethod
+    async def get_baseline_task(cls):
+        """获取基线任务"""
+        async with async_connect() as session:
+            async with session.begin():
+                result = await session.execute(select(Task).filter(Task.is_baseline == True))
+                task = result.scalars().first()
+                return task.to_dict() if task else None
+
+
+class ComparisonReportCollection:
+    """对比报告集合类"""
+    
+    @classmethod
+    async def create_report(cls, name, task_ids, base_task_id=None, description=None):
+        """创建对比报告"""
+        async with async_connect() as session:
+            async with session.begin():
+                # 将任务ID列表序列化为JSON字符串
+                task_ids_json = json.dumps(task_ids)
+                
+                # 创建新的对比报告
+                report = ComparisonReport(
+                    name=name,
+                    create_time=datetime.datetime.now(),
+                    task_ids=task_ids_json,
+                    base_task_id=base_task_id,
+                    description=description
+                )
+                session.add(report)
+                await session.flush()
+                return report.to_dict()
+    
+    @classmethod
+    async def get_report(cls, report_id):
+        """获取对比报告"""
+        async with async_connect() as session:
+            async with session.begin():
+                result = await session.execute(select(ComparisonReport).filter(ComparisonReport.id == report_id))
+                report = result.scalars().first()
+                assert report, "未找到对比报告"
+                return report.to_dict()
+    
+    @classmethod
+    async def get_all_reports(cls):
+        """获取所有对比报告"""
+        async with async_connect() as session:
+            async with session.begin():
+                result = await session.execute(select(ComparisonReport))
+                reports = result.scalars().fetchall()
+                report_list = [r.to_dict() for r in reports]
+                report_list.sort(key=lambda x: x.get("create_time"), reverse=True)
+                return report_list
+    
+    @classmethod
+    async def update_report(cls, report_id, **kwargs):
+        """更新对比报告"""
+        async with async_connect() as session:
+            async with session.begin():
+                result = await session.execute(select(ComparisonReport).filter(ComparisonReport.id == report_id))
+                report = result.scalars().first()
+                assert report, "未找到对比报告"
+                
+                # 更新报告属性
+                for key, value in kwargs.items():
+                    if hasattr(report, key):
+                        setattr(report, key, value)
+                
+                return report.to_dict()
+    
+    @classmethod
+    async def delete_report(cls, report_id):
+        """删除对比报告"""
+        async with async_connect() as session:
+            async with session.begin():
+                result = await session.execute(select(ComparisonReport).filter(ComparisonReport.id == report_id))
+                report = result.scalars().first()
+                assert report, "未找到对比报告"
+                
+                # 保存报告数据用于返回
+                report_data = report.to_dict()
+                
+                # 删除报告
+                await session.delete(report)
+                
+                return report_data
+
 
 async def update_table_structure():
     async with async_engine.begin() as conn:
@@ -216,8 +348,20 @@ async def upgrade_tasks_table():
 
 
 async def create_table():
+    """创建数据库表"""
+    # 检查数据库是否存在，不存在则创建
+    if not os.path.exists(db_path):
+        async with async_engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+        logger.info("数据库表创建完成")
+    else:
+        # 如果数据库已存在，检查是否需要更新表结构
+        await update_table_structure()
+        logger.info("数据库表结构更新完成")
+    
+    # 检查并升级tasks表的结构
     await upgrade_tasks_table()
-    await update_table_structure()
 
 
-asyncio.run(create_table())
+# 移除这里的asyncio.run调用，避免事件循环冲突
+# 数据库表将在应用启动时创建

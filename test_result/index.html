@@ -107,30 +107,34 @@
 
         /* 图表容器的基本样式 */
         .chart-container {
-            width: 50%; /* 占满容器宽度 */
+            width: 100%; /* 占满容器宽度 */
             max-width: 100%; /* 防止宽度超过容器 */
-            height: 500px; /* 默认高度 */
-            margin-bottom: 20px; /* 图表之间的间距 */
+            height: 450px; /* 进一步增加高度，从420px增加到450px */
+            margin-bottom: 30px; /* 增加图表之间的间距 */
             background-color: #ffffff; /* 背景颜色 */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
-            border-radius: 4px; /* 轻微的圆角 */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 增强阴影效果 */
+            border-radius: 8px; /* 增加圆角 */
             overflow: hidden; /* 隐藏溢出的内容 */
+            padding: 10px; /* 添加内边距 */
         }
 
         /* 图表标题样式 */
         .chart-title {
-            font-size: 1.1em;
+            font-size: 1.2em;
             font-weight: bold;
-            margin: 0 0 10px; /* 上下边距为0，下边距为10px */
-            padding: 10px;
-            background-color: #f2f2f2; /* 标题背景颜色 */
-            border-radius: 4px 4px 0 0; /* 仅上边缘圆角 */
+            margin: 0 0 15px; /* 增加下边距 */
+            padding: 12px 15px; /* 增加内边距 */
+            background-color: #f5f7fa; /* 更改标题背景颜色 */
+            border-radius: 6px 6px 0 0; /* 增加上边缘圆角 */
+            color: #303133; /* 标题文字颜色 */
+            border-bottom: 1px solid #ebeef5; /* 添加底部边框 */
         }
 
         /* 图表容器内的 ECharts 图表样式 */
         .echarts-chart {
             width: 100%; /* 占满容器宽度 */
-            height: calc(100% - 30px); /* 减去标题的高度 */
+            height: calc(100% - 45px); /* 调整高度，为标题留出更多空间 */
+            padding: 5px; /* 添加内边距 */
         }
 
 
@@ -164,12 +168,18 @@
     <el-container style="height: 90%;">
         <!-- 侧边栏 -->
         <el-aside style="width: 150px;">
-            <el-menu :default-active="1" class="el-menu-demo" style="border-right: solid 0px">
+            <el-menu :default-active="activeMenuIndex" class="el-menu-demo" style="border-right: solid 0px">
                 <el-menu-item index="1" class="task-button" @click="switchView('taskList');">
                     <h3>任务列表</h3>
                 </el-menu-item>
                 <el-menu-item index="2" class="task-button" @click="switchView('createTask')">
                     <h3>创建任务</h3>
+                </el-menu-item>
+                <el-menu-item index="3" class="task-button" @click="switchView('compareTask')">
+                    <h3>对比任务</h3>
+                </el-menu-item>
+                <el-menu-item index="5" class="task-button" @click="switchView('reportManagement')">
+                    <h3>报告管理</h3>
                 </el-menu-item>
             </el-menu>
         </el-aside>
@@ -196,12 +206,34 @@
                         <el-table-column prop="serialno" label="设备" sortable></el-table-column>
                         <el-table-column prop="target_pid" label="进程" sortable></el-table-column>
                         <el-table-column prop="target_pid_name" label="名称" sortable></el-table-column>
+                        <el-table-column prop="version" label="版本" sortable>
+                            <template slot-scope="scope">
+                                <el-input
+                                        @blur="saveVersion(scope.row)"
+                                        v-model="scope.row.version"
+                                        placeholder="设置版本"
+                                        size="small"
+                                        name="version_{{scope.row.id}}">
+                                    <i
+                                            class="el-icon-edit el-input__icon"
+                                            slot="suffix"
+                                            @click="editVersion(scope.row)"
+                                    >
+                                    </i>
+                                </el-input>
+                            </template>
+                        </el-table-column>
                         <el-table-column prop="status" label="状态" sortable>
                             <template slot-scope="scope">
-                                <el-button type="info" size="mini" v-if="scope.row.status==0">待执行</el-button>
-                                <el-button type="primary" size="mini" v-if="scope.row.status==1">执行中</el-button>
-                                <el-button type="danger" size="mini" v-if="scope.row.status==-1">失败</el-button>
-                                <el-button type="success" size="mini" v-if="scope.row.status==2">完成</el-button>
+                                <template v-if="scope.row.status==2">
+                                    <div style="color:green;">已完成</div>
+                                </template>
+                                <template v-else-if="scope.row.status==1">
+                                    <div style="color: grey">执行中</div>
+                                </template>
+                                <template v-else>
+                                    <div style="color:red">未开始</div>
+                                </template>
                             </template>
                         </el-table-column>
                         <el-table-column prop="include_child" label="监控目标" sortable>
@@ -216,32 +248,109 @@
                         <el-table-column prop="end_time" label="结束时间" sortable></el-table-column>
                         <el-table-column label="操作">
                             <template slot-scope="scope">
-                                <el-button type="primary" size="mini" v-if="scope.row.status!=0||scope.row.status!=-1"
-                                           @click="result(scope.row.id);curtaskid=scope.row.id;"
-                                           style="margin-left: 0;">查看
-                                </el-button>
-                                <el-button type="danger" size="mini" v-if="scope.row.status==1"
-                                           @click="stop_task(scope.row.id)" style="margin-left: 0;">停止
-                                </el-button>
-                                <el-button type="danger" size="mini" v-if="scope.row.status!=1"
-                                           @click="delete_task(scope.row.id)" style="margin-left: 0;">删除
-                                </el-button>
-
+                                <template v-if="scope.row.status==1">
+                                    <el-button size="mini" type="danger" @click="stop_task(scope.row.id)">停止</el-button>
+                                </template>
+                                <el-button size="mini" @click="curtaskid=scope.row.id;result(scope.row.id)">查看</el-button>
+                                <el-button size="mini" @click="exportExcel(scope.row.id)">导出报表</el-button>
+                                <el-button size="mini" type="danger" @click="delete_task(scope.row.id)">删除</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
                 </template>
-                <template v-if="currentView === 'createTask'">
+                
+                <!-- 任务对比视图 -->
+                <template v-else-if="currentView === 'compareTask'">
+                    <div class="compare-task-container">
+                        <h2>任务对比</h2>
+                        
+                        <el-card class="box-card">
+                            <div slot="header" class="clearfix">
+                                <span>选择要对比的任务</span>
+                            </div>
+                            <el-table
+                                :data="tasks"
+                                style="width: 100%"
+                                @selection-change="selectedTasksForCompare = $event">
+                                <el-table-column
+                                    type="selection"
+                                    width="55">
+                                </el-table-column>
+                                <el-table-column prop="name" label="任务名称"></el-table-column>
+                                <el-table-column prop="version" label="版本"></el-table-column>
+                                <el-table-column prop="target_pid_name" label="进程名称"></el-table-column>
+                            </el-table>
+                            
+                            <div style="margin-top: 20px;">
+                                <el-divider></el-divider>
+                                <p>已选择 {{ selectedTasksForCompare.length }} 个任务</p>
+                                
+                                <div v-if="selectedTasksForCompare.length >= 2">
+                                    <p>选择基准任务:</p>
+                                    <el-select v-model="baseTaskId" placeholder="请选择基准任务">
+                                        <el-option
+                                            v-for="task in selectedTasksForCompare"
+                                            :key="task.id"
+                                            :label="`${task.name} ${task.version ? '('+task.version+')' : ''}`"
+                                            :value="task.id">
+                                        </el-option>
+                                    </el-select>
+                                </div>
+                                
+                                <div style="margin-top: 20px;">
+                                    <el-button type="primary" @click="compareTasks" :disabled="selectedTasksForCompare.length < 2">开始对比</el-button>
+                                    <el-button @click="selectedTasksForCompare = []">清除选择</el-button>
+                                </div>
+                            </div>
+                        </el-card>
+                    </div>
+                </template>
+                
+                <!-- 报告管理视图 -->
+                <template v-else-if="currentView === 'reportManagement'">
+                    <div class="report-management-container">
+                        <h2>报告管理</h2>
+                        
+                        <el-button type="primary" @click="getComparisonReports" style="margin-bottom: 20px;">刷新报告列表</el-button>
+                        
+                        <el-table :data="comparisonReports" style="width: 100%">
+                            <el-table-column prop="id" label="ID" width="60"></el-table-column>
+                            <el-table-column prop="name" label="报告名称"></el-table-column>
+                            <el-table-column prop="create_time" label="创建时间">
+                                <template slot-scope="scope">
+                                    {{ scope.row.create_time }}
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="报告类型">
+                                <template slot-scope="scope">
+                                    <el-tag type="info">普通报告</el-tag>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="操作">
+                                <template slot-scope="scope">
+                                    <el-button size="mini" type="primary" @click="openReportFile(scope.row.report_path)">查看报告</el-button>
+                                    <el-button size="mini" type="danger" @click="deleteReport(scope.row.id)">删除</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                </template>
+
+                <!-- 创建任务视图保持不变 -->
+                <template v-else-if="currentView === 'createTask'">
                     <el-card class="box-card">
                         <div slot="header" class="clearfix">
                             <span>设备信息</span>
                         </div>
-                        <div>
+                        <div v-if="currentSystemInfo">
                             <p>平台: <span>{{ currentSystemInfo.platform }}</span></p>
                             <p>计算机名称: <span>{{ currentSystemInfo.computer_name }}</span></p>
                             <p>CPU 核心数: <span>{{ currentSystemInfo.cpu_cores }}</span></p>
                             <p>RAM: <span>{{ currentSystemInfo.ram }}</span></p>
                             <p>ROM: <span>{{ currentSystemInfo.rom }}</span></p>
+                        </div>
+                        <div v-else>
+                            <el-skeleton :rows="5" animated />
                         </div>
                     </el-card>
                     <el-form ref="newTask" :model="newTask" label-width="10%" class="taskform">
@@ -269,33 +378,49 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="选择PID" :key="chose_radio" v-if="chose_radio=='树形进程'">
-                            <el-tree
-                                    ref="processTreeRef"
-                                    :data="processTree"
-                                    node-key="pid"
-                                    :default-expand-all="true"
-                                    :props="treeProps"
-                                    :highlight-current="true"
-                                    @node-click="handleNodeClick"
-                                    style="height: 50vh;overflow-y: auto;"
-                            >
-                                <template #default="{ node, data }">
-                                    <span
-                                            :style="{
-                                        color: node.isCurrent ? '#409EFF' : '',
-                                      }"
-                                    >
-                                      {{ node.label }}
-                                      <span
-                                              v-if="node.isCurrent"
-                                              :style="{
-                                          backgroundColor: '#409EFF',
-                                          boxShadow: '0 0 10px rgba(64, 158, 255, 0.7)',
-                                        }"
-                                      ></span>
-                                    </span>
-                                </template>
-                            </el-tree>
+                            <div style="display: flex; align-items: flex-start; gap: 10px;">
+                                <el-tree
+                                        ref="processTreeRef"
+                                        :data="processTree"
+                                        node-key="pid"
+                                        :default-expand-all="true"
+                                        :props="treeProps"
+                                        :highlight-current="true"
+                                        @node-click="handleNodeClick"
+                                        style="height: 50vh;overflow-y: auto; flex: 1;"
+                                >
+                                    <template #default="{ node, data }">
+                                        <span
+                                                :style="{
+                                            color: node.isCurrent ? '#409EFF' : '',
+                                          }"
+                                        >
+                                          {{ node.label }}
+                                          <span
+                                                  v-if="node.isCurrent"
+                                                  :style="{
+                                              backgroundColor: '#409EFF',
+                                              boxShadow: '0 0 10px rgba(64, 158, 255, 0.7)',
+                                            }"
+                                          ></span>
+                                        </span>
+                                    </template>
+                                </el-tree>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <el-button 
+                                        type="primary" 
+                                        icon="el-icon-refresh" 
+                                        size="small"
+                                        @click="refreshProcessTree"
+                                        :loading="isRefreshingProcessTree"
+                                        title="刷新进程树">
+                                        刷新
+                                    </el-button>
+                                    <el-tooltip content="刷新当前进程树，获取最新的进程信息" placement="right">
+                                        <i class="el-icon-info" style="color: #909399; cursor: help;"></i>
+                                    </el-tooltip>
+                                </div>
+                            </div>
                         </el-form-item>
                         <el-form-item v-if="cmd" label="pid cmd">
                             {{cmd}}
@@ -336,49 +461,314 @@
         <div style="display: flex;flex-direction: row;flex-wrap: wrap;">
             <div class="chart-container">
                 <div class="chart-title">{{num2time(clicktime)}}进程截图</div>
-                <div class="demo-image">
+                <div class="demo-image" style="height: calc(100% - 45px); position: relative; overflow: auto;">
                     <el-image
-                            style="width: 100%; height: 100%"
+                            style="width: auto; height: auto; max-width: 100%; max-height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
                             :src='"/static/" + this.opentaskid + "/screenshot/" + this.clicktime + ".png"'
-                            fit="contain"
+                            :preview-src-list="['/static/' + this.opentaskid + '/screenshot/' + this.clicktime + '.png']"
+                            fit="scale-down"
                     >
                         <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i> 图片加载失败
                         </div>
                     </el-image>
-
                 </div>
             </div>
 
 
             <div class="chart-container">
                 <div class="chart-title">
-                    CPU
+                    CPU 使用率 (%)
                 </div>
                 <div id="cpuChart" class="echarts-chart"></div>
 
             </div>
             <div class="chart-container">
-                <div class="chart-title">Memory</div>
+                <div class="chart-title">内存使用量 (MB)</div>
                 <div id="memoryChart" class="echarts-chart"></div>
 
             </div>
             <div class="chart-container">
-                <div class="chart-title">FPS</div>
+                <div class="chart-title">FPS (帧/秒)</div>
                 <div id="fpsChart" class="echarts-chart"></div>
 
             </div>
             <div class="chart-container">
-                <div class="chart-title">GPU</div>
+                <div class="chart-title">GPU 使用率 (%)</div>
                 <div id="gpuChart" class="echarts-chart"></div>
 
             </div>
             <div class="chart-container">
-                <div class="chart-title">Threads Num&Handles Num</div>
-                <div id="processInfoChart" class="echarts-chart"></div>
+                <div class="chart-title">线程数 (个) 与句柄数 (个)</div>
 
+              <div id="processInfoChart" class="echarts-chart"></div>
+
+            </div>
+            
+            <!-- 添加磁盘I/O图表容器 -->
+            <div class="chart-container">
+                <div class="chart-title">磁盘I/O监控 (MB/s)</div>
+                <div id="diskIOChart" class="echarts-chart"></div>
+            </div>
+            
+            <!-- 添加网络I/O图表容器 -->
+            <div class="chart-container">
+                <div class="chart-title">网络I/O监控 (MB/s)</div>
+                <div id="networkIOChart" class="echarts-chart"></div>
             </div>
 
         </div>
+    </el-dialog>
+    
+    <!-- 对比结果对话框 -->
+    <el-dialog
+        title="任务对比结果"
+        :visible.sync="compareDialogVisible"
+        width="90%"
+        :before-close="() => { compareDialogVisible = false }"
+        fullscreen>
+        <div v-if="comparisonResult">
+            <el-descriptions title="对比概览" border>
+                <el-descriptions-item label="基准任务">
+                    {{ comparisonResult.base_task ? comparisonResult.base_task.name + (comparisonResult.base_task.version ? ' (' + comparisonResult.base_task.version + ')' : '') : '无' }}
+                </el-descriptions-item>
+                <el-descriptions-item label="对比任务数">{{ comparisonResult.tasks ? comparisonResult.tasks.length : 0 }}</el-descriptions-item>
+                <el-descriptions-item label="创建时间">{{ new Date().toLocaleString() }}</el-descriptions-item>
+            </el-descriptions>
+            
+            <el-divider content-position="left">性能指标对比</el-divider>
+            
+            <el-row :gutter="24">
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">CPU使用率对比 (%)</div>
+                        <div id="compare_cpu_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">内存使用量对比 (MB)</div>
+                        <div id="compare_memory_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+            </el-row>
+            
+            <el-row :gutter="24">
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">FPS对比 (帧/秒)</div>
+                        <div id="compare_fps_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">GPU使用率对比 (%)</div>
+                        <div id="compare_gpu_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+            </el-row>
+            
+            <el-row :gutter="24">
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">线程数对比 (个)</div>
+                        <div id="compare_threads_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">句柄数对比 (个)</div>
+                        <div id="compare_handles_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+            </el-row>
+            
+            <el-row :gutter="24">
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">磁盘读取速率对比 (MB/s)</div>
+                        <div id="compare_disk_read_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">磁盘写入速率对比 (MB/s)</div>
+                        <div id="compare_disk_write_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+            </el-row>
+            
+            <el-row :gutter="24">
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">网络发送速率对比 (MB/s)</div>
+                        <div id="compare_net_sent_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="chart-container">
+                        <div class="chart-title">网络接收速率对比 (MB/s)</div>
+                        <div id="compare_net_recv_chart" class="echarts-chart"></div>
+                    </div>
+                </el-col>
+            </el-row>
+            
+            <el-divider content-position="left">对比详情</el-divider>
+            
+            <el-table :data="comparisonResult.tasks" style="width: 100%">
+                <el-table-column prop="name" label="任务名称"></el-table-column>
+                <el-table-column prop="version" label="版本"></el-table-column>
+                <el-table-column label="基准">
+                    <template slot-scope="scope">
+                        <el-tag v-if="scope.row.id === comparisonResult.base_task.id" type="success">是</el-tag>
+                        <span v-else>否</span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="CPU平均值">
+                    <template slot-scope="scope">
+                        {{ scope.row.avg && scope.row.avg.cpu_avg ? scope.row.avg.cpu_avg.toFixed(2) + '%' : '-' }}
+                    </template>
+                </el-table-column>
+                <el-table-column label="内存平均值">
+                    <template slot-scope="scope">
+                        {{ scope.row.avg && scope.row.avg.memory_avg ? scope.row.avg.memory_avg.toFixed(2) + 'MB' : '-' }}
+                    </template>
+                </el-table-column>
+                <el-table-column label="FPS平均值">
+                    <template slot-scope="scope">
+                        {{ scope.row.avg && scope.row.avg.fps_avg ? scope.row.avg.fps_avg.toFixed(2) : '-' }}
+                    </template>
+                </el-table-column>
+                <el-table-column label="GPU平均值">
+                    <template slot-scope="scope">
+                        {{ scope.row.avg && scope.row.avg.gpu_avg ? scope.row.avg.gpu_avg.toFixed(2) + '%' : '-' }}
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+        <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="exportComparisonExcel">导出对比报表</el-button>
+            <el-button @click="compareDialogVisible = false">关闭</el-button>
+        </span>
+    </el-dialog>
+    
+    <!-- 高级分析结果对话框 -->
+    <el-dialog
+        title="高级性能分析结果"
+        :visible.sync="advancedDialogVisible"
+        width="90%"
+        :before-close="() => { advancedDialogVisible = false }"
+        @open="handleAdvancedDialogOpen"
+        fullscreen>
+        <div v-if="advancedAnalysisResult">
+            <el-descriptions title="分析概览" border>
+                <el-descriptions-item label="基准任务">
+                    {{ advancedAnalysisResult.base_task ? advancedAnalysisResult.base_task.name + (advancedAnalysisResult.base_task.version ? ' (' + advancedAnalysisResult.base_task.version + ')' : '') : '无' }}
+                </el-descriptions-item>
+                <el-descriptions-item label="对比任务">
+                    {{ advancedAnalysisResult.compare_task ? advancedAnalysisResult.compare_task.name + (advancedAnalysisResult.compare_task.version ? ' (' + advancedAnalysisResult.compare_task.version + ')' : '') : '无' }}
+                </el-descriptions-item>
+                <el-descriptions-item label="分析时间">{{ new Date().toLocaleString() }}</el-descriptions-item>
+            </el-descriptions>
+            
+            <el-divider content-position="left">统计显著性分析</el-divider>
+            
+            <div class="chart-container" style="width: 100%; height: 400px;">
+                <div id="advanced_significance_chart" style="width: 100%; height: 100%;"></div>
+            </div>
+            
+            <el-divider content-position="left">异常值检测结果</el-divider>
+            
+            <el-collapse v-if="advancedAnalysisResult.advanced_analysis && advancedAnalysisResult.advanced_analysis.outliers">
+                <el-collapse-item 
+                    v-for="(outlier, metricName) in advancedAnalysisResult.advanced_analysis.outliers" 
+                    :key="metricName"
+                    :title="getMetricDisplayName(metricName) + ' 异常值分析'">
+                    <el-card>
+                        <div slot="header">
+                            <span>{{ getMetricDisplayName(metricName) }} 异常值分析结果</span>
+                        </div>
+                        
+                        <el-table :data="outlier.outliers" style="width: 100%">
+                            <el-table-column prop="value" label="异常值">
+                                <template slot-scope="scope">{{ scope.row.value.toFixed(2) }}</template>
+                            </el-table-column>
+                            <el-table-column prop="z_score" label="Z分数">
+                                <template slot-scope="scope">{{ scope.row.z_score.toFixed(2) }}</template>
+                            </el-table-column>
+                            <el-table-column prop="timestamp" label="时间点">
+                                <template slot-scope="scope">
+                                    {{ new Date(scope.row.timestamp * 1000).toLocaleString() }}
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="is_high" label="类型">
+                                <template slot-scope="scope">
+                                    <el-tag :type="scope.row.is_high ? 'danger' : 'warning'">{{ scope.row.is_high ? '高值异常' : '低值异常' }}</el-tag>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        
+                        <div style="margin-top: 15px;">
+                            <p><strong>总结：</strong> {{ outlier.summary }}</p>
+                            <template v-if="outlier.recommendations && outlier.recommendations.length">
+                                <p><strong>建议：</strong></p>
+                                <ul>
+                                    <li v-for="(rec, index) in outlier.recommendations" :key="index">{{ rec }}</li>
+                                </ul>
+                            </template>
+                        </div>
+                    </el-card>
+                </el-collapse-item>
+            </el-collapse>
+            <el-empty v-else description="没有检测到异常值"></el-empty>
+            
+            <el-divider content-position="left">性能瓶颈分析</el-divider>
+            
+            <div v-if="advancedAnalysisResult.advanced_analysis && advancedAnalysisResult.advanced_analysis.bottleneck_analysis">
+                <div class="chart-container" style="width: 100%; height: 400px;">
+                    <div id="advanced_bottlenecks_chart" style="width: 100%; height: 100%;"></div>
+                </div>
+                
+                <el-table :data="advancedAnalysisResult.advanced_analysis.bottleneck_analysis.potential_bottlenecks" style="width: 100%; margin-top: 20px;">
+                    <el-table-column prop="metric" label="指标">
+                        <template slot-scope="scope">
+                            {{ getMetricDisplayName(scope.row.metric) }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="percent_change" label="变化率">
+                        <template slot-scope="scope">
+                            <span :class="{ 
+                                'better': (scope.row.better_if_smaller && scope.row.percent_change < 0) || (!scope.row.better_if_smaller && scope.row.percent_change > 0),
+                                'worse': (scope.row.better_if_smaller && scope.row.percent_change > 0) || (!scope.row.better_if_smaller && scope.row.percent_change < 0)
+                            }" style="font-weight: bold;">
+                                {{ scope.row.percent_change.toFixed(2) }}%
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="reasons" label="可能原因">
+                        <template slot-scope="scope">
+                            <ul v-if="scope.row.reasons && scope.row.reasons.length">
+                                <li v-for="(reason, index) in scope.row.reasons" :key="index">{{ reason }}</li>
+                            </ul>
+                            <span v-else>无明确原因</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="recommendations" label="建议">
+                        <template slot-scope="scope">
+                            <ul v-if="scope.row.recommendations && scope.row.recommendations.length">
+                                <li v-for="(rec, index) in scope.row.recommendations" :key="index">{{ rec }}</li>
+                            </ul>
+                            <span v-else>无具体建议</span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+            <el-empty v-else description="没有检测到明显性能瓶颈"></el-empty>
+        </div>
+        <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="exportAdvancedAnalysisExcel">导出高级分析报表</el-button>
+            <el-button @click="advancedDialogVisible = false">关闭</el-button>
+        </span>
     </el-dialog>
 </div>
 
@@ -387,13 +777,14 @@
         el: '#app',
         data: function() {
             return {
+                activeMenuIndex: "1", // 当前活动菜单项，默认为任务列表
                 chose_radio:"树形进程",
                 include_child: true, //是否检测当前进程子进程的性能
                 dialogVisible: false,
                 currentSystemInfo: null,
                 currentView: 'taskList', // 当前视图，默认为任务列表
                 newTask: { // 新任务对象
-                    name:"任务-" + this.getCurrentTimestamp(),
+                    name:"新任务",
                     pid: null
                 },
                 pids: [],
@@ -416,18 +807,97 @@
                 intervalId: null,
                 isloadres: false,
                 processTree: [], // 存储进程树数据
+                isRefreshingProcessTree: false, // 进程树刷新状态
                 treeProps: {
                     children: 'child_p',
                     label: 'name'
                 },
-                };
+                diskIOChart: null,
+                networkIOChart: null,
+                
+                // 版本管理相关
+                baselineTask: null,
+                
+                // 任务对比相关
+                selectedTasksForCompare: [],
+                baseTaskId: null,
+                compareDialogVisible: false,
+                comparisonResult: null,
+                comparisonCharts: {},
+                resizeComparisonCharts: null,
+                
+                // 高级分析相关
+                advancedDialogVisible: false,
+                advancedAnalysisResult: null,
+                advancedCharts: {},
+                
+                // 报告管理相关
+                comparisonReports: [],
+                reportDialogVisible: false,
+                currentReportDetail: null
+            };
+        },
+        watch: {
+            // 监听对话框关闭事件
+            compareDialogVisible(val) {
+                if (!val) {
+                    // 对话框关闭时，清除图表实例
+                    Object.values(this.comparisonCharts).forEach(chart => {
+                        if (chart && chart.dispose) {
+                            chart.dispose();
+                        }
+                    });
+                    this.comparisonCharts = {};
+                    
+                    // 清除窗口大小变化监听器
+                    if (this.resizeComparisonCharts) {
+                        window.removeEventListener('resize', this.resizeComparisonCharts);
+                    }
+                }
+            },
+            // 监听高级分析对话框关闭事件
+            advancedDialogVisible(val) {
+                if (!val) {
+                    // 对话框关闭时，清除图表实例
+                    Object.values(this.advancedCharts).forEach(chart => {
+                        if (chart && chart.dispose) {
+                            chart.dispose();
+                        }
+                    });
+                    this.advancedCharts = {};
+                    
+                    // 移除可能的事件监听器
+                    window.removeEventListener('resize', this.resizeAdvancedCharts);
+                    console.log("高级分析对话框关闭，已清理资源");
+                }
+            }
         },
         methods: {
-            handleNodeClick(data, node) {
-                this.get_pids().then()
+            async handleNodeClick(data, node) {
+                try {
+                    // 先获取所有pid，确保pids数组已更新
+                    await this.get_pids();
+                    // 设置选中的pid
                 this.newTask.pid = data.pid;
-                this.getPidCmd()
-                console.log(this.newTask)
+                    // 设置进程名称，确保不为空
+                    this.pid_name = data.name || '';
+                    
+                    console.log("选择进程:", data.pid, "进程名称:", this.pid_name);
+                    
+                    // 获取命令行和进程截图
+                    await this.getPidCmd();
+                    
+                    // 在控制台显示完整信息以便调试
+                    console.log("选择进程完成:", {
+                        pid: this.newTask.pid,
+                        name: this.newTask.name,
+                        pid_name: this.pid_name,
+                        cmd: this.cmd
+                    });
+                } catch (error) {
+                    console.error("选择进程失败:", error);
+                    this.$message.error("选择进程失败，请重试");
+                }
             },
             async saveEdit(row) {
                 try {
@@ -447,7 +917,39 @@
             },
             switchView(view) {
                 this.currentView = view;
-                this.getAllTask().then()
+                
+                // 更新活动菜单项
+                switch(view) {
+                    case 'taskList':
+                        this.activeMenuIndex = "1";
+                        this.getAllTask();
+                        break;
+                    case 'createTask':
+                        this.activeMenuIndex = "2";
+                        this.get_system_info();
+                        this.get_pids();
+                        this.getProcessTree();
+                        // 重置新任务对象
+                        this.newTask = { 
+                            name: "任务-" + this.getCurrentTimestamp(),
+                            pid: null
+                        };
+                        this.cmd = '';
+                        this.pid_img = '';
+                        break;
+                    case 'compareTask':
+                        this.activeMenuIndex = "3";
+                        this.getAllTask();
+                        break;
+                    case 'advancedAnalysis':
+                        this.activeMenuIndex = "4";
+                        this.getAllTask();
+                        break;
+                    case 'reportManagement':
+                        this.activeMenuIndex = "5";
+                        this.getComparisonReports();
+                        break;
+                }
             },
             getCurrentTimestamp() {
               const date = new Date();
@@ -460,16 +962,34 @@
 
               return `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
             },
-            getPidCmd(){
-                console.log(this.pids)
+            async getPidCmd(){
+                try {
+                    console.log("获取进程命令行，当前进程列表:", this.pids);
+                    // 如果pid_name已经设置（通过树形视图），则不需要再查找
+                    if (!this.pid_name) {
                 for (let i = 0; i < this.pids.length; i++) {
                   if (this.newTask.pid === this.pids[i].pid) {
                       this.cmd = this.pids[i].cmd.join(" ");
-                      this.pid_name = this.pids[i].name
-                  }
+                                this.pid_name = this.pids[i].name;
+                                break;
+                            }
+                        }
+                    } else {
+                        // 查找命令行
+                        for (let i = 0; i < this.pids.length; i++) {
+                            if (this.newTask.pid === this.pids[i].pid) {
+                                this.cmd = this.pids[i].cmd.join(" ");
+                                break;
+                            }
+                        }
+                    }
+                    
+                    // 获取进程截图
+                    await this.getPidImg();
+                    console.log("进程命令行获取完成:", this.cmd, "进程名称:", this.pid_name);
+                } catch (error) {
+                    console.error("获取进程命令行失败:", error);
                 }
-                this.getPidImg()
-
             },
             syncDataZoom(chartInstance, otherCharts) {
                 chartInstance.getZr().on('click', (params) => {
@@ -524,12 +1044,21 @@
 				 this.pids = res.data.msg
             },
             async get_system_info() {
-                const res = await axios({method: 'get',//提交方法
+                try {
+                    const res = await axios({
+                        method: 'get',
                             url: '/system_info/'
-                 })
-				 console.log(res)
-
-				 this.currentSystemInfo = res.data.msg
+                    });
+                    console.log(res);
+                    if (res.data && res.data.msg) {
+                        this.currentSystemInfo = res.data.msg;
+                    } else {
+                        this.$message.warning('获取系统信息失败，请稍后重试');
+                    }
+                } catch (error) {
+                    console.error('获取系统信息出错:', error);
+                    this.$message.error('获取系统信息失败');
+                }
             },
             async getProcessTree() {
                 const res = await axios({method: 'get',
@@ -538,14 +1067,59 @@
                 console.log(res);
                 this.processTree = res.data.msg;
             },
+            async refreshProcessTree() {
+                try {
+                    this.isRefreshingProcessTree = true;
+                    console.log('手动刷新进程树...');
+                    
+                    // 同时刷新进程列表和进程树
+                    await Promise.all([
+                        this.get_pids(),
+                        this.getProcessTree()
+                    ]);
+                    
+                    this.$message.success('进程树刷新成功');
+                    console.log('进程树刷新完成');
+                } catch (error) {
+                    console.error('刷新进程树失败:', error);
+                    this.$message.error('刷新进程树失败，请稍后重试');
+                } finally {
+                    this.isRefreshingProcessTree = false;
+                }
+            },
             async createTask() {
                 if(this.newTask.pid){
-                    const res = await axios({method: 'get',//提交方法
-                            url: '/run_task/?pid='+this.newTask.pid+'&task_name='+this.newTask.name+'&pid_name='+this.pid_name+'&include_child='+this.include_child//提交地址
-                    })
-                    this.print_res(res)
-                    console.log(res)
-                }else{
+                    try {
+                        // 使用encodeURIComponent确保特殊字符被正确编码
+                        const url = `/run_task/?pid=${this.newTask.pid}&task_name=${encodeURIComponent(this.newTask.name)}&pid_name=${encodeURIComponent(this.pid_name)}&include_child=${this.include_child}`;
+                        console.log("创建任务URL:", url);
+                        
+                        const res = await axios({
+                            method: 'get',
+                            url: url
+                        });
+                        
+                        this.print_res(res);
+                        console.log("创建任务响应:", res);
+                        
+                        // 创建成功后立即刷新任务列表并切换到任务列表视图
+                        await this.getAllTask();
+                        this.$message.success('任务创建成功');
+                        // 使用switchView方法切换视图，这样会同时更新左侧菜单的选中状态
+                        this.switchView('taskList');
+                        
+                        // 重置表单
+                        this.newTask = { 
+                            name: "任务-" + this.getCurrentTimestamp(),
+                            pid: null
+                        };
+                        this.cmd = '';
+                        this.pid_img = '';
+                    } catch (error) {
+                        console.error("创建任务失败:", error);
+                        this.$message.error("创建任务失败: " + (error.response?.data?.msg || error.message || "未知错误"));
+                    }
+                } else {
                     this.$message.error("未选择PID");
                 }
             },
@@ -674,6 +1248,10 @@
 				    let memoryList = []
 				    let numThreadList = []
 				    let numHandlesList = []
+                    let diskReadRateList = []
+                    let diskWriteRateList = []
+                    let netSentRateList = []
+                    let netRecvRateList = []
 				    x.value.forEach(v=>{
 				        if (x.name == "cpu"){
 				            cpuList.push((v["cpu_usage(%)"]||v["cpu_usage(%)"]===0)?v["cpu_usage(%)"]:"-")
@@ -697,7 +1275,16 @@
 				            numThreadList.push(v["num_threads(个)"]||v["num_threads(个)"]===0?v["num_threads(个)"]:"-")
 				            timeList.push(v["time"]?v["time"]:"-")
                            
-				        }
+				        }else if(x.name == "disk_io"){
+                            diskReadRateList.push(v["disk_read_rate(MB/s)"]||v["disk_read_rate(MB/s)"]===0?v["disk_read_rate(MB/s)"]:"-")
+                            diskWriteRateList.push(v["disk_write_rate(MB/s)"]||v["disk_write_rate(MB/s)"]===0?v["disk_write_rate(MB/s)"]:"-")
+                            timeList.push(v["time"]?v["time"]:"-")
+                           
+                        }else if(x.name == "network_io"){
+                            netSentRateList.push(v["net_sent_rate(MB/s)"]||v["net_sent_rate(MB/s)"]===0?v["net_sent_rate(MB/s)"]:"-")
+                            netRecvRateList.push(v["net_recv_rate(MB/s)"]||v["net_recv_rate(MB/s)"]===0?v["net_recv_rate(MB/s)"]:"-")
+                            timeList.push(v["time"]?v["time"]:"-")
+                        }
                     
 				    })
 
@@ -774,7 +1361,45 @@
                                 }
 				            )
 
-				        }
+				        }else if(x.name == "disk_io"){
+                            tempOption_tmp.series.push(
+                                {
+                                    name: '磁盘读取速率(MB/s)',
+                                    type: 'line',
+                                    data: diskReadRateList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+                            )
+                            tempOption_tmp.series.push(
+                                {
+                                    name: '磁盘写入速率(MB/s)',
+                                    type: 'line',
+                                    data: diskWriteRateList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+                            )
+                        }else if(x.name == "network_io"){
+                            tempOption_tmp.series.push(
+                                {
+                                    name: '网络发送速率(MB/s)',
+                                    type: 'line',
+                                    data: netSentRateList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+                            )
+                            tempOption_tmp.series.push(
+                                {
+                                    name: '网络接收速率(MB/s)',
+                                    type: 'line',
+                                    data: netRecvRateList,
+                                    connectNulls: true,
+                                    areaStyle: {}
+                                }
+                            )
+                        }
 				})
 				this.resultOption = allRes
             },
@@ -795,16 +1420,22 @@
                     this.fpsChart = echarts.init(document.getElementById('fpsChart'));
                     this.gpuChart = echarts.init(document.getElementById('gpuChart'));
                     this.processInfoChart = echarts.init(document.getElementById('processInfoChart'));
+                    this.diskIOChart = echarts.init(document.getElementById('diskIOChart'));
+                    this.networkIOChart = echarts.init(document.getElementById('networkIOChart'));
                     this.cpuChart.setOption(allRes["cpu"]);
                     this.memoryChart.setOption(allRes["memory"]);
                     this.fpsChart.setOption(allRes["fps"]);
                     this.gpuChart.setOption(allRes["gpu"]);  
-                    this.processInfoChart.setOption(allRes["process_info"]);  
-                    this.syncDataZoom(this.cpuChart, [this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart]);
-                    this.syncDataZoom(this.memoryChart, [this.cpuChart, this.fpsChart, this.gpuChart, this.processInfoChart]);
-                    this.syncDataZoom(this.fpsChart, [this.cpuChart, this.memoryChart, this.gpuChart, this.processInfoChart]);
-                    this.syncDataZoom(this.gpuChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.processInfoChart]);
-                    this.syncDataZoom(this.processInfoChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart]);
+                    this.processInfoChart.setOption(allRes["process_info"]);
+                    this.diskIOChart.setOption(allRes["disk_io"]);
+                    this.networkIOChart.setOption(allRes["network_io"]);
+                    this.syncDataZoom(this.cpuChart, [this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.memoryChart, [this.cpuChart, this.fpsChart, this.gpuChart, this.processInfoChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.fpsChart, [this.cpuChart, this.memoryChart, this.gpuChart, this.processInfoChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.gpuChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.processInfoChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.processInfoChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart, this.diskIOChart, this.networkIOChart]);
+                    this.syncDataZoom(this.diskIOChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart, this.networkIOChart]);
+                    this.syncDataZoom(this.networkIOChart, [this.cpuChart, this.memoryChart, this.fpsChart, this.gpuChart, this.processInfoChart, this.diskIOChart]);
                     
                 });
                 this.intervalId = setInterval(() => {
@@ -854,17 +1485,776 @@
                 this.memoryChart.setOption(allRes["memory"]);
                 this.fpsChart.setOption(allRes["fps"]);
                 this.gpuChart.setOption(allRes["gpu"]);  
-                this.processInfoChart.setOption(allRes["process_info"]);  
+                this.processInfoChart.setOption(allRes["process_info"]);
+                this.diskIOChart.setOption(allRes["disk_io"]);
+                this.networkIOChart.setOption(allRes["network_io"]);
                 this.isloadres = false
-            }
-
-        },
+            },
+            async exportExcel(taskId) {
+                // 实现导出Excel的功能
+                console.log("导出Excel", taskId);
+                try {
+                    // 直接使用window.open打开下载链接
+                    window.open(`/export_excel/?task_id=${taskId}`, '_blank');
+                    this.$message({
+                        message: '正在导出Excel报表...',
+                        type: 'success'
+                    });
+                } catch (error) {
+                    console.error('导出Excel报表失败:', error);
+                    this.$message({
+                        message: '导出Excel报表失败',
+                        type: 'error'
+                    });
+                }
+            },
+            // 版本管理相关方法
+            async editVersion(row) {
+                // 可以直接在表格中编辑，此处仅用于焦点设置
+                this.$nextTick(() => {
+                    // 使用 nextTick 确保 DOM 已更新
+                    document.querySelector(`input[name="version_${row.id}"]`)?.focus();
+                });
+            },
+            
+            async saveVersion(row) {
+                try {
+                    const res = await axios({
+                        method: 'get',
+                        url: `/set_task_version/?task_id=${row.id}&version=${encodeURIComponent(row.version)}`
+                    });
+                    this.print_res(res);
+                    await this.getAllTask(); // 刷新任务列表
+                } catch (error) {
+                    console.error('Error setting task version:', error);
+                    this.$message.error('设置版本失败');
+                }
+            },
+            
+            // 任务对比相关方法
+            toggleTaskSelection(task) {
+                // 切换任务选择状态
+                const index = this.selectedTasksForCompare.findIndex(t => t.id === task.id);
+                if (index > -1) {
+                    // 如果任务已经被选中，则移除
+                    this.selectedTasksForCompare.splice(index, 1);
+                } else {
+                    // 如果任务未被选中，则添加
+                    this.selectedTasksForCompare.push(task);
+                }
+                
+                // 如果已选择任务，使用第一个选中的任务作为基准
+                if (this.selectedTasksForCompare.length > 0) {
+                    this.baseTaskId = this.selectedTasksForCompare[0].id;
+                } else {
+                    this.baseTaskId = null;
+                }
+            },
+            
+            async compareTasks() {
+                if (this.selectedTasksForCompare.length < 2) {
+                    this.$message.error('请至少选择两个任务进行对比');
+                    return;
+                }
+                
+                try {
+                    const taskIds = this.selectedTasksForCompare.map(task => task.id).join(',');
+                    const res = await axios({
+                        method: 'get',
+                        url: `/compare_tasks/?task_ids=${taskIds}&base_task_id=${this.baseTaskId}`
+                    });
+                    
+                    if (res.data.code === 200) {
+                        // 清除旧的图表实例
+                        Object.values(this.comparisonCharts).forEach(chart => {
+                            if (chart && chart.dispose) {
+                                chart.dispose();
+                            }
+                        });
+                        this.comparisonCharts = {};
+                        
+                        // 更新对比结果数据
+                        this.comparisonResult = res.data.msg;
+                        this.compareDialogVisible = true;
+                        
+                        // 在下一个DOM更新周期渲染图表
+                        this.$nextTick(() => {
+                            this.renderComparisonCharts();
+                        });
+                    } else {
+                        this.$message.error(res.data.msg || '对比任务失败');
+                    }
+                } catch (error) {
+                    console.error('Error comparing tasks:', error);
+                    this.$message.error('对比任务失败');
+                }
+            },
+            
+            renderComparisonCharts() {
+                // 初始化对比图表
+                const metrics = ['cpu', 'memory', 'fps', 'gpu', 'threads', 'handles', 'disk_read', 'disk_write', 'net_sent', 'net_recv'];
+                
+                // 获取基准任务ID
+                const baseTask = this.comparisonResult.base_task || {};
+                const baseTaskId = baseTask.id;
+                
+                // 清除所有旧的事件监听器
+                window.removeEventListener('resize', this.resizeComparisonCharts);
+                
+                // 创建新的事件监听器
+                this.resizeComparisonCharts = () => {
+                    Object.values(this.comparisonCharts).forEach(chart => {
+                        if (chart && !chart.isDisposed()) {
+                            chart.resize();
+                        }
+                    });
+                };
+                
+                // 添加窗口大小变化监听
+                window.addEventListener('resize', this.resizeComparisonCharts);
+                
+                metrics.forEach(metric => {
+                    const chartContainer = document.getElementById(`compare_${metric}_chart`);
+                    if (!chartContainer) return;
+                    
+                    // 销毁可能存在的旧图表实例
+                    if (this.comparisonCharts[metric]) {
+                        this.comparisonCharts[metric].dispose();
+                    }
+                    
+                    // 等待DOM更新完成后再初始化图表
+                    this.$nextTick(() => {
+                        const chart = echarts.init(chartContainer);
+                        this.comparisonCharts[metric] = chart;
+                        
+                        // 提取任务名称和指标数据
+                        const tasks = this.comparisonResult.tasks || [];
+                        
+                        // 对任务进行排序，确保基准任务在第一位
+                        const sortedTasks = [...tasks].sort((a, b) => {
+                            if (a.id === baseTaskId) return -1;
+                            if (b.id === baseTaskId) return 1;
+                            return 0;
+                        });
+                        
+                        const series = sortedTasks.map(task => {
+                            const avgKey = `${metric}_avg`;
+                            const isBaseTask = task.id === baseTaskId;
+                            
+                            return {
+                                name: isBaseTask ? `${task.name} ${task.version || ''} (基准任务)` : `${task.name} ${task.version || ''}`,
+                                type: 'bar',
+                                data: [task.avg && task.avg[avgKey] ? task.avg[avgKey] : 0],
+                                // 为基准任务设置特殊样式
+                                itemStyle: isBaseTask ? {
+                                    color: '#409EFF',  // 使用蓝色标识基准任务
+                                    borderType: 'solid',
+                                    borderWidth: 2,
+                                    borderColor: '#1989FA',
+                                    shadowBlur: 4,
+                                    shadowColor: 'rgba(0, 0, 0, 0.2)'
+                                } : {}
+                            };
+                        });
+                        
+                        // 设置图表选项
+                        const option = {
+                            title: {
+                                text: this.getMetricDisplayName(metric),
+                                left: 'center',
+                                textStyle: {
+                                    fontSize: 16,
+                                    fontWeight: 'bold'
+                                }
+                            },
+                            tooltip: {
+                                trigger: 'item',  // 修改为item触发，而不是axis
+                                axisPointer: {
+                                    type: 'shadow'
+                                },
+                                formatter: function(params) {
+                                    // 确保params是当前悬停的数据项
+                                    const taskName = params.seriesName;
+                                    const value = params.value;
+                                    const isBaseTask = taskName.includes('(基准任务)');
+                                    
+                                    let tipContent = `<div style="font-weight:bold;margin-bottom:5px;">${taskName}</div>`;
+                                    tipContent += `<div>值: ${value.toFixed(2)}</div>`;
+                                    
+                                    if (isBaseTask) {
+                                        tipContent += `<div style="color:#409EFF;font-weight:bold;margin-top:5px;">基准任务</div>`;
+                                    }
+                                    
+                                    return tipContent;
+                                }
+                            },
+                            legend: {
+                                data: sortedTasks.map(task => task.id === baseTaskId ? 
+                                    `${task.name} ${task.version || ''} (基准任务)` : 
+                                    `${task.name} ${task.version || ''}`),
+                                top: 'auto',
+                                bottom: '20px',  // 设置距离底部的距离为20px，相当于向上移动20px
+                                type: 'scroll',  // 启用滚动
+                                orient: 'horizontal',
+                                padding: [8, 10, 8, 10],  // 增加内边距
+                                itemGap: 15,  // 增加图例项之间的间距
+                                textStyle: {
+                                    fontSize: 12
+                                },
+                                pageButtonItemGap: 5,  // 翻页按钮与图例项的间距
+                                pageButtonGap: 10,  // 翻页按钮的间距
+                                pageIconColor: '#409EFF',  // 翻页按钮颜色
+                                pageIconInactiveColor: '#aaa',  // 不可用的翻页按钮颜色
+                                pageIconSize: 12,  // 翻页按钮大小
+                                formatter: function(name) {
+                                    // 如果图例文本过长，进行截断
+                                    if (name.length > 20) {
+                                        return name.substring(0, 18) + '...';
+                                    }
+                                    return name;
+                                }
+                            },
+                            grid: {
+                                left: '5%',
+                                right: '5%',
+                                bottom: '30%',  // 进一步增加底部空间，为图例腾出更多位置
+                                top: '15%',
+                                containLabel: true
+                            },
+                            xAxis: {
+                                type: 'category',
+                                data: ['平均值'],
+                                axisLabel: {
+                                    fontSize: 14
+                                }
+                            },
+                            yAxis: {
+                                type: 'value',
+                                nameTextStyle: {
+                                    fontSize: 12
+                                },
+                                axisLabel: {
+                                    fontSize: 12
+                                }
+                            },
+                            series: series
+                        };
+                        
+                        // 设置图表选项并渲染
+                        chart.setOption(option);
+                        
+                        // 强制图表重新渲染以确保正确显示
+                        setTimeout(() => {
+                            if (chart && !chart.isDisposed()) {
+                                chart.resize();
+                            }
+                        }, 200);
+                    });
+                });
+            },
+            
+            getMetricDisplayName(metricKey) {
+                const metricMap = {
+                    'cpu': 'CPU使用率',
+                    'memory': '内存使用量',
+                    'fps': 'FPS帧率',
+                    'gpu': 'GPU使用率',
+                    'threads': '线程数',
+                    'handles': '句柄数',
+                    'disk_read': '磁盘读取速率',
+                    'disk_write': '磁盘写入速率',
+                    'net_sent': '网络发送速率',
+                    'net_recv': '网络接收速率'
+                };
+                return metricMap[metricKey] || metricKey;
+            },
+            
+            async exportComparisonExcel() {
+                if (this.selectedTasksForCompare.length < 2) {
+                    this.$message.error('请至少选择两个任务进行对比');
+                    return;
+                }
+                
+                try {
+                    const taskIds = this.selectedTasksForCompare.map(task => task.id).join(',');
+                    
+                    // 直接打开下载链接
+                    window.open(`/export_comparison_excel/?task_ids=${taskIds}&base_task_id=${this.baseTaskId}`, '_blank');
+                    
+                    this.$message({
+                        message: '正在导出对比报表...',
+                        type: 'success'
+                    });
+                } catch (error) {
+                    console.error('Error exporting comparison Excel:', error);
+                    this.$message.error('导出对比报表失败');
+                }
+            },
+            
+            // 高级分析相关方法
+            async performAdvancedAnalysis() {
+                if (this.selectedTasksForCompare.length !== 2) {
+                    this.$message.error('高级分析需要选择两个任务进行对比分析');
+                    return;
+                }
+                
+                try {
+                    this.$message.info('正在进行高级分析，请稍候...');
+                    const taskIds = this.selectedTasksForCompare.map(task => task.id).join(',');
+                    console.log("发送高级分析请求，任务ID:", taskIds, "基准任务ID:", this.baseTaskId);
+                    
+                    const res = await axios({
+                        method: 'get',
+                        url: `/advanced_compare_tasks/?task_ids=${taskIds}&base_task_id=${this.baseTaskId}`
+                    });
+                    
+                    console.log("高级分析响应:", res.data);
+                    
+                    if (res.data.code === 200) {
+                        this.advancedAnalysisResult = res.data.msg;
+                        this.advancedDialogVisible = true;
+                        
+                        // 确保在DOM更新后再渲染图表
+                        this.$nextTick(() => {
+                            console.log("开始渲染高级分析图表");
+                            this.renderAdvancedAnalysisCharts();
+                        });
+                    } else {
+                        this.$message.error(res.data.msg || '高级分析失败');
+                    }
+                } catch (error) {
+                    console.error('Error performing advanced analysis:', error);
+                    this.$message.error('高级分析失败: ' + (error.message || '未知错误'));
+                }
+            },
+            
+            renderAdvancedAnalysisCharts() {
+                // 初始化高级分析图表
+                console.log("开始渲染高级分析图表", this.advancedAnalysisResult);
+                
+                if (!this.advancedAnalysisResult) {
+                    console.error("高级分析结果为空");
+                    this.$message.warning("高级分析结果为空，请重试");
+                    return;
+                }
+                
+                if (!this.advancedAnalysisResult.advanced_analysis) {
+                    console.error("高级分析数据不完整", this.advancedAnalysisResult);
+                    this.$message.warning("高级分析数据不完整，请重试");
+                    return;
+                }
+                
+                try {
+                    // 清除旧图表实例
+                    Object.values(this.advancedCharts).forEach(chart => {
+                        if (chart && chart.dispose) {
+                            chart.dispose();
+                        }
+                    });
+                    this.advancedCharts = {};
+                    
+                    // 清除旧的事件监听器
+                    window.removeEventListener('resize', this.resizeAdvancedCharts);
+                    
+                    // 创建新的事件监听器
+                    this.resizeAdvancedCharts = () => {
+                        Object.values(this.advancedCharts).forEach(chart => {
+                            if (chart && !chart.isDisposed()) {
+                                chart.resize();
+                            }
+                        });
+                    };
+                    
+                    // 添加窗口大小变化监听
+                    window.addEventListener('resize', this.resizeAdvancedCharts);
+                    
+                    // 统计显著性图表
+                    this.renderSignificanceChart();
+                    
+                    // 瓶颈分析图表
+                    this.renderBottlenecksChart();
+                    
+                } catch (error) {
+                    console.error("渲染高级分析图表时出错:", error);
+                    this.$message.error("渲染高级分析图表失败: " + error.message);
+                }
+            },
+            
+            renderSignificanceChart() {
+                const significance = this.advancedAnalysisResult.advanced_analysis.statistical_significance;
+                if (!significance) {
+                    console.log("无显著性分析数据");
+                    return;
+                }
+                
+                const metrics = Object.keys(significance);
+                console.log("显著性分析指标:", metrics);
+                
+                const chartContainer = document.getElementById('advanced_significance_chart');
+                if (!chartContainer) {
+                    console.error("未找到显著性分析图表容器");
+                    return;
+                }
+                
+                try {
+                    const chart = echarts.init(chartContainer);
+                    this.advancedCharts.significance = chart;
+                    
+                    // 准备数据
+                    const metricNames = metrics.map(m => this.getMetricDisplayName(m));
+                    const confidenceData = metrics.map(m => significance[m].confidence || 0);
+                    
+                    // 设置图表选项
+                    const option = {
+                        title: {
+                            text: '统计显著性分析',
+                            left: 'center',
+                            textStyle: {
+                                fontSize: 16,
+                                fontWeight: 'bold'
+                            }
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            },
+                            formatter: function(params) {
+                                const metric = metrics[params[0].dataIndex];
+                                const metricData = significance[metric];
+                                return `<div style="font-weight:bold;margin-bottom:5px;">${params[0].name}</div>
+                                        <div>置信度: ${metricData.confidence.toFixed(2)}%</div>
+                                        <div>p值: ${metricData.p_value.toFixed(4)}</div>
+                                        <div>显著性: ${metricData.is_significant ? '<span style="color:#67C23A">显著</span>' : '<span style="color:#909399">不显著</span>'}</div>
+                                        <div>平均差异: ${metricData.diff.toFixed(2)}</div>
+                                        <div>变化率: ${metricData.percent_change.toFixed(2)}%</div>`;
+                            }
+                        },
+                        legend: {
+                            data: ['置信度(%)'],
+                            top: 'bottom',
+                            padding: [5, 5, 5, 5]
+                        },
+                        grid: {
+                            left: '5%',
+                            right: '5%',
+                            bottom: '15%',
+                            top: '15%',
+                            containLabel: true
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: metricNames,
+                            axisLabel: {
+                                fontSize: 12,
+                                interval: 0,
+                                rotate: metricNames.length > 6 ? 30 : 0
+                            }
+                        },
+                        yAxis: {
+                            type: 'value',
+                            name: '置信度(%)',
+                            max: 100,
+                            nameTextStyle: {
+                                fontSize: 12
+                            },
+                            axisLabel: {
+                                fontSize: 12
+                            }
+                        },
+                        series: [{
+                            name: '置信度(%)',
+                            type: 'bar',
+                            data: confidenceData,
+                            itemStyle: {
+                                color: params => {
+                                    return params.value > 95 ? '#67C23A' : '#409EFF';
+                                }
+                            },
+                            markLine: {
+                                data: [
+                                    {
+                                        name: '显著性阈值',
+                                        yAxis: 95,
+                                        lineStyle: {
+                                            color: '#F56C6C',
+                                            width: 2,
+                                            type: 'dashed'
+                                        },
+                                        label: {
+                                            formatter: '显著性阈值',
+                                            position: 'middle',
+                                            fontSize: 12,
+                                            backgroundColor: 'rgba(255,255,255,0.8)',
+                                            padding: [3, 5]
+                                        }
+                                    }
+                                ]
+                            }
+                        }]
+                    };
+                    
+                    chart.setOption(option);
+                    
+                    // 强制重新渲染
+                    setTimeout(() => {
+                        if (chart && !chart.isDisposed()) {
+                            chart.resize();
+                        }
+                    }, 200);
+                } catch (error) {
+                    console.error("渲染显著性图表时出错:", error);
+                    this.$message.error("渲染显著性图表失败: " + error.message);
+                }
+            },
+            
+            renderBottlenecksChart() {
+                const bottlenecks = this.advancedAnalysisResult.advanced_analysis.bottleneck_analysis;
+                if (!bottlenecks || !bottlenecks.potential_bottlenecks || bottlenecks.potential_bottlenecks.length === 0) {
+                    console.log("无瓶颈分析数据");
+                    return;
+                }
+                
+                const chartContainer = document.getElementById('advanced_bottlenecks_chart');
+                if (!chartContainer) {
+                    console.error("未找到瓶颈分析图表容器");
+                    return;
+                }
+                
+                try {
+                    const chart = echarts.init(chartContainer);
+                    this.advancedCharts.bottlenecks = chart;
+                    
+                    // 准备数据
+                    const bottleneckMetrics = bottlenecks.potential_bottlenecks.map(b => this.getMetricDisplayName(b.metric));
+                    const percentChanges = bottlenecks.potential_bottlenecks.map(b => b.percent_change);
+                    
+                    console.log("瓶颈分析指标:", bottleneckMetrics);
+                    console.log("瓶颈分析变化率:", percentChanges);
+                    
+                    // 设置图表选项
+                    const option = {
+                        title: {
+                            text: '潜在性能瓶颈分析',
+                            left: 'center',
+                            textStyle: {
+                                fontSize: 16,
+                                fontWeight: 'bold'
+                            }
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            },
+                            formatter: function(params) {
+                                const bottleneck = bottlenecks.potential_bottlenecks[params[0].dataIndex];
+                                return `<div style="font-weight:bold;margin-bottom:5px;">${bottleneck.metric}</div>
+                                        <div>变化率: ${percentChanges[params[0].dataIndex].toFixed(2)}%</div>`;
+                            }
+                        },
+                        grid: {
+                            left: '5%',
+                            right: '5%',
+                            bottom: '15%',
+                            top: '15%',
+                            containLabel: true
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: bottleneckMetrics,
+                            axisLabel: {
+                                fontSize: 12,
+                                interval: 0,
+                                rotate: bottleneckMetrics.length > 6 ? 30 : 0
+                            }
+                        },
+                        yAxis: {
+                            type: 'value',
+                            name: '变化率(%)',
+                            nameTextStyle: {
+                                fontSize: 12
+                            },
+                            axisLabel: {
+                                fontSize: 12
+                            }
+                        },
+                        series: [{
+                            name: '变化率(%)',
+                            type: 'bar',
+                            data: percentChanges,
+                            barWidth: '40%',
+                            itemStyle: {
+                                color: params => {
+                                    const metric = bottlenecks.potential_bottlenecks[params.dataIndex].metric;
+                                    const isBetterIfSmaller = ['cpu', 'memory', 'disk_write', 'disk_read', 'net_sent', 'net_recv'].includes(metric);
+                                    
+                                    if ((isBetterIfSmaller && params.value < 0) || (!isBetterIfSmaller && params.value > 0)) {
+                                        return '#67C23A'; // 绿色，表示改进
+                                    } else {
+                                        return '#F56C6C'; // 红色，表示退化
+                                    }
+                                }
+                            }
+                        }]
+                    };
+                    
+                    chart.setOption(option);
+                    
+                    // 强制重新渲染
+                    setTimeout(() => {
+                        if (chart && !chart.isDisposed()) {
+                            chart.resize();
+                        }
+                    }, 200);
+                } catch (error) {
+                    console.error("渲染瓶颈分析图表时出错:", error);
+                    this.$message.error("渲染瓶颈分析图表失败: " + error.message);
+                }
+            },
+            
+            async exportAdvancedAnalysisExcel() {
+                if (!this.advancedAnalysisResult) {
+                    this.$message.error('请先进行高级分析');
+                    return;
+                }
+                
+                try {
+                    const taskIds = this.selectedTasksForCompare.map(task => task.id).join(',');
+                    
+                    // 直接打开下载链接
+                    window.open(`/export_advanced_comparison_excel/?task_ids=${taskIds}&base_task_id=${this.baseTaskId}`, '_blank');
+                    
+                    this.$message({
+                        message: '正在导出高级分析报表...',
+                        type: 'success'
+                    });
+                } catch (error) {
+                    console.error('Error exporting advanced analysis Excel:', error);
+                    this.$message.error('导出高级分析报表失败');
+                }
+            },
+            
+            // 报告管理相关方法
+            async getComparisonReports() {
+                try {
+                    const res = await axios({
+                        method: 'get',
+                        url: '/get_comparison_reports/'
+                    });
+                    
+                    if (res.data.code === 200) {
+                        this.comparisonReports = res.data.msg || [];
+                    } else {
+                        this.$message.error(res.data.msg || '获取报告列表失败');
+                    }
+                } catch (error) {
+                    console.error('Error getting comparison reports:', error);
+                    this.$message.error('获取报告列表失败');
+                }
+            },
+            
+            async deleteReport(reportId) {
+                try {
+                    // 显示确认对话框
+                    await this.$confirm('确定要删除此报告吗？此操作不可撤销。', '警告', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    });
+                    
+                    const res = await axios({
+                        method: 'get',
+                        url: `/delete_comparison_report/?report_id=${reportId}`
+                    });
+                    
+                    if (res.data.code === 200) {
+                        this.$message.success('报告已删除');
+                        await this.getComparisonReports(); // 刷新报告列表
+                    } else {
+                        this.$message.error(res.data.msg || '删除报告失败');
+                    }
+                } catch (error) {
+                    if (error === 'cancel' || error === 'close') {
+                        console.log('用户取消了删除操作');
+                    } else {
+                        console.error('Error deleting report:', error);
+                        this.$message.error('删除报告失败');
+                    }
+                }
+            },
+            
+            openReportFile(reportPath) {
+                if (!reportPath) {
+                    this.$message.error('报告文件路径不存在');
+                    return;
+                }
+                
+                console.log('报告文件路径:', reportPath);
+                
+                // 提取文件名
+                const fileName = reportPath.split(/[\/\\]/).pop();
+                
+                if (!fileName) {
+                    this.$message.error('无法解析报告文件名');
+                    return;
+                }
+                
+                console.log('提取的文件名:', fileName);
+                
+                // 直接使用文件名访问
+                const url = `/static/comparison_reports/${fileName}`;
+                console.log('访问URL:', url);
+                window.open(url, '_blank');
+                
+                // 显示成功消息
+                this.$message.success('正在打开报告文件');
+            },
         async mounted(){
+                // 立即获取任务列表，不管当前视图是什么
             await this.getAllTask();
-            await this.get_system_info()
-            await this.get_pids()
-            await this.getProcessTree()
-        }
+                await this.get_system_info();
+                await this.get_pids();
+                await this.getProcessTree();
+                
+                // 获取报告列表
+                if (this.currentView === 'reportManagement') {
+                    await this.getComparisonReports();
+                }
+                
+                // 为better和worse类添加样式
+                const style = document.createElement('style');
+                style.textContent = `
+                    .better { color: #67C23A; }
+                    .worse { color: #F56C6C; }
+                    .is-selected { background-color: #ecf5ff; border-color: #409EFF; }
+                `;
+                document.head.appendChild(style);
+                
+                // 设置定时器，每5秒刷新一次任务列表，以更新任务状态
+                this.intervalId = setInterval(async () => {
+                    await this.getAllTask();
+                }, 5000);
+            },
+            // 在组件销毁时清除定时器
+            beforeDestroy() {
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                }
+            },
+            handleAdvancedDialogOpen() {
+                console.log("高级分析对话框已打开，准备渲染图表");
+                if (this.advancedAnalysisResult && this.advancedAnalysisResult.advanced_analysis) {
+                    // 给DOM一点时间来渲染
+                    setTimeout(() => {
+                        this.renderAdvancedAnalysisCharts();
+                    }, 300);
+                } else {
+                    console.error("高级分析结果数据不完整或为空");
+                    this.$message.warning("高级分析结果数据不完整，请重新进行分析");
+                }
+            }
+        },
     });
 
 
