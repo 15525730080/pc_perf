@@ -48,8 +48,9 @@ engine application Unity u3d application), GPU, thread_num, handle_num, etc
 ![image](https://github.com/15525730080/pc_perf/assets/153100629/2e28527a-6e5d-487c-8753-8d3483c0f108)
 ![image](https://github.com/user-attachments/assets/6ad7b0c6-0ba5-49e3-ba7a-38df2b8033cb)
 
-# 报告对比（来自【https://github.com/SamuPopg】的pr）
+# 报告对比（PR来自【https://github.com/SamuPopg】）
 <img width="1909" height="936" alt="image" src="https://github.com/user-attachments/assets/7013556b-3fdc-4be6-9b74-6e8d5c495d67" />
+<img width="1914" height="803" alt="image" src="https://github.com/user-attachments/assets/df48f6a2-11cd-43fc-a1e1-5f9d6af59a32" />
 
 
 
