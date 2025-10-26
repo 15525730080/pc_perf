@@ -16,10 +16,10 @@ from app.log import log as logger
 from app.task_handle import TaskHandle
 from app.util import DataCollect
 from app.excel_report import create_excel_report
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 app = FastAPI()
-scheduler = BackgroundScheduler()
+scheduler = AsyncIOScheduler()
 logger.info("工作空间{0}".format(os.getcwd()))
 cur_file = Path(__file__)
 BASE_CSV_DIR = cur_file.parent.parent.joinpath("test_result")
@@ -329,3 +329,8 @@ async def app_start():
 
     scheduler.add_job(check_stop_task_monitor_pid_close, 'interval', seconds=60)
     scheduler.start()
+
+@app.on_event("shutdown")
+async def app_shutdown():
+    # 关闭调度器，确保资源释放
+    scheduler.shutdown()
