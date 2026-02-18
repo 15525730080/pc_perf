@@ -1,11 +1,14 @@
 #coding:utf-8
+import sys
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).parent
+sys.path.insert(0, str(PROJECT_ROOT / "cython_build")) # 先添加 cython_build 目录，确保可以导入 cython 模块
+import os
 import argparse
 import ctypes
 import multiprocessing
-import os
 import platform
 import subprocess
-import sys
 import threading
 import time
 import webbrowser
