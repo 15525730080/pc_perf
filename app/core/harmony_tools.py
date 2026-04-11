@@ -56,7 +56,7 @@ def _hdc(args: list, serial: str = None, timeout: int = 15) -> Optional[str]:
     cmd += args
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=timeout
+            cmd, capture_output=True, text=True, timeout=timeout, encoding="utf-8"
         )
         out = result.stdout.strip()
         if out:

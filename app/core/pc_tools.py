@@ -119,7 +119,7 @@ async def pids():
                         {"name": proc.info['name'], "pid": proc.info['pid'], "cmd": proc.info['cmdline'],
                          "username": proc.username()})
             except Exception as e:
-                logger.error(e)
+                pass
         process_list.sort(key=lambda x: x['name'])
         # print_json(process_list)
         return process_list

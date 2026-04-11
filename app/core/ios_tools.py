@@ -91,7 +91,8 @@ def _run(args: list, timeout: int = 15) -> Optional[str]:
         result = subprocess.run(
             [GO_IOS_PATH] + args,
             capture_output=True, text=True, timeout=timeout,
-            env=_go_ios_env()
+            env=_go_ios_env(),
+            encoding="utf-8"
         )
         # go-ios 有些命令数据走 stdout，有些走 stderr（logrus 格式）
         out = result.stdout.strip()
@@ -163,7 +164,7 @@ class TunnelManager:
         try:
             proc = subprocess.Popen(
                 args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                text=True, env=env
+                text=True, env=env, encoding="utf-8"
             )
             cls._proc = proc
             cls._tunnel_procs.append(proc)
@@ -391,7 +392,7 @@ def _read_sysmontap_sample(udid: str, skip_count: int = 2) -> Optional[Dict]:
         proc = subprocess.Popen(
             [GO_IOS_PATH, "sysmontap", "--udid", udid],
             stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,
-            text=True, bufsize=1, env=_go_ios_env()
+            text=True, bufsize=1, env=_go_ios_env(), encoding="utf-8"
         )
         count = 0
         result_data = None
@@ -1108,7 +1109,7 @@ async def ios_screenshot(udid: str, save_dir: str = None, **kwargs):
         try:
             subprocess.run(
                 [GO_IOS_PATH, "screenshot", "--udid", udid, "--output", out_path],
-                capture_output=True, timeout=15
+                capture_output=True, timeout=15, encoding="utf-8"
             )
         except Exception as e:
             logger.error(f"iOS 截图失败: {e}")
