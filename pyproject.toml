@@ -34,4 +34,4 @@ dependencies = [
 ]
 
 [project.scripts]
-client-perf = "app.__main__:main"
+client-perf = "client_perf.__main__:main"

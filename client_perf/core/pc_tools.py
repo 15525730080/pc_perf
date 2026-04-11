@@ -9,11 +9,20 @@ from io import BytesIO
 import psutil
 import pynvml
 from pathlib import Path
-from app.log import log as logger
-from app.core.monitor import Monitor
+from client_perf.log import log as logger
+from client_perf.core.monitor import Monitor
 
-# 定义常量
 MB_CONVERSION = 1024 * 1024
+
+
+def _is_admin() -> bool:
+    if platform.system() != "Windows":
+        return True
+    try:
+        import ctypes
+        return ctypes.windll.shell32.IsUserAnAdmin() != 0
+    except Exception:
+        return False
 
 SUPPORT_GPU = True
 try:
@@ -38,6 +47,7 @@ class WinFps(object):
     frame_que = list()
     single_instance = None
     fps_process = None
+    _admin_warned = False
 
     def __init__(self, pid):
         self.pid = pid
@@ -72,11 +82,31 @@ class WinFps(object):
         return complete_fps
 
     def start_fps_collect(self, pid):
+        if platform.system() != "Windows":
+            return
+
+        if not _is_admin():
+            if not WinFps._admin_warned:
+                WinFps._admin_warned = True
+                logger.error(
+                    "PresentMon 需要管理员权限才能采集 FPS。"
+                    "请以管理员身份运行 client-perf，或启动时不要使用 --no-elevate 参数。"
+                )
+            return
+        print("start fps ")
         start_fps_collect_time = int(time.time())
         PresentMon = Path(__file__).parent.parent.parent.joinpath("tool", "PresentMon.exe")
-        res_terminate = subprocess.Popen(
-            [PresentMon, "-process_id", str(pid), "-output_stdout", "-stop_existing_session"],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if not PresentMon.exists():
+            logger.error(f"PresentMon.exe 不存在: {PresentMon}")
+            return
+        try:
+            res_terminate = subprocess.Popen(
+                [str(PresentMon), "-process_id", str(pid), "-output_stdout", "-stop_existing_session"],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            print(res_terminate)
+        except Exception as e:
+            logger.error(f"PresentMon 启动失败: {e}")
+            return
         WinFps.fps_process = res_terminate
         res_terminate.stdout.readline()
         while not res_terminate.poll():
@@ -313,7 +343,7 @@ async def fps(pid, include_child=False):
     if not frames:
         return frames
     res = {"type": "fps", "fps": len(frames), "frames": frames, "time": int(frames[0]) if frames else int(time.time())}
-    # print_json(res)
+    print_json(res)
     return res
 
 

@@ -28,7 +28,7 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.orm import DeclarativeBase
 
-from app.log import log as logger
+from client_perf.log import log as logger
 
 # ── 数据库路径 ────────────────────────────────────────────────
 DB_PATH = os.path.join(os.getcwd(), "task.sqlite")

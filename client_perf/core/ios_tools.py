@@ -29,8 +29,8 @@ import threading
 from pathlib import Path
 from typing import Optional, Dict, List
 
-from app.log import log as logger
-from app.core.monitor import Monitor
+from client_perf.log import log as logger
+from client_perf.core.monitor import Monitor
 
 # ── py-ios-device (Instruments DTX 协议) ──────────────────────────────────
 try:
@@ -130,10 +130,21 @@ def _run_json(args: list, timeout: int = 15):
 
 # ─────────────────────────── Tunnel 管理 ───────────────────────────
 
+def _is_admin() -> bool:
+    if platform.system() != "Windows":
+        return True
+    try:
+        import ctypes
+        return ctypes.windll.shell32.IsUserAnAdmin() != 0
+    except Exception:
+        return False
+
+
 class TunnelManager:
     """管理 go-ios tunnel"""
     _proc: Optional[subprocess.Popen] = None
     _tunnel_procs: List[subprocess.Popen] = []
+    _admin_warned = False
 
     @classmethod
     def ensure_tunnel(cls, udid: str = "") -> bool:
@@ -153,9 +164,23 @@ class TunnelManager:
 
     @classmethod
     def start(cls, udid: str = "") -> bool:
-        """启动 tunnel（后台进程）"""
+        """启动 tunnel（后台进程）
+
+        iOS 17+ 设备通过 DTX 协议采集数据需要先启动 go-ios tunnel，
+        在 Windows 上此操作需要管理员权限。
+        """
         if not GO_IOS_PATH:
             return False
+
+        if platform.system() == "Windows" and not _is_admin():
+            if not cls._admin_warned:
+                cls._admin_warned = True
+                logger.error(
+                    "iOS 17+ 设备的 tunnel 启动需要管理员权限。"
+                    "请以管理员身份运行 client-perf，或启动时不要使用 --no-elevate 参数。"
+                )
+            return False
+
         args = [GO_IOS_PATH, "tunnel", "start", "--userspace"]
         if udid:
             args += ["--udid", udid]

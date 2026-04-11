@@ -21,11 +21,11 @@ from pydantic import BaseModel
 from starlette.requests import Request
 from starlette.responses import JSONResponse, RedirectResponse, FileResponse
 
-from app.db import TaskCollection, ComparisonReportCollection, LabelCollection, create_tables
-from app.log import log as logger
-from app.task_handle import TaskHandle
-from app.util import DataCollect
-from app.core.device_manager import (
+from client_perf.db import TaskCollection, ComparisonReportCollection, LabelCollection, create_tables
+from client_perf.log import log as logger
+from client_perf.task_handle import TaskHandle
+from client_perf.util import DataCollect
+from client_perf.core.device_manager import (
     DeviceManager,
     get_platform_capabilities,
     DEVICE_TYPE_PC,
@@ -365,7 +365,7 @@ async def _shutdown():
     if hasattr(app.state, "scheduler"):
         app.state.scheduler.shutdown(wait=False)
     try:
-        from app.core.ios_tools import TunnelManager
+        from client_perf.core.ios_tools import TunnelManager
         TunnelManager.stop_all_tunnels()
     except ImportError:
         pass
@@ -424,16 +424,16 @@ async def get_pids(
 ):
     try:
         if device_type == DEVICE_TYPE_ANDROID:
-            from app.core.android_tools import android_packages
+            from client_perf.core.android_tools import android_packages
             return ok(await android_packages(device_id))
         elif device_type == DEVICE_TYPE_IOS:
-            from app.core.ios_tools import ios_apps
+            from client_perf.core.ios_tools import ios_apps
             return ok(await ios_apps(device_id))
         elif device_type == DEVICE_TYPE_HARMONY:
-            from app.core.harmony_tools import harmony_packages
+            from client_perf.core.harmony_tools import harmony_packages
             return ok(await harmony_packages(device_id))
         else:
-            from app.core.pc_tools import process_tree, pids
+            from client_perf.core.pc_tools import process_tree, pids
             return ok(await process_tree() if is_print_tree else await pids())
     except Exception as e:
         return err(str(e))
@@ -599,7 +599,7 @@ async def export_excel(task_id: int):
 @app.get("/compare_tasks/")
 async def compare_tasks(task_ids: str, base_task_id: int = None):
     try:
-        from app.comparison import TaskComparison
+        from client_perf.comparison import TaskComparison
         id_list = [int(x.strip()) for x in task_ids.split(",") if x.strip()]
         data = await TaskComparison.create_comparison(id_list, base_task_id)
         return ok(data)
@@ -614,7 +614,7 @@ async def export_comparison_excel(
     report_name: str = None,
 ):
     try:
-        from app.comparison import TaskComparison
+        from client_perf.comparison import TaskComparison
 
         id_list = [int(x.strip()) for x in task_ids.split(",") if x.strip()]
         data = await TaskComparison.create_comparison(id_list, base_task_id)
@@ -987,7 +987,7 @@ async def compare_labels(label_ids: str):
     label_ids: 逗号分隔的 label id，每个 label 对应一个任务的一段区间。
     """
     try:
-        from app.comparison import _build_task_avg
+        from client_perf.comparison import _build_task_avg
         import asyncio
 
         ids = [int(x.strip()) for x in label_ids.split(",") if x.strip()]

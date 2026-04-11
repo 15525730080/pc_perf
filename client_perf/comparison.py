@@ -12,8 +12,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from app.db import TaskCollection
-from app.util import DataCollect
+from client_perf.db import TaskCollection
+from client_perf.util import DataCollect
 
 # ── 指标映射：metric_key -> (csv_stem, csv_column_prefix) ──────
 # csv_column_prefix 是 CSV 表头中数值列的前缀（不含单位括号部分）

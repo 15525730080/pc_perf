@@ -11,8 +11,8 @@ import time
 import traceback
 from typing import Optional, Dict, List
 
-from app.log import log as logger
-from app.core.monitor import Monitor
+from client_perf.log import log as logger
+from client_perf.core.monitor import Monitor
 
 try:
     import adbutils

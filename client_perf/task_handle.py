@@ -11,8 +11,8 @@ from multiprocessing import Process
 
 import psutil
 
-from app.db import TaskCollection
-from app.log import log as logger
+from client_perf.db import TaskCollection
+from client_perf.log import log as logger
 
 
 class TaskHandle(Process):
@@ -67,13 +67,13 @@ class TaskHandle(Process):
     # ── 各平台采集 ────────────────────────────────────────────
 
     def _run_pc(self) -> None:
-        from app.core.pc_tools import perf as pc_perf
+        from client_perf.core.pc_tools import perf as pc_perf
         asyncio.run(
             pc_perf(self.target_pid, self.file_dir, include_child=self.include_child)
         )
 
     def _run_android(self) -> None:
-        from app.core.android_tools import android_perf, ADB_AVAILABLE
+        from client_perf.core.android_tools import android_perf, ADB_AVAILABLE
         if not ADB_AVAILABLE:
             logger.error("adbutils 未安装，无法执行 Android 性能采集")
             return
@@ -88,7 +88,7 @@ class TaskHandle(Process):
         )
 
     def _run_ios(self) -> None:
-        from app.core.ios_tools import ios_perf
+        from client_perf.core.ios_tools import ios_perf
         asyncio.run(
             ios_perf(
                 udid=self.device_id,
@@ -100,7 +100,7 @@ class TaskHandle(Process):
         )
 
     def _run_harmony(self) -> None:
-        from app.core.harmony_tools import harmony_perf, HDC_AVAILABLE
+        from client_perf.core.harmony_tools import harmony_perf, HDC_AVAILABLE
         if not HDC_AVAILABLE:
             logger.error("hdc 未找到，无法执行 HarmonyOS 性能采集")
             return

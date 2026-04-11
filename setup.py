@@ -25,7 +25,7 @@ setup(
     python_requires=">=3.7",
     entry_points={
         "console_scripts": [
-            "client-perf=app.__main__:main",
+            "client-perf=client_perf.__main__:main",
         ],
     },
 )

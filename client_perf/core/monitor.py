@@ -16,7 +16,7 @@ from collections.abc import Callable, Coroutine
 from pathlib import Path
 from typing import Any
 
-from app.log import log as logger
+from client_perf.log import log as logger
 
 
 class Monitor:

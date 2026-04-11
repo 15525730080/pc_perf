@@ -7,7 +7,7 @@ import platform
 import time
 from typing import List, Dict, Optional
 
-from app.log import log as logger
+from client_perf.log import log as logger
 
 
 # ─────────────────────────── 设备类型常量 ───────────────────────────
@@ -35,7 +35,7 @@ class DeviceManager:
 
         # 2. Android 设备
         try:
-            from app.core.android_tools import get_adb_devices, ADB_AVAILABLE
+            from client_perf.core.android_tools import get_adb_devices, ADB_AVAILABLE
             if ADB_AVAILABLE:
                 android_devices = get_adb_devices()
                 devices.extend(android_devices)
@@ -44,7 +44,7 @@ class DeviceManager:
 
         # 3. iOS 设备
         try:
-            from app.core.ios_tools import get_ios_devices
+            from client_perf.core.ios_tools import get_ios_devices
             ios_devices = get_ios_devices()
             devices.extend(ios_devices)
         except ImportError:
@@ -52,7 +52,7 @@ class DeviceManager:
 
         # 4. HarmonyOS 设备
         try:
-            from app.core.harmony_tools import get_harmony_devices, HDC_AVAILABLE
+            from client_perf.core.harmony_tools import get_harmony_devices, HDC_AVAILABLE
             if HDC_AVAILABLE:
                 harmony_devices = get_harmony_devices()
                 devices.extend(harmony_devices)
@@ -80,7 +80,7 @@ class DeviceManager:
     def get_android_devices(cls) -> List[Dict]:
         """获取 Android 设备列表"""
         try:
-            from app.core.android_tools import get_adb_devices, ADB_AVAILABLE
+            from client_perf.core.android_tools import get_adb_devices, ADB_AVAILABLE
             if ADB_AVAILABLE:
                 return get_adb_devices()
         except ImportError:
@@ -91,7 +91,7 @@ class DeviceManager:
     def get_ios_devices(cls) -> List[Dict]:
         """获取 iOS 设备列表"""
         try:
-            from app.core.ios_tools import get_ios_devices
+            from client_perf.core.ios_tools import get_ios_devices
             return get_ios_devices()
         except ImportError:
             pass
@@ -101,7 +101,7 @@ class DeviceManager:
     def get_harmony_devices(cls) -> List[Dict]:
         """获取 HarmonyOS 设备列表"""
         try:
-            from app.core.harmony_tools import get_harmony_devices, HDC_AVAILABLE
+            from client_perf.core.harmony_tools import get_harmony_devices, HDC_AVAILABLE
             if HDC_AVAILABLE:
                 return get_harmony_devices()
         except ImportError:
@@ -119,7 +119,7 @@ class DeviceManager:
         """
         if device_type == DEVICE_TYPE_ANDROID:
             try:
-                from app.core.android_tools import android_packages
+                from client_perf.core.android_tools import android_packages
                 import asyncio
                 return asyncio.run(android_packages(device_id))
             except Exception as e:
@@ -128,7 +128,7 @@ class DeviceManager:
 
         elif device_type == DEVICE_TYPE_IOS:
             try:
-                from app.core.ios_tools import ios_apps
+                from client_perf.core.ios_tools import ios_apps
                 import asyncio
                 return asyncio.run(ios_apps(device_id))
             except Exception as e:
@@ -137,7 +137,7 @@ class DeviceManager:
 
         elif device_type == DEVICE_TYPE_HARMONY:
             try:
-                from app.core.harmony_tools import harmony_packages
+                from client_perf.core.harmony_tools import harmony_packages
                 import asyncio
                 return asyncio.run(harmony_packages(device_id))
             except Exception as e:
@@ -151,7 +151,7 @@ class DeviceManager:
         """异步获取设备上的应用/进程列表"""
         if device_type == DEVICE_TYPE_ANDROID:
             try:
-                from app.core.android_tools import android_packages
+                from client_perf.core.android_tools import android_packages
                 return await android_packages(device_id)
             except Exception as e:
                 logger.error(f"获取 Android 应用列表失败: {e}")
@@ -159,7 +159,7 @@ class DeviceManager:
 
         elif device_type == DEVICE_TYPE_IOS:
             try:
-                from app.core.ios_tools import ios_apps
+                from client_perf.core.ios_tools import ios_apps
                 return await ios_apps(device_id)
             except Exception as e:
                 logger.error(f"获取 iOS 应用列表失败: {e}")
@@ -167,7 +167,7 @@ class DeviceManager:
 
         elif device_type == DEVICE_TYPE_HARMONY:
             try:
-                from app.core.harmony_tools import harmony_packages
+                from client_perf.core.harmony_tools import harmony_packages
                 return await harmony_packages(device_id)
             except Exception as e:
                 logger.error(f"获取 HarmonyOS 应用列表失败: {e}")
@@ -179,12 +179,12 @@ class DeviceManager:
     async def get_device_sys_info(cls, device_type: str, device_id: str) -> Dict:
         """获取设备系统信息"""
         if device_type == DEVICE_TYPE_PC:
-            from app.core.pc_tools import sys_info
+            from client_perf.core.pc_tools import sys_info
             return await sys_info()
 
         elif device_type == DEVICE_TYPE_ANDROID:
             try:
-                from app.core.android_tools import android_sys_info
+                from client_perf.core.android_tools import android_sys_info
                 return await android_sys_info(device_id)
             except Exception as e:
                 logger.error(f"获取 Android 系统信息失败: {e}")
@@ -192,7 +192,7 @@ class DeviceManager:
 
         elif device_type == DEVICE_TYPE_IOS:
             try:
-                from app.core.ios_tools import ios_sys_info
+                from client_perf.core.ios_tools import ios_sys_info
                 return await ios_sys_info(device_id)
             except Exception as e:
                 logger.error(f"获取 iOS 系统信息失败: {e}")
@@ -200,7 +200,7 @@ class DeviceManager:
 
         elif device_type == DEVICE_TYPE_HARMONY:
             try:
-                from app.core.harmony_tools import harmony_sys_info
+                from client_perf.core.harmony_tools import harmony_sys_info
                 return await harmony_sys_info(device_id)
             except Exception as e:
                 logger.error(f"获取 HarmonyOS 系统信息失败: {e}")
@@ -213,12 +213,12 @@ class DeviceManager:
                               pid: int = 0, save_dir: str = None) -> Optional[bytes]:
         """设备截图"""
         if device_type == DEVICE_TYPE_PC:
-            from app.core.pc_tools import screenshot
+            from client_perf.core.pc_tools import screenshot
             return await screenshot(pid, save_dir)
 
         elif device_type == DEVICE_TYPE_ANDROID:
             try:
-                from app.core.android_tools import android_screenshot
+                from client_perf.core.android_tools import android_screenshot
                 return await android_screenshot(device_id, save_dir, pid)
             except Exception as e:
                 logger.error(f"Android 截图失败: {e}")
@@ -226,7 +226,7 @@ class DeviceManager:
 
         elif device_type == DEVICE_TYPE_IOS:
             try:
-                from app.core.ios_tools import ios_screenshot
+                from client_perf.core.ios_tools import ios_screenshot
                 return await ios_screenshot(device_id, save_dir)
             except Exception as e:
                 logger.error(f"iOS 截图失败: {e}")
@@ -234,7 +234,7 @@ class DeviceManager:
 
         elif device_type == DEVICE_TYPE_HARMONY:
             try:
-                from app.core.harmony_tools import harmony_screenshot
+                from client_perf.core.harmony_tools import harmony_screenshot
                 return await harmony_screenshot(device_id, save_dir)
             except Exception as e:
                 logger.error(f"HarmonyOS 截图失败: {e}")
@@ -266,7 +266,7 @@ def get_platform_capabilities() -> Dict:
 
     # 检测 iOS 支持（基于 go-ios）
     import shutil as _shutil
-    from app.core.ios_tools import GO_IOS_PATH
+    from client_perf.core.ios_tools import GO_IOS_PATH
 
     if GO_IOS_PATH:
         capabilities["ios"] = True
@@ -277,7 +277,7 @@ def get_platform_capabilities() -> Dict:
         capabilities["ios_reason"] = "；".join(ios_reasons) if ios_reasons else "go-ios 未找到"
 
     # 检测 HarmonyOS 支持（基于 hdc）
-    from app.core.harmony_tools import HDC_PATH, HDC_AVAILABLE
+    from client_perf.core.harmony_tools import HDC_PATH, HDC_AVAILABLE
     if HDC_AVAILABLE:
         capabilities["harmony"] = True
     else:
