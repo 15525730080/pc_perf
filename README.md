@@ -1,61 +1,171 @@
-# pc_perf
+# client-perf
 
-tips： python版本建议安装3.7以上
-PC进程性能测试平台，支持 windows / mac / linux 平台普通进程、window游戏GUI进程的、应用级别多进程的性能监控。
-cpu、memory、fps（仅支持windowsOpenGL DirectX 引擎应用 unity u3d应用）、gpu、thread_num、handle_num 等指标的实时监控和可视化展示
+全平台客户端性能测试平台，支持 **PC（Windows / macOS / Linux）**、**Android**、**iOS**、**HarmonyOS** 四端进程/应用的性能实时采集与可视化。
 
-PC process performance testing platform, supporting regular processes on Windows/Mac/Linux platforms and GUI processes
-for Windows games
-Real time monitoring and visualization display of metrics such as CPU, memory, fps (only supports Windows OpenGL DirectX
-engine application Unity u3d application), GPU, thread_num, handle_num, etc
+> 原项目：[pc_perf](https://github.com/15525730080/pc_perf)  
+> 本版本（client-perf）基于 Python 完整重构，采用 FastAPI + asyncio 单进程服务 + 独立子进程采集的架构。
 
-# 启动入口
+---
 
-    方式1（推荐）：
-    pip install -U pc-perf
-    python -m pc_perf  
-    
-    方式2：
-    git clone https://github.com/15525730080/pc_perf.git
-    pip install -r requirements.txt
-    python pc_perf.py 
+## 功能特性
 
-# 创建任务
+**采集指标**
 
-<img width="1439" alt="image" src="https://github.com/user-attachments/assets/2bdfe24b-d454-4902-a60a-62cc1b21f4eb" />
+- CPU 使用率（进程级 & 全核）
+- 内存使用量（MB）
+- FPS 帧率（iOS / Android / PC OpenGL·DirectX·Unity 应用）
+- GPU 使用率
+- 线程数 / 句柄数
+- 磁盘 I/O 读写速率（MB/s）
+- 网络 I/O 收发速率（MB/s）
+- 电池电量 & 温度（移动端专属）
+- 进程截图（按时间轴点击查看对应帧截图）
 
-![image](https://github.com/user-attachments/assets/ccd399bb-f30d-4670-9443-d54b177c3d02)
+**平台支持**
 
-![image](https://github.com/user-attachments/assets/efee2396-5c4d-49bc-a4b8-367d8e553584)
+| 平台 | 采集方式 |
+|------|---------|
+| PC（Win/Mac/Linux） | psutil + pynvml（NVIDIA GPU） |
+| Android | adbutils（ADB） |
+| iOS | py-ios-device（Instruments DTX 协议：sysmontap + graphics） |
+| HarmonyOS | HDC |
 
-![image](https://github.com/user-attachments/assets/b7b16cf9-66e7-4eb8-9629-308dcdb6ecad)
+**其他功能**
 
-![image](https://github.com/user-attachments/assets/ef95c1fe-d8e2-418b-89f4-f0309203b40e)
+- 多任务管理：创建、停止、删除、重命名、设置版本号
+- 实时图表：采集中自动刷新，支持时间轴联动截图
+- 任务对比：多任务横向对比各指标均值，可视化柱状图
+- 高级分析：统计显著性检验、异常值检测（Z-score）、性能瓶颈分析
+- 报告导出：Excel 报表（单任务 / 对比报告）
+- Web UI：现代风格单页应用，无需额外安装前端依赖
 
+---
 
-# 任务列表
+## 技术架构
 
-![image](https://github.com/user-attachments/assets/25a49256-93c7-446d-801c-5defb551f8ef)
+```
+client-perf/
+├── main.py                  # 启动入口（uvicorn 单进程）
+├── requirements.txt
+├── app/
+│   ├── api.py               # FastAPI 路由层
+│   ├── db.py                # aiosqlite 数据库操作
+│   ├── task_handle.py       # TaskHandle(Process) — 独立子进程采集
+│   ├── util.py              # DataCollect 数据聚合 & 报表导出
+│   ├── log.py               # 日志
+│   └── core/
+│       ├── monitor.py       # Monitor — 通用采集循环（写 CSV）
+│       ├── device_manager.py# 统一设备管理（PC/Android/iOS/Harmony）
+│       ├── pc_tools.py      # PC 采集工具
+│       ├── android_tools.py # Android 采集工具
+│       ├── ios_tools.py     # iOS 采集工具（py-ios-device）
+│       └── harmony_tools.py # HarmonyOS 采集工具
+└── test_result/
+    └── index.html           # 前端页面（Vue 2 + ECharts，单文件）
+```
 
+**核心设计原则：**
 
-<img width="1434" alt="image" src="https://github.com/user-attachments/assets/813b12df-560a-4040-9457-810a8ac553a9" />
+- 服务层单进程（`workers=1`），并发由 `asyncio` 处理，无多进程竞争问题
+- 每个采集任务运行在独立子进程（`multiprocessing.Process`）中，互相隔离，崩溃不影响服务
+- 依赖极简：无 SQLAlchemy、无 pandas/numpy，仅 FastAPI + aiosqlite + psutil 等轻量库
+- Python 3.10+ 原生类型注解（`dict | None` 替代 `Optional[Dict]`）
 
-# 性能报表
-![image](https://github.com/user-attachments/assets/08fa8119-6ec5-4dab-8227-93aa56a40a68)
+---
 
-![image](https://github.com/user-attachments/assets/2438fc44-740d-4f8f-877b-7c04e83c9f04)
+## 环境要求
 
-![image](https://github.com/15525730080/pc_perf/assets/153100629/2e28527a-6e5d-487c-8753-8d3483c0f108)
-![image](https://github.com/user-attachments/assets/6ad7b0c6-0ba5-49e3-ba7a-38df2b8033cb)
+- Python 3.10+
+- iOS 采集额外需要安装 [go-ios](https://github.com/danielpaulus/go-ios)（管理 tunnel / 设备发现）
+- HarmonyOS 采集需要安装 HDC 工具
 
-# 报告对比（PR来自【https://github.com/SamuPopg】）
-<img width="1909" height="936" alt="image" src="https://github.com/user-attachments/assets/7013556b-3fdc-4be6-9b74-6e8d5c495d67" />
-<img width="1914" height="803" alt="image" src="https://github.com/user-attachments/assets/df48f6a2-11cd-43fc-a1e1-5f9d6af59a32" />
+---
 
+## 快速开始
 
+**1. 克隆项目**
 
-# 开源
+```bash
+git clone https://github.com/15525730080/pc_perf.git
+cd pc_perf
+```
 
-本项目归属：范博洲
-联系我：f15525730080（微信号）
-使用需要关注开源协议
+**2. 安装依赖**
+
+```bash
+pip install -r requirements.txt
+```
+
+iOS 采集还需安装 go-ios（macOS 示例）：
+
+```bash
+brew install danielpaulus/go-ios/go-ios
+```
+
+**3. 启动服务**
+
+```bash
+# 默认监听 0.0.0.0:8080
+python main.py
+
+# 指定端口
+python main.py --port 9090
+
+# 开发模式（热重载）
+python main.py --reload
+# 或
+uvicorn app.api:app --reload
+```
+
+**4. 打开 Web UI**
+
+浏览器访问 [http://localhost:8080](http://localhost:8080)
+
+---
+
+## 使用流程
+
+**创建任务**
+
+1. 进入「创建任务」页面
+2. 选择目标设备（PC 本机 / 已连接的 Android / iOS / HarmonyOS 设备）
+3. PC 端选择目标进程（支持独立进程列表或树形进程视图）；移动端选择目标应用
+4. 填写任务名称，点击「开始采集」
+
+**查看数据**
+
+在「任务列表」中点击「查看」，弹出实时图表面板：
+
+- 8 类指标图表（CPU / 内存 / FPS / GPU / 线程句柄 / 磁盘 I/O / 网络 I/O / 电池）
+- 点击任意图表时间轴，左侧截图面板同步显示对应时刻的进程截图
+- 采集中自动每 3 秒刷新图表
+
+**对比任务**
+
+1. 进入「对比任务」页面，勾选 2 个或以上任务
+2. 选择基准任务，点击「开始对比」
+3. 查看各指标均值柱状图及汇总表，可导出 Excel 对比报告
+
+---
+
+## 依赖清单
+
+| 包 | 用途 |
+|----|------|
+| fastapi | Web 框架 |
+| uvicorn | ASGI 服务器 |
+| aiosqlite | 异步 SQLite |
+| py-ios-device | iOS Instruments DTX 协议采集 |
+| adbutils | Android ADB 采集 |
+| psutil | PC 进程 / 系统指标 |
+| pynvml | NVIDIA GPU 采集（可选） |
+| openpyxl | Excel 报表导出 |
+| Pillow | PC 进程截图（可选） |
+
+---
+
+## 开源协议
+
+本项目归属：**范博洲**  
+联系方式：微信号 `f15525730080`  
+使用需遵守开源协议，详见 [LICENSE](./LICENSE)。

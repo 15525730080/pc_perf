@@ -1,80 +1,128 @@
+# coding: utf-8
+"""
+DataCollect — 读取任务目录下所有 CSV，返回结构化 JSON 数据。
+"""
 import asyncio
-import json
+import csv
 from pathlib import Path
-import numpy as np
-import pandas as pd
+from typing import Any
+
 from app.log import log as logger
 
 
-class DataCollect(object):
+class DataCollect:
 
-    def __init__(self, save_dir):
+    def __init__(self, save_dir: str) -> None:
         self.save_dir = save_dir
-        self.csv_files: list[Path] = self.get_all_csv()
+        self.csv_files: list[Path] = self._get_csv_files()
 
-    def get_all_csv(self):
-        return [sub_file for sub_file in Path(self.save_dir).iterdir() if
-                sub_file.is_file() and sub_file.suffix == ".csv"]
+    def _get_csv_files(self) -> list[Path]:
+        p = Path(self.save_dir)
+        if not p.exists():
+            return []
+        return [f for f in p.iterdir() if f.is_file() and f.suffix == ".csv"]
+
+    # ── CSV → list[dict] ─────────────────────────────────────
 
     @staticmethod
-    async def csv2json(file_path):
-        df = await asyncio.to_thread(pd.read_csv, file_path)
-        return json.loads(df.to_json(orient='records', double_precision=4))
+    async def _csv_to_records(file_path: Path) -> list[dict[str, Any]]:
+        """异步读取 CSV，返回 list[dict]，数值字段自动转 float"""
+        def _read() -> list[dict[str, Any]]:
+            records: list[dict[str, Any]] = []
+            with open(file_path, encoding="utf-8", newline="") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    parsed: dict[str, Any] = {}
+                    for k, v in row.items():
+                        if v == "" or v is None:
+                            parsed[k] = None
+                        else:
+                            try:
+                                parsed[k] = float(v) if "." in v else int(v)
+                            except (ValueError, TypeError):
+                                parsed[k] = v
+                    records.append(parsed)
+            return records
 
-    async def get_all_data(self, is_format=True):
-        result = await asyncio.gather(*[self.csv2json(file.resolve()) for file in self.csv_files])
-        all_data = [{"name": file.stem, "value": result[index]} for index, file in enumerate(self.csv_files)]
-        if is_format:
-            return self.format_all_data_value(all_data)
+        return await asyncio.to_thread(_read)
 
-        # @staticmethod
-        # def format_all_data_value(all_data: list[dict]):
-        start_time = min([data.get("value")[0].get("time") for data in all_data if data.get("value")])
-        end_time = max([data.get("value")[-1].get("time") for data in all_data if data.get("value")])
+    # ── 数据整形 ──────────────────────────────────────────────
 
-        # 内存操作是cpu密集型但是瓶颈并不在这里使用多进程效果并不明显
+    @staticmethod
+    def _format(all_data: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """
+        对齐时间轴：找出全局 [start_time, end_time]，
+        每个指标缺失的秒数补 {"time": t}，并计算 max_value / avg_value。
+        """
+        # 过滤掉空数据
+        valid = [d for d in all_data if d.get("value")]
+        if not valid:
+            return all_data
+
+        start_time = min(d["value"][0]["time"] for d in valid if d["value"])
+        end_time   = max(d["value"][-1]["time"] for d in valid if d["value"])
+
         for data in all_data:
-            format_all_data_dict = {cur_time: {"time": cur_time} for cur_time in range(start_time, end_time + 1)}
-            if data.get("value"):
-                old_value = data.get("value")
-                for value in old_value:
-                    format_all_data_dict[value.get("time")] = value
-            data["value"] = list(format_all_data_dict.values())
+            values = data.get("value") or []
+            if not values:
+                data["max_value"] = {}
+                data["avg_value"] = {}
+                continue
+
+            # 补全缺失时间点
+            existing = {v["time"] for v in values}
+            for t in range(int(start_time), int(end_time) + 1):
+                if t not in existing:
+                    values.append({"time": t})
+            values.sort(key=lambda x: x["time"])
+            data["value"] = values
+
+            # 统计（只统计有完整字段的行）
+            full_rows = [v for v in values if len(v) > 1]
+            if not full_rows:
+                data["max_value"] = {}
+                data["avg_value"] = {}
+                continue
+
+            numeric_keys = [
+                k for k in full_rows[0]
+                if k != "time" and isinstance(full_rows[0][k], (int, float))
+            ]
+            max_val: dict[str, float] = {}
+            sum_val: dict[str, float] = {k: 0.0 for k in numeric_keys}
+            cnt_val: dict[str, int]   = {k: 0   for k in numeric_keys}
+
+            for row in full_rows:
+                for k in numeric_keys:
+                    v = row.get(k)
+                    if v is not None and isinstance(v, (int, float)):
+                        max_val[k] = max(max_val.get(k, v), v)
+                        sum_val[k] += v
+                        cnt_val[k] += 1
+
+            data["max_value"] = {k: round(max_val[k], 4) for k in numeric_keys if k in max_val}
+            data["avg_value"] = {
+                k: round(sum_val[k] / cnt_val[k], 4)
+                for k in numeric_keys if cnt_val[k] > 0
+            }
+
         return all_data
 
-    # numpy 增强版性能表现更好
-    @staticmethod
-    def format_all_data_value(all_data):
-        start_time = min([data.get("value")[0].get("time") for data in all_data if data.get("value")])
-        end_time = max([data.get("value")[-1].get("time") for data in all_data if data.get("value")])
-        # 生成时间序列
-        all_times = np.arange(start_time, end_time + 1)
-        # 遍历所有数据
-        for data in all_data:
-            if 'value' in data:
-                # 将原始数据的时间转换为数组
-                original_times = np.array([item['time'] for item in data['value']])
-                missing_times = np.setdiff1d(all_times, original_times)
-                missing_data = [{'time': int(time)} for time in missing_times]
-                data['value'].extend(missing_data)
-                data['value'].sort(key=lambda x: x['time'])
+    # ── 公开接口 ──────────────────────────────────────────────
 
-                # 构造 DataFrame（补全后的）
-                df = pd.DataFrame(data['value']).fillna(0)
+    async def get_all_data(self, is_format: bool = True) -> list[dict[str, Any]]:
+        """读取所有 CSV，返回 [{"name": stem, "value": [...], "max_value": {}, "avg_value": {}}]"""
+        tasks = [self._csv_to_records(f) for f in self.csv_files]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
 
-                # 只统计原始值中存在的字段
-                original_df = pd.DataFrame([item for item in data['value'] if len(item.keys()) > 1])
-                if original_df.empty:
-                    data['max_value'] = {}
-                    data['avg_value'] = {}
-                    continue
+        all_data = []
+        for i, f in enumerate(self.csv_files):
+            r = results[i]
+            if isinstance(r, Exception):
+                logger.error(f"读取 {f} 失败: {r}")
+                r = []
+            all_data.append({"name": f.stem, "value": r})
 
-                numeric_columns = [
-                    col for col in original_df.columns
-                    if col != 'time' and np.issubdtype(original_df[col].dtype, np.number)
-                ]
-
-                data['max_value'] = df[numeric_columns].max().to_dict()
-                data['avg_value'] = original_df[numeric_columns].mean().round(4).to_dict()
-
+        if is_format:
+            return self._format(all_data)
         return all_data

@@ -18,10 +18,16 @@ MB_CONVERSION = 1024 * 1024
 SUPPORT_GPU = True
 try:
     pynvml.nvmlInit()
-except:
+except Exception:
     logger.info("本设备gpu获取不适配")
     SUPPORT_GPU = False
-from PIL import ImageGrab
+
+try:
+    from PIL import ImageGrab
+    SCREENSHOT_AVAILABLE = True
+except ImportError:
+    SCREENSHOT_AVAILABLE = False
+    logger.info("Pillow ImageGrab 不可用（Linux 无桌面环境），截图功能已禁用")
 
 
 def print_json(msg):
@@ -85,7 +91,7 @@ class WinFps(object):
                 line = line.decode(encoding="utf-8")
                 line_list = line.split(",")
                 WinFps.frame_que.append(start_fps_collect_time + round(float(line_list[7]), 7))
-            except:
+            except Exception:
                 time.sleep(1)
                 logger.error(traceback.format_exc())
 
@@ -189,7 +195,7 @@ async def process_tree():
                                 process_info["child_p"].append(child_info)
                             except Exception:
                                 # 处理子进程不存在的情况
-                                logger.error(f"子进程 {child.pid} 已不存在")
+                                pass
                     except psutil.NoSuchProcess:
                         # 处理父进程不存在的情况
                         logger.error(f"父进程 {proc.pid} 已不存在")
@@ -211,6 +217,8 @@ WINDOW_CACHE_EXPIRE_TIME = 15
 
 async def screenshot(pid, save_dir, include_child=False):
     def real_func(pid, save_dir):
+        if not SCREENSHOT_AVAILABLE:
+            return None
         global window_cache
         if pid:
             window = (window_cache.get(pid)[0] if window_cache.get(pid)[-1] + WINDOW_CACHE_EXPIRE_TIME > time.time() else None) if window_cache.get(pid) else None
