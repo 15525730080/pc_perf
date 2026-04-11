@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="client-perf",
-    version="2.1.0",
+    version="2.1.2",
     description="客户端性能采集与分析工具",
     long_description=open("README.md", "r", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
@@ -16,16 +16,7 @@ setup(
     package_data={
         "": ["*.html", "*.js", "*.css", "*.exe", "*"],
     },
-    install_requires=[
-        "fastapi",
-        "uvicorn",
-        "psutil",
-        "pandas",
-        "openpyxl",
-        "aiosqlite",
-        "apscheduler",
-        "pydantic",
-    ],
+
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
