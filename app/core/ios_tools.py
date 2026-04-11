@@ -20,8 +20,10 @@ import asyncio
 import dataclasses
 import json
 import os
+import platform
 import shutil
 import subprocess
+import sys
 import time
 import threading
 from pathlib import Path
@@ -44,7 +46,24 @@ except ImportError:
 # 按优先级查找 go-ios
 # Downloads 里的版本优先（已验证支持 userspace tunnel）
 # 环境变量 GO_IOS_PATH 可覆盖
-_DOWNLOADS_IOS = "/Users/fanbozhou/Downloads/ios"
+# 从 tool/go-ios-bin 目录中选择合适的 ios 工具
+def get_ios_tool_path():
+    """根据当前平台返回合适的 ios 工具路径"""
+    tool_dir = Path(__file__).parent.parent.parent.joinpath("tool", "go-ios-bin")
+    
+    if sys.platform == "win32":
+        return tool_dir.joinpath("go-ios-win", "ios.exe")
+    elif sys.platform == "darwin":
+        return tool_dir.joinpath("go-ios-mac", "ios")
+    elif sys.platform == "linux":
+        # 根据架构选择
+        if platform.machine() == "arm64":
+            return tool_dir.joinpath("go-ios-linux", "ios-arm64")
+        else:
+            return tool_dir.joinpath("go-ios-linux", "ios-amd64")
+    return None
+
+_DOWNLOADS_IOS = str(get_ios_tool_path())
 GO_IOS_PATH = (
     os.environ.get("GO_IOS_PATH")
     or (_DOWNLOADS_IOS if os.path.isfile(_DOWNLOADS_IOS) else None)
