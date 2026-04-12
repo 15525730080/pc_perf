@@ -33,13 +33,9 @@ from client_perf.log import log as logger
 from client_perf.core.monitor import Monitor
 
 # ── py-ios-device (Instruments DTX 协议) ──────────────────────────────────
-try:
-    from ios_device.remote.remote_lockdown import RemoteLockdownClient
-    from ios_device.cli.base import InstrumentsBase
-    _PY_IOS_DEVICE_AVAILABLE = True
-except ImportError:
-    _PY_IOS_DEVICE_AVAILABLE = False
-    logger.warning("py-ios-device 未安装，iOS 进程级指标不可用。pip install py-ios-device")
+from ios_device.remote.remote_lockdown import RemoteLockdownClient
+from ios_device.cli.base import InstrumentsBase
+_PY_IOS_DEVICE_AVAILABLE = True
 
 # ─────────────────────────── go-ios 路径 ───────────────────────────
 

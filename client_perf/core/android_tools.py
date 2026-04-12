@@ -8,18 +8,11 @@ import asyncio
 import json
 import re
 import time
-import traceback
 from typing import Optional, Dict, List
-
 from client_perf.log import log as logger
 from client_perf.core.monitor import Monitor
-
-try:
-    import adbutils
-    ADB_AVAILABLE = True
-except ImportError:
-    ADB_AVAILABLE = False
-    logger.warning("adbutils 未安装，Android 性能测试不可用。请执行: pip install adbutils")
+import adbutils
+ADB_AVAILABLE = True
 
 
 def print_json(msg):
