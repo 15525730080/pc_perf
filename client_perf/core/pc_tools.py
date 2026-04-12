@@ -95,7 +95,7 @@ class WinFps(object):
             return
         print("start fps ")
         start_fps_collect_time = int(time.time())
-        PresentMon = Path(__file__).parent.parent.parent.joinpath("tool", "PresentMon.exe")
+        PresentMon = Path(__file__).parent.parent.parent.joinpath("tool", f"PresentMon-1.8.0-{'x64' if platform.machine() == 'AMD64' else 'x86'}.exe")
         if not PresentMon.exists():
             logger.error(f"PresentMon.exe 不存在: {PresentMon}")
             return
