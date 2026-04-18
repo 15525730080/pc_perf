@@ -52,6 +52,7 @@ INSTALL_REQUIRES = [
     "apscheduler>=3.10.0",
     "Pillow>=10.0.0",
     "Cython>=0.29.0",
+    "pygetwindow>=0.0.9",
 ]
 
 setup(
