@@ -356,9 +356,8 @@ A: PresentMon requires administrator privileges. Please run `client-perf` as adm
 
 A: iOS 17+ 需要通过 go-ios tunnel 连接。请确保：
 A: iOS 17+ requires connection via go-ios tunnel. Please ensure:
-1. go-ios 已安装且在 PATH 中 / go-ios is installed and in PATH
-2. 以管理员/root 身份运行 / Run as administrator/root
-3. 设备已信任电脑 / Device trusts the computer
+1. 以管理员/root 身份运行 / Run as administrator/root
+2. 设备已信任电脑 / Device trusts the computer
 
 ### Q: GPU 使用率获取不到？ / GPU usage cannot be obtained?
 
@@ -375,3 +374,9 @@ A: PIL ImageGrab is not available when Linux has no desktop environment, screens
 ## 许可证 / License
 
 MIT License
+
+---
+
+## 作者 / Author
+
+范博洲(fanbozhou)、15525730080@163.com
