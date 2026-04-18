@@ -77,28 +77,8 @@ DEFAULT_CONFIG = {
 
 
 def load_config():
-    """加载可选配置文件；不存在时直接返回默认配置。"""
-    config_path = Path("build_config.json")
-    if not config_path.exists():
-        return DEFAULT_CONFIG.copy()
-
-    with config_path.open("r", encoding="utf-8") as fh:
-        loaded = json.load(fh)
-
-    merged = DEFAULT_CONFIG.copy()
-    merged.update(loaded)
-    merged["compiler_directives"] = {
-        **DEFAULT_CONFIG["compiler_directives"],
-        **loaded.get("compiler_directives", {}),
-    }
-    merged["resources"] = loaded.get("resources", DEFAULT_CONFIG["resources"])
-    merged["project_resource_paths"] = loaded.get(
-        "project_resource_paths", DEFAULT_CONFIG["project_resource_paths"]
-    )
-    merged["exclude_patterns"] = loaded.get(
-        "exclude_patterns", DEFAULT_CONFIG["exclude_patterns"]
-    )
-    return merged
+    """返回默认配置。"""
+    return DEFAULT_CONFIG.copy()
 
 
 def parse_args():
@@ -109,7 +89,7 @@ def parse_args():
             "  python cython_builder.py\n"
             "  python cython_builder.py --src app --main main --callable main\n"
             "  python cython_builder.py --run -- --host 0.0.0.0 --port 8080\n"
-            "  python cython_builder.py --unsafe  # 仅在确认代码无越界风险时再开启"
+            "  python cython_builder.py --unsafe  # 仅在确认代码无越界风险时再开启\n"
         ),
         formatter_class=argparse.RawTextHelpFormatter,
     )
@@ -140,6 +120,12 @@ def parse_args():
         nargs=argparse.REMAINDER,
         help="透传给入口函数的参数，放在 -- 之后",
     )
+    
+    # 如果没有传入任何参数，显示帮助信息
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(0)
+        
     return parser.parse_args()
 
 
@@ -217,11 +203,13 @@ def copy_compiled_outputs(cmd: build_ext, out_path: Path):
         if not output_path.exists() or not is_binary_file(output_path):
             continue
         rel_path = relative_to_root(output_path, build_root)
-        dest = out_path / rel_path
+        # 修改文件名为 cython_{源文件名}
+        new_name = f"cython_{rel_path.stem}{rel_path.suffix}"
+        dest = out_path / rel_path.parent / new_name
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(output_path, dest)
         copied.append(dest)
-        print(f"  复制二进制: {rel_path}")
+        print(f"  复制二进制: {rel_path.parent}/{new_name}")
     return copied
 
 
@@ -240,7 +228,12 @@ def copy_resources(
             continue
         if not any(fnmatch.fnmatch(path.name, pattern) for pattern in resource_patterns):
             continue
-        rel_path = relative_to_root(path.resolve(), project_root)
+        try:
+            # 使用相对于 src_root 的路径来保持源码树的目录结构
+            rel_path = path.relative_to(src_root)
+        except ValueError:
+            # 如果路径不在 src_root 下，使用文件名
+            rel_path = Path(path.name)
         dest = out_path / rel_path
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(path, dest)
@@ -297,7 +290,7 @@ if __name__ == "__main__":
 
 def run_compiled_package(out_path: Path, passthrough_args: list[str]):
     command = [sys.executable, "-m", out_path.name, *passthrough_args]
-    print(f"🏃 直接运行: {' '.join(command)}")
+    print(f"直接运行: {' '.join(command)}")
     subprocess.run(command, cwd=out_path.parent, check=True)
 
 
@@ -322,6 +315,7 @@ def build():
         directives["boundscheck"] = False
         directives["wraparound"] = False
 
+
     src_root = normalize_path(src_dir)
     out_path = Path(out_dir).resolve()
 
@@ -332,7 +326,7 @@ def build():
     if entry_source is None:
         raise FileNotFoundError(f"无法解析入口模块 {entry_module} 对应的源码文件")
 
-    print(f"🧹 清理目录: {out_path}")
+    print(f"清理目录: {out_path}")
     if out_path.exists():
         shutil.rmtree(out_path)
     out_path.mkdir(parents=True, exist_ok=True)
@@ -342,7 +336,7 @@ def build():
         source_files.append(str(entry_source))
         source_files.sort()
 
-    print(f"🚀 [Cython] 编译 {len(source_files)} 个 Python 文件...")
+    print(f"[Cython] 编译 {len(source_files)} 个 Python 文件...")
     Options.annotate = False
 
     with tempfile.TemporaryDirectory() as temp_dir_str:
@@ -354,11 +348,14 @@ def build():
             quiet=True,
         )
 
+        # 设置编译器参数
+        script_args = ["build_ext"]
+        
         dist = Distribution(
             {
                 "ext_modules": ext_modules,
                 "script_name": "setup.py",
-                "script_args": ["build_ext"],
+                "script_args": script_args,
             }
         )
         dist.parse_config_files()
@@ -370,22 +367,22 @@ def build():
         cmd.ensure_finalized()
         cmd.run()
 
-        print("📦 收集二进制产物...")
+        print("收集二进制产物...")
         copied = copy_compiled_outputs(cmd, out_path)
         if not copied:
             raise RuntimeError("没有找到任何编译产物，请检查 Cython 配置")
 
-    print("📦 复制静态资源...")
+    print("复制静态资源...")
     copy_resources(src_root, project_root, out_path, resources, exclude_patterns)
     copy_project_resource_paths(project_root, out_path, project_resource_paths)
 
-    print("🚪 暴露运行入口...")
+    print("暴露运行入口...")
     runtime_paths = build_runtime_paths(src_root, project_root)
     write_launcher(out_path, entry_module, entry_callable, runtime_paths)
 
-    print("\n✅ 编译成功！")
-    print(f"📍 产物路径: {out_path}")
-    print(f"🚀 运行命令: cd {out_path.parent} && python -m {out_path.name}")
+    print("\n编译成功！")
+    print(f"产物路径: {out_path}")
+    print(f"运行命令: cd {out_path.parent} && python -m {out_path.name}")
 
     if args.run:
         passthrough_args = list(args.entry_args)

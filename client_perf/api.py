@@ -37,7 +37,7 @@ from client_perf.core.device_manager import (
 # ── 应用初始化 ────────────────────────────────────────────────
 app = FastAPI(title="client-perf", version="2.0.0")
 
-BASE_DIR = Path(__file__).parent.parent / "test_result"
+BASE_DIR = Path(__file__).parent / "test_result"
 BASE_DIR.mkdir(exist_ok=True)
 # 同时兼容 /test_result 和旧的 /static 访问路径。
 app.mount("/test_result", StaticFiles(directory=str(BASE_DIR)), name="test_result")
@@ -68,10 +68,10 @@ async def _error_handler(request: Request, call_next):
 # ── 报告导出功能 ──────────────────────────────────────────────
 
 # 报告保存目录
-REPORT_DIR = Path(__file__).parent.parent / "test_result" / "excel_reports"
+REPORT_DIR = Path(__file__).parent / "test_result" / "excel_reports"
 REPORT_DIR.mkdir(exist_ok=True, parents=True)
 
-COMPARISON_REPORT_DIR = Path(__file__).parent.parent / "test_result" / "comparison_reports"
+COMPARISON_REPORT_DIR = Path(__file__).parent / "test_result" / "comparison_reports"
 COMPARISON_REPORT_DIR.mkdir(exist_ok=True, parents=True)
 
 

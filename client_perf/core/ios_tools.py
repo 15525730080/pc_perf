@@ -45,7 +45,7 @@ _PY_IOS_DEVICE_AVAILABLE = True
 # 从 tool/go-ios-bin 目录中选择合适的 ios 工具
 def get_ios_tool_path():
     """根据当前平台返回合适的 ios 工具路径"""
-    tool_dir = Path(__file__).parent.parent.parent.joinpath("tool", "go-ios-bin")
+    tool_dir = Path(__file__).parent.parent.joinpath("tool", "go-ios-bin")
     
     if sys.platform == "win32":
         return tool_dir.joinpath("go-ios-win", "ios.exe")
