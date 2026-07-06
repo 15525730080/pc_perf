@@ -84,6 +84,80 @@ def print_json(msg):
 
 # ─────────────────────────── 设备管理 ───────────────────────────
 
+def _clean_shell_output(val: str) -> str:
+    """
+    清理 hdc shell 输出中的日志噪音。
+    hdc 经常在输出末尾追加 [W] / [E] 等级别的日志行，需要去掉。
+    """
+    if not val:
+        return ""
+    lines = val.strip().split("\n")
+    # 过滤掉 hdc 日志行（以 [W]、[E]、[I] 等开头的行）
+    clean_lines = [l for l in lines if not re.match(r'^\[(?:W|E|I|D)\]', l.strip())]
+    return "\n".join(clean_lines).strip()
+
+
+def _is_valid_prop_value(val: str) -> bool:
+    """
+    判断 param get 返回的值是否有效。
+    过滤掉错误信息等无效输出。
+    """
+    if not val:
+        return False
+    lower = val.lower()
+    # 过滤常见的错误/无效输出关键词
+    error_keywords = ["not found", "inaccessible", "fail", "error",
+                      "permission denied", "no such"]
+    return not any(kw in lower for kw in error_keywords)
+
+
+def _get_device_prop(serial: str, key: str) -> str:
+    """
+    获取 HarmonyOS 设备属性，兼容不同版本。
+    优先使用 HarmonyOS 原生的 param get 命令，
+    若失败则尝试常见的 const.* 属性前缀。
+    """
+    # 1) 直接用原始 key 尝试 param get
+    val = _clean_shell_output(_shell(serial, f"param get {key} 2>/dev/null"))
+    if _is_valid_prop_value(val):
+        return val
+
+    # 2) 尝试 HarmonyOS 的 const.* 前缀属性名
+    ohos_key = key.replace("ro.product.", "const.product.").replace("ro.build.", "const.build.")
+    if ohos_key != key:
+        val = _clean_shell_output(_shell(serial, f"param get {ohos_key} 2>/dev/null"))
+        if _is_valid_prop_value(val):
+            return val
+
+    # 3) 针对特定属性的额外回退
+    if "model" in key:
+        for cmd in [
+            "param get const.product.model",
+            "param get const.product.name",
+        ]:
+            val = _clean_shell_output(_shell(serial, f"{cmd} 2>/dev/null"))
+            if _is_valid_prop_value(val):
+                return val
+    elif "brand" in key:
+        for cmd in [
+            "param get const.product.brand",
+            "param get const.product.manufacturer",
+        ]:
+            val = _clean_shell_output(_shell(serial, f"{cmd} 2>/dev/null"))
+            if _is_valid_prop_value(val):
+                return val
+    elif "version.release" in key:
+        val = _clean_shell_output(_shell(serial, "param get const.ohos.fullname 2>/dev/null"))
+        if _is_valid_prop_value(val):
+            return val
+    elif "version.sdk" in key:
+        val = _clean_shell_output(_shell(serial, "param get const.ohos.apiversion 2>/dev/null"))
+        if _is_valid_prop_value(val):
+            return val
+
+    return ""
+
+
 def get_harmony_devices() -> List[Dict]:
     """获取已连接的 HarmonyOS 设备列表"""
     if not HDC_AVAILABLE:
@@ -99,11 +173,12 @@ def get_harmony_devices() -> List[Dict]:
             if not line or line.startswith("[") or "Empty" in line or "targets" in line.lower():
                 continue
             serial = line.split()[0]
-            # 获取设备基本信息
-            model = _shell(serial, "getprop ro.product.model 2>/dev/null").strip() or "Unknown"
-            brand = _shell(serial, "getprop ro.product.brand 2>/dev/null").strip() or "Unknown"
-            os_version = _shell(serial, "getprop ro.build.version.release 2>/dev/null").strip() or "Unknown"
-            sdk_version = _shell(serial, "getprop ro.build.version.sdk 2>/dev/null").strip() or "Unknown"
+            # 获取设备基本信息（使用兼容方法，不依赖 getprop）
+            model = _get_device_prop(serial, "ro.product.model") or "Unknown"
+            brand = _get_device_prop(serial, "ro.product.brand") or "Unknown"
+            os_version = _get_device_prop(serial, "ro.build.version.release") or "Unknown"
+            sdk_version = _get_device_prop(serial, "ro.build.version.sdk") or "Unknown"
+
             devices.append({
                 "serial": serial,
                 "model": model,
@@ -125,16 +200,19 @@ def get_harmony_devices() -> List[Dict]:
 async def harmony_sys_info(serial: str) -> Dict:
     """获取 HarmonyOS 设备系统信息"""
     def real_func():
-        model = _shell(serial, "getprop ro.product.model").strip() or "Unknown"
-        brand = _shell(serial, "getprop ro.product.brand").strip() or "Unknown"
-        os_version = _shell(serial, "getprop ro.build.version.release").strip() or "Unknown"
+        model = _get_device_prop(serial, "ro.product.model") or "Unknown"
+        brand = _get_device_prop(serial, "ro.product.brand") or "Unknown"
+        os_version = _get_device_prop(serial, "ro.build.version.release") or "Unknown"
 
-        # CPU 核心数
-        cpu_cores_out = _shell(serial, "cat /proc/cpuinfo | grep processor | wc -l").strip()
-        cpu_cores = int(cpu_cores_out) if cpu_cores_out.isdigit() else 0
+        # CPU 核心数（优先 nproc，/proc/cpuinfo 在部分鸿蒙设备上无权限）
+        cpu_cores_out = _clean_shell_output(_shell(serial, "nproc 2>/dev/null"))
+        if not cpu_cores_out or not cpu_cores_out.isdigit():
+            cpu_cores_out = _clean_shell_output(
+                _shell(serial, "cat /proc/cpuinfo 2>/dev/null | grep processor | wc -l"))
+        cpu_cores = int(cpu_cores_out) if cpu_cores_out and cpu_cores_out.isdigit() else 0
 
         # 内存总量
-        mem_info = _shell(serial, "cat /proc/meminfo | grep MemTotal").strip()
+        mem_info = _clean_shell_output(_shell(serial, "cat /proc/meminfo 2>/dev/null | grep MemTotal"))
         mem_kb = int(re.search(r'(\d+)', mem_info).group(1)) if mem_info else 0
         mem_gb = round(mem_kb / 1024 / 1024, 1)
 
@@ -164,46 +242,62 @@ async def harmony_sys_info(serial: str) -> Dict:
 async def harmony_packages(serial: str) -> List[Dict]:
     """获取 HarmonyOS 设备上已安装的应用包名列表"""
     def real_func():
-        # 使用 bm dump 获取已安装包列表
-        output = _shell(serial, "bm dump -a 2>/dev/null")
         packages = []
+
+        # 方法1: bm dump -a（HarmonyOS 标准方式）
+        output = _shell(serial, "bm dump -a 2>/dev/null", timeout=20)
         if output:
             for line in output.strip().split("\n"):
                 line = line.strip()
-                # 过滤掉非包名行
+                # 过滤掉非包名行（空行、表头、提示信息等）
                 if not line or line.startswith("ID") or ":" in line[:3]:
                     continue
+                # 跳过包含错误信息或非包名格式的行
+                if "error" in line.lower() or "not found" in line.lower():
+                    continue
+                if "inaccessible" in line.lower():
+                    continue
+                # 包名通常是类似 com.xxx.yyy 的格式
+                pkg_name = line.split()[0] if line.split() else line
+                if not pkg_name or len(pkg_name) < 2:
+                    continue
                 # 尝试获取该包的 PID
-                pid_output = _shell(serial, f"pidof {line} 2>/dev/null").strip()
+                pid_output = _shell(serial, f"pidof {pkg_name} 2>/dev/null").strip()
                 pid = int(pid_output.split()[0]) if pid_output and pid_output.split()[0].isdigit() else 0
                 packages.append({
-                    "package_name": line,
+                    "package_name": pkg_name,
                     "pid": pid,
-                    "name": line,
+                    "name": pkg_name,
                     "running": pid > 0,
-                    "bundle_id": line,
+                    "bundle_id": pkg_name,
                 })
-        # 如果 bm dump 没有输出，尝试 pm list packages
+
+        # 方法2: bm dump --bundle-name 的另一种解析方式
         if not packages:
-            output2 = _shell(serial, "pm list packages -3 2>/dev/null")
-            for line in output2.strip().split("\n"):
-                line = line.strip()
-                if line.startswith("package:"):
-                    pkg = line.replace("package:", "").strip()
-                    if pkg:
-                        pid_output = _shell(serial, f"pidof {pkg} 2>/dev/null").strip()
-                        pid = int(pid_output.split()[0]) if pid_output and pid_output.split()[0].isdigit() else 0
-                        packages.append({
-                            "package_name": pkg,
-                            "pid": pid,
-                            "name": pkg,
-                            "running": pid > 0,
-                            "bundle_id": pkg,
-                        })
+            output2 = _shell(serial, "bm dump-shared-dependencies -a 2>/dev/null", timeout=20)
+            if not output2:
+                # 方法3: 最后尝试 aa dump（获取正在运行的 Ability）
+                output2 = _shell(serial, "aa dump -a 2>/dev/null", timeout=20)
+            if output2:
+                # 从输出中提取包名（com.xxx.yyy 格式）
+                bundle_names = set()
+                for match in re.finditer(r'(com\.[a-zA-Z0-9_.]+)', output2):
+                    bundle_names.add(match.group(1))
+                for pkg_name in sorted(bundle_names):
+                    pid_output = _shell(serial, f"pidof {pkg_name} 2>/dev/null").strip()
+                    pid = int(pid_output.split()[0]) if pid_output and pid_output.split()[0].isdigit() else 0
+                    packages.append({
+                        "package_name": pkg_name,
+                        "pid": pid,
+                        "name": pkg_name,
+                        "running": pid > 0,
+                        "bundle_id": pkg_name,
+                    })
+
         packages.sort(key=lambda x: (-int(x['running']), x['name']))
         return packages
 
-    return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=20)
+    return await asyncio.wait_for(asyncio.to_thread(real_func), timeout=30)
 
 
 # ─────────────────────────── CPU 采集 ───────────────────────────
